@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asmv1:assemblyIdentity name="ScreenGrab2.0.exe" version="2.0.0.9" publicKeyToken="7b1fedd6210d516a" language="de-DE" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="ScreenGrab2.0" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="ScreenGrab2.0.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="4" minorVersion="10" buildNumber="0" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab2.0.exe" size="126976">
+      <assemblyIdentity name="ScreenGrab2.0" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>XCx2n+v9Og2k6opk5O/Km+VOcVY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+<publisherIdentity name="CN=MAXWELLER-11\Max Weller" issuerKeyHash="396c4d552a26daa06981b83ccebc7d183b10e7db" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>4aibUuSp5rbZ9osbwCvIEjYYL0I=</DigestValue></Reference></SignedInfo><SignatureValue>fvlGMOX9J7hWah0F1eaV9iU3n1yUUpF5ga9ONE5HTIL6yDD9UH6S8k/JS7yL42+eoTE7twYJJQuK5O4qf63EeZioj3ZPn+cJA7v63hDG32RBmaiY4BllgF2ZS3Q0Il/wog9FibZ/AYqkCA7c6Q5lpKwROy2S3kOzUQwr2HVYJ2Y=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>xDxh+3LLQn9OSUslBEhvi5etD0ESxZOFCGgXv3mho8teFm6mVAxh6gHQXh4hWdETJV1qqd5HT7Vzru1re0oofOW5PAvhqF9Y5cSt5wVHvaq9aOJgcwYSPPwrB2aDyff3SlDVFCcOc+Rc9DZeyRM2sv+ZlbI2Fg2QvLNAeMHIy5k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="422f183612c82bc01b8bf6d9b6e6a9e4529ba8e1" Description="" Url=""><as:assemblyIdentity name="ScreenGrab2.0.exe" version="2.0.0.9" publicKeyToken="7b1fedd6210d516a" language="de-DE" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=MAXWELLER-11\Max Weller</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>aGm4it7krJhHpkYT4KINjKZhP58=</DigestValue></Reference></SignedInfo><SignatureValue>bk3ceuHgiuDKfKMn1vQMtu7HL0OJ8WOtYaKv+M/1T+MyBBv8uzS9u0NhVQ01qBe1greFwVsx4q0GebGz7s8rbrPan6yVMLUg96XibFWTRjF82V+oWwsveSDljBY+S9oZAgiotWOBT7nCet97zY7UREkdFzm7FI0COPesNRjWhJg=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>xDxh+3LLQn9OSUslBEhvi5etD0ESxZOFCGgXv3mho8teFm6mVAxh6gHQXh4hWdETJV1qqd5HT7Vzru1re0oofOW5PAvhqF9Y5cSt5wVHvaq9aOJgcwYSPPwrB2aDyff3SlDVFCcOc+Rc9DZeyRM2sv+ZlbI2Fg2QvLNAeMHIy5k=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB7TCCAVqgAwIBAgIQMEe7S5WBJKdHAAtY8AII9zAJBgUrDgMCHQUAMDkxNzA1BgNVBAMeLgBNAEEAWABXAEUATABMAEUAUgAtADEAMQBcAE0AYQB4ACAAVwBlAGwAbABlAHIwHhcNMDcxMDAzMTIyMjMwWhcNMDgxMDAyMTgyMjMwWjA5MTcwNQYDVQQDHi4ATQBBAFgAVwBFAEwATABFAFIALQAxADEAXABNAGEAeAAgAFcAZQBsAGwAZQByMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDEPGH7cstCf05JSyUESG+Ll60PQRLFk4UIaBe/eaGjy14WbqZUDGHqAdBeHiFZ0RMlXWqp3kdPtXOu7Wt7Sih85bk8C+GoX1jlxK3nBUe9qr1o4mBzBhI8/CsHZoPJ9/dKUNUUJw5z5Fz0Nl7JEzay/5mVsjYWDZC8s0B4wcjLmQIDAQABMAkGBSsOAwIdBQADgYEAAunUqm7RlPPHEB4JJB2bOGnrLwDYcMKuZlfvPxQSe8UxqkFEUgGjsX6eDHdnOlUmlg9uRRNZpcwrc8wneVTVtEFxewUWwoTHRFFzQWVQkfN4xFPtRvF8XJF9IMq1x8rj7VFtzUuLfUSw+2PmNpmH58ZfaEAMnSU7bDoeO/axTJ8=</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

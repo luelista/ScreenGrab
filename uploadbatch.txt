@@ -1,0 +1,3 @@
+APPNAME=screengrab4
+FOLDER=.\bin\Release
+UP=ScreenGrab4.exe
