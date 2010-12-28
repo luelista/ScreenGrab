@@ -1,7 +1,7 @@
-﻿frm_bluescreen__Rect<=	295;54;1002;632<=	
+﻿frm_bluescreen__Rect<=	1591;380;494;573<=	
 frm_blueScreen__cmbZoom<=	100%<=	
-frm_blueScreen__txtImageSizeHeight<=	478<=	
-frm_blueScreen__txtImageSizeWidth<=	445<=	
+frm_blueScreen__txtImageSizeHeight<=	103<=	
+frm_blueScreen__txtImageSizeWidth<=	444<=	
 frm_blueScreen__chk_blueScreenMode<=	FALSE<=	
 frm_blueScreen__txtPaintPosY<=	<=	
 frm_blueScreen__txtPaintPosX<=	<=	
@@ -12,8 +12,8 @@ frm_uploadFile__lastFilename<=	buslinie005.png<=
 frm_uploadFile__lastFolder<=	/mw/webspace/img/screenshots/busplan/<=	
 frm_mdiviewer__Rect<=	92;92;570;536<=	
 frm_blueScreen__txtOpenedFile<=	D:\EigeneDateien\public_key.txt<=	
-lastTempUploadName<=	java<=	
-lastTempUploadLink<=	IMAGE<=	
+lastTempUploadName<=	screengrab-fehler-beim-upload-behoben<=	
+lastTempUploadLink<=	PAGE<=	
 mdiViewer__cursorList<=	C:\yPara\globIcons\sgCursor\help_il.cur|##|C:\yPara\globIcons\sgCursor\shell32_137.ico|##|C:\yPara\globIcons\sgCursor\SHELL32_5.ico|##|C:\yPara\globIcons\sgCursor\shell32_48.ico|##|C:\yPara\globIcons\sgCursor\accessibilitycpl_340.ico|##|C:\Windows\Cursors\busy_il.cur|##|C:\Windows\Cursors\lappstrt.cur|##|C:\yPara\globIcons\1263559428_bug.ico|##|C:\yPara\globIcons\102_147.ico|##|C:\yPara\globIcons\10.ico|##|C:\yPara\globIcons\user32_102.ico|##|C:\yPara\globIcons\user32_103.ico|##|C:\yPara\globIcons\user32_104.ico|##|C:\yPara\globIcons\user32_101.ico<=	
 frm_options__checkHideWhileGrab<=	FALSE<=	
 frm_options__txtDefaultFolder<=	<=	
@@ -26,7 +26,7 @@ frm_options__txtMultiupl_nr<=	0<=
 frm_options__txtMultiupl_filePattern<=	image####.png<=	
 frm_options__txtMultiupl_targetFld<=	C:\<=	
 MultiuplJobs<=	|##||##|Loc|##|C:\|##|image####.png|##|0|##||##||##|<=	
-frm_options__Rect<=	431;85;700;500<=	
+frm_options__Rect<=	431;85;700;595<=	
 frm_printDialog__mode<=	big<=	
 frm_printDialog__selPrinter<=	9<=	
 frm_printDialog__selPaperTray<=	0<=	
@@ -40,3 +40,4 @@ paletteFile__localFolder<=	C:\Users\mw\Pictures\DigiCam\2003-05-18 Schmetterling
 frm_options__txtProxyPW<=	xMw306013129<=	
 frm_options__txtProxyUN<=	wellmaxi<=	
 frm_options__txtProxyDOM<=	proxy<=	
+frm_options__txtMainWinBG<=	#408080<=	

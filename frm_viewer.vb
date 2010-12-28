@@ -20,7 +20,8 @@
 
 
   Private Sub frm_viewer_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-    WebBrowser1.Navigate("http://snap.teamwiki.net/")
+    Dim base64 = Convert.ToBase64String(System.Text.Encoding.Default.GetBytes("screengrab_viewer_" + My.Application.Info.Version.ToString(3) + "_" + My.User.Name))
+    WebBrowser1.Navigate("http://snap.teamwiki.net/?source=" + base64)
 
   End Sub
 

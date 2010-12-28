@@ -183,7 +183,8 @@
     Next
   End Sub
   Private Sub frm_uploadFile_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-    
+    If isOfflineMode() Then Exit Sub
+
     Show()
 
     showMain()

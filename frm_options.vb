@@ -26,7 +26,9 @@ Public Class frm_options
 
   Sub saveSettings()
     glob.saveTuttiFrutti(Me)
-
+    Try
+      FRM.pnlViewPartial.BackColor = ColorTranslator.FromHtml(txtMainWinBG.Text)
+    Catch :End Try
 
   End Sub
 
@@ -58,7 +60,7 @@ Public Class frm_options
 
     glob.readTuttiFrutti(Me)
 
-
+    TabControl1.Top = -25
 
   End Sub
 
@@ -138,4 +140,14 @@ Public Class frm_options
   End Sub
 
 
+  Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    Using cd As New ColorDialog
+      Try
+        cd.Color = ColorTranslator.FromHtml(txtMainWinBG.Text)
+      Catch : End Try
+      If cd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        txtMainWinBG.Text = ColorTranslator.ToHtml(cd.Color)
+      End If
+    End Using
+  End Sub
 End Class

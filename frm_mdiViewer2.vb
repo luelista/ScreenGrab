@@ -5,6 +5,21 @@ Public Class frm_mdiViewer2
   Public WithEvents multitouch As TouchHelper
 
 
+
+  'TitleBar verstecken
+
+  Protected Overrides ReadOnly Property CreateParams() As System.Windows.Forms.CreateParams
+    Get
+      Dim cp As CreateParams = MyBase.CreateParams
+      Const WS_CAPTION As Int32 = &HC00000
+      cp.Style = cp.Style And Not WS_CAPTION
+      Return cp
+    End Get
+  End Property
+
+
+
+
   Dim paletteWindows As New List(Of Form)
   Sub addPaletteWindow(ByVal frm As Form)
     paletteWindows.Add(frm)
@@ -70,7 +85,7 @@ Public Class frm_mdiViewer2
             obj.img = Image.FromFile(fileSpec)
             obj.source = "FILE:" + fileSpec
             obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
-            obj.setBorder(2, Color.RoyalBlue)
+            'obj.setBorder(2, Color.RoyalBlue)
             canvas.objects.Add(obj)
 
           Case ".ICO"
@@ -139,7 +154,6 @@ Public Class frm_mdiViewer2
     hidePaletteWindows()
   End Sub
 
-
   Private Sub frm_mdiViewer2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
     multitouch = TouchHelper.RegisterForTouch(Me.PictureBox1)
     If multitouch IsNot Nothing Then
@@ -147,7 +161,7 @@ Public Class frm_mdiViewer2
       CheckBox1.Enabled = True
     End If
 
-    addPaletteWindow(frm_paletteProperties)
+    ' addPaletteWindow(frm_paletteProperties)
     addPaletteWindow(frm_paletteFile)
     addPaletteWindow(frm_paletteCursor)
 
@@ -156,6 +170,10 @@ Public Class frm_mdiViewer2
     canvas = New Vector.Canvas
     Dim obj As VObject
     canvas.PicBox = PictureBox1
+    canvas.EditTB = txtEditTB
+
+    frm_paletteFile.MyCanvas = canvas
+
     '  canvas.KeyHandlerControl = Me
 
     'obj = New VImage()
@@ -173,8 +191,13 @@ Public Class frm_mdiViewer2
 
   End Sub
 
-  Private Sub Panel1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PictureBox2.MouseDown, Label4.MouseDown, Panel1.MouseDown
+  Private Sub Panel1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) _
+  Handles PictureBox2.MouseDown, Label4.MouseDown, Panel1.MouseDown
     FormMoveTricky(Me.Handle)
+    If e.Button = Windows.Forms.MouseButtons.Right Then
+      frm_paletteCursor.Show()
+
+    End If
   End Sub
 
 
@@ -250,6 +273,7 @@ Public Class frm_mdiViewer2
     frm_paletteFile.Show()
     frm_paletteFile.Activate()
     repositionPaletteWindows()
+    frm_paletteFile.TabControl1.SelectedIndex = 1
 
   End Sub
 
@@ -318,7 +342,7 @@ Public Class frm_mdiViewer2
       'myObject.moveTempRect.X -= (myObject.moveTempRect.Width - myObject.Width) / 2
       'myObject.moveTempRect.Y -= (myObject.moveTempRect.Height - myObject.Height) / 2
 
-      frm_paletteProperties.TextBox1.Text = dp1.ToString + vbNewLine + dp2.ToString + vbNewLine + lp1.ToString + vbNewLine + lp2.ToString + vbNewLine + vbNewLine + distDP.ToString + vbNewLine + distLP.ToString + vbNewLine + vbNewLine + distFactor.ToString
+      frm_paletteFile.TextBox1.Text = dp1.ToString + vbNewLine + dp2.ToString + vbNewLine + lp1.ToString + vbNewLine + lp2.ToString + vbNewLine + vbNewLine + distDP.ToString + vbNewLine + distLP.ToString + vbNewLine + vbNewLine + distFactor.ToString
 
       '      ControlPaint.DrawReversibleFrame(PictureBox1.RectangleToScreen(myObject.moveTempRect), Color.White, FrameStyle.Dashed)
 
@@ -400,5 +424,9 @@ Public Class frm_mdiViewer2
 
   Private Sub PictureBox1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PictureBox1.Click
 
+  End Sub
+
+  Private Sub Button1_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    openGrabWindow()
   End Sub
 End Class

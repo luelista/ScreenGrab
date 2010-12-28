@@ -2,9 +2,20 @@
 
 
   Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
+    lblWronglogin.Visible = False
+    Me.Enabled = False
+    If doLogin(UsernameTextBox.Text, PasswordTextBox.Text, False) Then
+      Me.Enabled = True
+      DialogResult = Windows.Forms.DialogResult.OK
+    Else
+      lblWronglogin.Visible = True
+      Application.DoEvents()
+      Threading.Thread.Sleep(900)
+      Me.Enabled = True
+      PasswordTextBox.Text = "" : PasswordTextBox.Focus()
+    End If
 
 
-    DialogResult = Windows.Forms.DialogResult.OK
   End Sub
 
   Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
@@ -19,15 +30,17 @@
 
   Private Sub LoginForm1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
     If glob.para("user") = "" Then
-      btnLogoff.Enabled = False
+      '  btnLogoff.Enabled = False
 
     End If
   End Sub
 
-  Private Sub btnLogoff_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLogoff.Click
-    twLoginuser = "" : twLoginPass = "" : twLoginFullname = "" : twSessID = ""
-    glob.para("user") = ""
-    Application.Exit()
+  Private Sub btnLogoff_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    
+  End Sub
 
+  Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    doLogin(OFFLINE_USER, Nothing, False)
+    DialogResult = Windows.Forms.DialogResult.OK
   End Sub
 End Class

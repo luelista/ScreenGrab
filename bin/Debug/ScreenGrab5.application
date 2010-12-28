@@ -4,14 +4,14 @@
   <description asmv2:publisher="TeamWiki.de" asmv2:product="ScreenGrab 2.0" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="ScreenGrab5.exe.manifest" size="5399">
+    <dependentAssembly dependencyType="install" codebase="ScreenGrab5.exe.manifest" size="9266">
       <assemblyIdentity name="ScreenGrab5.exe" version="2.0.0.10" publicKeyToken="0000000000000000" language="de-DE" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Aj8ViXwPk8YnZRF8fVPGGmrHTag=</dsig:DigestValue>
+        <dsig:DigestValue>RcM2a8KXtpJ6K/6z7UeWTowx3tg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

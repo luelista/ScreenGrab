@@ -2,8 +2,23 @@
 Imports System.IO
 Imports System.Text
 Imports System.Security.Cryptography
+Imports System.Runtime.InteropServices
 
 Module sys_imageFromWeb
+  ''' <summary>
+  ''' The URLMON library contains this function, URLDownloadToFile, which is a way
+  ''' to download files without user prompts.
+  ''' </summary>
+  ''' <param name="pAxCaller">Pointer to caller object (AX).</param>
+  ''' <param name="szURL">String of the URL.</param>
+  ''' <param name="szFileName">String of the destination filename/path.</param>
+  ''' <param name="dwReserved">[reserved].</param>
+  ''' <param name="lpfnCB">A callback function to monitor progress or abort.</param>
+  ''' <returns>throws exception if not success</returns>
+  <DllImport("urlmon.dll", CharSet:=CharSet.Auto, SetLastError:=True, PreserveSig:=False)> _
+  Public Sub URLDownloadToFile(ByVal pAxCaller As IntPtr, <MarshalAs(UnmanagedType.LPWStr)> ByVal szURL As String, <MarshalAs(UnmanagedType.LPWStr)> ByVal szFileName As String, <MarshalAs(UnmanagedType.U4)> ByVal dwReserved As UInteger, ByVal lpfnCB As IntPtr)
+  End Sub
+
 
   ' Bild von Webserver laden
   Public Function ImageFromWeb(ByVal sURL As String) As Image

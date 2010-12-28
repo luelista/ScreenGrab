@@ -1,4 +1,6 @@
-﻿Namespace Vector
+﻿Imports System.Drawing.Drawing2D
+
+Namespace Vector
 
   Public Enum VResizeDirection
     None = 0
@@ -57,7 +59,7 @@
 
 
     Public Shared Function Color2String(ByVal c As Color) As String
-      Return String.Format("{0:x2}{1:x2}{2:x2}{3:x2}", c.A, c.R, c.G, c.B)
+      Return String.Format("{0:X2}{1:X2}{2:X2}{3:X2}", c.A, c.R, c.G, c.B)
     End Function
 
     Public Shared Function Color2HTMLString(ByVal c As Color) As String
@@ -73,8 +75,10 @@
       Return Color.FromArgb(Convert.ToByte(c.Substring(0, 2), 16), Convert.ToByte(c.Substring(2, 2), 16), Convert.ToByte(c.Substring(4, 2), 16), Convert.ToByte(c.Substring(6, 2), 16))
     End Function
 
-
   End Class
+
+
+
 
   Public Class Canvas
     Public objects As New List(Of VObject)
@@ -93,6 +97,10 @@
     Private WithEvents msgFilter As New VCanvasLocalMessageFilter()
 
     Public IsMultitouchMode As Boolean = False
+
+    Public isEditMode As Boolean = False
+    Public EditObject As VTextbox
+    Public WithEvents EditTB As TextBox
 
     Public Property PicBox() As PictureBox
       Get
@@ -135,15 +143,17 @@
     End Function
 
     Sub OnSelectionChanged()
+      If isEditMode Then acceptEditMode()
+
       selectionCount = 0 : selectedObjects.Clear()
       For i = 0 To objects.Count - 1
         If objects(i).isSelected Then selectionCount += 1 : selectedObjects.Add(objects(i))
       Next
-      If frm_paletteProperties.Visible And selectionCount = 1 Then
-        frm_paletteProperties.SelectedObject = selectedObjects(0)
+      If frm_paletteFile.Visible And selectionCount = 1 Then
+        frm_paletteFile.SelectedObject = selectedObjects(0)
       End If
-      If frm_paletteProperties.Visible And selectionCount <> 1 Then
-        frm_paletteProperties.SelectedObject = Nothing
+      If frm_paletteFile.Visible And selectionCount <> 1 Then
+        frm_paletteFile.SelectedObject = Nothing
       End If
     End Sub
 
@@ -156,7 +166,40 @@
       Invalidate()
     End Sub
 
+    Sub startEditMode(ByVal tb As VTextbox)
+      EditTB.Bounds = New Rectangle(tb.Left - 2, tb.Top + 28, tb.Width + 4, tb.Height + 4)
+      'EditTB.Top += 28
+
+      EditTB.Text = tb.text
+      EditTB.Font = tb.fnt
+      EditTB.Show()
+      EditObject = tb
+      isEditMode = True
+    End Sub
+
+    Sub acceptEditMode()
+      If Not isEditMode Then Exit Sub
+      EditObject.text = EditTB.Text
+      EditTB.Hide()
+      isEditMode = False
+    End Sub
+
+    Sub cancelEditMode()
+      If Not isEditMode Then Exit Sub
+      EditTB.Hide()
+      isEditMode = False
+    End Sub
+
+    Private Sub box_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles box.MouseDoubleClick
+      Dim selObj = GetFirstSelectedObject()
+      If selObj IsNot Nothing AndAlso TypeOf selObj Is VTextbox Then
+        startEditMode(selObj)
+
+      End If
+    End Sub
+
     Private Sub box_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles box.MouseDown
+      If isEditMode Then acceptEditMode()
       If IsMultitouchMode Then Exit Sub
 
       mouseDownPnt = e.Location
@@ -168,7 +211,7 @@
       If selObj IsNot Nothing Then
         Dim resize = selObj.HitTestResizer(e.Location)
         resizeDirection = resize
-        frm_mdiViewer2.Text = resizeDirection.ToString
+        ''''    frm_mdiViewer2.Text = resizeDirection.ToString
       End If
 
       If resizeDirection = VResizeDirection.None Then
@@ -281,14 +324,14 @@
 
     Sub showProperties(ByVal obj As VObject, Optional ByVal force As Boolean = False)
       If force = True Then
-        frm_paletteProperties.Show()
-        frm_paletteProperties.Activate()
-      ElseIf force = False And frm_paletteProperties.Visible = False Then
+        frm_paletteFile.Show()
+        frm_paletteFile.Activate()
+      ElseIf force = False And frm_paletteFile.Visible = False Then
         Exit Sub
       End If
-      frm_paletteProperties.MyCanvas = Me
-      frm_paletteProperties.RefreshItemList()
-      frm_paletteProperties.SelectedObject = obj
+      ' frm_paletteFile.MyCanvas = Me
+      frm_paletteFile.RefreshItemList()
+      frm_paletteFile.SelectedObject = obj
     End Sub
 
     Sub showTextEditor(ByVal obj As VTextbox, Optional ByVal allowFormat As Boolean = True)
@@ -303,6 +346,10 @@
 
     Sub Invalidate()
       box.Invalidate()
+
+      'HACK
+      frm_paletteCursor.Invalidate()
+
     End Sub
 
     Sub DeselectAll()
@@ -354,9 +401,30 @@
       Invalidate()
     End Sub
 
+    Sub MoveObjectZ(ByVal obj As VObject, ByVal dirUp As Boolean)
+      Dim curIdx As Integer = objects.IndexOf(obj)
+      If curIdx = 0 And dirUp = False Then Exit Sub
+      If curIdx = objects.Count - 1 And dirUp = True Then Exit Sub
 
+      objects.RemoveAt(curIdx)
+      If dirUp Then
+        objects.Insert(curIdx + 1, obj)
+      Else
+        objects.Insert(curIdx - 1, obj)
+      End If
+      Invalidate()
+    End Sub
 
     Private Sub msgFilter_onKeyDown(ByVal e As System.Windows.Forms.KeyEventArgs) Handles msgFilter.onKeyDown
+      If ownerForm Is Nothing OrElse ownerForm IsNot Form.ActiveForm Then Exit Sub
+
+      If isEditMode Then
+        If e.KeyCode = Keys.Escape Then
+          cancelEditMode()
+        End If
+        Exit Sub
+      End If
+
       If e.KeyCode = Keys.Delete Then
         Dim obj = GetFirstSelectedObject()
         If obj IsNot Nothing Then
@@ -413,15 +481,19 @@
     End Sub
 
     Private Sub msgFilter_onKeyUp(ByVal e As System.Windows.Forms.KeyEventArgs) Handles msgFilter.onKeyUp
+      If ownerForm Is Nothing OrElse ownerForm IsNot Form.ActiveForm Then Exit Sub
+
       Debug.Print("keyUP" + e.KeyCode.ToString)
-    End Sub
 
-    Private Sub ownerForm_Activated(ByVal sender As Object, ByVal e As System.EventArgs) Handles ownerForm.Activated
-      Application.AddMessageFilter(msgFilter)
-    End Sub
+      If e.KeyCode = Keys.PageUp Then
+        MoveObjectZ(GetFirstSelectedObject(), True)
+      End If
 
-    Private Sub ownerForm_Deactivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles ownerForm.Deactivate
-      Application.RemoveMessageFilter(msgFilter)
+      If e.KeyCode = Keys.PageDown Then
+        MoveObjectZ(GetFirstSelectedObject(), False)
+      End If
+
+
     End Sub
 
 
@@ -443,7 +515,7 @@
       sw.WriteLine("	<meta name=""generator"" content=""ScreenShot 5 Collage"">")
       sw.WriteLine("</head>")
       sw.WriteLine("<body bgcolor=""#888888"">")
-      sw.WriteLine("<!-- ##page##" & PicBox.Width & "##" & PicBox.Height & "##" & "##" + Helper.Color2HTMLString(PicBox.BackColor) + "## -->")
+      sw.WriteLine("<!-- ##page##" & PicBox.Width & "##" & PicBox.Height & "##" & "##" + Helper.Color2String(PicBox.BackColor) + "## -->")
       sw.WriteLine("<div style=""margin: 10px auto; overflow: hidden; " + _
                     "background-color: " + Helper.Color2HTMLString(PicBox.BackColor) + ";" + _
                     "border: 1px solid black; width: " & PicBox.Width & "px; height: " & PicBox.Height & "px; "">")
@@ -466,7 +538,7 @@
         If TypeOf el Is VTextbox Then
           Dim txt As VTextbox = el
           sw.Write("<!-- " + Join(txt.Serialize(), "##") + "## -->")
-          sw.WriteLine("<div style=""position: absolute; background: #fff; " & border & _
+          sw.WriteLine("<div style=""position: absolute; " & border & _
                         "z-index: " & txt.ZIndex & "; margin-left: " & txt.bounds.X & "px; margin-top: " & txt.bounds.Y & "px; height: " & txt.bounds.Height & "px; width: " & txt.bounds.Width & "px; " & _
                         "font-family: '" & txt.fnt.FontFamily.Name & "'; font-size: " & Replace(txt.fnt.SizeInPoints, ",", ".") & "pt; color: " & Helper.Color2HTMLString(DirectCast(txt.brsh, SolidBrush).Color) & "; "">")
           sw.WriteLine(Replace(Replace(txt.text, vbNewLine, vbLf), vbLf, "<br>"))
@@ -548,10 +620,14 @@
           Continue While
         End If
 
-        If modus = "rtf" And line = "</div>" Then
+        If modus = "txt" And line = "</div>" Then
           modus = "valid" : modusCounter = 0
-          DirectCast(myObj, VTextbox).text = contbuffer.ToString
+          DirectCast(myObj, VTextbox).text = Trim(contbuffer.ToString).Replace("<br>", vbCrLf)
           addObject(myObj)
+        End If
+
+        If modus = "txt" And modusCounter >= 1 Then
+          contbuffer.AppendLine(line)
         End If
 
         If modus = "img" And modusCounter >= 1 Then
@@ -604,6 +680,15 @@
       sr.Close()
     End Sub
 
+    Private Sub EditTB_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles EditTB.KeyUp
+      If e.KeyCode = Keys.Escape Then
+        cancelEditMode()
+      End If
+    End Sub
+
+    Private Sub EditTB_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles EditTB.TextChanged
+
+    End Sub
 
   End Class
 
@@ -653,11 +738,11 @@
 
     Public Shared selectionRectPen As New Pen(Color.Black, 1) With {.DashStyle = Drawing2D.DashStyle.Dash}
 
-    Public Shared CommonDataOffset As Integer = 11
+    Public Shared CommonDataOffset As Integer = 19
     Public Shared ResizerWidth As Integer = 5
     Public Shared ResizerBrsh As New SolidBrush(Color.Gray)
 
-
+    Public rotation As Integer
 
     Public Property bounds() As Rectangle
       Get
@@ -717,7 +802,7 @@
 
 
     Overridable Function Serialize() As String()
-      Dim data(10) As String
+      Dim data(18) As String
       data(1) = Me.GetType.Name
       data(2) = bounds.X
       data(3) = bounds.Y
@@ -730,10 +815,18 @@
         data(9) = borderPen.Width
         data(10) = Helper.Color2String(borderPen.Color)
       End If
+      data(11) = "V2" 'reserve
+      data(12) = rotation
+      data(13) = "" 'reserve
+      data(14) = "" 'reserve
+      data(15) = "" 'reserve
+      data(16) = "" 'reserve
+      data(17) = "" 'reserve
+      data(18) = "" 'reserve
       Return data
     End Function
-    Overridable Sub Deserialize(ByVal Data() As String)
-      ReDim Preserve Data(10)
+    Overridable Sub Deserialize(ByVal Data() As String, ByRef offset As Integer)
+      ReDim Preserve Data(19)
       m_bounds.X = Data(2)
       m_bounds.Y = Data(3)
       m_bounds.Width = Data(4)
@@ -742,7 +835,20 @@
       ZIndex = Data(6)
       name = Data(7)
       created = Data(8)
-      borderPen = New Pen(Helper.String2Color(Data(10)), Val(Data(9)))
+      If Val(Data(9)) > 0 Then
+        borderPen = New Pen(Helper.String2Color(Data(10)), Val(Data(9)))
+      Else
+        borderPen = Nothing
+      End If
+      If Data(11) = "V2" Then
+        offset = 19
+        rotation = Val(Data(12))
+      Else
+        offset = 11
+      End If
+    End Sub
+    Overridable Sub Deserialize(ByVal Data() As String)
+      Deserialize(Data, 0)
     End Sub
 
     Public Overridable Function HitTest(ByVal pnt As Point) As Boolean
@@ -788,15 +894,27 @@
     Public source As String
 
     Public Overrides Sub DrawObject(ByVal g As System.Drawing.Graphics)
+      Dim oldm As Matrix
+      If rotation > 0 Then
+        Dim m As New Matrix
+        m.RotateAt(rotation, New PointF(Me.bounds.X + Me.bounds.Width / 2, Me.bounds.Y + Me.bounds.Height / 2))
+        oldm = g.Transform
+        g.Transform = m
+      End If
       g.DrawImage(img, bounds)
       DrawBorder(g)
+      If rotation > 0 Then
+        g.Transform = oldm
+      End If
       DrawSelection(g)
+
     End Sub
 
     Public Overrides Sub Deserialize(ByVal Data() As String)
-      MyBase.Deserialize(Data)
-      ReDim Preserve Data(CommonDataOffset + 1)
-      source = Data(CommonDataOffset + 0)
+      Dim rOffset As Integer
+      MyBase.Deserialize(Data, rOffset)
+      ReDim Preserve Data(rOffset + 1)
+      source = Data(rOffset + 0)
     End Sub
 
     Public Overrides Function Serialize() As String()
@@ -823,15 +941,16 @@
     End Sub
 
     Public Overrides Sub Deserialize(ByVal Data() As String)
-      MyBase.Deserialize(Data)
-      ReDim Preserve Data(CommonDataOffset + 4)
-      Me.fnt = New Font(Data(CommonDataOffset + 0), Data(CommonDataOffset + 1), Data(CommonDataOffset + 2), GraphicsUnit.Point)
-      Me.brsh = New SolidBrush(Helper.String2Color(Data(CommonDataOffset + 3)))
+      Dim rOffset As Integer
+      MyBase.Deserialize(Data, rOffset)
+      ReDim Preserve Data(rOffset + 5)
+      Me.fnt = New Font(Data(rOffset + 0), Data(rOffset + 1), Data(rOffset + 2), GraphicsUnit.Point)
+      Me.brsh = New SolidBrush(Helper.String2Color(Data(rOffset + 3)))
     End Sub
 
     Public Overrides Function Serialize() As String()
       Dim data() = MyBase.Serialize()
-      ReDim Preserve data(CommonDataOffset + 4)
+      ReDim Preserve data(CommonDataOffset + 5)
       data(CommonDataOffset + 0) = fnt.FontFamily.Name
       data(CommonDataOffset + 1) = fnt.SizeInPoints
       data(CommonDataOffset + 2) = CInt(fnt.Style)

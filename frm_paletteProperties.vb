@@ -36,7 +36,7 @@
         Label10.Font = vt.fnt
         If TypeOf vt.brsh Is SolidBrush Then
           Label10.ForeColor = DirectCast(vt.brsh, SolidBrush).Color
-
+          txtTextColor.Text = ColorTranslator.ToHtml(DirectCast(vt.brsh, SolidBrush).Color)
         End If
       Else
         pnlFont.Enabled = False
@@ -130,5 +130,28 @@
       Exit Sub
     End If
     frm_mdiViewer2.canvas.SelectObject(obj)
+  End Sub
+
+  Private Sub txtTextColor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtTextColor.TextChanged
+    If selObj Is Nothing Or m_Canvas Is Nothing Then Exit Sub
+    Dim vt As Vector.VTextbox = DirectCast(selObj, Vector.VTextbox)
+    Try
+      vt.brsh = New SolidBrush(ColorTranslator.FromHtml(txtTextColor.Text))
+      m_Canvas.Invalidate()
+    Catch : End Try
+  End Sub
+
+  Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+    ColorDialog1.Color = ColorTranslator.FromHtml(txtTextColor.Text)
+    If ColorDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+      txtTextColor.Text = ColorTranslator.ToHtml(ColorDialog1.Color)
+    End If
+  End Sub
+
+  Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    ColorDialog1.Color = frm_mdiViewer2.canvas.PicBox.BackColor
+    If ColorDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+      frm_mdiViewer2.canvas.PicBox.BackColor = ColorDialog1.Color
+    End If
   End Sub
 End Class

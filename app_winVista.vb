@@ -233,6 +233,28 @@ Module app_winVista
 
 
   Dim ownerDrawSettings As New Dictionary(Of Form, Dictionary(Of String, Object))
+  Dim glassEnabled As Boolean
+
+  Property GlassControlText(ByVal ctrl As Control) As String
+    Get
+      GlassControlText = ""
+      Dim dict As Dictionary(Of String, Object)
+      If glassEnabled AndAlso ownerDrawSettings.TryGetValue(ctrl.FindForm, dict) Then
+        dict.TryGetValue(ctrl.Name, GlassControlText)
+      Else
+        Return ctrl.Text
+      End If
+    End Get
+    Set(ByVal value As String)
+      Dim dict As Dictionary(Of String, Object)
+      If glassEnabled AndAlso ownerDrawSettings.TryGetValue(ctrl.FindForm, dict) Then
+        dict(ctrl.Name) = value
+        ctrl.Invalidate()
+      Else
+        ctrl.Text = value
+      End If
+    End Set
+  End Property
 
   Sub makeFormGlassReady(ByVal frm As Form, ByVal ctrl As Control, ByVal ctrlPos As DockStyle)
     If checkIfGlassEnabled() Then
@@ -259,6 +281,7 @@ Module app_winVista
           ownerDrawSettings(frm).Add(sctrl.Name, New TextBoxGlassDrawer(sctrl))
         End If
       Next
+      glassEnabled = True
     End If
   End Sub
 

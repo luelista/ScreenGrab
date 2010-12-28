@@ -70,6 +70,7 @@ Module app_grabWindow
     deltaX = x
     deltaY = y
 
+    FRM.tbrZoom.Value = 100
     Dim resizeWindow = FRM.chk_blueScreenMode.Checked
     setImageSize(XX, YY, resizeWindow)
 
@@ -77,7 +78,7 @@ Module app_grabWindow
 
     'verschiedene Automatiken
 
-    If frm_mdiViewer2.Visible AndAlso frm_mdiViewer.AutomatischEinfuegenToolStripMenuItem.Checked Then
+    If frm_mdiViewer2.Visible Then 'AndAlso frm_mdiViewer.AutomatischEinfuegenToolStripMenuItem.Checked Then
       frm_mdiViewer2.addPicClient()
 
     End If

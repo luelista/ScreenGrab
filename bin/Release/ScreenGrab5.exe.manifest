@@ -4,7 +4,7 @@
   <description asmv2:iconFile="AcroRd32_18434.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ScreenGrab5" version="5.3.0.0" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ScreenGrab5" version="5.5.0.0" language="neutral" processorArchitecture="msil" />
     <commandLine file="ScreenGrab5.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -132,14 +132,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab5.exe" size="669184">
-      <assemblyIdentity name="ScreenGrab5" version="5.3.0.0" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab5.exe" size="692224">
+      <assemblyIdentity name="ScreenGrab5" version="5.5.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Tj8HaZjsPMBKb/ZPtBXXAB3YfDA=</dsig:DigestValue>
+        <dsig:DigestValue>ktf2dYG7lEiVOHSr7oaWv8hvQdQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -58,21 +58,6 @@ ScreenGrab5
 	<returns>The total height of all the screens relative to their arrangement.</returns>
 </member><member name="T:ScreenGrab5.ScreenArea">
 	<summary>Returns screen area statistics and capture functionality for all connected screens.</summary>
-</member><member name="M:ScreenGrab5.sys_imageFromWeb.MD5HashForString(System.String)">
-	<summary>
- Liefert den MD5-Hash-Wert eines Strings als Byte-Array zurück
- </summary>
-	<param name="Text">Text zu dem ein Byte-Array ermittelt werden soll</param>
-	<returns></returns>
-	<remarks>Als Encoding wird der System.Default verwendet;</remarks>
-</member><member name="M:ScreenGrab5.sys_imageFromWeb.ByteArrayToString(System.Byte[])">
-	<summary>
- Liefert ein Byte-Array als String zurück (können Sie verwenden um einen 
- MD5-Hash-Wert vom Type "Byte-Array" in eine String um zu wandeln
- </summary>
-	<param name="arrInput"></param>
-	<returns></returns>
-	<remarks></remarks>
 </member><member name="F:ScreenGrab5.app_winVista.WTNCA_NODRAWCAPTION">
 	<summary>
  Do Not Draw The Caption (Text)
@@ -151,19 +136,21 @@ ScreenGrab5
  </summary>
 	<param name="hwnd"></param>
 	<remarks></remarks>
-</member><member name="P:ScreenGrab5.My.Resources.Resources.ResourceManager">
+</member><member name="M:ScreenGrab5.sys_imageFromWeb.MD5HashForString(System.String)">
 	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:ScreenGrab5.My.Resources.Resources.Culture">
+ Liefert den MD5-Hash-Wert eines Strings als Byte-Array zurück
+ </summary>
+	<param name="Text">Text zu dem ein Byte-Array ermittelt werden soll</param>
+	<returns></returns>
+	<remarks>Als Encoding wird der System.Default verwendet;</remarks>
+</member><member name="M:ScreenGrab5.sys_imageFromWeb.ByteArrayToString(System.Byte[])">
 	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="T:ScreenGrab5.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
+ Liefert ein Byte-Array als String zurück (können Sie verwenden um einen 
+ MD5-Hash-Wert vom Type "Byte-Array" in eine String um zu wandeln
+ </summary>
+	<param name="arrInput"></param>
+	<returns></returns>
+	<remarks></remarks>
 </member><member name="M:ScreenGrab5.Utilities.FTP.FTPclient.#ctor">
 	<summary>
  Blank constructor
@@ -354,6 +341,19 @@ ScreenGrab5
  Stores a list of files and directories from an FTP result
  </summary>
 	<remarks></remarks>
+</member><member name="P:ScreenGrab5.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ScreenGrab5.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ScreenGrab5.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
 </member>
 </members>
 </doc>

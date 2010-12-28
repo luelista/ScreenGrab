@@ -44,9 +44,13 @@ Partial Class frm_paletteProperties
     Me.Label10 = New System.Windows.Forms.Label
     Me.btnText = New System.Windows.Forms.Button
     Me.pnlFont = New System.Windows.Forms.Panel
+    Me.txtTextColor = New System.Windows.Forms.TextBox
+    Me.Button1 = New System.Windows.Forms.Button
     Me.FontDialog1 = New System.Windows.Forms.FontDialog
     Me.pnlProperties = New System.Windows.Forms.Panel
     Me.TextBox1 = New System.Windows.Forms.TextBox
+    Me.ColorDialog1 = New System.Windows.Forms.ColorDialog
+    Me.Button2 = New System.Windows.Forms.Button
     CType(Me.nudX, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.nudY, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.nudYY, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -216,7 +220,7 @@ Partial Class frm_paletteProperties
     '
     Me.btnFormat.Location = New System.Drawing.Point(3, 41)
     Me.btnFormat.Name = "btnFormat"
-    Me.btnFormat.Size = New System.Drawing.Size(108, 23)
+    Me.btnFormat.Size = New System.Drawing.Size(89, 23)
     Me.btnFormat.TabIndex = 18
     Me.btnFormat.Text = "Format..."
     Me.btnFormat.UseVisualStyleBackColor = True
@@ -233,23 +237,41 @@ Partial Class frm_paletteProperties
     '
     'btnText
     '
-    Me.btnText.Location = New System.Drawing.Point(3, 70)
+    Me.btnText.Location = New System.Drawing.Point(3, 67)
     Me.btnText.Name = "btnText"
-    Me.btnText.Size = New System.Drawing.Size(108, 23)
+    Me.btnText.Size = New System.Drawing.Size(89, 23)
     Me.btnText.TabIndex = 20
     Me.btnText.Text = "Text..."
     Me.btnText.UseVisualStyleBackColor = True
     '
     'pnlFont
     '
+    Me.pnlFont.Controls.Add(Me.txtTextColor)
+    Me.pnlFont.Controls.Add(Me.Button1)
     Me.pnlFont.Controls.Add(Me.btnText)
     Me.pnlFont.Controls.Add(Me.Label10)
     Me.pnlFont.Controls.Add(Me.btnFormat)
     Me.pnlFont.Enabled = False
-    Me.pnlFont.Location = New System.Drawing.Point(3, 144)
+    Me.pnlFont.Location = New System.Drawing.Point(3, 140)
     Me.pnlFont.Name = "pnlFont"
-    Me.pnlFont.Size = New System.Drawing.Size(162, 102)
+    Me.pnlFont.Size = New System.Drawing.Size(162, 117)
     Me.pnlFont.TabIndex = 21
+    '
+    'txtTextColor
+    '
+    Me.txtTextColor.Location = New System.Drawing.Point(94, 93)
+    Me.txtTextColor.Name = "txtTextColor"
+    Me.txtTextColor.Size = New System.Drawing.Size(62, 20)
+    Me.txtTextColor.TabIndex = 22
+    '
+    'Button1
+    '
+    Me.Button1.Location = New System.Drawing.Point(3, 93)
+    Me.Button1.Name = "Button1"
+    Me.Button1.Size = New System.Drawing.Size(89, 23)
+    Me.Button1.TabIndex = 21
+    Me.Button1.Text = "Farbe ..."
+    Me.Button1.UseVisualStyleBackColor = True
     '
     'FontDialog1
     '
@@ -281,17 +303,31 @@ Partial Class frm_paletteProperties
     '
     'TextBox1
     '
-    Me.TextBox1.Location = New System.Drawing.Point(4, 312)
+    Me.TextBox1.Location = New System.Drawing.Point(4, 334)
     Me.TextBox1.Multiline = True
     Me.TextBox1.Name = "TextBox1"
     Me.TextBox1.Size = New System.Drawing.Size(152, 177)
     Me.TextBox1.TabIndex = 23
     '
+    'ColorDialog1
+    '
+    Me.ColorDialog1.FullOpen = True
+    '
+    'Button2
+    '
+    Me.Button2.Location = New System.Drawing.Point(7, 300)
+    Me.Button2.Name = "Button2"
+    Me.Button2.Size = New System.Drawing.Size(122, 23)
+    Me.Button2.TabIndex = 24
+    Me.Button2.Text = "Seitenhintergrund ..."
+    Me.Button2.UseVisualStyleBackColor = True
+    '
     'frm_paletteProperties
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-    Me.ClientSize = New System.Drawing.Size(169, 502)
+    Me.ClientSize = New System.Drawing.Size(169, 325)
+    Me.Controls.Add(Me.Button2)
     Me.Controls.Add(Me.TextBox1)
     Me.Controls.Add(Me.pnlProperties)
     Me.Controls.Add(Me.ComboBox1)
@@ -305,6 +341,7 @@ Partial Class frm_paletteProperties
     CType(Me.nudXX, System.ComponentModel.ISupportInitialize).EndInit()
     CType(Me.nudBorderWidth, System.ComponentModel.ISupportInitialize).EndInit()
     Me.pnlFont.ResumeLayout(False)
+    Me.pnlFont.PerformLayout()
     Me.pnlProperties.ResumeLayout(False)
     Me.pnlProperties.PerformLayout()
     Me.ResumeLayout(False)
@@ -336,4 +373,8 @@ Partial Class frm_paletteProperties
   Friend WithEvents FontDialog1 As System.Windows.Forms.FontDialog
   Friend WithEvents pnlProperties As System.Windows.Forms.Panel
   Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+  Friend WithEvents txtTextColor As System.Windows.Forms.TextBox
+  Friend WithEvents Button1 As System.Windows.Forms.Button
+  Friend WithEvents ColorDialog1 As System.Windows.Forms.ColorDialog
+  Friend WithEvents Button2 As System.Windows.Forms.Button
 End Class

@@ -2,6 +2,7 @@
 
   Private Sub frm_helpFile_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
     WebBrowser1.Navigate("http://snap.teamwiki.net/screengrab_help.php?lang=de&user=" + My.User.Name)
+    Me.Text = "ScreenGrab " + My.Application.Info.Version.ToString(3) + " Hilfe"
 
   End Sub
 

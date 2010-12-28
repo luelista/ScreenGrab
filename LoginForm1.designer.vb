@@ -38,13 +38,16 @@ Partial Class LoginForm1
     Me.PasswordTextBox = New System.Windows.Forms.TextBox
     Me.OK = New System.Windows.Forms.Button
     Me.Cancel = New System.Windows.Forms.Button
-    Me.btnLogoff = New System.Windows.Forms.Button
     Me.Label6 = New System.Windows.Forms.Label
     Me.LinkLabel2 = New System.Windows.Forms.LinkLabel
     Me.LinkLabel1 = New System.Windows.Forms.LinkLabel
     Me.PictureBox2 = New System.Windows.Forms.PictureBox
     Me.Label3 = New System.Windows.Forms.Label
     Me.Label1 = New System.Windows.Forms.Label
+    Me.Label2 = New System.Windows.Forms.Label
+    Me.Label4 = New System.Windows.Forms.Label
+    Me.Button1 = New System.Windows.Forms.Button
+    Me.lblWronglogin = New System.Windows.Forms.Label
     CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
     CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
@@ -61,7 +64,7 @@ Partial Class LoginForm1
     '
     'UsernameLabel
     '
-    Me.UsernameLabel.Location = New System.Drawing.Point(12, 144)
+    Me.UsernameLabel.Location = New System.Drawing.Point(12, 152)
     Me.UsernameLabel.Name = "UsernameLabel"
     Me.UsernameLabel.Size = New System.Drawing.Size(79, 23)
     Me.UsernameLabel.TabIndex = 0
@@ -70,7 +73,7 @@ Partial Class LoginForm1
     '
     'PasswordLabel
     '
-    Me.PasswordLabel.Location = New System.Drawing.Point(12, 177)
+    Me.PasswordLabel.Location = New System.Drawing.Point(12, 182)
     Me.PasswordLabel.Name = "PasswordLabel"
     Me.PasswordLabel.Size = New System.Drawing.Size(79, 23)
     Me.PasswordLabel.TabIndex = 2
@@ -79,14 +82,14 @@ Partial Class LoginForm1
     '
     'UsernameTextBox
     '
-    Me.UsernameTextBox.Location = New System.Drawing.Point(97, 146)
+    Me.UsernameTextBox.Location = New System.Drawing.Point(97, 154)
     Me.UsernameTextBox.Name = "UsernameTextBox"
     Me.UsernameTextBox.Size = New System.Drawing.Size(212, 20)
     Me.UsernameTextBox.TabIndex = 1
     '
     'PasswordTextBox
     '
-    Me.PasswordTextBox.Location = New System.Drawing.Point(97, 179)
+    Me.PasswordTextBox.Location = New System.Drawing.Point(97, 184)
     Me.PasswordTextBox.Name = "PasswordTextBox"
     Me.PasswordTextBox.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
     Me.PasswordTextBox.Size = New System.Drawing.Size(212, 20)
@@ -94,7 +97,7 @@ Partial Class LoginForm1
     '
     'OK
     '
-    Me.OK.Location = New System.Drawing.Point(137, 227)
+    Me.OK.Location = New System.Drawing.Point(137, 214)
     Me.OK.Name = "OK"
     Me.OK.Size = New System.Drawing.Size(83, 23)
     Me.OK.TabIndex = 4
@@ -103,25 +106,16 @@ Partial Class LoginForm1
     'Cancel
     '
     Me.Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-    Me.Cancel.Location = New System.Drawing.Point(226, 227)
+    Me.Cancel.Location = New System.Drawing.Point(226, 214)
     Me.Cancel.Name = "Cancel"
     Me.Cancel.Size = New System.Drawing.Size(83, 23)
     Me.Cancel.TabIndex = 5
     Me.Cancel.Text = "Abbrechen"
     '
-    'btnLogoff
-    '
-    Me.btnLogoff.DialogResult = System.Windows.Forms.DialogResult.Cancel
-    Me.btnLogoff.Location = New System.Drawing.Point(8, 227)
-    Me.btnLogoff.Name = "btnLogoff"
-    Me.btnLogoff.Size = New System.Drawing.Size(98, 23)
-    Me.btnLogoff.TabIndex = 7
-    Me.btnLogoff.Text = "Ausloggen"
-    '
     'Label6
     '
     Me.Label6.AutoSize = True
-    Me.Label6.Location = New System.Drawing.Point(93, 391)
+    Me.Label6.Location = New System.Drawing.Point(93, 425)
     Me.Label6.Name = "Label6"
     Me.Label6.Size = New System.Drawing.Size(9, 13)
     Me.Label6.TabIndex = 10
@@ -130,7 +124,7 @@ Partial Class LoginForm1
     'LinkLabel2
     '
     Me.LinkLabel2.AutoSize = True
-    Me.LinkLabel2.Location = New System.Drawing.Point(101, 391)
+    Me.LinkLabel2.Location = New System.Drawing.Point(101, 425)
     Me.LinkLabel2.Name = "LinkLabel2"
     Me.LinkLabel2.Size = New System.Drawing.Size(69, 13)
     Me.LinkLabel2.TabIndex = 9
@@ -140,7 +134,7 @@ Partial Class LoginForm1
     'LinkLabel1
     '
     Me.LinkLabel1.AutoSize = True
-    Me.LinkLabel1.Location = New System.Drawing.Point(5, 391)
+    Me.LinkLabel1.Location = New System.Drawing.Point(5, 425)
     Me.LinkLabel1.Name = "LinkLabel1"
     Me.LinkLabel1.Size = New System.Drawing.Size(89, 13)
     Me.LinkLabel1.TabIndex = 8
@@ -150,7 +144,7 @@ Partial Class LoginForm1
     'PictureBox2
     '
     Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-    Me.PictureBox2.Location = New System.Drawing.Point(8, 276)
+    Me.PictureBox2.Location = New System.Drawing.Point(8, 310)
     Me.PictureBox2.Name = "PictureBox2"
     Me.PictureBox2.Size = New System.Drawing.Size(301, 107)
     Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -170,10 +164,50 @@ Partial Class LoginForm1
     'Label1
     '
     Me.Label1.BackColor = System.Drawing.SystemColors.ButtonShadow
-    Me.Label1.Location = New System.Drawing.Point(8, 262)
+    Me.Label1.Location = New System.Drawing.Point(8, 249)
     Me.Label1.Name = "Label1"
     Me.Label1.Size = New System.Drawing.Size(301, 1)
     Me.Label1.TabIndex = 11
+    '
+    'Label2
+    '
+    Me.Label2.BackColor = System.Drawing.SystemColors.ButtonShadow
+    Me.Label2.Location = New System.Drawing.Point(8, 301)
+    Me.Label2.Name = "Label2"
+    Me.Label2.Size = New System.Drawing.Size(301, 1)
+    Me.Label2.TabIndex = 12
+    '
+    'Label4
+    '
+    Me.Label4.AutoSize = True
+    Me.Label4.Location = New System.Drawing.Point(8, 261)
+    Me.Label4.Name = "Label4"
+    Me.Label4.Size = New System.Drawing.Size(201, 26)
+    Me.Label4.TabIndex = 13
+    Me.Label4.Text = "Im Offlinemodus können Screenshots nur" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "lokal gespeichert werden."
+    '
+    'Button1
+    '
+    Me.Button1.Location = New System.Drawing.Point(234, 257)
+    Me.Button1.Name = "Button1"
+    Me.Button1.Size = New System.Drawing.Size(75, 36)
+    Me.Button1.TabIndex = 14
+    Me.Button1.Text = "Offline- modus"
+    Me.Button1.UseVisualStyleBackColor = True
+    '
+    'lblWronglogin
+    '
+    Me.lblWronglogin.BackColor = System.Drawing.Color.Yellow
+    Me.lblWronglogin.Image = CType(resources.GetObject("lblWronglogin.Image"), System.Drawing.Image)
+    Me.lblWronglogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.lblWronglogin.Location = New System.Drawing.Point(15, 128)
+    Me.lblWronglogin.Name = "lblWronglogin"
+    Me.lblWronglogin.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
+    Me.lblWronglogin.Size = New System.Drawing.Size(294, 19)
+    Me.lblWronglogin.TabIndex = 15
+    Me.lblWronglogin.Text = "       Ungültige Login-Daten!"
+    Me.lblWronglogin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.lblWronglogin.Visible = False
     '
     'LoginForm1
     '
@@ -181,11 +215,14 @@ Partial Class LoginForm1
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.CancelButton = Me.Cancel
-    Me.ClientSize = New System.Drawing.Size(321, 412)
+    Me.ClientSize = New System.Drawing.Size(321, 452)
+    Me.Controls.Add(Me.lblWronglogin)
+    Me.Controls.Add(Me.Button1)
+    Me.Controls.Add(Me.Label4)
+    Me.Controls.Add(Me.Label2)
     Me.Controls.Add(Me.Label1)
     Me.Controls.Add(Me.Label6)
     Me.Controls.Add(Me.LinkLabel2)
-    Me.Controls.Add(Me.btnLogoff)
     Me.Controls.Add(Me.LinkLabel1)
     Me.Controls.Add(Me.Cancel)
     Me.Controls.Add(Me.PictureBox2)
@@ -210,12 +247,15 @@ Partial Class LoginForm1
     Me.PerformLayout()
 
   End Sub
-  Friend WithEvents btnLogoff As System.Windows.Forms.Button
   Friend WithEvents Label6 As System.Windows.Forms.Label
   Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
   Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
   Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
   Friend WithEvents Label3 As System.Windows.Forms.Label
   Friend WithEvents Label1 As System.Windows.Forms.Label
+  Friend WithEvents Label2 As System.Windows.Forms.Label
+  Friend WithEvents Label4 As System.Windows.Forms.Label
+  Friend WithEvents Button1 As System.Windows.Forms.Button
+  Friend WithEvents lblWronglogin As System.Windows.Forms.Label
 
 End Class

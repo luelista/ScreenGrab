@@ -32,6 +32,7 @@ Partial Class frm_paletteCursor
     Me.ClientSize = New System.Drawing.Size(169, 284)
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
     Me.Name = "frm_paletteCursor"
+    Me.ShowInTaskbar = False
     Me.Text = "Cursor & Icons"
     Me.ResumeLayout(False)
 

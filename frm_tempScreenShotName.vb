@@ -12,11 +12,11 @@ Public Class frm_tempScreenShotName
     glob.para("lastTempUploadLink") = If(chkCopyPageLink.Checked, "PAGE", "IMAGE")
     glob.para("lastTempUploadName") = TextBox1.Text
 
-    Dim url = Label3.Text
-    If TextBox1.Text = "" Then url = url.Substring(0, url.Length - 1)
-    url += TextBox1.Text + Label4.Text
-    txtFullURL.Text = url
-    Clipboard.SetText(url)
+    ' Dim url = Label3.Text
+    ' If TextBox1.Text = "" Then url = url.Substring(0, url.Length - 1)
+    ' url += TextBox1.Text + Label4.Text
+    ' txtFullURL.Text = url
+    Clipboard.SetText(txtFullURL.Text)
 
     ViewUpload = True
 
@@ -27,7 +27,7 @@ Public Class frm_tempScreenShotName
     infoBlock(0) = "mwSG;"
     infoBlock(1) = "screenshot_description1"
     infoBlock(2) = ""
-    infoBlock(3) = url
+    infoBlock(3) = "http://snap.teamwiki.net" 'txtFullURL.Text
     infoBlock(4) = ""
     infoBlock(5) = My.User.Name
     infoBlock(6) = getDestRect.ToString
@@ -43,7 +43,11 @@ Public Class frm_tempScreenShotName
     upload_file(tempFile, TextBox1.Text, True, "", datePart, errMes)
 
     If errMes.StartsWith("OK") Then
-      My.Computer.Audio.Play("C:\Windows\Media\start.wav")
+      Try
+        My.Computer.Audio.Play("C:\Windows\Media\start.wav")
+      Catch ex As Exception
+        My.Computer.Audio.PlaySystemSound(Media.SystemSounds.Asterisk)
+      End Try
     Else
       ViewUpload = False
       MsgBox("Fehler beim Hochladen aufgetreten!" + vbNewLine + errMes, MsgBoxStyle.Exclamation)
@@ -66,6 +70,7 @@ Public Class frm_tempScreenShotName
     datePart = Now.ToString("yyMMdd-HHmmss")
     ' Label3.Text = "http://snap.teamwiki.net/" + datePart + "-" + twLoginuser + "-"
     TextBox1.Text = glob.para("lastTempUploadName", "")
+    txtComment.Text = ""
     chkCopyPageLink.Checked = glob.para("lastTempUploadLink", "PAGE") = "PAGE"
     updateLink()
     Text = "Screenshot temporär hochladen ..."
@@ -78,8 +83,9 @@ Public Class frm_tempScreenShotName
     End Get
     Set(ByVal value As Boolean)
       PictureBox3.Visible = value
-      FlowLayoutPanel1.Visible = Not value
-      txtFullURL.Visible = value
+      ' FlowLayoutPanel1.Visible = Not value
+      TextBox1.Enabled = Not value
+      ' txtFullURL.Visible = value
       OK_Button.Visible = Not value
       ProgressBar1.Visible = value
 
@@ -93,10 +99,10 @@ Public Class frm_tempScreenShotName
   End Property
 
   Private Sub frm_tempScreenShotName_Shown(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Shown
-    If FlowLayoutPanel1.Visible Then
-      TextBox1.Focus()
+    'If FlowLayoutPanel1.Visible Then
+    TextBox1.Focus()
 
-    End If
+    'End If
   End Sub
 
   Private Sub TextBox1_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextBox1.KeyPress
@@ -109,7 +115,7 @@ Public Class frm_tempScreenShotName
     End If
   End Sub
 
-  Private Sub FlowLayoutPanel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles FlowLayoutPanel1.Paint
+  Private Sub FlowLayoutPanel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
 
   End Sub
 
@@ -120,7 +126,7 @@ Public Class frm_tempScreenShotName
 
     Else
       btnComment.Text = "Kommentar >"
-      Me.Height = deltaY + 206
+      Me.Height = deltaY + 215
 
     End If
   End Sub
@@ -130,15 +136,17 @@ Public Class frm_tempScreenShotName
   End Sub
   Sub updateLink()
     If chkCopyPageLink.Checked Then
-      Label3.Text = "http://snap.teamwiki.net/image.php?file=" + datePart + "-" + twLoginuser + ""
-      Label4.Text = ""
+      txtFullURL.Text = "http://snap.teamwiki.net/image/" + datePart + "-" + twLoginuser + "-" + TextBox1.Text
     Else
-      Label3.Text = "http://snap.teamwiki.net/" + datePart + "-" + twLoginuser + "-"
-      Label4.Text = ".png"
+      txtFullURL.Text = "http://snap.teamwiki.net/" + datePart + "-" + twLoginuser + "-" + TextBox1.Text + ".png"
     End If
   End Sub
 
   Private Sub frm_tempScreenShotName_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
+  End Sub
+
+  Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
+    updateLink()
   End Sub
 End Class

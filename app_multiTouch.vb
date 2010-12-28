@@ -34,27 +34,27 @@ Public Class TouchHelper
     End If
   End Sub
 
-    Private Sub New(ByVal frm As Control)
-        Me.AssignHandle(frm.Handle)
-        'Me.AssignHandle(frm_mdiViewer2.PictureBox1.Handle)
+  Private Sub New(ByVal frm As Control)
+    Me.AssignHandle(frm.Handle)
+    'Me.AssignHandle(frm_mdiViewer2.PictureBox1.Handle)
 
-        myForm = frm
-    End Sub
+    myForm = frm
+  End Sub
 
 
-    Public Shared Function RegisterForTouch(ByVal frm As Control)
-        Try
-            Dim ulFlags As ULong = 0
-            Dim iResult = RegisterTouchWindow(frm.Handle, ulFlags)
-            MsgBox("Register Multitouch??? " & iResult)
-            If iResult = True Then
-                Return New TouchHelper(frm)
-            End If
+  Public Shared Function RegisterForTouch(ByVal frm As Control)
+    Try
+      Dim ulFlags As ULong = 0
+      Dim iResult = RegisterTouchWindow(frm.Handle, ulFlags)
+      'MsgBox("Register Multitouch??? " & iResult)
+      If iResult = True Then
+        Return New TouchHelper(frm)
+      End If
 
-        Catch ex As Exception
+    Catch ex As Exception
       ' MsgBox("Register Touch Window failed: " + ex.Message)
-        End Try
-    End Function
+    End Try
+  End Function
 
 
   ' EventArgs passed to Touch handlers

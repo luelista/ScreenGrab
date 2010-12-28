@@ -1,7 +1,11 @@
 Module app_main
   Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
 
-  Public glob As New cls_globPara
+  Public settingsFolder As String = "C:\yPara\ScreenGrab5\"
+
+  Public glob As New cls_globPara(settingsFolder + "MW.ScreenGrab.Para")
+
+  Public Const OFFLINE_USER = "_offline_"
 
   Public grabsch As New ScreenshotGenerator
   Public m_ChildFormNumber As Integer = 0
@@ -32,7 +36,16 @@ Module app_main
 
   End Sub
 
-
+  Function isOfflineMode() As Boolean
+    If twLoginuser = OFFLINE_USER Then
+      If MsgBox("Diese Funktion steht im Offlinemodus nicht zur Verfügung. Möchtest du dich jetzt einloggen?", MsgBoxStyle.OkCancel Or MsgBoxStyle.Exclamation, "ScreenGrab im Offline-Modus") = MsgBoxResult.Ok Then
+        onChangeLogin()
+        If twLoginuser = OFFLINE_USER Then Return True
+      Else
+        Return True
+      End If
+    End If
+  End Function
 
   Dim uplForm As frm_uploadingMulti
 

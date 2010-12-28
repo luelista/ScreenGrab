@@ -36,10 +36,10 @@ Public Class frm_blueScreen
 
   End Sub
 
-  Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    'Dim oBitmap As New Bitmap(pic_viewPartial.Width, pic_viewPartial.Height)
+  'Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  'Dim oBitmap As New Bitmap(pic_viewPartial.Width, pic_viewPartial.Height)
 
-  End Sub
+  'End Sub
 
   Private Sub tmr_checkAsyncKeyState_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tmr_checkAsyncKeyState.Tick
     onTimerEvent()
@@ -146,6 +146,12 @@ Public Class frm_blueScreen
     If e.KeyCode = e.Control And (e.KeyCode = Keys.T) Then
       onCollage()
     End If
+    If e.KeyCode = e.Control And (e.KeyCode = Keys.U) Then
+      btnSaveToWeb_Click(Nothing, Nothing)
+    End If
+    If e.KeyCode = e.Control And (e.KeyCode = Keys.P) Then
+      btnPrint_Click(Nothing, Nothing)
+    End If
     'If e.KeyCode = Keys.F3 Or (e.Control And (e.KeyCode = Keys.U Or e.KeyCode = Keys.H Or e.KeyCode = Keys.Enter)) Then
     '  frm_saveFile.urlMode = False
     '  frm_saveFile.ShowDialog()
@@ -173,6 +179,8 @@ Public Class frm_blueScreen
   Private Sub frm_blueScreen_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
     FRM = Me
 
+    IO.Directory.CreateDirectory(settingsFolder + "IconCache\")
+
     glob.readTuttiFrutti(Me)
     glob.readFormPos(Me)
     'txtDIZ.Text = glob.para("diz")
@@ -181,12 +189,16 @@ Public Class frm_blueScreen
 
     If glob.para("user") <> "" Then
       Dim userData = Split(RC4StringDecrypt(glob.para("user"), kData), ":")
-      If userData.Length = 2 Then doLogin(userData(0), userData(1))
+      If userData.Length = 2 Then doLogin(userData(0), userData(1), True)
     End If
     If twLoginuser = "" Then
       If Not onChangeLogin() Then Application.Exit() : Exit Sub
     End If
-    Me.Text = "ScreenGrab " + My.Application.Info.Version.ToString(3) + "     [ [  Login: " + twLoginFullname + "  ] ]"
+
+
+    Try
+      FRM.pnlViewPartial.BackColor = ColorTranslator.FromHtml(glob.para("frm_options__txtMainWinBG", "#eeeeee"))
+    Catch : End Try
 
     makeFormGlassReady(Me, pnlSidebar, DockStyle.Left)
 
@@ -217,25 +229,25 @@ Public Class frm_blueScreen
     ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
   End Sub
 
-  Private Sub btnMoveUp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    deltaY += 1
-    updatePartialView()
-  End Sub
+  'Private Sub btnMoveUp_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  deltaY += 1
+  '  updatePartialView()
+  'End Sub
 
-  Private Sub btnMoveDown_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    deltaY -= 1
-    updatePartialView()
-  End Sub
+  'Private Sub btnMoveDown_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  deltaY -= 1
+  '  updatePartialView()
+  'End Sub
 
-  Private Sub btnMoveLeft_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    deltaX += 1
-    updatePartialView()
-  End Sub
+  'Private Sub btnMoveLeft_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  deltaX += 1
+  '  updatePartialView()
+  'End Sub
 
-  Private Sub btnMoveRight_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    deltaX -= 1
-    updatePartialView()
-  End Sub
+  'Private Sub btnMoveRight_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  deltaX -= 1
+  '  updatePartialView()
+  'End Sub
 
   Private Sub tbrZoom_valueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles tbrZoom.ValueChanged
     'Stop
@@ -297,57 +309,57 @@ Public Class frm_blueScreen
 
   End Sub
 
-  Private Sub btnSaveImage_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs)
-    If e.Button = Windows.Forms.MouseButtons.Right Then
-      With OpenFileDialog1
-        .Title = "Datei öffnen"
-        .Filter = "JPEG-Bild (*.jpg)|*.jpg|Alle Dateien (*.*)|*.*)"
-        .InitialDirectory = glob.para("frm_options__txtDefaultFolder")
+  'Private Sub btnSaveImage_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs)
+  '  If e.Button = Windows.Forms.MouseButtons.Right Then
+  '    With OpenFileDialog1
+  '      .Title = "Datei öffnen"
+  '      .Filter = "JPEG-Bild (*.jpg)|*.jpg|Alle Dateien (*.*)|*.*)"
+  '      .InitialDirectory = glob.para("frm_options__txtDefaultFolder")
 
-        If .ShowDialog = Windows.Forms.DialogResult.OK Then
-          SaveJpeg(.FileName, getCompleteImage(), 100)
+  '      If .ShowDialog = Windows.Forms.DialogResult.OK Then
+  '        SaveJpeg(.FileName, getCompleteImage(), 100)
 
-        End If
+  '      End If
 
-      End With
-    End If
-    If e.Button = Windows.Forms.MouseButtons.Left Then
-      save()
-    End If
-  End Sub
-
-
-  Private Sub btnInsertText_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnInsertText.Click
-    If pic_viewPartial.Image Is Nothing Then
-      MsgBox("Zuerst 'Texte löschen' anklicken!", MsgBoxStyle.Information, "Zeichnen")
-      Exit Sub
-    End If
-    Dim g As Graphics = Graphics.FromImage(pic_viewPartial.Image)
-
-    Dim xPos, yPos As Integer
-    xPos = CInt(txtPaintPosX.Text)
-    yPos = CInt(txtPaintPosY.Text)
+  '    End With
+  '  End If
+  '  If e.Button = Windows.Forms.MouseButtons.Left Then
+  '    save()
+  '  End If
+  'End Sub
 
 
-    Dim oColor As Color = fntdialog_insertText.Color
+  'Private Sub btnInsertText_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  If pic_viewPartial.Image Is Nothing Then
+  '    MsgBox("Zuerst 'Texte löschen' anklicken!", MsgBoxStyle.Information, "Zeichnen")
+  '    Exit Sub
+  '  End If
+  '  Dim g As Graphics = Graphics.FromImage(pic_viewPartial.Image)
 
-    Dim oBrush As Brush = New SolidBrush(Color.FromArgb(166, oColor.R, oColor.G, oColor.B))
-
-    Dim fnt As Font = fntdialog_insertText.Font
-    Dim si As SizeF = g.MeasureString(txtInsertText.Text, fnt, getDestSize())
-
-    Dim re As New Rectangle(xPos - 5, yPos - 5, si.Width + 11, si.Height + 11)
-    g.FillRectangle(oBrush, re)
-
-
-    Dim oBrush2 As Brush = New SolidBrush(Color.FromArgb(255, 255, 255, 255))
-
-    g.DrawString(txtInsertText.Text, fnt, oBrush2, xPos, yPos)
-
-    pic_viewPartial.Refresh()
+  '  Dim xPos, yPos As Integer
+  '  xPos = CInt(txtPaintPosX.Text)
+  '  yPos = CInt(txtPaintPosY.Text)
 
 
-  End Sub
+  '  Dim oColor As Color = fntdialog_insertText.Color
+
+  '  Dim oBrush As Brush = New SolidBrush(Color.FromArgb(166, oColor.R, oColor.G, oColor.B))
+
+  '  Dim fnt As Font = fntdialog_insertText.Font
+  '  Dim si As SizeF = g.MeasureString(txtInsertText.Text, fnt, getDestSize())
+
+  '  Dim re As New Rectangle(xPos - 5, yPos - 5, si.Width + 11, si.Height + 11)
+  '  g.FillRectangle(oBrush, re)
+
+
+  '  Dim oBrush2 As Brush = New SolidBrush(Color.FromArgb(255, 255, 255, 255))
+
+  '  g.DrawString(txtInsertText.Text, fnt, oBrush2, xPos, yPos)
+
+  '  pic_viewPartial.Refresh()
+
+
+  'End Sub
 
   'Private Sub pic_viewPartial_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pic_viewPartial.MouseClick
   '  If e.Button = Windows.Forms.MouseButtons.Left Then
@@ -363,19 +375,19 @@ Public Class frm_blueScreen
 
   'End Sub
 
-  Private Sub btn_insertText_changeFont_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_insertText_changeFont.Click
-    fntdialog_insertText.ShowDialog()
-    lab_insertText_fontPreview.Font = fntdialog_insertText.Font
-    lab_insertText_fontPreview.BackColor = fntdialog_insertText.Color
-    lab_insertText_fontPreview.Text = fntdialog_insertText.Font.SizeInPoints.ToString + "pt | " + fntdialog_insertText.Font.Name
+  'Private Sub btn_insertText_changeFont_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  fntdialog_insertText.ShowDialog()
+  '  lab_insertText_fontPreview.Font = fntdialog_insertText.Font
+  '  lab_insertText_fontPreview.BackColor = fntdialog_insertText.Color
+  '  lab_insertText_fontPreview.Text = fntdialog_insertText.Font.SizeInPoints.ToString + "pt | " + fntdialog_insertText.Font.Name
 
-  End Sub
+  'End Sub
 
-  Private Sub btn_paintTest1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btn_paintTest1.Click
-    Dim si As Size = getDestSize()
-    pic_viewPartial.Image = New Bitmap(si.Width, si.Height)
+  'Private Sub btn_paintTest1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  Dim si As Size = getDestSize()
+  '  pic_viewPartial.Image = New Bitmap(si.Width, si.Height)
 
-  End Sub
+  'End Sub
 
 
   'Private Sub ToolStripButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -411,10 +423,10 @@ Public Class frm_blueScreen
   'End Sub
 
 
-  Private Sub tsbCheckForUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    startWebUpdate(False)
+  'Private Sub tsbCheckForUpdate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  startWebUpdate(False)
 
-  End Sub
+  'End Sub
 
   'Private Sub tsbGetfilesize_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
@@ -466,10 +478,6 @@ Public Class frm_blueScreen
   '  frm_saveFile.ShowDialog()
   'End Sub
 
-  Private Sub ToolStripButton4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-  End Sub
-
   Private Sub btnPaste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPaste.Click, EinfügenToolStripMenuItem.Click
     If Clipboard.ContainsImage() Then
       'Stop
@@ -514,19 +522,21 @@ Public Class frm_blueScreen
   Private Sub btnGrab_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
   Handles btnGrab.Click, GrabToolStripMenuItem.Click
     openGrabWindow()
-    tbrZoom.Value = 100
   End Sub
 
   Private Sub OptionenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OptionenToolStripMenuItem.Click
     frm_options.confpage = 0
   End Sub
 
-  Private Sub Label1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    frm_options.confpage = 1
+  'Private Sub Label1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+  '  frm_options.confpage = 1
 
-  End Sub
+  'End Sub
 
-  Private Sub btnQuickUpload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnQuickUpload.Click, SchnellUploadToolStripMenuItem.Click
+  Private Sub btnQuickUpload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+  Handles btnQuickUpload.Click, SchnellUploadToolStripMenuItem.Click
+    If isOfflineMode() Then Exit Sub
+
     frm_tempScreenShotName.initTempUpload()
 
   End Sub
@@ -571,21 +581,13 @@ Public Class frm_blueScreen
 
   End Sub
 
-  Private Sub lstCommands_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-  End Sub
-
   Private Sub ImmerImVordergrundToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ImmerImVordergrundToolStripMenuItem.Click
     Me.TopMost = ImmerImVordergrundToolStripMenuItem.Checked
 
   End Sub
 
-  Private Sub pnlSidebar_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pnlSidebar.MouseDown
+  Private Sub pnlSidebar_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pnlSidebar.MouseDown, lblLoginName.MouseDown, lblLoginMode.MouseDown, Label3.MouseDown, Label2.MouseDown
     FormMoveTricky(Me.Handle)
-
-  End Sub
-
-  Private Sub pnlSidebar_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles pnlSidebar.Paint
 
   End Sub
 
@@ -594,16 +596,15 @@ Public Class frm_blueScreen
 
   End Sub
 
-  Private Sub btnUploadFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUploadFile.Click, DateiHochladenToolStripMenuItem.Click
 
-  End Sub
-
-  Private Sub AusloggenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles AusloggenToolStripMenuItem.Click
+  Private Sub AusloggenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+  Handles AusloggenToolStripMenuItem.Click, btnLogin.Click
     onChangeLogin()
 
   End Sub
 
-  Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+  Private Sub btnSaveToWeb_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) _
+  Handles btnSaveToWeb.Click, ImTeamWikiSpeichernToolStripMenuItem.Click
     Dim pic As System.Drawing.Image = getCompleteImage()
     If pic Is Nothing Then MsgBox("bitte erst einen Screenshot machen!") : Me.Close()
 
@@ -633,10 +634,10 @@ Public Class frm_blueScreen
   End Sub
 
   Private Sub lnkAddcolfile_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lnkAddcolfile.LinkClicked
-    frm_mdiViewer.Show()
-    frm_mdiViewer.Activate()
-    frm_mdiViewer.addPicClient(Image.FromFile(txtOpenedFile.Text))
-    pnlOpenedFile.Hide()
+    'frm_mdiViewer.Show()
+    'frm_mdiViewer.Activate()
+    'frm_mdiViewer.addPicClient(Image.FromFile(txtOpenedFile.Text))
+    'pnlOpenedFile.Hide()
   End Sub
 
   Private Sub lnkCloseFileBar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lnkCloseFileBar.Click
@@ -647,4 +648,5 @@ Public Class frm_blueScreen
     frm_helpFile.Show()
     frm_helpFile.Activate()
   End Sub
+
 End Class
