@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D5CE7CF2-503C-4D58-A7E7-19540B56FB4E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>ScreenGrab6.My.MyApplication</StartupObject>
+    <RootNamespace>ScreenGrab6</RootNamespace>
+    <AssemblyName>ScreenGrab6</AssemblyName>
+    <MyType>WindowsForms</MyType>
+    <ManifestCertificateThumbprint>2CC713F7E9C0FACA924A166E8B4B32909ECFB2F5</ManifestCertificateThumbprint>
+    <ManifestKeyFile>ScreenGrab2.0_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>false</SignManifests>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <PublishUrl>D:\Visual Studio 2005\Projects\ScreenGrab2.0\public_release_2.2\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>de-DE</TargetCulture>
+    <ProductName>ScreenGrab 2.0</ProductName>
+    <PublisherName>TeamWiki.de</PublisherName>
+    <WebPage>publish.htm</WebPage>
+    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ApplicationIcon>AcroRd32_18434.ico</ApplicationIcon>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ScreenGrab2._0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ScreenGrab2._0.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ButtonListbar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\scriptIDE\rtfTabMDI\ButtonListbar.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlsEx, Version=1.0.3579.42446, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="DrawingEx, Version=1.0.4317.22846, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="itextsharp, Version=5.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic.Compatibility" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TenTec.Windows.iGridLib.iGrid, Version=2.50.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\TenTec.Windows.iGridLib.iGrid.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Grab\ApplicationEvents.vb" />
+    <Compile Include="Altlasten\app_ftp.vb" />
+    <Compile Include="Grab\app_grabWindow.vb" />
+    <Compile Include="Grab\app_hotkey.vb" />
+    <Compile Include="Grab\app_interprocHandler.vb" />
+    <Compile Include="Grab\app_main.vb" />
+    <Compile Include="Grab\app_mjpegServer.vb" />
+    <Compile Include="Grab\app_updateScreenGrab.vb" />
+    <Compile Include="Grab\app_winVista.vb" />
+    <Compile Include="Libs\cls_globPara.vb" />
+    <Compile Include="Uploads\frm_commonUpload.Designer.vb">
+      <DependentUpon>frm_commonUpload.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Uploads\frm_commonUpload.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uploads\frm_fbLogin.Designer.vb">
+      <DependentUpon>frm_fbLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Uploads\frm_fbLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grab\frm_blueScreen.Designer.vb">
+      <DependentUpon>frm_blueScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Grab\frm_blueScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grab\frm_helpFile.Designer.vb">
+      <DependentUpon>frm_helpFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Grab\frm_helpFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CollageModus\frm_paletteCursor.Designer.vb">
+      <DependentUpon>frm_paletteCursor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CollageModus\frm_paletteCursor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CollageModus\frm_mdiViewer2.Designer.vb">
+      <DependentUpon>frm_mdiViewer2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CollageModus\frm_mdiViewer2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CollageModus\frm_paletteFile.Designer.vb">
+      <DependentUpon>frm_paletteFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CollageModus\frm_paletteFile.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grab\frm_printDialog.Designer.vb">
+      <DependentUpon>frm_printDialog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Grab\frm_printDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grab\frm_grab.Designer.vb">
+      <DependentUpon>frm_grab.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Grab\frm_grab.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uploads\frm_tempScreenShotName.Designer.vb">
+      <DependentUpon>frm_tempScreenShotName.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Uploads\frm_tempScreenShotName.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Altlasten\frm_uploadingMulti.designer.vb">
+      <DependentUpon>frm_uploadingMulti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Altlasten\frm_uploadingMulti.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grab\frm_options.designer.vb">
+      <DependentUpon>frm_options.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Grab\frm_options.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Altlasten\FtpClient.vb" />
+    <Compile Include="Libs\HotKeyFormLib.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libs\JSON.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Libs\ScreenArea.vb" />
+    <Compile Include="Libs\ScreenshotGenerator.vb" />
+    <Compile Include="Libs\sys_editWindowMenu.vb" />
+    <Compile Include="Libs\sys_forceForegroundWindow.vb" />
+    <Compile Include="Libs\sys_formMoveTricky.vb" />
+    <Compile Include="Altlasten\sys_ftpUpload.vb" />
+    <Compile Include="Libs\sys_getAsyncKeyState.vb" />
+    <Compile Include="Libs\sys_imageFromWeb.vb" />
+    <Compile Include="Libs\sys_interproc.vb" />
+    <Compile Include="Libs\sys_mwRegistry.vb" />
+    <Compile Include="Libs\sys_rc4encryption.vb" />
+    <Compile Include="Libs\sys_setWindowPos.vb" />
+    <Compile Include="Altlasten\sys_teamWikiUploader.vb" />
+    <Compile Include="Altlasten\sys_uploadWithPost.vb" />
+    <Compile Include="Altlasten\TeamWikiFileStoreFTV.Designer.vb">
+      <DependentUpon>TeamWikiFileStoreFTV.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Altlasten\TeamWikiFileStoreFTV.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Libs\TwAjax.vb" />
+    <Compile Include="Uploads\frm_imgurUploaded.Designer.vb">
+      <DependentUpon>frm_imgurUploaded.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Uploads\frm_imgurUploaded.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\gColorPicker.resx">
+      <DependentUpon>gColorPicker.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\gTrackBar.resx">
+      <DependentUpon>gTrackBar.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uploads\frm_imageshackUploaded.resx">
+      <DependentUpon>frm_imageshackUploaded.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollageModus\frm_paletteColor.resx">
+      <DependentUpon>frm_paletteColor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grab\frm_softwareUpdate.resx">
+      <DependentUpon>frm_softwareUpdate.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uploads\frm_commonUpload.resx">
+      <DependentUpon>frm_commonUpload.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uploads\frm_fbLogin.resx">
+      <DependentUpon>frm_fbLogin.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grab\frm_blueScreen.resx">
+      <DependentUpon>frm_blueScreen.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grab\frm_helpFile.resx">
+      <DependentUpon>frm_helpFile.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollageModus\frm_paletteCursor.resx">
+      <DependentUpon>frm_paletteCursor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollageModus\frm_mdiViewer2.resx">
+      <DependentUpon>frm_mdiViewer2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollageModus\frm_paletteFile.resx">
+      <DependentUpon>frm_paletteFile.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grab\frm_printDialog.resx">
+      <DependentUpon>frm_printDialog.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grab\frm_grab.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frm_grab.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uploads\frm_tempScreenShotName.resx">
+      <DependentUpon>frm_tempScreenShotName.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Altlasten\frm_uploadingMulti.resx">
+      <DependentUpon>frm_uploadingMulti.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grab\frm_options.resx">
+      <DependentUpon>frm_options.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libs\HotKeyFormLib.resx">
+      <DependentUpon>HotKeyFormLib.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Altlasten\TeamWikiFileStoreFTV.resx">
+      <DependentUpon>TeamWikiFileStoreFTV.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uploads\frm_imgurUploaded.resx">
+      <DependentUpon>frm_imgurUploaded.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Compile Include="Grab\app_insertWord.vb" />
+    <Compile Include="Grab\app_softwareUpdate.vb" />
+    <Compile Include="Controls\ColorExtensions.vb" />
+    <Compile Include="Controls\gColorComboBox.Designer.vb">
+      <DependentUpon>gColorComboBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\gColorComboBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\gColorPicker.designer.vb">
+      <DependentUpon>gColorPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\gColorPicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\gEyeDropper.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\gTrackBar.Designer.vb">
+      <DependentUpon>gTrackBar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\gTrackBar.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Uploads\app_uploadHistory.vb" />
+    <Compile Include="Uploads\frm_imageshackUploaded.Designer.vb">
+      <DependentUpon>frm_imageshackUploaded.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Uploads\frm_imageshackUploaded.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CollageModus\frm_paletteColor.Designer.vb">
+      <DependentUpon>frm_paletteColor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CollageModus\frm_paletteColor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Grab\frm_softwareUpdate.Designer.vb">
+      <DependentUpon>frm_softwareUpdate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Grab\frm_softwareUpdate.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uploads\OAuth.OAuthBase.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="AcroRd32_18434.ico" />
+    <Content Include="CollageModus\ControlsEx.dll" />
+    <Content Include="ConvolutionFilters.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CollageModus\DrawingEx.dll" />
+    <Content Include="CollageModus\itextsharp.dll" />
+    <Content Include="grab.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxCCRPFolderTV6">
+      <Guid>{19B7F2A2-1610-11D3-BF30-1AF820524153}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AxInetCtlsObjects">
+      <Guid>{48E59290-9880-11CF-9754-00AA00C00908}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="AxMSWinsockLib">
+      <Guid>{248DD890-BB45-11CF-9ABC-0080C7E7B78D}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="CCRPFolderTV6">
+      <Guid>{19B7F2A2-1610-11D3-BF30-1AF820524153}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>2</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="InetCtlsObjects">
+      <Guid>{48E59290-9880-11CF-9754-00AA00C00908}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="MSWinsockLib">
+      <Guid>{248DD890-BB45-11CF-9ABC-0080C7E7B78D}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScreenGrab6.HelperLib\ScreenGrab6.HelperLib.csproj">
+      <Project>{64AF3C31-F33C-4DA4-87A8-C620DF892556}</Project>
+      <Name>ScreenGrab6.HelperLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScreenGrab6.Vector\ScreenGrab6.Vector.vbproj">
+      <Project>{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}</Project>
+      <Name>ScreenGrab6.Vector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

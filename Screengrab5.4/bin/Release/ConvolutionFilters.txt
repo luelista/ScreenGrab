@@ -1,0 +1,7 @@
+﻿Smooth	1	1	1	1	1	1	1	1	1	8	0
+GaussianBlur	1	2	1	2	4	2	1	2	1	16	0
+Sharpen	0	-2	0	-2	11	-2	0	-2	0	3	0
+MeanRemoval	-1	-1	-1	-1	9	-1	-1	-1	-1	1	0
+Emboss	-1	0	-1	0	4	0	-1	0	-1	1	127
+EdgeDetection	1	1	1	0	0	0	-1	-1	-1	1	127
+Test	0	1	0	1	0	1	0	1	0	1	0

@@ -1,0 +1,22 @@
+                ID: 18
+           AppName: screengrab5
+          AppTitle: ScreenGrab 5
+              Desc: Bildschirm-Fotografierer
+              Tags: 
+        BigIconURL: http://mw.teamwiki.net/docs/img/win-icons/grab-32.png
+      SmallIconURL: 
+            EinDat: 2010-01-07 17:56:23
+            EinDIZ: mw
+           AendDat: 2010-01-07 17:57:09
+           AendDIZ: mw
+ DefaultInstallDir: 
+        CategoryID: 1
+           RootURL: http://mwupd3.teamwiki.net/files/
+
+AppID	FileID	FileName	LocalTarget	LocalSource	EinDat	EinDIZ	AendDat	AendDIZ	
+	64	ScreenGrab5.exe		bin\Release\ScreenGrab5.exe			2011-01-27 21:41:20	mw	User_CreateLink User_RunProgram CheckForProcessAlways	-1	2011-01-27 17:28:26
+	65	ButtonListbar.dll		bin\Release\ButtonListbar.dll			2010-01-07 17:59:41	mw		-1
+	419	VUMLCodeGeneration.exe		bin\Release\VUMLCodeGeneration.exe			2011-01-27 21:41:22	mw	CheckForProcessIfNewer	-1	
+	420	vbnet-export.vbs		bin\Release\vbnet-export.vbs			2011-01-27 21:41:23	mw		-1	
+	421	java-export.vbs		bin\Release\java-export.vbs			2011-01-27 21:41:23	mw		-1	
+	422	delphi-export.vbs		bin\Release\delphi-export.vbs			2011-01-27 21:41:23	mw		-1	

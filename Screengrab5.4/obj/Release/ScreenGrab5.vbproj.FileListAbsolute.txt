@@ -1,0 +1,357 @@
+D:\vbNet\ScreenGrab5\bin\Release\ScreenGrab5.exe.manifest
+D:\vbNet\ScreenGrab5\bin\Release\ScreenGrab5.application
+D:\vbNet\ScreenGrab5\bin\Release\ScreenGrab5.exe
+D:\vbNet\ScreenGrab5\bin\Release\ScreenGrab5.pdb
+D:\vbNet\ScreenGrab5\bin\Release\ScreenGrab2._0.xml
+D:\vbNet\ScreenGrab5\bin\Release\TenTec.Windows.iGridLib.iGrid.dll
+D:\vbNet\ScreenGrab5\bin\Release\Interop.CCRPFolderTV6.dll
+D:\vbNet\ScreenGrab5\bin\Release\Interop.InetCtlsObjects.dll
+D:\vbNet\ScreenGrab5\bin\Release\Interop.MSWinsockLib.dll
+D:\vbNet\ScreenGrab5\bin\Release\AxInterop.CCRPFolderTV6.dll
+D:\vbNet\ScreenGrab5\bin\Release\AxInterop.InetCtlsObjects.dll
+D:\vbNet\ScreenGrab5\bin\Release\AxInterop.MSWinsockLib.dll
+D:\vbNet\ScreenGrab5\obj\Release\ResolveAssemblyReference.cache
+D:\vbNet\ScreenGrab5\obj\Release\Interop.CCRPFolderTV6.dll
+D:\vbNet\ScreenGrab5\obj\Release\Interop.InetCtlsObjects.dll
+D:\vbNet\ScreenGrab5\obj\Release\Interop.MSWinsockLib.dll
+D:\vbNet\ScreenGrab5\obj\Release\AxInterop.CCRPFolderTV6.dll
+D:\vbNet\ScreenGrab5\obj\Release\AxInterop.InetCtlsObjects.dll
+D:\vbNet\ScreenGrab5\obj\Release\AxInterop.MSWinsockLib.dll
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.AboutBox1.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_blueScreen.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_mdiViewer.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_printDialog.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_grab.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_tempScreenShotName.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_viewer.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_options.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.vbAccelerator.Components.HotKey.HotKeyForm.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.LoginForm1.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.Resources.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.TeamWikiFileStoreFTV.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.vbproj.GenerateResource.Cache
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.exe.manifest
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.application
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.exe
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab2._0.xml
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.pdb
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_paletteCursor.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_mdiViewer2.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_paletteProperties.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_uploadFile.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_uploadingMulti.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_textEditor.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_helpFile.resources
+D:\vbNet\ScreenGrab5\obj\Release\ScreenGrab5.frm_paletteFile.resources
+C:\_dev\ScreengrabSpezialRelease\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+C:\_dev\ScreengrabSpezialRelease\obj\Release\ScreenGrab5.exe
+C:\_dev\ScreengrabSpezialRelease\obj\Release\ScreenGrab2._0.xml
+C:\_dev\ScreengrabSpezialRelease\obj\Release\ScreenGrab5.pdb
+E:\_dev\netProjekte\Screengrab54\bin\Release\ScreenGrab5.exe.manifest
+E:\_dev\netProjekte\Screengrab54\bin\Release\ScreenGrab5.application
+E:\_dev\netProjekte\Screengrab54\bin\Release\ScreenGrab5.exe
+E:\_dev\netProjekte\Screengrab54\bin\Release\ScreenGrab5.pdb
+E:\_dev\netProjekte\Screengrab54\bin\Release\ScreenGrab2._0.xml
+E:\_dev\netProjekte\Screengrab54\bin\Release\TenTec.Windows.iGridLib.iGrid.dll
+E:\_dev\netProjekte\Screengrab54\bin\Release\Interop.CCRPFolderTV6.dll
+E:\_dev\netProjekte\Screengrab54\bin\Release\Interop.InetCtlsObjects.dll
+E:\_dev\netProjekte\Screengrab54\bin\Release\Interop.MSWinsockLib.dll
+E:\_dev\netProjekte\Screengrab54\bin\Release\AxInterop.CCRPFolderTV6.dll
+E:\_dev\netProjekte\Screengrab54\bin\Release\AxInterop.InetCtlsObjects.dll
+E:\_dev\netProjekte\Screengrab54\bin\Release\AxInterop.MSWinsockLib.dll
+E:\_dev\netProjekte\Screengrab54\obj\Release\ResolveAssemblyReference.cache
+E:\_dev\netProjekte\Screengrab54\obj\Release\Interop.CCRPFolderTV6.dll
+E:\_dev\netProjekte\Screengrab54\obj\Release\Interop.InetCtlsObjects.dll
+E:\_dev\netProjekte\Screengrab54\obj\Release\Interop.MSWinsockLib.dll
+E:\_dev\netProjekte\Screengrab54\obj\Release\AxInterop.CCRPFolderTV6.dll
+E:\_dev\netProjekte\Screengrab54\obj\Release\AxInterop.InetCtlsObjects.dll
+E:\_dev\netProjekte\Screengrab54\obj\Release\AxInterop.MSWinsockLib.dll
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.AboutBox1.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_blueScreen.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_helpFile.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_paletteCursor.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_mdiViewer.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_mdiViewer2.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_paletteFile.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_paletteProperties.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_printDialog.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_grab.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_tempScreenShotName.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_textEditor.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_uploadFile.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_uploadingMulti.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_viewer.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.frm_options.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.vbAccelerator.Components.HotKey.HotKeyForm.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.LoginForm1.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.Resources.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.TeamWikiFileStoreFTV.resources
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.vbproj.GenerateResource.Cache
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.exe.manifest
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.application
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.exe
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab2._0.xml
+E:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.pdb
+C:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+C:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.exe
+C:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab2._0.xml
+C:\_dev\netProjekte\Screengrab54\obj\Release\ScreenGrab5.pdb
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.exe.manifest
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.application
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.exe
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.pdb
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\ScreenGrab2._0.xml
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\TenTec.Windows.iGridLib.iGrid.dll
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\Interop.CCRPFolderTV6.dll
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\Interop.InetCtlsObjects.dll
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\Interop.MSWinsockLib.dll
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\AxInterop.CCRPFolderTV6.dll
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\AxInterop.InetCtlsObjects.dll
+E:\_dev\netProjekte\Screengrab5.4\bin\Release\AxInterop.MSWinsockLib.dll
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ResolveAssemblyReference.cache
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\Interop.CCRPFolderTV6.dll
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\Interop.InetCtlsObjects.dll
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\Interop.MSWinsockLib.dll
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\AxInterop.CCRPFolderTV6.dll
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\AxInterop.InetCtlsObjects.dll
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\AxInterop.MSWinsockLib.dll
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.AboutBox1.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_blueScreen.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_helpFile.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_paletteCursor.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_mdiViewer2.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_paletteFile.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_printDialog.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_grab.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_tempScreenShotName.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_textEditor.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_uploadFile.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_uploadingMulti.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_viewer.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_options.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbAccelerator.Components.HotKey.HotKeyForm.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.LoginForm1.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.Resources.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.TeamWikiFileStoreFTV.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.GenerateResource.Cache
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.exe.manifest
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.application
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.exe
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab2._0.xml
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.pdb
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_lineStyle.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_rotateElement.resources
+E:\_dev\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_canvasProperties.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\Interop.CCRPFolderTV6.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\AxInterop.CCRPFolderTV6.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.exe
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab2._0.xml
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.pdb
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.exe.manifest
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.application
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.exe
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.pdb
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab2._0.xml
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\TenTec.Windows.iGridLib.iGrid.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\Interop.CCRPFolderTV6.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\Interop.InetCtlsObjects.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\Interop.MSWinsockLib.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\AxInterop.CCRPFolderTV6.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\AxInterop.InetCtlsObjects.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\bin\Release\AxInterop.MSWinsockLib.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ResolveAssemblyReference.cache
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\Interop.CCRPFolderTV6.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\Interop.InetCtlsObjects.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\Interop.MSWinsockLib.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\AxInterop.CCRPFolderTV6.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\AxInterop.InetCtlsObjects.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\AxInterop.MSWinsockLib.dll
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.AboutBox1.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_blueScreen.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_canvasProperties.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_editUmlClass.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_editUmlMember.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_helpFile.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_lineStyle.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_paletteCursor.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_mdiViewer2.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_paletteFile.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_printDialog.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_grab.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_rotateElement.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_tempScreenShotName.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_textEditor.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_uploadFile.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_uploadingMulti.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_viewer.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_options.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbAccelerator.Components.HotKey.HotKeyForm.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.LoginForm1.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.Resources.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.TeamWikiFileStoreFTV.resources
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.GenerateResource.Cache
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.exe.manifest
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.application
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.exe
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab2._0.xml
+E:\_freigabe\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.pdb
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\Interop.InetCtlsObjects.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\AxInterop.InetCtlsObjects.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.exe.manifest
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.application
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.exe
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab5.pdb
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\ScreenGrab2._0.xml
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\TenTec.Windows.iGridLib.iGrid.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\Interop.CCRPFolderTV6.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\Interop.InetCtlsObjects.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\AxInterop.CCRPFolderTV6.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\bin\Release\AxInterop.InetCtlsObjects.dll
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ResolveAssemblyReference.cache
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.AboutBox1.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_blueScreen.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_canvasProperties.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_editUmlClass.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_editUmlMember.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_helpFile.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_lineStyle.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_paletteCursor.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_mdiViewer2.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_paletteFile.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_printDialog.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_grab.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_rotateElement.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_tempScreenShotName.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_textEditor.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_uploadFile.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_uploadingMulti.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_viewer.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.frm_options.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbAccelerator.Components.HotKey.HotKeyForm.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.LoginForm1.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.Resources.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.TeamWikiFileStoreFTV.resources
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.GenerateResource.Cache
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.exe.manifest
+C:\_dev\My Dropbox\netProjekte\Screengrab5.4\obj\Release\ScreenGrab5.application
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ConvolutionFilters.txt
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ScreenGrab6.exe.manifest
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ScreenGrab6.application
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ScreenGrab6.exe
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ScreenGrab6.pdb
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ScreenGrab2._0.xml
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ControlsEx.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\DrawingEx.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\itextsharp.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ScreenGrab6.HelperLib.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\TenTec.Windows.iGridLib.iGrid.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\ScreenGrab6.HelperLib.pdb
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\Interop.CCRPFolderTV6.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\Interop.InetCtlsObjects.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\Interop.MSWinsockLib.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\AxInterop.CCRPFolderTV6.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\AxInterop.InetCtlsObjects.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\bin\Release\AxInterop.MSWinsockLib.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ResolveAssemblyReference.cache
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\Interop.CCRPFolderTV6.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\Interop.InetCtlsObjects.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\Interop.MSWinsockLib.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\AxInterop.CCRPFolderTV6.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\AxInterop.InetCtlsObjects.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\AxInterop.MSWinsockLib.dll
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_setGradient.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.gColorPicker.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.gTrackBar.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_imageshackUploaded.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_paletteColor.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_softwareUpdate.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_commonUpload.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_fbLogin.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_blueScreen.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_canvasProperties.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_editUmlClass.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_editUmlMember.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_helpFile.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_lineStyle.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_paletteCursor.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_mdiViewer2.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_paletteFile.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_printDialog.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_grab.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_rotateElement.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_tempScreenShotName.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_textEditor.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_uploadingMulti.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_options.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.vbAccelerator.Components.HotKey.HotKeyForm.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.Resources.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.TeamWikiFileStoreFTV.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.frm_imgurUploaded.resources
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.GenerateResource.Cache
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.exe.manifest
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.application
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.exe
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab2._0.xml
+C:\Users\mw\Documents\netProjekte2\Screengrab5.4\obj\Release\ScreenGrab6.pdb
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ResolveAssemblyReference.cache
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\Interop.CCRPFolderTV6.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\Interop.InetCtlsObjects.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\Interop.MSWinsockLib.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\AxInterop.CCRPFolderTV6.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\AxInterop.InetCtlsObjects.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\AxInterop.MSWinsockLib.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.ResolveComReference.cache
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.gColorPicker.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.gTrackBar.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_imageshackUploaded.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_paletteColor.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_softwareUpdate.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_commonUpload.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_fbLogin.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_blueScreen.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_helpFile.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_paletteCursor.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_mdiViewer2.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_paletteFile.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_printDialog.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_grab.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_tempScreenShotName.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_uploadingMulti.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_options.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.vbAccelerator.Components.HotKey.HotKeyForm.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.Resources.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.TeamWikiFileStoreFTV.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.frm_imgurUploaded.resources
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab5.vbproj.GenerateResource.Cache
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.exe
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab2._0.xml
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.pdb
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ConvolutionFilters.txt
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.exe.manifest
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.application
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.exe
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.pdb
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab2._0.xml
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ControlsEx.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\DrawingEx.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\itextsharp.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.HelperLib.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.Vector.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\TenTec.Windows.iGridLib.iGrid.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.Vector.pdb
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.Vector.xml
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\ScreenGrab6.HelperLib.pdb
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\Interop.CCRPFolderTV6.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\Interop.InetCtlsObjects.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\Interop.MSWinsockLib.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\AxInterop.CCRPFolderTV6.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\AxInterop.InetCtlsObjects.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\bin\Release\AxInterop.MSWinsockLib.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.exe.manifest
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Screengrab5.4\obj\Release\ScreenGrab6.application
