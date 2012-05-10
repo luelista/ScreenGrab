@@ -1,0 +1,18 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ScreenGrab6.Vector
+</name>
+</assembly>
+<members>
+<member name="M:ScreenGrab6.Vector.Helper.GetFontFilespec(System.String)">
+	<summary>
+ Gets the physical location of a font family from the registry
+ </summary>
+	<param name="fontName">Font family name</param>
+	<returns>File path or String.Empty</returns>
+	<remarks></remarks>
+</member>
+</members>
+</doc>

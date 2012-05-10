@@ -1,0 +1,12 @@
+C:\Users\mw\Documents\netProjekte2\ScreenGrab6.HelperLib\bin\Debug\ScreenGrab6.HelperLib.dll
+C:\Users\mw\Documents\netProjekte2\ScreenGrab6.HelperLib\bin\Debug\ScreenGrab6.HelperLib.pdb
+C:\Users\mw\Documents\netProjekte2\ScreenGrab6.HelperLib\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\mw\Documents\netProjekte2\ScreenGrab6.HelperLib\obj\Debug\ScreenGrab6.HelperLib.dll
+C:\Users\mw\Documents\netProjekte2\ScreenGrab6.HelperLib\obj\Debug\ScreenGrab6.HelperLib.pdb
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Debug\ScreenGrab6.HelperLib.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Debug\ScreenGrab6.HelperLib.pdb
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\bin\Debug\ScreenGrab6.HelperLib.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\bin\Debug\ScreenGrab6.HelperLib.pdb
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\bin\Debug\ControlsEx.dll
+C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\bin\Debug\DrawingEx.dll

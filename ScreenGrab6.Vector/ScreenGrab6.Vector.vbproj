@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>ScreenGrab6.Vector</RootNamespace>
+    <AssemblyName>ScreenGrab6.Vector</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>Windows</MyType>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>ScreenGrab6.Vector.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>ScreenGrab6.Vector.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ControlsEx, Version=1.0.3579.42446, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DrawingEx, Version=1.0.4317.22846, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="itextsharp, Version=5.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="app_multiTouch.vb" />
+    <Compile Include="frm_canvasProperties.Designer.vb">
+      <DependentUpon>frm_canvasProperties.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_canvasProperties.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_editUmlClass.Designer.vb">
+      <DependentUpon>frm_editUmlClass.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_editUmlClass.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_editUmlMember.Designer.vb">
+      <DependentUpon>frm_editUmlMember.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_editUmlMember.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_lineStyle.Designer.vb">
+      <DependentUpon>frm_lineStyle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_lineStyle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_rotateElement.Designer.vb">
+      <DependentUpon>frm_rotateElement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_rotateElement.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_setGradient.Designer.vb">
+      <DependentUpon>frm_setGradient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_setGradient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_textEditor.Designer.vb">
+      <DependentUpon>frm_textEditor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_textEditor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="sys_formMoveTricky.vb" />
+    <Compile Include="sys_getAsyncKeyState.vb" />
+    <Compile Include="VCanvasControl.Designer.vb">
+      <DependentUpon>VCanvasControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VCanvasControl.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vectorCanvas.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vectorHelper.vb">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="vectorObjects.vb">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="frm_canvasProperties.resx">
+      <DependentUpon>frm_canvasProperties.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_editUmlClass.resx">
+      <DependentUpon>frm_editUmlClass.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_editUmlMember.resx">
+      <DependentUpon>frm_editUmlMember.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_lineStyle.resx">
+      <DependentUpon>frm_lineStyle.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_rotateElement.resx">
+      <DependentUpon>frm_rotateElement.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_setGradient.resx">
+      <DependentUpon>frm_setGradient.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_textEditor.resx">
+      <DependentUpon>frm_textEditor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VCanvasControl.resx">
+      <DependentUpon>VCanvasControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ControlsEx.dll" />
+    <Content Include="DrawingEx.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScreenGrab6.HelperLib\ScreenGrab6.HelperLib.csproj">
+      <Project>{64AF3C31-F33C-4DA4-87A8-C620DF892556}</Project>
+      <Name>ScreenGrab6.HelperLib</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
