@@ -45,7 +45,10 @@ Partial Class VCanvasControl
     Me.OriginalgroesseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.BeziehungsanfangAendernToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.BeziehungsendeAendernToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.ConvolutionFiltersexperimentellToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator
+    Me.GruppierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.GruppierungAufhebenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.DrehenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.AnordnungToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.LeftsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -69,7 +72,6 @@ Partial Class VCanvasControl
     Me.EinfuegenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.DuplizierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.LoeschenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.ConvolutionFiltersexperimentellToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.cmsAddRelationMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
     Me.ISTToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
     Me.HATToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
@@ -114,7 +116,7 @@ Partial Class VCanvasControl
     Me.lblResizeVert.BackColor = System.Drawing.Color.Gainsboro
     Me.lblResizeVert.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.lblResizeVert.Cursor = System.Windows.Forms.Cursors.SizeNS
-    Me.lblResizeVert.Location = New System.Drawing.Point(303, 418)
+    Me.lblResizeVert.Location = New System.Drawing.Point(2048, 2048)
     Me.lblResizeVert.Name = "lblResizeVert"
     Me.lblResizeVert.Size = New System.Drawing.Size(11, 12)
     Me.lblResizeVert.TabIndex = 11
@@ -124,7 +126,7 @@ Partial Class VCanvasControl
     Me.lblResizeDiag.BackColor = System.Drawing.Color.Gainsboro
     Me.lblResizeDiag.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.lblResizeDiag.Cursor = System.Windows.Forms.Cursors.SizeNWSE
-    Me.lblResizeDiag.Location = New System.Drawing.Point(616, 417)
+    Me.lblResizeDiag.Location = New System.Drawing.Point(2048, 2048)
     Me.lblResizeDiag.Name = "lblResizeDiag"
     Me.lblResizeDiag.Size = New System.Drawing.Size(11, 12)
     Me.lblResizeDiag.TabIndex = 10
@@ -134,7 +136,7 @@ Partial Class VCanvasControl
     Me.lblResizeHorz.BackColor = System.Drawing.Color.Gainsboro
     Me.lblResizeHorz.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.lblResizeHorz.Cursor = System.Windows.Forms.Cursors.SizeWE
-    Me.lblResizeHorz.Location = New System.Drawing.Point(616, 203)
+    Me.lblResizeHorz.Location = New System.Drawing.Point(2048, 203)
     Me.lblResizeHorz.Name = "lblResizeHorz"
     Me.lblResizeHorz.Size = New System.Drawing.Size(11, 12)
     Me.lblResizeHorz.TabIndex = 9
@@ -144,15 +146,15 @@ Partial Class VCanvasControl
     Me.PictureBox1.BackColor = System.Drawing.Color.White
     Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
     Me.PictureBox1.Name = "PictureBox1"
-    Me.PictureBox1.Size = New System.Drawing.Size(617, 419)
+    Me.PictureBox1.Size = New System.Drawing.Size(2048, 2048)
     Me.PictureBox1.TabIndex = 0
     Me.PictureBox1.TabStop = False
     '
     'cmsCanvas
     '
-    Me.cmsCanvas.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KlasseneigenschaftenToolStripMenuItem, Me.BeziehungHerstellenToolStripMenuItem, Me.AttributAddToolStripMenuItem, Me.MethodeAddToolStripMenuItem, Me.ZeichenbereichToolStripMenuItem, Me.SchriftartToolStripMenuItem, Me.LinieFormatierenToolStripMenuItem, Me.FarbverlaufZuweisenToolStripMenuItem, Me.OriginalgroesseToolStripMenuItem, Me.BeziehungsanfangAendernToolStripMenuItem, Me.BeziehungsendeAendernToolStripMenuItem, Me.ToolStripMenuItem4, Me.DrehenToolStripMenuItem, Me.AnordnungToolStripMenuItem, Me.ToolStripMenuItem5, Me.AusschneidenToolStripMenuItem, Me.KopierenToolStripMenuItem, Me.EinfuegenToolStripMenuItem, Me.DuplizierenToolStripMenuItem, Me.LoeschenToolStripMenuItem, Me.ConvolutionFiltersexperimentellToolStripMenuItem})
+    Me.cmsCanvas.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.KlasseneigenschaftenToolStripMenuItem, Me.BeziehungHerstellenToolStripMenuItem, Me.AttributAddToolStripMenuItem, Me.MethodeAddToolStripMenuItem, Me.ZeichenbereichToolStripMenuItem, Me.SchriftartToolStripMenuItem, Me.LinieFormatierenToolStripMenuItem, Me.FarbverlaufZuweisenToolStripMenuItem, Me.OriginalgroesseToolStripMenuItem, Me.BeziehungsanfangAendernToolStripMenuItem, Me.BeziehungsendeAendernToolStripMenuItem, Me.ConvolutionFiltersexperimentellToolStripMenuItem, Me.ToolStripMenuItem4, Me.GruppierenToolStripMenuItem, Me.GruppierungAufhebenToolStripMenuItem, Me.DrehenToolStripMenuItem, Me.AnordnungToolStripMenuItem, Me.ToolStripMenuItem5, Me.AusschneidenToolStripMenuItem, Me.KopierenToolStripMenuItem, Me.EinfuegenToolStripMenuItem, Me.DuplizierenToolStripMenuItem, Me.LoeschenToolStripMenuItem})
     Me.cmsCanvas.Name = "ContextMenuStrip1"
-    Me.cmsCanvas.Size = New System.Drawing.Size(257, 434)
+    Me.cmsCanvas.Size = New System.Drawing.Size(248, 478)
     '
     'KlasseneigenschaftenToolStripMenuItem
     '
@@ -160,7 +162,7 @@ Partial Class VCanvasControl
     Me.KlasseneigenschaftenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia
     Me.KlasseneigenschaftenToolStripMenuItem.Name = "KlasseneigenschaftenToolStripMenuItem"
     Me.KlasseneigenschaftenToolStripMenuItem.ShortcutKeyDisplayString = ""
-    Me.KlasseneigenschaftenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.KlasseneigenschaftenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.KlasseneigenschaftenToolStripMenuItem.Tag = "%VUMLClass"
     Me.KlasseneigenschaftenToolStripMenuItem.Text = "Klasseneigenschaften ..."
     '
@@ -169,7 +171,7 @@ Partial Class VCanvasControl
     Me.BeziehungHerstellenToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ISTToolStripMenuItem, Me.HATToolStripMenuItem, Me.KENNTToolStripMenuItem})
     Me.BeziehungHerstellenToolStripMenuItem.Name = "BeziehungHerstellenToolStripMenuItem"
     Me.BeziehungHerstellenToolStripMenuItem.ShortcutKeyDisplayString = "Alt B"
-    Me.BeziehungHerstellenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.BeziehungHerstellenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.BeziehungHerstellenToolStripMenuItem.Tag = "%VUMLClass"
     Me.BeziehungHerstellenToolStripMenuItem.Text = "Beziehung herstellen"
     '
@@ -198,7 +200,7 @@ Partial Class VCanvasControl
     '
     Me.AttributAddToolStripMenuItem.Name = "AttributAddToolStripMenuItem"
     Me.AttributAddToolStripMenuItem.ShortcutKeyDisplayString = "Alt +, A"
-    Me.AttributAddToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.AttributAddToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.AttributAddToolStripMenuItem.Tag = "%VUMLClass"
     Me.AttributAddToolStripMenuItem.Text = "Attribut hinzufügen ..."
     '
@@ -206,7 +208,7 @@ Partial Class VCanvasControl
     '
     Me.MethodeAddToolStripMenuItem.Name = "MethodeAddToolStripMenuItem"
     Me.MethodeAddToolStripMenuItem.ShortcutKeyDisplayString = "Alt +, M"
-    Me.MethodeAddToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.MethodeAddToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.MethodeAddToolStripMenuItem.Tag = "%VUMLClass"
     Me.MethodeAddToolStripMenuItem.Text = "Methode hinzufügen ..."
     '
@@ -215,7 +217,7 @@ Partial Class VCanvasControl
     Me.ZeichenbereichToolStripMenuItem.Image = CType(resources.GetObject("ZeichenbereichToolStripMenuItem.Image"), System.Drawing.Image)
     Me.ZeichenbereichToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia
     Me.ZeichenbereichToolStripMenuItem.Name = "ZeichenbereichToolStripMenuItem"
-    Me.ZeichenbereichToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.ZeichenbereichToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.ZeichenbereichToolStripMenuItem.Tag = "%NoSel"
     Me.ZeichenbereichToolStripMenuItem.Text = "Zeichenbereich ..."
     '
@@ -223,7 +225,8 @@ Partial Class VCanvasControl
     '
     Me.SchriftartToolStripMenuItem.Image = CType(resources.GetObject("SchriftartToolStripMenuItem.Image"), System.Drawing.Image)
     Me.SchriftartToolStripMenuItem.Name = "SchriftartToolStripMenuItem"
-    Me.SchriftartToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.SchriftartToolStripMenuItem.ShortcutKeyDisplayString = "Alt Enter"
+    Me.SchriftartToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.SchriftartToolStripMenuItem.Tag = "%VTextbox"
     Me.SchriftartToolStripMenuItem.Text = "Schriftart ..."
     '
@@ -233,7 +236,7 @@ Partial Class VCanvasControl
     Me.LinieFormatierenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia
     Me.LinieFormatierenToolStripMenuItem.Name = "LinieFormatierenToolStripMenuItem"
     Me.LinieFormatierenToolStripMenuItem.ShortcutKeyDisplayString = "Alt L"
-    Me.LinieFormatierenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.LinieFormatierenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.LinieFormatierenToolStripMenuItem.Tag = "%VRectangle,VLine,VElipse,VUMLClass"
     Me.LinieFormatierenToolStripMenuItem.Text = "Linie formatieren ..."
     '
@@ -242,42 +245,65 @@ Partial Class VCanvasControl
     Me.FarbverlaufZuweisenToolStripMenuItem.Image = CType(resources.GetObject("FarbverlaufZuweisenToolStripMenuItem.Image"), System.Drawing.Image)
     Me.FarbverlaufZuweisenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia
     Me.FarbverlaufZuweisenToolStripMenuItem.Name = "FarbverlaufZuweisenToolStripMenuItem"
-    Me.FarbverlaufZuweisenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.FarbverlaufZuweisenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.FarbverlaufZuweisenToolStripMenuItem.Text = "Farbverlauf zuweisen ..."
     '
     'OriginalgroesseToolStripMenuItem
     '
     Me.OriginalgroesseToolStripMenuItem.Image = CType(resources.GetObject("OriginalgroesseToolStripMenuItem.Image"), System.Drawing.Image)
     Me.OriginalgroesseToolStripMenuItem.Name = "OriginalgroesseToolStripMenuItem"
-    Me.OriginalgroesseToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.OriginalgroesseToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.OriginalgroesseToolStripMenuItem.Tag = "%VImage"
     Me.OriginalgroesseToolStripMenuItem.Text = "Originalgröße"
     '
     'BeziehungsanfangAendernToolStripMenuItem
     '
     Me.BeziehungsanfangAendernToolStripMenuItem.Name = "BeziehungsanfangAendernToolStripMenuItem"
-    Me.BeziehungsanfangAendernToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.BeziehungsanfangAendernToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.BeziehungsanfangAendernToolStripMenuItem.Tag = "%VLine"
     Me.BeziehungsanfangAendernToolStripMenuItem.Text = "Beziehungsanfang ändern"
     '
     'BeziehungsendeAendernToolStripMenuItem
     '
     Me.BeziehungsendeAendernToolStripMenuItem.Name = "BeziehungsendeAendernToolStripMenuItem"
-    Me.BeziehungsendeAendernToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.BeziehungsendeAendernToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.BeziehungsendeAendernToolStripMenuItem.Tag = "%VLine"
     Me.BeziehungsendeAendernToolStripMenuItem.Text = "Beziehungsende ändern"
+    '
+    'ConvolutionFiltersexperimentellToolStripMenuItem
+    '
+    Me.ConvolutionFiltersexperimentellToolStripMenuItem.Name = "ConvolutionFiltersexperimentellToolStripMenuItem"
+    Me.ConvolutionFiltersexperimentellToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
+    Me.ConvolutionFiltersexperimentellToolStripMenuItem.Tag = "%VImage,VFilter"
+    Me.ConvolutionFiltersexperimentellToolStripMenuItem.Text = "Bildeffekte / Filter"
     '
     'ToolStripMenuItem4
     '
     Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-    Me.ToolStripMenuItem4.Size = New System.Drawing.Size(253, 6)
+    Me.ToolStripMenuItem4.Size = New System.Drawing.Size(244, 6)
+    '
+    'GruppierenToolStripMenuItem
+    '
+    Me.GruppierenToolStripMenuItem.Name = "GruppierenToolStripMenuItem"
+    Me.GruppierenToolStripMenuItem.ShortcutKeyDisplayString = "F7"
+    Me.GruppierenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
+    Me.GruppierenToolStripMenuItem.Tag = "Multi"
+    Me.GruppierenToolStripMenuItem.Text = "Gruppieren"
+    '
+    'GruppierungAufhebenToolStripMenuItem
+    '
+    Me.GruppierungAufhebenToolStripMenuItem.Name = "GruppierungAufhebenToolStripMenuItem"
+    Me.GruppierungAufhebenToolStripMenuItem.ShortcutKeyDisplayString = "F8"
+    Me.GruppierungAufhebenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
+    Me.GruppierungAufhebenToolStripMenuItem.Tag = "%VGroup"
+    Me.GruppierungAufhebenToolStripMenuItem.Text = "Gruppierung aufheben"
     '
     'DrehenToolStripMenuItem
     '
     Me.DrehenToolStripMenuItem.Image = CType(resources.GetObject("DrehenToolStripMenuItem.Image"), System.Drawing.Image)
     Me.DrehenToolStripMenuItem.Name = "DrehenToolStripMenuItem"
     Me.DrehenToolStripMenuItem.ShortcutKeyDisplayString = "Alt R"
-    Me.DrehenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.DrehenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.DrehenToolStripMenuItem.Tag = "Any"
     Me.DrehenToolStripMenuItem.Text = "Drehen ..."
     '
@@ -285,7 +311,7 @@ Partial Class VCanvasControl
     '
     Me.AnordnungToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LeftsToolStripMenuItem, Me.CentersToolStripMenuItem, Me.RightsToolStripMenuItem, Me.TopsToolStripMenuItem, Me.MiddlesToolStripMenuItem, Me.BottomsToolStripMenuItem, Me.ToolStripMenuItem1, Me.MakeSameWidthToolStripMenuItem, Me.MakeSameHeightToolStripMenuItem, Me.ToolStripMenuItem2, Me.EqualHorizontalSpacingToolStripMenuItem, Me.EqualVerticalSpacingToolStripMenuItem, Me.ToolStripMenuItem3, Me.BringToFrontToolStripMenuItem, Me.SendToBackToolStripMenuItem})
     Me.AnordnungToolStripMenuItem.Name = "AnordnungToolStripMenuItem"
-    Me.AnordnungToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.AnordnungToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.AnordnungToolStripMenuItem.Tag = "Any"
     Me.AnordnungToolStripMenuItem.Text = "Anordnung"
     '
@@ -420,14 +446,14 @@ Partial Class VCanvasControl
     'ToolStripMenuItem5
     '
     Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-    Me.ToolStripMenuItem5.Size = New System.Drawing.Size(253, 6)
+    Me.ToolStripMenuItem5.Size = New System.Drawing.Size(244, 6)
     '
     'AusschneidenToolStripMenuItem
     '
     Me.AusschneidenToolStripMenuItem.Image = CType(resources.GetObject("AusschneidenToolStripMenuItem.Image"), System.Drawing.Image)
     Me.AusschneidenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia
     Me.AusschneidenToolStripMenuItem.Name = "AusschneidenToolStripMenuItem"
-    Me.AusschneidenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.AusschneidenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.AusschneidenToolStripMenuItem.Tag = "Any"
     Me.AusschneidenToolStripMenuItem.Text = "Ausschneiden"
     '
@@ -437,7 +463,7 @@ Partial Class VCanvasControl
     Me.KopierenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia
     Me.KopierenToolStripMenuItem.Name = "KopierenToolStripMenuItem"
     Me.KopierenToolStripMenuItem.ShortcutKeyDisplayString = ""
-    Me.KopierenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.KopierenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.KopierenToolStripMenuItem.Tag = "Any"
     Me.KopierenToolStripMenuItem.Text = "Kopieren"
     '
@@ -446,7 +472,7 @@ Partial Class VCanvasControl
     Me.EinfuegenToolStripMenuItem.Image = CType(resources.GetObject("EinfuegenToolStripMenuItem.Image"), System.Drawing.Image)
     Me.EinfuegenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia
     Me.EinfuegenToolStripMenuItem.Name = "EinfuegenToolStripMenuItem"
-    Me.EinfuegenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.EinfuegenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.EinfuegenToolStripMenuItem.Tag = "NoSel"
     Me.EinfuegenToolStripMenuItem.Text = "Einfügen"
     '
@@ -455,7 +481,7 @@ Partial Class VCanvasControl
     Me.DuplizierenToolStripMenuItem.Enabled = False
     Me.DuplizierenToolStripMenuItem.Name = "DuplizierenToolStripMenuItem"
     Me.DuplizierenToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl D"
-    Me.DuplizierenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.DuplizierenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.DuplizierenToolStripMenuItem.Tag = "Any"
     Me.DuplizierenToolStripMenuItem.Text = "Duplizieren"
     '
@@ -465,16 +491,9 @@ Partial Class VCanvasControl
     Me.LoeschenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Fuchsia
     Me.LoeschenToolStripMenuItem.Name = "LoeschenToolStripMenuItem"
     Me.LoeschenToolStripMenuItem.ShortcutKeyDisplayString = "Entf"
-    Me.LoeschenToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
+    Me.LoeschenToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
     Me.LoeschenToolStripMenuItem.Tag = "Any"
     Me.LoeschenToolStripMenuItem.Text = "Löschen"
-    '
-    'ConvolutionFiltersexperimentellToolStripMenuItem
-    '
-    Me.ConvolutionFiltersexperimentellToolStripMenuItem.Name = "ConvolutionFiltersexperimentellToolStripMenuItem"
-    Me.ConvolutionFiltersexperimentellToolStripMenuItem.Size = New System.Drawing.Size(256, 22)
-    Me.ConvolutionFiltersexperimentellToolStripMenuItem.Tag = "VImage"
-    Me.ConvolutionFiltersexperimentellToolStripMenuItem.Text = "Convolution Filters (experimentell)"
     '
     'cmsAddRelationMenu
     '
@@ -603,5 +622,7 @@ Partial Class VCanvasControl
   Friend WithEvents PEigenschaftHinzufügenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
   Public WithEvents cmsCanvas As System.Windows.Forms.ContextMenuStrip
   Public WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+  Friend WithEvents GruppierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents GruppierungAufhebenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

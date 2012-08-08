@@ -11,6 +11,7 @@ Public Class Canvas
   Public ZIndexMin As Integer = 10000, ZIndexMax As Integer = 10000
 
   Public mouseDownPnt As Point, rubberBandActive As Boolean, rubberBandRect As Rectangle
+  Public origCustom As Integer
   Public isMoveMode As Boolean = False
   Public resizeDirection As VResizeDirection = VResizeDirection.None
 
@@ -23,6 +24,7 @@ Public Class Canvas
   Private _isObjectBorderSelectionMode As Boolean = False
   Public IsLineDrawingMode As Boolean = False
   Public IsMultitouchMode As Boolean = False
+  Public UseIntersectionForSelection As Boolean = False
 
   Public isEditMode As Boolean = False
   Public EditObject As VTextbox
@@ -33,6 +35,27 @@ Public Class Canvas
   Public Event SelectionChanged()
   Public Event ContextMenu()
   Public Event ContentChanged(ByVal inElement As VObject)
+
+  Public window As New vectorDOMWindow
+  Dim domDocument As New vectorDOMDocument(Me)
+  Public js As New Jint.JintEngine()
+  ' Public globalIndexCounter As Long = 1
+
+  Public Sub OnEvent(ByVal eventName As String, ByVal obj As VObject)
+    If Not obj.onevent.ContainsKey(eventName) Then Return
+    window.Document = domDocument
+    Dim eventCode As String = obj.onevent(eventName)
+    js.SetParameter("window", window)
+    js.SetParameter("target", obj)
+    js.SetParameter("eventName", eventName)
+    js.Run(eventCode)
+  End Sub
+
+  Public Function NextIndex() As Long
+    ''...counter müsste auch mit in HTML gespeichert werden - sonst doppelte IDs möglich
+    ' Return System.Threading.Interlocked.Increment(globalIndexCounter)
+    Return Now.Ticks
+  End Function
 
   Friend Sub OnContentChanged(ByVal inElement As VObject)
     RaiseEvent ContentChanged(inElement)
@@ -83,15 +106,105 @@ Public Class Canvas
       box = value
       box.Image = Nothing
       box.BackgroundImage = Nothing
-      Application.RemoveMessageFilter(msgFilter)
+      'Application.RemoveMessageFilter(msgFilter)
       If box Is Nothing Then
         ownerForm = Nothing
       Else
         ownerForm = box.FindForm
-        Application.AddMessageFilter(msgFilter)
+        '  Application.AddMessageFilter(msgFilter)
       End If
     End Set
   End Property
+
+  Sub KeyboardHandler(ByVal e As KeyEventArgs)
+
+    If isEditMode Then
+      If e.KeyCode = Keys.Escape Then
+        cancelEditMode()
+      End If
+      Exit Sub
+    End If
+
+    If e.KeyCode = Keys.Delete Then
+      Dim obj = GetFirstSelectedObject()
+      If obj IsNot Nothing Then
+        removeObject(obj)
+      Else
+        Beep()
+      End If
+    End If
+
+    'If (e.Alt And e.KeyCode = Keys.Return) Or (e.Control And e.KeyCode = Keys.P) Then
+    '  Dim obj = GetFirstSelectedObject()
+    '  If obj IsNot Nothing Then
+    '    showProperties(obj)
+    '  End If
+    'End If
+
+    If e.Control And e.KeyCode = Keys.D Then
+      Dim obj = GetFirstSelectedObject()
+      If obj IsNot Nothing AndAlso TypeOf obj Is VImage Then
+        Dim vi As VImage = obj
+        'loadImage(vi.img)
+      End If
+    End If
+
+    If e.Control And e.KeyCode = Keys.X Then
+      CutSelection()
+    End If
+
+    If e.Control And e.KeyCode = Keys.C Then
+      CopySelection()
+    End If
+
+    If e.Control And e.KeyCode = Keys.V Then
+      Paste()
+    End If
+
+    'If (e.Control And e.KeyCode = Keys.E) Then
+    '  Dim obj = GetFirstSelectedObject()
+    '  If obj IsNot Nothing And TypeOf obj Is VTextbox Then
+    '    showTextEditor(obj)
+    '  End If
+    'End If
+
+    If Helper.IsArrowKey(e.KeyCode) Then
+      Dim deltaX, deltaY As Integer
+      Select Case e.KeyCode
+        Case Keys.Left : deltaX = -1
+        Case Keys.Right : deltaX = +1
+        Case Keys.Up : deltaY = -1
+        Case Keys.Down : deltaY = +1
+      End Select
+      If e.Control = True Then deltaX *= 10 : deltaY *= 10
+      For i = 0 To p_objects.Count - 1
+        If p_objects(i).isSelected Then
+          If e.Shift Then
+            p_objects(i).Width += deltaX
+            p_objects(i).Height += deltaY
+          Else
+            p_objects(i).Left += deltaX
+            p_objects(i).Top += deltaY
+          End If
+        End If
+      Next
+      Invalidate()
+    End If
+
+    If e.KeyCode = Keys.PageUp Then
+      MoveObjectZ(GetFirstSelectedObject(), True, e.Control Or e.Alt)
+    End If
+
+    If e.KeyCode = Keys.PageDown Then
+      MoveObjectZ(GetFirstSelectedObject(), False, e.Control Or e.Alt)
+    End If
+
+    If e.KeyCode = Keys.F12 Then
+      Dim f As New frm_eventEditor
+      f.setObject(Me, GetFirstSelectedObject)
+      f.ShowDialog()
+    End If
+  End Sub
 
   Function GetObjectByID(ByVal id As String) As VObject
     If String.IsNullOrEmpty(id) Then Return Nothing
@@ -163,6 +276,59 @@ Public Class Canvas
     isEditMode = False
   End Sub
 
+  Function groupSelection() As Boolean
+    If SelectionCount < 1 Then Return False
+    cleanUpZIndex()
+    Dim grp As New VGroup
+    grp.name = "group_" & NextIndex()
+    grp.subObjects.AddRange(selectedObjects)
+    Dim firstObj = GetFirstSelectedObject()
+    Dim insPos = p_objects.IndexOf(firstObj)
+    DeselectAll()
+    grp.ZIndex = firstObj.ZIndex
+    Dim groupBounds = firstObj.bounds
+    For Each objInGrp In grp.subObjects
+      groupBounds = Rectangle.Union(groupBounds, objInGrp.bounds)
+      removeObject(objInGrp)
+      objInGrp.Parent = Me : objInGrp.Group = grp
+    Next
+    grp.bounds = groupBounds
+    For Each objInGrp In grp.subObjects
+      objInGrp.MoveByOffset(-groupBounds.X, -groupBounds.Y)
+    Next
+    grp.Parent = Me
+    SyncLock p_objects
+      p_objects.Insert(insPos, grp)
+    End SyncLock
+    RaiseEvent ContentChanged(grp)
+    'addObject(grp)
+    SelectObject(grp)
+    'orderByZIndex()
+  End Function
+  Sub ungroupSelection()
+    If SelectionCount <> 1 Then Return
+    Dim obj = GetFirstSelectedObject()
+    If Not TypeOf obj Is VGroup Then Return
+    Dim group As VGroup = obj
+
+    SyncLock p_objects
+      Dim insPos As Integer = p_objects.IndexOf(group)
+      Dim translate = group.bounds.Location
+      For i = group.subObjects.Count - 1 To 0 Step -1
+        p_objects.Insert(insPos, group.subObjects(i))
+        group.subObjects(i).MoveByOffset(translate.X, translate.Y)
+        group.subObjects(i).isSelected = True
+        group.subObjects(i).Group = Nothing
+        OnContentChanged(group.subObjects(i))
+      Next
+    End SyncLock
+
+    removeObject(group)
+    cleanUpZIndex()
+    OnSelectionChanged()
+    Invalidate()
+  End Sub
+
   Private Sub box_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles box.MouseDoubleClick
     If IsInsertionMode Or IsObjectBorderSelectionMode Or IsLineDrawingMode Then Exit Sub
     Dim selObj = GetFirstSelectedObject()
@@ -189,7 +355,11 @@ Public Class Canvas
     If selObj IsNot Nothing Then
       Dim resize = selObj.HitTestResizer(e.Location)
       resizeDirection = resize
-      ''''    frm_mdiViewer2.Text = resizeDirection.ToString
+      If resize = VResizeDirection.Rotation Then origCustom = selObj.Rotation
+      If resize = VResizeDirection.Custom1 Then origCustom = DirectCast(selObj, ICustomResizableObject).CustomResizableProperty1
+      If resize = VResizeDirection.Custom2 Then origCustom = DirectCast(selObj, ICustomResizableObject).CustomResizableProperty2
+
+      ''''    MDI.Text = resizeDirection.ToString
     End If
 
     If resizeDirection = VResizeDirection.None Then
@@ -203,11 +373,17 @@ Public Class Canvas
         Else
           If Not clickObj.isSelected Then SelectObject(clickObj)
           isMoveMode = True
+
+          Me.OnEvent("onmousedown", clickObj)
+
         End If
       End If
     End If
 
+    
   End Sub
+
+  'window.alert("Hallo Welt");
 
   Private Sub box_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles box.MouseMove
     If IsMultitouchMode Or _isObjectBorderSelectionMode Then Exit Sub
@@ -224,6 +400,24 @@ Public Class Canvas
         obj.moveTempRect.Offset(e.Location - mouseDownPnt)
         obj.DrawMoveRect()
       Next
+
+    ElseIf resizeDirection = VResizeDirection.Rotation Then
+      Dim delta As Integer = mouseDownPnt.Y - e.Location.Y
+      Dim obj = GetFirstSelectedObject()
+      obj.Rotation = origCustom + delta
+      Invalidate()
+
+    ElseIf resizeDirection = VResizeDirection.Custom1 Then
+      Dim delta As Integer = e.Location.X - mouseDownPnt.X
+      Dim obj As ICustomResizableObject = GetFirstSelectedObject()
+      obj.CustomResizableProperty1 = origCustom + delta
+      Invalidate()
+
+    ElseIf resizeDirection = VResizeDirection.Custom1 Then
+      Dim delta As Integer = e.Location.X - mouseDownPnt.X
+      Dim obj As ICustomResizableObject = GetFirstSelectedObject()
+      obj.CustomResizableProperty2 = origCustom + delta
+      Invalidate()
 
     ElseIf resizeDirection <> VResizeDirection.None Then
       Dim obj = GetFirstSelectedObject()
@@ -283,8 +477,11 @@ Public Class Canvas
           Exit Sub
         End If
 
-        For i = 0 To p_objects.Count - 1
-          p_objects(i).isSelected = p_objects(i).HitTestRect(rct)
+        Dim ctrlKey = isKeyPressed(Keys.ControlKey)
+
+        For i = 0 To p_objects.Count - 1          ' if ctrlKey: leave already selected objects selected...
+          p_objects(i).isSelected = (ctrlKey And p_objects(i).isSelected) _
+                OrElse p_objects(i).HitTestRect(rct, Me.UseIntersectionForSelection)
         Next
         OnSelectionChanged()
 
@@ -295,7 +492,10 @@ Public Class Canvas
             obj.DrawMoveRect()
             obj.bounds = obj.moveTempRect
             obj.moveTempRect = Nothing
+          Else
+            Me.OnEvent("onclick", obj)
           End If
+          Me.OnEvent("onmouseup", obj)
         Next
 
       ElseIf resizeDirection <> VResizeDirection.None Then
@@ -361,16 +561,16 @@ Public Class Canvas
 
   Sub showTextEditor(ByVal obj As VTextbox, Optional ByVal allowFormat As Boolean = True)
     Dim f As New frm_textEditor
-    f.TextBox1.Text = obj.text
+    f.TextBox1.Text = obj.Text
     If allowFormat Then f.setTextboxObject(Me, obj)
     If f.ShowDialog = Windows.Forms.DialogResult.OK Then
-      obj.text = f.TextBox1.Text
+      obj.Text = f.TextBox1.Text
       Me.Invalidate()
     End If
   End Sub
 
   Sub Invalidate()
-    box.Invalidate()
+    If box IsNot Nothing Then box.Invalidate()
 
     'HACK
     'frm_paletteCursor.Invalidate()
@@ -386,49 +586,64 @@ Public Class Canvas
 
   Private Sub box_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles box.Paint
     For i = 0 To p_objects.Count - 1
-      p_objects(i).DrawObject(e.Graphics)
+      Try
+        p_objects(i).DrawObject(e.Graphics)
+      Catch ex As Exception
+        e.Graphics.FillRectangle(Brushes.Red, p_objects(i).bounds)
+        e.Graphics.DrawString(ex.ToString, PicBox.FindForm.Font, Brushes.Black, p_objects(i).bounds.Location)
+      End Try
     Next
   End Sub
 
+  Sub cleanUpZIndex()
+    For i = 0 To p_objects.Count - 1
+      p_objects(i).ZIndex = i + 1
+    Next
+  End Sub
   Sub orderByZIndex()
+    SyncLock p_objects
+      Dim curMinIdx As Integer = 0
+      Dim curPos As Integer = 0, curObj As VObject
 
-    Dim curMinIdx As Integer = 0
-    Dim curPos As Integer = 0, curObj As VObject
+      While curPos < p_objects.Count
+        curObj = p_objects(curPos)
 
-    While curPos < p_objects.Count
-      curObj = p_objects(curPos)
+        If curObj.ZIndex < curMinIdx Then
+          p_objects.RemoveAt(curPos)
+          For i = curPos To 0 Step -1
+            If p_objects(i).ZIndex < curObj.ZIndex Then
+              p_objects.Insert(i, curObj)
+              curObj = Nothing : curPos = 0 : Continue While
+            End If
+          Next
+        End If
 
-      If curObj.ZIndex < curMinIdx Then
-        p_objects.RemoveAt(curPos)
-        For i = curPos To 0 Step -1
-          If p_objects(i).ZIndex < curObj.ZIndex Then
-            p_objects.Insert(i, curObj)
-            curObj = Nothing : curPos = 0 : Continue While
-          End If
-        Next
-      End If
-
-      curMinIdx = curObj.ZIndex
-      curPos += 1
-    End While
+        curMinIdx = curObj.ZIndex
+        curPos += 1
+      End While
 
 
-
+    End SyncLock
   End Sub
 
   Sub addObject(ByVal obj As VObject)
-    p_objects.Add(obj)
-    obj.Parent = Me
-    Invalidate()
-    OnContentChanged(obj)
+    SyncLock p_objects
+      If String.IsNullOrEmpty(obj.name) Then obj.name = "o_" & NextIndex()
+      p_objects.Add(obj)
+      obj.Parent = Me
+      Invalidate()
+      OnContentChanged(obj)
+    End SyncLock
   End Sub
 
   Sub removeObject(ByVal obj As VObject)
-    p_objects.Remove(obj)
-    If obj.isSelected Then OnSelectionChanged()
-    obj.Parent = Nothing
-    Invalidate()
-    OnContentChanged(Nothing)
+    SyncLock p_objects
+      p_objects.Remove(obj)
+      If obj.isSelected Then OnSelectionChanged()
+      obj.Parent = Nothing
+      Invalidate()
+      OnContentChanged(Nothing)
+    End SyncLock
   End Sub
 
   Sub clearCanvas()
@@ -438,27 +653,29 @@ Public Class Canvas
   End Sub
 
   Sub MoveObjectZ(ByVal obj As VObject, ByVal dirUp As Boolean, ByVal toEnd As Boolean)
-    Dim curIdx As Integer = p_objects.IndexOf(obj)
-    If curIdx = 0 And dirUp = False Then Exit Sub
-    If curIdx = p_objects.Count - 1 And dirUp = True Then Exit Sub
+    SyncLock p_objects
+      Dim curIdx As Integer = p_objects.IndexOf(obj)
+      If curIdx = 0 And dirUp = False Then Exit Sub
+      If curIdx = p_objects.Count - 1 And dirUp = True Then Exit Sub
 
-    p_objects.RemoveAt(curIdx)
-    If toEnd Then
-      If dirUp Then
-        p_objects.Add(obj)
+      p_objects.RemoveAt(curIdx)
+      If toEnd Then
+        If dirUp Then
+          p_objects.Add(obj)
+        Else
+          p_objects.Insert(0, obj)
+        End If
       Else
-        p_objects.Insert(0, obj)
+        If dirUp Then
+          p_objects.Insert(curIdx + 1, obj)
+        Else
+          p_objects.Insert(curIdx - 1, obj)
+        End If
       End If
-    Else
-      If dirUp Then
-        p_objects.Insert(curIdx + 1, obj)
-      Else
-        p_objects.Insert(curIdx - 1, obj)
-      End If
-    End If
 
-    Invalidate()
-    OnContentChanged(obj)
+      Invalidate()
+      OnContentChanged(obj)
+    End SyncLock
   End Sub
 
   Private Sub msgFilter_onKeyDown(ByVal e As System.Windows.Forms.KeyEventArgs) Handles msgFilter.onKeyDown
@@ -554,6 +771,23 @@ Public Class Canvas
 
   End Sub
 
+  Function GetPartialImage(ByVal minX As Integer, ByVal minY As Integer, ByVal maxX As Integer, ByVal maxY As Integer, ByVal breakOnElement As VObject) As Image
+    Dim bmp As New Bitmap(maxX - minX, maxY - minY, Imaging.PixelFormat.Format32bppPArgb)
+    Dim g As Graphics = Graphics.FromImage(bmp)
+    g.Clear(Color.White)
+    g.TranslateTransform(-minX, -minY)
+    For i = 0 To p_objects.Count - 1
+      If breakOnElement IsNot Nothing AndAlso p_objects(i) Is breakOnElement Then Exit For
+      With p_objects(i)
+        '.isSelected = False
+        .DrawObject(g)
+        '.isSelected = True
+      End With
+    Next
+    g.Dispose()
+    Return bmp
+  End Function
+
   Sub CopySelection()
     Clipboard.Clear()
     If SelectionCount = 0 Then Return
@@ -609,16 +843,17 @@ Public Class Canvas
       Dim items() As String = Clipboard.GetData("ScreenGrabCollageItemList")
       For Each item As String In items
         If String.IsNullOrEmpty(item) Then Continue For
-        Dim v As VObject = VObject.FromHtml(item)
+        Dim v As VObject = VObject.FromHtml(item, Me)
         If v Is Nothing Then MsgBox("Invalid data item" + vbNewLine + item) : Continue For
         v.isSelected = True
         v.name = "paste_" & Now.Ticks
         addObject(v)
       Next
-    End If
-    If Clipboard.ContainsImage Then
+    ElseIf Clipboard.ContainsImage Then
       Dim v As VImage = addPicClient(Clipboard.GetImage, "Clipboard")
       v.isSelected = True
+      v.name = "paste_" & Now.Ticks
+      '   addObject(v)
     End If
     OnSelectionChanged()
 
@@ -702,21 +937,24 @@ Public Class Canvas
     '  If sfd.ShowDialog = Windows.Forms.DialogResult.Cancel Then Exit Sub
     '  fileName = sfd.FileName
     'End Using
+    cleanUpZIndex()
+
+    Dim previewImg = GetPartialImage(0, 0, box.Width, box.Height, Nothing).GetThumbnailImage(100, 100, Nothing, IntPtr.Zero)
 
 
     Dim sw As New IO.StreamWriter(fileSpec)
-    sw.WriteLine("<!DOCTYPE HTML PUBLIC ""-//W3C//DTD HTML 4.01 Transitional//EN"" " + _
-                  """http://www.w3.org/TR/html4/loose.dtd"">")
+    sw.WriteLine("<!DOCTYPE HTML>")
     sw.WriteLine("<html>")
     sw.WriteLine("<head>")
     sw.WriteLine("	<title>" + IO.Path.GetFileNameWithoutExtension(fileSpec) + "</title>")
+    sw.WriteLine("	<!-- ##PREVIEW##" + Helper.ImageToBase64(previewImg) + "##-->")
     sw.WriteLine("	<style type=""text/css"">")
     sw.WriteLine("	div { line-height: 120% !important; }")
     sw.WriteLine("	p { margin: 0; padding: 0; font: 8pt 'Microsoft Sans Serif',sans-serif; }")
     sw.WriteLine("	p.title { line-height: 120% !important; margin-bottom: -4px; }")
     sw.WriteLine("	p.title b { font: bold 12pt 'Microsoft Sans Serif',sans-serif; }")
     sw.WriteLine("	hr { border: 1px solid black; margin: 4px 0; }")
-    '  sw.WriteLine("	div:hover { outline: 2px dotted red; }")
+    sw.WriteLine("	html,body { margin:0; padding:0; }")
     sw.WriteLine("	</style>")
     sw.WriteLine("	<meta name=""generator"" content=""ScreenShot 6 Collage"">")
     sw.WriteLine("	<!-- Version: " + My.Application.Info.Version.ToString + " -->")
@@ -725,7 +963,7 @@ Public Class Canvas
     sw.WriteLine("</head>")
     sw.WriteLine("<body bgcolor=""#888888"">")
     sw.WriteLine("<!-- ##page##" & PicBox.Width & "##" & PicBox.Height & "##" & "##" + Helper.Color2String(PicBox.BackColor) + "## -->")
-    sw.WriteLine("<div style=""margin: 10px auto; overflow: hidden; " + _
+    sw.WriteLine("<div style=""position: absolute; overflow: hidden; " + _
                   "background-color: " + Helper.Color2HTMLString(PicBox.BackColor) + ";" + _
                   "border: 1px solid black; width: " & PicBox.Width & "px; height: " & PicBox.Height & "px; "">")
 
@@ -743,9 +981,11 @@ Public Class Canvas
 
     'clear All ???
 
+    Dim groupStack As New Stack(Of VGroup)
+
     Dim lineNr = 0, modusCounter As Integer = 0
     Dim line, modus As String, contbuffer As System.Text.StringBuilder
-    Dim myObj As VObject
+    Dim myObj As VObject, addObj As VObject
     modus = "invalid"
     While sr.EndOfStream = False
       lineNr += 1 : modusCounter += 1
@@ -757,11 +997,17 @@ Public Class Canvas
 
       If line.StartsWith("<!-- ##page##") Then
         Dim para() As String = Split(line, "##")
-        PicBox.BackColor = Helper.String2Color(para(5))
-        PicBox.Width = para(2)
-        PicBox.Height = para(3)
+        Try
+          PicBox.BackColor = Helper.String2Color(para(5))
+          PicBox.Width = para(2)
+          PicBox.Height = para(3)
+        Catch : End Try
 
         Continue While
+      End If
+
+      If line.StartsWith("</section>") Then
+        groupStack.Pop()
       End If
 
       If modus = "txt" And line = "</div>" Then
@@ -771,7 +1017,7 @@ Public Class Canvas
         ElseIf TypeOf myObj Is VUMLClass Then
           DirectCast(myObj, VUMLClass).ParseHtmlContent(Trim(contbuffer.ToString))
         End If
-        addObject(myObj)
+        addObj = (myObj)
       End If
 
       If modus = "txt" And modusCounter >= 1 Then
@@ -787,7 +1033,7 @@ Public Class Canvas
         If modus = "valid" Then 'Bild fertig
           Dim img = Helper.Base64ToImage(contbuffer)
           DirectCast(myObj, VImage).img = img
-          addObject(myObj)
+          addObj = (myObj)
         End If
       End If
 
@@ -824,7 +1070,7 @@ Public Class Canvas
 
         myObj = New VElipse
         myObj.Deserialize(para)
-        addObject(myObj)
+        addObj = (myObj)
       End If
 
       If line.StartsWith("<!-- ##VLine##") Then
@@ -833,7 +1079,7 @@ Public Class Canvas
 
         myObj = New VLine
         myObj.Deserialize(para)
-        addObject(myObj)
+        addObj = (myObj)
       End If
 
       If line.StartsWith("<!-- ##VRectangle##") Then
@@ -842,10 +1088,30 @@ Public Class Canvas
 
         myObj = New VRectangle
         myObj.Deserialize(para)
-        addObject(myObj)
+        addObj = (myObj)
       End If
 
+      If line.StartsWith("<!-- ##VGroup##") Then
+        modus = "valid" : modusCounter = 0
+        Dim para() As String = Split(line, "##")
 
+        myObj = New VGroup
+        myObj.Deserialize(para)
+        addObj = (myObj)
+      End If
+
+      If addObj IsNot Nothing Then
+        If (groupStack.Count = 0) Then
+          addObject(addObj)
+        Else
+          addObj.Parent = Me : addObj.Group = groupStack.Peek()
+          groupStack.Peek().subObjects.Add(addObj)
+        End If
+
+        addObj = Nothing
+      End If
+
+      If line.StartsWith("<!-- ##VGroup##") Then groupStack.Push(myObj)
     End While
 
     If modus = "invalid" Then
@@ -858,6 +1124,9 @@ Public Class Canvas
   Private Sub EditTB_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles EditTB.KeyUp
     If e.KeyCode = Keys.Escape Then
       cancelEditMode()
+    End If
+    If e.KeyCode = Keys.Enter And (e.Control Or e.Shift) Then
+      acceptEditMode()
     End If
   End Sub
 

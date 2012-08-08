@@ -88,6 +88,7 @@ Partial Class frm_options
     Me.Label9 = New System.Windows.Forms.Label
     Me.Label1 = New System.Windows.Forms.Label
     Me.TabPage4 = New System.Windows.Forms.TabPage
+    Me.qq_TextBox2 = New System.Windows.Forms.TextBox
     Me.LinkLabel5 = New System.Windows.Forms.LinkLabel
     Me.Label19 = New System.Windows.Forms.Label
     Me.PictureBox1 = New System.Windows.Forms.PictureBox
@@ -104,7 +105,6 @@ Partial Class frm_options
     Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
     Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
     Me.ofdChooseIcon = New System.Windows.Forms.OpenFileDialog
-    Me.qq_TextBox2 = New System.Windows.Forms.TextBox
     Me.TabControl1.SuspendLayout()
     Me.TabPage1.SuspendLayout()
     Me.GroupBox8.SuspendLayout()
@@ -800,6 +800,17 @@ Partial Class frm_options
     Me.TabPage4.TabIndex = 7
     Me.TabPage4.Text = "TabPage4"
     '
+    'qq_TextBox2
+    '
+    Me.qq_TextBox2.Location = New System.Drawing.Point(39, 227)
+    Me.qq_TextBox2.Multiline = True
+    Me.qq_TextBox2.Name = "qq_TextBox2"
+    Me.qq_TextBox2.ReadOnly = True
+    Me.qq_TextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+    Me.qq_TextBox2.Size = New System.Drawing.Size(415, 64)
+    Me.qq_TextBox2.TabIndex = 11
+    Me.qq_TextBox2.Text = resources.GetString("qq_TextBox2.Text")
+    '
     'LinkLabel5
     '
     Me.LinkLabel5.AutoSize = True
@@ -975,17 +986,6 @@ Partial Class frm_options
     Me.ofdChooseIcon.Filter = "Tranparenz-unterstützende Bilddateien (*.png, *.gif)|*.png;*.gif|Alle Bilddateien" & _
         " (*.png, *.gif, *.bmp, *.jpg)|*.png;*.gif;*.bmp;*.jpg|Alle Dateien|*"
     Me.ofdChooseIcon.Title = "Icon auswählen (bestenfalls 32x32) ..."
-    '
-    'qq_TextBox2
-    '
-    Me.qq_TextBox2.Location = New System.Drawing.Point(39, 227)
-    Me.qq_TextBox2.Multiline = True
-    Me.qq_TextBox2.Name = "qq_TextBox2"
-    Me.qq_TextBox2.ReadOnly = True
-    Me.qq_TextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-    Me.qq_TextBox2.Size = New System.Drawing.Size(415, 64)
-    Me.qq_TextBox2.TabIndex = 11
-    Me.qq_TextBox2.Text = resources.GetString("qq_TextBox2.Text")
     '
     'frm_options
     '

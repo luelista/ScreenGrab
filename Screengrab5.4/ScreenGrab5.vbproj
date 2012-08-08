@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D5CE7CF2-503C-4D58-A7E7-19540B56FB4E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -70,7 +70,12 @@
     </Reference>
     <Reference Include="ControlsEx, Version=1.0.3579.42446, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="DrawingEx, Version=1.0.4317.22846, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="ExplorerControls, Version=3.1.0.23500, Culture=neutral, PublicKeyToken=11d92dc49b2bee68, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\yEXE\ExplorerControls.dll</HintPath>
+    </Reference>
     <Reference Include="itextsharp, Version=5.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
+    <Reference Include="MdiTabControl, Version=1.1.3159.34934, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -98,14 +103,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Grab\ApplicationEvents.vb" />
-    <Compile Include="Altlasten\app_ftp.vb" />
     <Compile Include="Grab\app_grabWindow.vb" />
     <Compile Include="Grab\app_hotkey.vb" />
     <Compile Include="Grab\app_interprocHandler.vb" />
     <Compile Include="Grab\app_main.vb" />
     <Compile Include="Grab\app_mjpegServer.vb" />
     <Compile Include="Grab\app_updateScreenGrab.vb" />
-    <Compile Include="Grab\app_winVista.vb" />
+    <Compile Include="Libs\app_winVista.vb" />
     <Compile Include="Libs\cls_globPara.vb" />
     <Compile Include="Uploads\frm_commonUpload.Designer.vb">
       <DependentUpon>frm_commonUpload.vb</DependentUpon>
@@ -131,24 +135,6 @@
     <Compile Include="Grab\frm_helpFile.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CollageModus\frm_paletteCursor.Designer.vb">
-      <DependentUpon>frm_paletteCursor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CollageModus\frm_paletteCursor.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CollageModus\frm_mdiViewer2.Designer.vb">
-      <DependentUpon>frm_mdiViewer2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CollageModus\frm_mdiViewer2.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CollageModus\frm_paletteFile.Designer.vb">
-      <DependentUpon>frm_paletteFile.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CollageModus\frm_paletteFile.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Grab\frm_printDialog.Designer.vb">
       <DependentUpon>frm_printDialog.vb</DependentUpon>
     </Compile>
@@ -161,25 +147,12 @@
     <Compile Include="Grab\frm_grab.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Uploads\frm_tempScreenShotName.Designer.vb">
-      <DependentUpon>frm_tempScreenShotName.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Uploads\frm_tempScreenShotName.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Altlasten\frm_uploadingMulti.designer.vb">
-      <DependentUpon>frm_uploadingMulti.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Altlasten\frm_uploadingMulti.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Grab\frm_options.designer.vb">
       <DependentUpon>frm_options.vb</DependentUpon>
     </Compile>
     <Compile Include="Grab\frm_options.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Altlasten\FtpClient.vb" />
     <Compile Include="Libs\HotKeyFormLib.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -206,21 +179,12 @@
     <Compile Include="Libs\sys_editWindowMenu.vb" />
     <Compile Include="Libs\sys_forceForegroundWindow.vb" />
     <Compile Include="Libs\sys_formMoveTricky.vb" />
-    <Compile Include="Altlasten\sys_ftpUpload.vb" />
     <Compile Include="Libs\sys_getAsyncKeyState.vb" />
     <Compile Include="Libs\sys_imageFromWeb.vb" />
     <Compile Include="Libs\sys_interproc.vb" />
     <Compile Include="Libs\sys_mwRegistry.vb" />
     <Compile Include="Libs\sys_rc4encryption.vb" />
     <Compile Include="Libs\sys_setWindowPos.vb" />
-    <Compile Include="Altlasten\sys_teamWikiUploader.vb" />
-    <Compile Include="Altlasten\sys_uploadWithPost.vb" />
-    <Compile Include="Altlasten\TeamWikiFileStoreFTV.Designer.vb">
-      <DependentUpon>TeamWikiFileStoreFTV.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Altlasten\TeamWikiFileStoreFTV.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Libs\TwAjax.vb" />
     <Compile Include="Uploads\frm_imgurUploaded.Designer.vb">
       <DependentUpon>frm_imgurUploaded.vb</DependentUpon>
@@ -240,10 +204,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uploads\frm_imageshackUploaded.resx">
       <DependentUpon>frm_imageshackUploaded.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CollageModus\frm_paletteColor.resx">
-      <DependentUpon>frm_paletteColor.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Grab\frm_softwareUpdate.resx">
@@ -266,18 +226,6 @@
       <DependentUpon>frm_helpFile.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="CollageModus\frm_paletteCursor.resx">
-      <DependentUpon>frm_paletteCursor.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CollageModus\frm_mdiViewer2.resx">
-      <DependentUpon>frm_mdiViewer2.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CollageModus\frm_paletteFile.resx">
-      <DependentUpon>frm_paletteFile.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Grab\frm_printDialog.resx">
       <DependentUpon>frm_printDialog.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -285,14 +233,6 @@
     <EmbeddedResource Include="Grab\frm_grab.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frm_grab.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Uploads\frm_tempScreenShotName.resx">
-      <DependentUpon>frm_tempScreenShotName.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Altlasten\frm_uploadingMulti.resx">
-      <DependentUpon>frm_uploadingMulti.vb</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Grab\frm_options.resx">
       <DependentUpon>frm_options.vb</DependentUpon>
@@ -306,10 +246,6 @@
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Altlasten\TeamWikiFileStoreFTV.resx">
-      <DependentUpon>TeamWikiFileStoreFTV.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Uploads\frm_imgurUploaded.resx">
@@ -359,12 +295,6 @@
     <Compile Include="Uploads\frm_imageshackUploaded.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CollageModus\frm_paletteColor.Designer.vb">
-      <DependentUpon>frm_paletteColor.vb</DependentUpon>
-    </Compile>
-    <Compile Include="CollageModus\frm_paletteColor.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Grab\frm_softwareUpdate.Designer.vb">
       <DependentUpon>frm_softwareUpdate.vb</DependentUpon>
     </Compile>
@@ -392,13 +322,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AcroRd32_18434.ico" />
-    <Content Include="CollageModus\ControlsEx.dll" />
-    <Content Include="ConvolutionFilters.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="CollageModus\DrawingEx.dll" />
-    <Content Include="CollageModus\itextsharp.dll" />
     <Content Include="grab.ico" />
+    <None Include="Resources\CloseDisabled.png" />
+    <None Include="Resources\Close.png" />
+    <None Include="Resources\CloseHot.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="AxCCRPFolderTV6">
@@ -467,9 +394,6 @@
       <Project>{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}</Project>
       <Name>ScreenGrab6.Vector</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

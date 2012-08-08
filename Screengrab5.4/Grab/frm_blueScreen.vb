@@ -10,7 +10,7 @@ Imports System.Data
 Public Class frm_blueScreen
   Dim aktUploadDestFilename As String
 
-  Dim ftp As New Utilities.FTP.FTPclient("www.teamwiki.de", "vserver3", "lezifato")
+  'Dim ftp As New Utilities.FTP.FTPclient("www.teamwiki.de", "vserver3", "xxxxxxxxxxxxxxxxxx")
 
   Structure HistoryItem
     Dim isUpload As Boolean
@@ -184,7 +184,8 @@ Public Class frm_blueScreen
 
   Private Sub frm_blueScreen_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyUp
     If e.Control And e.KeyCode = Keys.Enter Then
-      frm_tempScreenShotName.initTempUpload()
+      'frm_tempScreenShotName.initTempUpload()
+      btnSaveToWeb_Click(Nothing, Nothing)
     End If
     If e.Control And (e.KeyCode = Keys.T) Then
       onCollage()
@@ -203,7 +204,7 @@ Public Class frm_blueScreen
     If e.Control And e.KeyCode = Keys.S Then
       save()
     End If
-    
+
     If e.KeyCode = Keys.F2 Then
       openGrabWindow()
     End If
@@ -229,6 +230,7 @@ Public Class frm_blueScreen
     glob.readFormPos(Me)
     'txtDIZ.Text = glob.para("diz")
 
+    mwRegisterSelf()
     interproc_init()
 
     'If glob.para("user") <> "" Then
@@ -609,11 +611,18 @@ Public Class frm_blueScreen
   End Sub
 
   Sub onCollage()
-    frm_mdiViewer2.Show()
-    frm_mdiViewer2.Activate()
-    frm_mdiViewer2.addPicClient()
-    qq_chkAutoCollage.Enabled = True
-    qq_chkAutoCollage.Checked = True
+    'If MDI Is Nothing Then
+    '  MDI = New frm_mdiViewer2
+    'End If
+    'MDI.Show()
+    'MDI.Activate()
+    'MDI.addPicClient()
+    'qq_chkAutoCollage.Enabled = True
+    'qq_chkAutoCollage.Checked = True
+    oIntWin.EnsureAppRunning("grab5", "ScreenGrab6")
+    Dim tmpFilespec As String = IO.Path.Combine(IO.Path.GetTempPath, "ScreenGrab-to-Collage.png")
+    getCompleteImage.Save(tmpFilespec, System.Drawing.Imaging.ImageFormat.Png)
+    oIntWin.SendCommand("grab5", "AddImage", tmpFilespec)
   End Sub
 
   Private Sub NotifyIcon1_MouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick

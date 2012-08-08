@@ -10,6 +10,15 @@ Public Interface IGradientObject
   Property Gradient() As DrawingEx.ColorManagement.Gradients.Gradient
 
 End Interface
+Public Interface IFilterableVectorObject
+  Sub ApplyMatrix(ByVal m As ScreenGrab6.CSharpFilters.ConvMatrix)
+
+End Interface
+Public Interface ICustomResizableObject
+  Property CustomResizableProperty1() As Integer
+  Property CustomResizableProperty2() As Integer
+
+End Interface
 
 Public MustInherit Class VObject
 
@@ -20,8 +29,8 @@ Public MustInherit Class VObject
 
   Private m_bounds As Rectangle
   Private m_rotatedBounds As Rectangle
-  Protected m_resizeBounds(3) As Rectangle
-  Protected m_resizeBoundsTransformed(3) As Rectangle
+  Protected m_resizeBounds(6) As Rectangle
+  Protected m_resizeBoundsTransformed(6) As Rectangle
 
   Protected MustOverride Sub DrawObjectInternal(ByVal g As Graphics)
 
@@ -39,6 +48,16 @@ Public MustInherit Class VObject
   Private p_rotation As Integer
 
   Public Parent As Canvas
+  Public Group As VGroup
+
+  Public onevent As New Hashtable
+
+  Public Overridable ReadOnly Property ResizerCount() As Integer
+    Get
+      Return 5 '4 directions + rotation
+    End Get
+  End Property
+
 
   '  Public HasAttachedArrows As Boolean --- optionale Optimierung
 
@@ -47,7 +66,7 @@ Public MustInherit Class VObject
       Return p_rotation
     End Get
     Set(ByVal value As Integer)
-      p_rotation = value
+      p_rotation = Math.Max(0, value Mod 360)
     End Set
   End Property
 
@@ -63,10 +82,17 @@ Public MustInherit Class VObject
       oldm = g.Transform
       g.Transform = m
     End If
+    If Group IsNot Nothing Then
+      g.TranslateTransform(Group.Left, Group.Top)
+    End If
+
     DrawObjectInternal(g)
     If Rotation > 0 Then
       g.Transform = oldm
       m.Dispose()
+    End If
+    If Group IsNot Nothing Then
+      g.TranslateTransform(-Group.Left, -Group.Top)
     End If
     DrawSelection(g)
   End Sub
@@ -102,8 +128,12 @@ Public MustInherit Class VObject
       OnBoundsChanged()
     End Set
   End Property
+  Public Sub MoveByOffset(ByVal dx As Integer, ByVal dy As Integer)
+    m_bounds.Offset(dx, dy)
+    OnBoundsChanged()
+  End Sub
 
-  Private Sub OnBoundsChanged()
+  Protected Overridable Sub OnBoundsChanged()
     Dim m As New Matrix()
     m.RotateAt(Rotation, New PointF(Me.bounds.X + Me.bounds.Width / 2, Me.bounds.Y + Me.bounds.Height / 2))
     Dim pt() As Point = {New Point(m_bounds.X, m_bounds.Y), New Point(m_bounds.Right, m_bounds.Bottom)}
@@ -125,7 +155,10 @@ Public MustInherit Class VObject
         New Rectangle(rct.X - ResizerWidth, rct.Y - ResizerWidth, ResizerWidth * 2, ResizerWidth * 2), _
         New Rectangle(rct.Right - ResizerWidth, rct.Y - ResizerWidth, ResizerWidth * 2, ResizerWidth * 2), _
         New Rectangle(rct.X - ResizerWidth, rct.Bottom - ResizerWidth, ResizerWidth * 2, ResizerWidth * 2), _
-        New Rectangle(rct.Right - ResizerWidth, rct.Bottom - ResizerWidth, ResizerWidth * 2, ResizerWidth * 2) _
+        New Rectangle(rct.Right - ResizerWidth, rct.Bottom - ResizerWidth, ResizerWidth * 2, ResizerWidth * 2), _
+        New Rectangle(rct.X - 20, rct.Top + rct.Height / 2 - 8, 16, 16), _
+        New Rectangle(rct.Left + rct.Width / 2 - 8, rct.Top - 20, 16, 16), _
+        New Rectangle(rct.Left + rct.Width / 2 - 8, rct.Bottom + 4, 16, 16) _
     }
   End Function
 
@@ -205,7 +238,7 @@ Public MustInherit Class VObject
     Return "<!-- " + Join(Me.Serialize(), "##") + "## -->"
   End Function
 
-  Public Shared Function FromHtml(ByVal input As String) As VObject
+  Public Shared Function FromHtml(ByVal input As String, ByVal parent As Canvas) As VObject
     If String.IsNullOrEmpty(input) Then Return Nothing
     Dim posIdx1, posIdx2 As Integer
     posIdx1 = input.IndexOf("<!-- ##")
@@ -214,7 +247,7 @@ Public MustInherit Class VObject
     Dim para() As String = Split(input, "##")
     Select Case UCase(para(1))
       Case "IMG", "VIMAGE"
-        Dim myobj As New VImage
+        Dim myobj As New VImage : myobj.Parent = parent
         myobj.Deserialize(para)
         posIdx1 = input.IndexOf("src=""") + 5
         posIdx2 = input.IndexOf("""", posIdx1)
@@ -223,7 +256,7 @@ Public MustInherit Class VObject
         DirectCast(myobj, VImage).img = img
         Return myobj
       Case "RTF", "VTEXTBOX"
-        Dim myobj As New VTextbox
+        Dim myobj As New VTextbox : myobj.Parent = parent
         myobj.Deserialize(para)
         posIdx1 = input.IndexOf(vbNewLine) + 2
         posIdx2 = input.LastIndexOf("</div>")
@@ -231,7 +264,7 @@ Public MustInherit Class VObject
         DirectCast(myobj, VTextbox).Text = Helper.StripHtmlTags(input.Substring(posIdx1, posIdx2 - posIdx1).Replace("<br>", vbNewLine).Replace("<br/>", vbNewLine)).Replace("&lt;", "<").Replace("&gt;", ">")
         Return myobj
       Case "VUMLCLASS"
-        Dim myobj As New VUMLClass
+        Dim myobj As New VUMLClass : myobj.Parent = parent
         myobj.Deserialize(para)
         posIdx1 = input.IndexOf(vbNewLine) + 2
         posIdx2 = input.LastIndexOf("</div>")
@@ -239,16 +272,24 @@ Public MustInherit Class VObject
         myobj.ParseHtmlContent(input.Substring(posIdx1, posIdx2 - posIdx1))
         Return myobj
       Case "VRECTANGLE"
-        Dim myobj As New VRectangle
+        Dim myobj As New VRectangle : myobj.Parent = parent
         myobj.Deserialize(para)
         Return myobj
       Case "VELIPSE"
-        Dim myobj As New VElipse
+        Dim myobj As New VElipse : myobj.Parent = parent
         myobj.Deserialize(para)
         Return myobj
       Case "VLINE"
-        Dim myobj As New VLine
+        Dim myobj As New VLine : myobj.Parent = parent
         myobj.Deserialize(para)
+        Return myobj
+      Case "VGROUP"
+        Dim myobj As New VGroup : myobj.Parent = parent
+        myobj.Deserialize(para)
+        posIdx1 = input.IndexOf(vbNewLine) + 2
+        posIdx2 = input.LastIndexOf("</section>")
+        If posIdx1 < 2 Or posIdx2 = -1 Or posIdx2 < posIdx1 Then Return Nothing
+        myobj.ParseHtmlContent(input.Substring(posIdx1, posIdx2 - posIdx1))
         Return myobj
       Case Else
         Return Nothing
@@ -281,7 +322,7 @@ Public MustInherit Class VObject
     data(11) = "V2" 'reserve
     data(12) = Rotation
     data(13) = borderPen.DashStyle 'reserve
-    data(14) = "" 'reserve
+    data(14) = JSON.JsonEncode(onevent) 'onEvent
     data(15) = "" 'reserve
     data(16) = "" 'reserve
     data(17) = "" 'reserve
@@ -306,6 +347,10 @@ Public MustInherit Class VObject
       offset = 19
       Rotation = Val(Data(12))
       borderPen.DashStyle = Val(Data(13))
+      Try
+        onevent = JSON.JsonDecode(Data(14))
+      Catch : End Try
+      If onevent Is Nothing Then onevent = New Hashtable
     Else
       offset = 11
     End If
@@ -319,14 +364,14 @@ Public MustInherit Class VObject
   End Function
 
   Public Overridable Function HitTestResizer(ByVal pnt As Point) As VResizeDirection
-    For i = 0 To 3
+    For i = 0 To ResizerCount - 1
       If m_resizeBounds(i).Contains(pnt) Then Return i + 1
     Next
     Return VResizeDirection.None
   End Function
 
-  Public Overridable Function HitTestRect(ByVal rct As Rectangle) As Boolean
-    Return rct.Contains(bounds)
+  Public Overridable Function HitTestRect(ByVal rct As Rectangle, ByVal intersect As Boolean) As Boolean
+    Return If(intersect, rct.IntersectsWith(bounds), rct.Contains(bounds))
   End Function
 
   ' Sub setBorder(ByVal width As Integer, ByVal color As Color)
@@ -349,6 +394,7 @@ Public MustInherit Class VObject
       For i = 0 To 3
         g.FillRectangle(ResizerBrsh, m_resizeBounds(i))
       Next
+      g.DrawImage(My.Resources.rotate_cw, m_resizeBounds(4))
     End If
     If Parent.IsObjectBorderSelectionMode Then
       For i = 0 To 9
@@ -362,12 +408,14 @@ Public MustInherit Class VObject
     End If
   End Sub
 
+
 End Class
 
 '---------------------------------------------------------------------------------------
 
 Public Class VImage
   Inherits VObject
+  Implements IFilterableVectorObject
   Public origimg, img As Image
   Public source As String
 
@@ -377,7 +425,7 @@ Public Class VImage
     'DrawSelection(g)
   End Sub
 
-  Public Sub ApplyMatrix(ByVal m As ScreenGrab6.CSharpFilters.ConvMatrix)
+  Public Sub ApplyMatrix(ByVal m As ScreenGrab6.CSharpFilters.ConvMatrix) Implements IFilterableVectorObject.ApplyMatrix
     If origimg Is Nothing Then origimg = img
     ScreenGrab6.CSharpFilters.BitmapFilter.Conv3x3(img, m)
   End Sub
@@ -408,8 +456,60 @@ End Class
 
 '---------------------------------------------------------------------------------------
 
+Public Class VFilter
+  Inherits VObject
+  Implements IFilterableVectorObject
+  Public img As Image
+  Public source As String
+  Public myMatrix As ScreenGrab6.CSharpFilters.ConvMatrix
+  Protected Overrides Sub DrawObjectInternal(ByVal g As System.Drawing.Graphics)
+    g.DrawImage(img, bounds)
+
+    ' DrawBorder(g)
+    'DrawSelection(g)
+  End Sub
+
+  Protected Overrides Sub OnBoundsChanged()
+    MyBase.OnBoundsChanged()
+    If myMatrix IsNot Nothing Then ApplyMatrix(myMatrix)
+  End Sub
+
+  Public Sub ApplyMatrix(ByVal m As ScreenGrab6.CSharpFilters.ConvMatrix) Implements IFilterableVectorObject.ApplyMatrix
+    img = Parent.GetPartialImage(bounds.Left, bounds.Top, bounds.Right, bounds.Bottom, Me)
+    ScreenGrab6.CSharpFilters.BitmapFilter.Conv3x3(img, m)
+    myMatrix = m
+  End Sub
+
+  Overrides Function ToHtml() As String
+    Dim base64 = Helper.ImageToBase64(Me.img)
+    Return MyBase.ToHtml & _
+           "<img id=""" + name + """ alt=""Screenshot"" style=""position: absolute; " & GetHtmlRotation() & _
+           "z-index: " & Me.ZIndex & "; margin-left: " & Me.bounds.X & "px; margin-top: " & Me.bounds.Y & "px; height: " & Me.bounds.Height & "px; width: " & Me.bounds.Width & "px; """ & _
+           vbNewLine & "src=""" & base64 & """ />"
+  End Function
+
+  Public Overrides Sub Deserialize(ByVal Data() As String)
+    Dim rOffset As Integer
+    MyBase.Deserialize(Data, rOffset)
+    ReDim Preserve Data(rOffset + 1)
+    source = Data(rOffset + 0)
+  End Sub
+
+  Public Overrides Function Serialize() As String()
+    Dim data() = MyBase.Serialize()
+    ReDim Preserve data(CommonDataOffset + 1)
+    data(CommonDataOffset + 0) = source
+    Return data
+  End Function
+
+End Class
+
+'---------------------------------------------------------------------------------------
+
 Public Class VTextbox
   Inherits VObject
+  Implements ICustomResizableObject
+
   Private p_text As String
   Private fnt As Font
   Private brsh As SolidBrush = New SolidBrush(Color.Black)
@@ -511,6 +611,36 @@ Public Class VTextbox
     Return data
   End Function
 
+#Region "ICustomResizableObject"
+  Public Overrides ReadOnly Property ResizerCount() As Integer
+    Get
+      Return 6 '4 directions + rotation + fontSize
+    End Get
+  End Property
+
+  Public Property CustomResizableProperty1() As Integer Implements ICustomResizableObject.CustomResizableProperty1
+    Get
+      Return fnt.SizeInPoints * 10
+    End Get
+    Set(ByVal value As Integer)
+      fnt = New Font(fnt.FontFamily, Math.Max(4, value / 10), fnt.Style, GraphicsUnit.Point)
+    End Set
+  End Property
+
+  Public Property CustomResizableProperty2() As Integer Implements ICustomResizableObject.CustomResizableProperty2
+    Get
+    End Get
+    Set(ByVal value As Integer)
+    End Set
+  End Property
+
+  Public Overrides Sub DrawSelection(ByVal g As System.Drawing.Graphics)
+    MyBase.DrawSelection(g)
+    If isSelected Then
+      g.DrawImage(My.Resources.fontsize_leftright, m_resizeBounds(5))
+    End If
+  End Sub
+#End Region
 
 End Class
 
@@ -746,6 +876,12 @@ Public Class VLine
     If endDock = DockStyle.None And m_resizeBounds(3).Contains(pnt) Then Return 3 + 1
     Return VResizeDirection.None
   End Function
+
+
+  Public Overridable Function HitTestRect(ByVal rct As Rectangle, ByVal intersect As Boolean) As Boolean
+    Return If(intersect, rct.Contains(bounds.Left, bounds.Top) Or rct.Contains(bounds.Right, bounds.Bottom), rct.Contains(bounds))
+  End Function
+
 
   Public Overrides Sub Deserialize(ByVal Data() As String)
     Dim rOffset As Integer
@@ -1158,3 +1294,58 @@ Public Class VUMLClass
 
 
 End Class
+Public Class VGroup
+  Inherits VObject
+
+  Public boundary As String
+  Public subObjects As New List(Of VObject)
+
+  Public Sub New()
+    boundary = "GROUP-BOUNDARY:" & Hex(Now.Ticks)
+  End Sub
+
+  Protected Overrides Sub DrawObjectInternal(ByVal g As System.Drawing.Graphics)
+    For i = 0 To subObjects.Count - 1
+      subObjects(i).DrawObject(g)
+    Next
+  End Sub
+
+
+  Public Overrides Sub Deserialize(ByVal Data() As String)
+    Dim rOffset As Integer
+    MyBase.Deserialize(Data, rOffset)
+    ReDim Preserve Data(rOffset + 1)
+    Me.boundary = Data(rOffset + 0)
+  End Sub
+
+  Public Overrides Function Serialize() As String()
+    Dim data() = MyBase.Serialize()
+    ReDim Preserve data(CommonDataOffset + 1)
+    data(CommonDataOffset + 0) = boundary
+    Return data
+  End Function
+
+  Public Overrides Function ToHtml() As String
+    Dim subObjectsHtml(subObjects.Count - 1) As String
+    For i = 0 To subObjects.Count - 1
+      subObjectsHtml(i) = subObjects(i).ToHtml
+    Next
+    Return "<!-- " & Join(Me.Serialize(), "##") & "## -->" & _
+        "<section id=""" & name & """ style=""position: absolute; " & GetHtmlBorder() & GetHtmlRotation() & "  " & _
+        "z-index: " & Me.ZIndex & "; margin-left: " & Me.bounds.X & "px; margin-top: " & Me.bounds.Y & "px; height: " & Me.bounds.Height & "px; width: " & Me.bounds.Width & "px; " & _
+        """>" & vbNewLine & _
+        Join(subObjectsHtml, vbNewLine & "<!--" & boundary & "-->" & vbNewLine) & _
+        vbNewLine & "</section>"
+  End Function
+
+  Public Sub ParseHtmlContent(ByVal str As String)
+    Dim subObjectsHtml() As String = Split(str, vbNewLine & "<!--" & boundary & "-->" & vbNewLine)
+    For i = 0 To subObjectsHtml.Length - 1
+      Dim newObject As VObject = VObject.FromHtml(subObjectsHtml(i), Me.Parent)
+      newObject.Parent = Me.Parent : newObject.Group = Me
+      subObjects.Add(newObject)
+    Next
+  End Sub
+
+End Class
+

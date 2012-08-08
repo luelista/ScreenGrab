@@ -29,8 +29,10 @@ Partial Class frm_mdiViewer2
     Me.Label2 = New System.Windows.Forms.Label
     Me.Label1 = New System.Windows.Forms.Label
     Me.Panel1 = New System.Windows.Forms.Panel
-    Me.cmbElementNames = New System.Windows.Forms.ComboBox
-    Me.TextBox1 = New System.Windows.Forms.TextBox
+    Me.ProgressBar1 = New System.Windows.Forms.ProgressBar
+    Me.btnSave = New System.Windows.Forms.Button
+    Me.lblFilename = New System.Windows.Forms.Label
+    Me.txtElementName = New System.Windows.Forms.TextBox
     Me.btnFileMenu = New System.Windows.Forms.Button
     Me.Label9 = New System.Windows.Forms.Label
     Me.CheckBox1 = New System.Windows.Forms.CheckBox
@@ -75,7 +77,35 @@ Partial Class frm_mdiViewer2
     Me.ZusatzfensterAnzeigenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
     Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator
     Me.SchliessenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.vcc = New ScreenGrab6.Vector.VCanvasControl
+    Me.pnlSideElements = New System.Windows.Forms.Panel
+    Me.lstElementNames = New System.Windows.Forms.ListBox
+    Me.pnlLeft = New System.Windows.Forms.Panel
+    Me.llSidebar4 = New System.Windows.Forms.LinkLabel
+    Me.llSidebar3 = New System.Windows.Forms.LinkLabel
+    Me.llSidebar2 = New System.Windows.Forms.LinkLabel
+    Me.llSidebar1 = New System.Windows.Forms.LinkLabel
+    Me.lblToggleLeftPanel = New System.Windows.Forms.Label
+    Me.pnlSideDropme = New System.Windows.Forms.Panel
+    Me.pnlDropMeSave = New System.Windows.Forms.Panel
+    Me.PictureBox1 = New System.Windows.Forms.PictureBox
+    Me.Label4 = New System.Windows.Forms.Label
+    Me.btnDropMeSave = New System.Windows.Forms.Button
+    Me.txtDropMeSave = New System.Windows.Forms.TextBox
+    Me.ListView1 = New System.Windows.Forms.ListView
+    Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+    Me.cmbDropmeClipboard = New System.Windows.Forms.ComboBox
+    Me.pnlSideLocFiles = New System.Windows.Forms.Panel
+    Me.btnNav04 = New System.Windows.Forms.Button
+    Me.pbPreview = New System.Windows.Forms.PictureBox
+    Me.FolderBrowser1 = New DirectoryBrowser.FolderBrowser
+    Me.btnNav03 = New System.Windows.Forms.Button
+    Me.btnNav01 = New System.Windows.Forms.Button
+    Me.btnNav02 = New System.Windows.Forms.Button
+    Me.lblCurPath = New System.Windows.Forms.Label
+    Me.ListBox1 = New System.Windows.Forms.ListBox
+    Me.lstTrace = New System.Windows.Forms.ListBox
+    Me.TabControl1 = New MdiTabControl.TabControl
+    Me.TextBox1 = New System.Windows.Forms.TextBox
     CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.Panel1.SuspendLayout()
     Me.Panel3.SuspendLayout()
@@ -89,10 +119,18 @@ Partial Class frm_mdiViewer2
     CType(Me.nudLineWidth, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpText.SuspendLayout()
     Me.cmsFileMenu.SuspendLayout()
+    Me.pnlSideElements.SuspendLayout()
+    Me.pnlLeft.SuspendLayout()
+    Me.pnlSideDropme.SuspendLayout()
+    Me.pnlDropMeSave.SuspendLayout()
+    CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.pnlSideLocFiles.SuspendLayout()
+    CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
     'PictureBox2
     '
+    Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
     Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
     Me.PictureBox2.Location = New System.Drawing.Point(3, 0)
     Me.PictureBox2.Name = "PictureBox2"
@@ -104,41 +142,46 @@ Partial Class frm_mdiViewer2
     'Label3
     '
     Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.Label3.BackColor = System.Drawing.Color.Transparent
     Me.Label3.Font = New System.Drawing.Font("Webdings", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-    Me.Label3.Location = New System.Drawing.Point(779, 5)
+    Me.Label3.Location = New System.Drawing.Point(832, 5)
     Me.Label3.Name = "Label3"
-    Me.Label3.Size = New System.Drawing.Size(20, 20)
+    Me.Label3.Size = New System.Drawing.Size(19, 20)
     Me.Label3.TabIndex = 2
     Me.Label3.Text = "0"
-    Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'Label2
     '
     Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.Label2.BackColor = System.Drawing.Color.Transparent
     Me.Label2.Font = New System.Drawing.Font("Webdings", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-    Me.Label2.Location = New System.Drawing.Point(799, 5)
+    Me.Label2.Location = New System.Drawing.Point(852, 5)
     Me.Label2.Name = "Label2"
-    Me.Label2.Size = New System.Drawing.Size(20, 20)
+    Me.Label2.Size = New System.Drawing.Size(19, 20)
     Me.Label2.TabIndex = 1
     Me.Label2.Text = "1"
-    Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'Label1
     '
     Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.Label1.BackColor = System.Drawing.Color.Transparent
     Me.Label1.Font = New System.Drawing.Font("Webdings", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-    Me.Label1.Location = New System.Drawing.Point(819, 5)
+    Me.Label1.Location = New System.Drawing.Point(872, 5)
     Me.Label1.Name = "Label1"
-    Me.Label1.Size = New System.Drawing.Size(20, 20)
+    Me.Label1.Size = New System.Drawing.Size(19, 20)
     Me.Label1.TabIndex = 0
     Me.Label1.Text = "r"
-    Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     '
     'Panel1
     '
-    Me.Panel1.BackColor = System.Drawing.SystemColors.ActiveCaption
-    Me.Panel1.Controls.Add(Me.cmbElementNames)
-    Me.Panel1.Controls.Add(Me.TextBox1)
+    Me.Panel1.BackColor = System.Drawing.Color.DarkOliveGreen
+    Me.Panel1.Controls.Add(Me.ProgressBar1)
+    Me.Panel1.Controls.Add(Me.btnSave)
+    Me.Panel1.Controls.Add(Me.lblFilename)
+    Me.Panel1.Controls.Add(Me.txtElementName)
     Me.Panel1.Controls.Add(Me.btnFileMenu)
     Me.Panel1.Controls.Add(Me.PictureBox2)
     Me.Panel1.Controls.Add(Me.Label2)
@@ -147,26 +190,49 @@ Partial Class frm_mdiViewer2
     Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
     Me.Panel1.Location = New System.Drawing.Point(0, 0)
     Me.Panel1.Name = "Panel1"
-    Me.Panel1.Size = New System.Drawing.Size(844, 30)
+    Me.Panel1.Size = New System.Drawing.Size(897, 30)
     Me.Panel1.TabIndex = 7
     '
-    'cmbElementNames
+    'ProgressBar1
     '
-    Me.cmbElementNames.FormattingEnabled = True
-    Me.cmbElementNames.Location = New System.Drawing.Point(152, 6)
-    Me.cmbElementNames.Name = "cmbElementNames"
-    Me.cmbElementNames.Size = New System.Drawing.Size(212, 21)
-    Me.cmbElementNames.TabIndex = 7
-    '
-    'TextBox1
-    '
-    Me.TextBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+    Me.ProgressBar1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                 Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.TextBox1.Location = New System.Drawing.Point(370, 5)
-    Me.TextBox1.Name = "TextBox1"
-    Me.TextBox1.ReadOnly = True
-    Me.TextBox1.Size = New System.Drawing.Size(386, 20)
-    Me.TextBox1.TabIndex = 6
+    Me.ProgressBar1.Location = New System.Drawing.Point(576, 3)
+    Me.ProgressBar1.Name = "ProgressBar1"
+    Me.ProgressBar1.Size = New System.Drawing.Size(250, 23)
+    Me.ProgressBar1.TabIndex = 11
+    Me.ProgressBar1.Visible = False
+    '
+    'btnSave
+    '
+    Me.btnSave.Enabled = False
+    Me.btnSave.Font = New System.Drawing.Font("Wingdings", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
+    Me.btnSave.Location = New System.Drawing.Point(144, 4)
+    Me.btnSave.Name = "btnSave"
+    Me.btnSave.Size = New System.Drawing.Size(29, 23)
+    Me.btnSave.TabIndex = 10
+    Me.btnSave.Text = "<"
+    Me.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter
+    Me.btnSave.UseVisualStyleBackColor = True
+    '
+    'lblFilename
+    '
+    Me.lblFilename.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.lblFilename.BackColor = System.Drawing.Color.Transparent
+    Me.lblFilename.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.lblFilename.Location = New System.Drawing.Point(373, 10)
+    Me.lblFilename.Name = "lblFilename"
+    Me.lblFilename.Size = New System.Drawing.Size(453, 23)
+    Me.lblFilename.TabIndex = 8
+    Me.lblFilename.Text = "Collage-Modus"
+    '
+    'txtElementName
+    '
+    Me.txtElementName.Location = New System.Drawing.Point(178, 5)
+    Me.txtElementName.Name = "txtElementName"
+    Me.txtElementName.Size = New System.Drawing.Size(189, 20)
+    Me.txtElementName.TabIndex = 7
     '
     'btnFileMenu
     '
@@ -179,21 +245,21 @@ Partial Class frm_mdiViewer2
     '
     'Label9
     '
-    Me.Label9.AutoSize = True
-    Me.Label9.Location = New System.Drawing.Point(0, 3)
+    Me.Label9.Location = New System.Drawing.Point(7, 1)
     Me.Label9.Name = "Label9"
-    Me.Label9.Size = New System.Drawing.Size(34, 13)
+    Me.Label9.Size = New System.Drawing.Size(52, 16)
     Me.Label9.TabIndex = 6
     Me.Label9.Text = "Dirty?"
+    Me.Label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
     '
     'CheckBox1
     '
     Me.CheckBox1.AutoSize = True
-    Me.CheckBox1.Location = New System.Drawing.Point(3, 593)
+    Me.CheckBox1.Location = New System.Drawing.Point(5, 556)
     Me.CheckBox1.Name = "CheckBox1"
-    Me.CheckBox1.Size = New System.Drawing.Size(75, 17)
+    Me.CheckBox1.Size = New System.Drawing.Size(53, 30)
     Me.CheckBox1.TabIndex = 15
-    Me.CheckBox1.Text = "Multitouch"
+    Me.CheckBox1.Text = "Multi" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "touch"
     Me.CheckBox1.UseVisualStyleBackColor = True
     Me.CheckBox1.Visible = False
     '
@@ -212,9 +278,9 @@ Partial Class frm_mdiViewer2
     Me.Panel3.Controls.Add(Me.GroupBox1)
     Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
     Me.Panel3.ForeColor = System.Drawing.Color.WhiteSmoke
-    Me.Panel3.Location = New System.Drawing.Point(774, 30)
+    Me.Panel3.Location = New System.Drawing.Point(833, 30)
     Me.Panel3.Name = "Panel3"
-    Me.Panel3.Size = New System.Drawing.Size(70, 622)
+    Me.Panel3.Size = New System.Drawing.Size(64, 603)
     Me.Panel3.TabIndex = 10
     '
     'grpArrow
@@ -222,7 +288,7 @@ Partial Class frm_mdiViewer2
     Me.grpArrow.BackColor = System.Drawing.Color.Transparent
     Me.grpArrow.Controls.Add(Me.nudArrowLength)
     Me.grpArrow.Controls.Add(Me.Label11)
-    Me.grpArrow.Location = New System.Drawing.Point(3, 494)
+    Me.grpArrow.Location = New System.Drawing.Point(2, 468)
     Me.grpArrow.Name = "grpArrow"
     Me.grpArrow.Size = New System.Drawing.Size(63, 82)
     Me.grpArrow.TabIndex = 6
@@ -260,7 +326,7 @@ Partial Class frm_mdiViewer2
     Me.pnlToolbox.Controls.Add(Me.btn_tb_4)
     Me.pnlToolbox.Controls.Add(Me.btn_tb_2)
     Me.pnlToolbox.Controls.Add(Me.btn_tb_1)
-    Me.pnlToolbox.Location = New System.Drawing.Point(3, 17)
+    Me.pnlToolbox.Location = New System.Drawing.Point(2, 17)
     Me.pnlToolbox.Name = "pnlToolbox"
     Me.pnlToolbox.Size = New System.Drawing.Size(64, 140)
     Me.pnlToolbox.TabIndex = 0
@@ -310,7 +376,6 @@ Partial Class frm_mdiViewer2
     '
     'btn_tb_6
     '
-    Me.btn_tb_6.Enabled = False
     Me.btn_tb_6.Image = CType(resources.GetObject("btn_tb_6.Image"), System.Drawing.Image)
     Me.btn_tb_6.Location = New System.Drawing.Point(31, 57)
     Me.btn_tb_6.Name = "btn_tb_6"
@@ -378,7 +443,7 @@ Partial Class frm_mdiViewer2
     'pbDefaultFg
     '
     Me.pbDefaultFg.BackColor = System.Drawing.Color.Transparent
-    Me.pbDefaultFg.Location = New System.Drawing.Point(8, 164)
+    Me.pbDefaultFg.Location = New System.Drawing.Point(7, 164)
     Me.pbDefaultFg.Name = "pbDefaultFg"
     Me.pbDefaultFg.Size = New System.Drawing.Size(34, 31)
     Me.pbDefaultFg.TabIndex = 4
@@ -387,7 +452,7 @@ Partial Class frm_mdiViewer2
     'pbColorPalette
     '
     Me.pbColorPalette.BackColor = System.Drawing.Color.Transparent
-    Me.pbColorPalette.Location = New System.Drawing.Point(8, 218)
+    Me.pbColorPalette.Location = New System.Drawing.Point(7, 218)
     Me.pbColorPalette.Name = "pbColorPalette"
     Me.pbColorPalette.Size = New System.Drawing.Size(52, 140)
     Me.pbColorPalette.TabIndex = 1
@@ -396,7 +461,7 @@ Partial Class frm_mdiViewer2
     'pbDefaultBg
     '
     Me.pbDefaultBg.BackColor = System.Drawing.Color.Transparent
-    Me.pbDefaultBg.Location = New System.Drawing.Point(26, 177)
+    Me.pbDefaultBg.Location = New System.Drawing.Point(25, 177)
     Me.pbDefaultBg.Name = "pbDefaultBg"
     Me.pbDefaultBg.Size = New System.Drawing.Size(34, 31)
     Me.pbDefaultBg.TabIndex = 5
@@ -409,9 +474,9 @@ Partial Class frm_mdiViewer2
     Me.grpLine.Controls.Add(Me.Label6)
     Me.grpLine.Controls.Add(Me.nudLineWidth)
     Me.grpLine.Controls.Add(Me.Label5)
-    Me.grpLine.Location = New System.Drawing.Point(3, 388)
+    Me.grpLine.Location = New System.Drawing.Point(2, 364)
     Me.grpLine.Name = "grpLine"
-    Me.grpLine.Size = New System.Drawing.Size(63, 138)
+    Me.grpLine.Size = New System.Drawing.Size(63, 105)
     Me.grpLine.TabIndex = 3
     Me.grpLine.TabStop = False
     Me.grpLine.Text = "Linie"
@@ -460,7 +525,7 @@ Partial Class frm_mdiViewer2
     Me.grpText.Controls.Add(Me.Label8)
     Me.grpText.Controls.Add(Me.Label7)
     Me.grpText.Controls.Add(Me.txtTextDefault)
-    Me.grpText.Location = New System.Drawing.Point(3, 388)
+    Me.grpText.Location = New System.Drawing.Point(2, 362)
     Me.grpText.Name = "grpText"
     Me.grpText.Size = New System.Drawing.Size(63, 138)
     Me.grpText.TabIndex = 6
@@ -507,7 +572,7 @@ Partial Class frm_mdiViewer2
     'GroupBox1
     '
     Me.GroupBox1.BackColor = System.Drawing.Color.Transparent
-    Me.GroupBox1.Location = New System.Drawing.Point(3, 388)
+    Me.GroupBox1.Location = New System.Drawing.Point(2, 362)
     Me.GroupBox1.Name = "GroupBox1"
     Me.GroupBox1.Size = New System.Drawing.Size(63, 138)
     Me.GroupBox1.TabIndex = 16
@@ -590,14 +655,326 @@ Partial Class frm_mdiViewer2
     Me.SchliessenToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
     Me.SchliessenToolStripMenuItem.Text = "Schließen"
     '
-    'vcc
+    'pnlSideElements
     '
-    Me.vcc.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.vcc.Location = New System.Drawing.Point(0, 30)
-    Me.vcc.multitouch = Nothing
-    Me.vcc.Name = "vcc"
-    Me.vcc.Size = New System.Drawing.Size(774, 622)
-    Me.vcc.TabIndex = 11
+    Me.pnlSideElements.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.pnlSideElements.BackColor = System.Drawing.Color.Crimson
+    Me.pnlSideElements.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+    Me.pnlSideElements.Controls.Add(Me.lstElementNames)
+    Me.pnlSideElements.Location = New System.Drawing.Point(6, 24)
+    Me.pnlSideElements.Name = "pnlSideElements"
+    Me.pnlSideElements.Size = New System.Drawing.Size(224, 579)
+    Me.pnlSideElements.TabIndex = 12
+    '
+    'lstElementNames
+    '
+    Me.lstElementNames.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.lstElementNames.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed
+    Me.lstElementNames.FormattingEnabled = True
+    Me.lstElementNames.IntegralHeight = False
+    Me.lstElementNames.ItemHeight = 50
+    Me.lstElementNames.Location = New System.Drawing.Point(3, 6)
+    Me.lstElementNames.Name = "lstElementNames"
+    Me.lstElementNames.Size = New System.Drawing.Size(217, 561)
+    Me.lstElementNames.TabIndex = 1
+    '
+    'pnlLeft
+    '
+    Me.pnlLeft.BackColor = System.Drawing.Color.DimGray
+    Me.pnlLeft.Controls.Add(Me.llSidebar4)
+    Me.pnlLeft.Controls.Add(Me.llSidebar3)
+    Me.pnlLeft.Controls.Add(Me.llSidebar2)
+    Me.pnlLeft.Controls.Add(Me.llSidebar1)
+    Me.pnlLeft.Controls.Add(Me.lblToggleLeftPanel)
+    Me.pnlLeft.Controls.Add(Me.lstTrace)
+    Me.pnlLeft.Controls.Add(Me.pnlSideElements)
+    Me.pnlLeft.Controls.Add(Me.pnlSideDropme)
+    Me.pnlLeft.Controls.Add(Me.pnlSideLocFiles)
+    Me.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left
+    Me.pnlLeft.Location = New System.Drawing.Point(0, 30)
+    Me.pnlLeft.Name = "pnlLeft"
+    Me.pnlLeft.Size = New System.Drawing.Size(232, 603)
+    Me.pnlLeft.TabIndex = 13
+    '
+    'llSidebar4
+    '
+    Me.llSidebar4.AutoSize = True
+    Me.llSidebar4.BackColor = System.Drawing.Color.DarkGray
+    Me.llSidebar4.Location = New System.Drawing.Point(130, 1)
+    Me.llSidebar4.Name = "llSidebar4"
+    Me.llSidebar4.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+    Me.llSidebar4.Size = New System.Drawing.Size(51, 23)
+    Me.llSidebar4.TabIndex = 15
+    Me.llSidebar4.TabStop = True
+    Me.llSidebar4.Text = "Elemente"
+    '
+    'llSidebar3
+    '
+    Me.llSidebar3.AutoSize = True
+    Me.llSidebar3.BackColor = System.Drawing.Color.DarkGray
+    Me.llSidebar3.Location = New System.Drawing.Point(183, 1)
+    Me.llSidebar3.Name = "llSidebar3"
+    Me.llSidebar3.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+    Me.llSidebar3.Size = New System.Drawing.Size(35, 23)
+    Me.llSidebar3.TabIndex = 14
+    Me.llSidebar3.TabStop = True
+    Me.llSidebar3.Text = "Trace"
+    '
+    'llSidebar2
+    '
+    Me.llSidebar2.AutoSize = True
+    Me.llSidebar2.BackColor = System.Drawing.Color.DarkGray
+    Me.llSidebar2.Location = New System.Drawing.Point(83, 1)
+    Me.llSidebar2.Name = "llSidebar2"
+    Me.llSidebar2.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+    Me.llSidebar2.Size = New System.Drawing.Size(45, 23)
+    Me.llSidebar2.TabIndex = 13
+    Me.llSidebar2.TabStop = True
+    Me.llSidebar2.Text = "DropMe"
+    '
+    'llSidebar1
+    '
+    Me.llSidebar1.AutoSize = True
+    Me.llSidebar1.BackColor = System.Drawing.Color.Gainsboro
+    Me.llSidebar1.Location = New System.Drawing.Point(6, 1)
+    Me.llSidebar1.Name = "llSidebar1"
+    Me.llSidebar1.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+    Me.llSidebar1.Size = New System.Drawing.Size(74, 23)
+    Me.llSidebar1.TabIndex = 12
+    Me.llSidebar1.TabStop = True
+    Me.llSidebar1.Text = "Lokale Ordner"
+    '
+    'lblToggleLeftPanel
+    '
+    Me.lblToggleLeftPanel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.lblToggleLeftPanel.BackColor = System.Drawing.Color.OliveDrab
+    Me.lblToggleLeftPanel.Location = New System.Drawing.Point(0, 0)
+    Me.lblToggleLeftPanel.Name = "lblToggleLeftPanel"
+    Me.lblToggleLeftPanel.Size = New System.Drawing.Size(6, 603)
+    Me.lblToggleLeftPanel.TabIndex = 0
+    '
+    'pnlSideDropme
+    '
+    Me.pnlSideDropme.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.pnlSideDropme.BackColor = System.Drawing.Color.Silver
+    Me.pnlSideDropme.BackgroundImage = CType(resources.GetObject("pnlSideDropme.BackgroundImage"), System.Drawing.Image)
+    Me.pnlSideDropme.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+    Me.pnlSideDropme.Controls.Add(Me.pnlDropMeSave)
+    Me.pnlSideDropme.Controls.Add(Me.ListView1)
+    Me.pnlSideDropme.Controls.Add(Me.cmbDropmeClipboard)
+    Me.pnlSideDropme.Location = New System.Drawing.Point(6, 25)
+    Me.pnlSideDropme.Name = "pnlSideDropme"
+    Me.pnlSideDropme.Size = New System.Drawing.Size(224, 577)
+    Me.pnlSideDropme.TabIndex = 10
+    '
+    'pnlDropMeSave
+    '
+    Me.pnlDropMeSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.pnlDropMeSave.Controls.Add(Me.PictureBox1)
+    Me.pnlDropMeSave.Controls.Add(Me.Label4)
+    Me.pnlDropMeSave.Controls.Add(Me.btnDropMeSave)
+    Me.pnlDropMeSave.Controls.Add(Me.txtDropMeSave)
+    Me.pnlDropMeSave.Location = New System.Drawing.Point(2, 526)
+    Me.pnlDropMeSave.Name = "pnlDropMeSave"
+    Me.pnlDropMeSave.Size = New System.Drawing.Size(217, 50)
+    Me.pnlDropMeSave.TabIndex = 6
+    '
+    'PictureBox1
+    '
+    Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
+    Me.PictureBox1.Location = New System.Drawing.Point(4, 12)
+    Me.PictureBox1.Name = "PictureBox1"
+    Me.PictureBox1.Size = New System.Drawing.Size(32, 32)
+    Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
+    Me.PictureBox1.TabIndex = 5
+    Me.PictureBox1.TabStop = False
+    '
+    'Label4
+    '
+    Me.Label4.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.Label4.AutoSize = True
+    Me.Label4.Location = New System.Drawing.Point(186, 28)
+    Me.Label4.Name = "Label4"
+    Me.Label4.Size = New System.Drawing.Size(29, 13)
+    Me.Label4.TabIndex = 4
+    Me.Label4.Text = ".html"
+    '
+    'btnDropMeSave
+    '
+    Me.btnDropMeSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.btnDropMeSave.Location = New System.Drawing.Point(42, 2)
+    Me.btnDropMeSave.Name = "btnDropMeSave"
+    Me.btnDropMeSave.Size = New System.Drawing.Size(130, 21)
+    Me.btnDropMeSave.TabIndex = 3
+    Me.btnDropMeSave.Text = "Datei speichern unter:"
+    Me.btnDropMeSave.UseVisualStyleBackColor = True
+    '
+    'txtDropMeSave
+    '
+    Me.txtDropMeSave.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.txtDropMeSave.Location = New System.Drawing.Point(42, 24)
+    Me.txtDropMeSave.Name = "txtDropMeSave"
+    Me.txtDropMeSave.Size = New System.Drawing.Size(143, 20)
+    Me.txtDropMeSave.TabIndex = 2
+    '
+    'ListView1
+    '
+    Me.ListView1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.ListView1.LargeImageList = Me.ImageList1
+    Me.ListView1.Location = New System.Drawing.Point(1, 54)
+    Me.ListView1.Name = "ListView1"
+    Me.ListView1.Size = New System.Drawing.Size(219, 471)
+    Me.ListView1.TabIndex = 1
+    Me.ListView1.UseCompatibleStateImageBehavior = False
+    '
+    'ImageList1
+    '
+    Me.ImageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit
+    Me.ImageList1.ImageSize = New System.Drawing.Size(150, 150)
+    Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+    '
+    'cmbDropmeClipboard
+    '
+    Me.cmbDropmeClipboard.FormattingEnabled = True
+    Me.cmbDropmeClipboard.Location = New System.Drawing.Point(2, 27)
+    Me.cmbDropmeClipboard.Name = "cmbDropmeClipboard"
+    Me.cmbDropmeClipboard.Size = New System.Drawing.Size(218, 21)
+    Me.cmbDropmeClipboard.TabIndex = 0
+    '
+    'pnlSideLocFiles
+    '
+    Me.pnlSideLocFiles.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left) _
+                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.pnlSideLocFiles.BackColor = System.Drawing.Color.Gainsboro
+    Me.pnlSideLocFiles.Controls.Add(Me.btnNav04)
+    Me.pnlSideLocFiles.Controls.Add(Me.pbPreview)
+    Me.pnlSideLocFiles.Controls.Add(Me.FolderBrowser1)
+    Me.pnlSideLocFiles.Controls.Add(Me.btnNav03)
+    Me.pnlSideLocFiles.Controls.Add(Me.btnNav01)
+    Me.pnlSideLocFiles.Controls.Add(Me.btnNav02)
+    Me.pnlSideLocFiles.Controls.Add(Me.lblCurPath)
+    Me.pnlSideLocFiles.Controls.Add(Me.ListBox1)
+    Me.pnlSideLocFiles.Location = New System.Drawing.Point(7, 25)
+    Me.pnlSideLocFiles.Name = "pnlSideLocFiles"
+    Me.pnlSideLocFiles.Size = New System.Drawing.Size(224, 578)
+    Me.pnlSideLocFiles.TabIndex = 11
+    '
+    'btnNav04
+    '
+    Me.btnNav04.Location = New System.Drawing.Point(159, 4)
+    Me.btnNav04.Name = "btnNav04"
+    Me.btnNav04.Size = New System.Drawing.Size(54, 21)
+    Me.btnNav04.TabIndex = 9
+    Me.btnNav04.UseVisualStyleBackColor = True
+    '
+    'pbPreview
+    '
+    Me.pbPreview.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.pbPreview.Location = New System.Drawing.Point(0, 478)
+    Me.pbPreview.Name = "pbPreview"
+    Me.pbPreview.Size = New System.Drawing.Size(225, 99)
+    Me.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+    Me.pbPreview.TabIndex = 8
+    Me.pbPreview.TabStop = False
+    '
+    'FolderBrowser1
+    '
+    Me.FolderBrowser1.Location = New System.Drawing.Point(0, 50)
+    Me.FolderBrowser1.Name = "FolderBrowser1"
+    Me.FolderBrowser1.SelectedNode = Nothing
+    Me.FolderBrowser1.Size = New System.Drawing.Size(220, 194)
+    Me.FolderBrowser1.TabIndex = 7
+    '
+    'btnNav03
+    '
+    Me.btnNav03.Location = New System.Drawing.Point(106, 4)
+    Me.btnNav03.Name = "btnNav03"
+    Me.btnNav03.Size = New System.Drawing.Size(54, 21)
+    Me.btnNav03.TabIndex = 6
+    Me.btnNav03.UseVisualStyleBackColor = True
+    '
+    'btnNav01
+    '
+    Me.btnNav01.Location = New System.Drawing.Point(0, 4)
+    Me.btnNav01.Name = "btnNav01"
+    Me.btnNav01.Size = New System.Drawing.Size(54, 21)
+    Me.btnNav01.TabIndex = 4
+    Me.btnNav01.UseVisualStyleBackColor = True
+    '
+    'btnNav02
+    '
+    Me.btnNav02.Location = New System.Drawing.Point(53, 4)
+    Me.btnNav02.Name = "btnNav02"
+    Me.btnNav02.Size = New System.Drawing.Size(54, 21)
+    Me.btnNav02.TabIndex = 5
+    Me.btnNav02.UseVisualStyleBackColor = True
+    '
+    'lblCurPath
+    '
+    Me.lblCurPath.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.lblCurPath.Location = New System.Drawing.Point(0, 25)
+    Me.lblCurPath.Name = "lblCurPath"
+    Me.lblCurPath.Size = New System.Drawing.Size(220, 24)
+    Me.lblCurPath.TabIndex = 3
+    Me.lblCurPath.Text = "C:\"
+    '
+    'ListBox1
+    '
+    Me.ListBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.ListBox1.FormattingEnabled = True
+    Me.ListBox1.IntegralHeight = False
+    Me.ListBox1.Location = New System.Drawing.Point(0, 247)
+    Me.ListBox1.Name = "ListBox1"
+    Me.ListBox1.Size = New System.Drawing.Size(220, 230)
+    Me.ListBox1.TabIndex = 2
+    '
+    'lstTrace
+    '
+    Me.lstTrace.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.lstTrace.FormattingEnabled = True
+    Me.lstTrace.IntegralHeight = False
+    Me.lstTrace.Location = New System.Drawing.Point(7, 25)
+    Me.lstTrace.Name = "lstTrace"
+    Me.lstTrace.Size = New System.Drawing.Size(224, 577)
+    Me.lstTrace.TabIndex = 9
+    '
+    'TabControl1
+    '
+    Me.TabControl1.Alignment = MdiTabControl.TabControl.TabAlignment.Top
+    Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.TabControl1.Location = New System.Drawing.Point(232, 30)
+    Me.TabControl1.MenuRenderer = Nothing
+    Me.TabControl1.Name = "TabControl1"
+    Me.TabControl1.Size = New System.Drawing.Size(601, 603)
+    Me.TabControl1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None
+    Me.TabControl1.TabBorderEnhanced = True
+    Me.TabControl1.TabBorderEnhanceWeight = MdiTabControl.TabControl.Weight.Soft
+    Me.TabControl1.TabCloseButtonImage = Global.ScreenGrab6.My.Resources.Resources.Close
+    Me.TabControl1.TabCloseButtonImageDisabled = Global.ScreenGrab6.My.Resources.Resources.CloseDisabled
+    Me.TabControl1.TabCloseButtonImageHot = Global.ScreenGrab6.My.Resources.Resources.CloseHot
+    Me.TabControl1.TabCloseButtonSize = New System.Drawing.Size(14, 14)
+    Me.TabControl1.TabIndex = 15
+    Me.TabControl1.TabsDirection = MdiTabControl.TabControl.FlowDirection.LeftToRight
+    '
+    'TextBox1
+    '
+    Me.TextBox1.Font = New System.Drawing.Font("Courier New", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.TextBox1.Location = New System.Drawing.Point(233, 0)
+    Me.TextBox1.Multiline = True
+    Me.TextBox1.Name = "TextBox1"
+    Me.TextBox1.Size = New System.Drawing.Size(600, 10)
+    Me.TextBox1.TabIndex = 16
+    Me.TextBox1.Visible = False
     '
     'frm_mdiViewer2
     '
@@ -605,9 +982,11 @@ Partial Class frm_mdiViewer2
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.BackColor = System.Drawing.Color.White
-    Me.ClientSize = New System.Drawing.Size(844, 652)
-    Me.Controls.Add(Me.vcc)
+    Me.ClientSize = New System.Drawing.Size(897, 633)
+    Me.Controls.Add(Me.TextBox1)
+    Me.Controls.Add(Me.TabControl1)
     Me.Controls.Add(Me.Panel3)
+    Me.Controls.Add(Me.pnlLeft)
     Me.Controls.Add(Me.Panel1)
     Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
     Me.KeyPreview = True
@@ -631,7 +1010,17 @@ Partial Class frm_mdiViewer2
     Me.grpText.ResumeLayout(False)
     Me.grpText.PerformLayout()
     Me.cmsFileMenu.ResumeLayout(False)
+    Me.pnlSideElements.ResumeLayout(False)
+    Me.pnlLeft.ResumeLayout(False)
+    Me.pnlLeft.PerformLayout()
+    Me.pnlSideDropme.ResumeLayout(False)
+    Me.pnlDropMeSave.ResumeLayout(False)
+    Me.pnlDropMeSave.PerformLayout()
+    CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.pnlSideLocFiles.ResumeLayout(False)
+    CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
+    Me.PerformLayout()
 
   End Sub
   Friend WithEvents Label3 As System.Windows.Forms.Label
@@ -675,15 +1064,45 @@ Partial Class frm_mdiViewer2
   Friend WithEvents ToolStripMenuItem6 As System.Windows.Forms.ToolStripSeparator
   Friend WithEvents SchliessenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
   Friend WithEvents Label9 As System.Windows.Forms.Label
-  Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
   Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
   Friend WithEvents btn_tb_9 As System.Windows.Forms.Button
   Friend WithEvents grpArrow As System.Windows.Forms.GroupBox
   Friend WithEvents nudArrowLength As System.Windows.Forms.NumericUpDown
   Friend WithEvents Label11 As System.Windows.Forms.Label
-  Friend WithEvents cmbElementNames As System.Windows.Forms.ComboBox
   Friend WithEvents ZusatzfensterAnzeigenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
   Friend WithEvents btn_tb_0 As System.Windows.Forms.Button
   Friend WithEvents CodeGenerierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents vcc As ScreenGrab6.Vector.VCanvasControl
+  Friend WithEvents lblFilename As System.Windows.Forms.Label
+  Friend WithEvents txtElementName As System.Windows.Forms.TextBox
+  Friend WithEvents pnlSideElements As System.Windows.Forms.Panel
+  Friend WithEvents pnlLeft As System.Windows.Forms.Panel
+  Friend WithEvents lblToggleLeftPanel As System.Windows.Forms.Label
+  Friend WithEvents btnSave As System.Windows.Forms.Button
+  Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
+  Friend WithEvents lblCurPath As System.Windows.Forms.Label
+  Friend WithEvents btnNav03 As System.Windows.Forms.Button
+  Friend WithEvents btnNav02 As System.Windows.Forms.Button
+  Friend WithEvents btnNav01 As System.Windows.Forms.Button
+  Friend WithEvents FolderBrowser1 As DirectoryBrowser.FolderBrowser
+  Friend WithEvents pbPreview As System.Windows.Forms.PictureBox
+  Friend WithEvents TabControl1 As MdiTabControl.TabControl
+  Friend WithEvents lstElementNames As System.Windows.Forms.ListBox
+  Friend WithEvents lstTrace As System.Windows.Forms.ListBox
+  Friend WithEvents pnlSideDropme As System.Windows.Forms.Panel
+  Friend WithEvents pnlSideLocFiles As System.Windows.Forms.Panel
+  Friend WithEvents cmbDropmeClipboard As System.Windows.Forms.ComboBox
+  Friend WithEvents ListView1 As System.Windows.Forms.ListView
+  Friend WithEvents llSidebar3 As System.Windows.Forms.LinkLabel
+  Friend WithEvents llSidebar2 As System.Windows.Forms.LinkLabel
+  Friend WithEvents llSidebar1 As System.Windows.Forms.LinkLabel
+  Friend WithEvents ImageList1 As System.Windows.Forms.ImageList
+  Friend WithEvents llSidebar4 As System.Windows.Forms.LinkLabel
+  Friend WithEvents btnNav04 As System.Windows.Forms.Button
+  Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+  Friend WithEvents Label4 As System.Windows.Forms.Label
+  Friend WithEvents btnDropMeSave As System.Windows.Forms.Button
+  Friend WithEvents txtDropMeSave As System.Windows.Forms.TextBox
+  Friend WithEvents pnlDropMeSave As System.Windows.Forms.Panel
+  Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+  Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
 End Class

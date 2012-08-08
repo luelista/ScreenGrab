@@ -1,5 +1,11 @@
 ﻿Imports ScreenGrab6.Vector
+Imports System.Runtime.InteropServices
+
 Public Class frm_mdiViewer2
+  Dim dropme_postData As String = "key=8b95f50a-959f-4684-8918-f3ab6fc7968a&username=" + glob.para("frm_options__txtLoginUser") + "&password=" + glob.para("frm_options__txtLoginPass")
+
+  Dim dropme_cacheDir As String = IO.Path.Combine(IO.Path.GetTempPath, "SgCollageDropmeFiles\")
+  Dim dropme_sourceFilespec As String
 
   Public Const COLOR_PALETTE_ITEM_SIZE = 18
   Public Const COLOR_PALETTE_ROWS = 8
@@ -9,10 +15,57 @@ Public Class frm_mdiViewer2
   Public toolboxPermanent As Boolean
   Public toolboxLastclick As Long
 
+  Public untitledCounter As Integer = 1
+
+  Public titleBarGradient As New Drawing2D.LinearGradientBrush(New Point(0, 0), New Point(0, 30), Color.DarkOliveGreen, Color.YellowGreen)
+
+  Private ClientControl As MdiClient
+  Public Sub New()
+    ' This call is required by the Windows Form Designer.
+    InitializeComponent()
+
+    ' Add any initialization after the InitializeComponent() call.
+    ClientControl = Nothing
+    For Each Ctl As Control In Me.Controls
+      ClientControl = TryCast(Ctl, MdiClient)
+      If ClientControl IsNot Nothing Then Exit For
+    Next
+  End Sub
 
 
+  Public Function newClient() As frm_mdiClient
+    Dim f As New frm_mdiClient
+    'f.MdiParent = Me
+    'f.Show()
+    'f.Activate()
+    f.Text = String.Format("Unbenannt {0}", untitledCounter)
+    untitledCounter += 1
+    TabControl1.TabPages.Add(f)
+    'f.Left = 0 : f.Top = 0 : f.Width = ClientControl.Width - 5 : f.Height = ClientControl.Height - 5
+    While Not TabControl1.SelectedForm Is f
+      Application.DoEvents()
+    End While
+    Return f
+  End Function
+  Public Function vcc() As Vector.VCanvasControl
+    Dim c = client()
+    If c Is Nothing Then Return Nothing
+    Return c.vcc
+  End Function
+  Public Function client() As frm_mdiClient
+    ' If ActiveMdiChild Is Nothing Then newClient()
+    ' Return ActiveMdiChild
+    Return TabControl1.SelectedForm
+  End Function
 
-  'TitleBar verstecken
+  Private Sub frm_mdiViewer2_MdiChildActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.MdiChildActivate
+    refreshToolboxButtonColors()
+    refreshFileInfo()
+    refreshItemList()
+  End Sub
+
+
+#Region "TitleBar verstecken"
 
   Protected Overrides ReadOnly Property CreateParams() As System.Windows.Forms.CreateParams
     Get
@@ -22,6 +75,90 @@ Public Class frm_mdiViewer2
       Return cp
     End Get
   End Property
+
+#End Region
+
+#Region "Taskbar bei maximize behalten"
+  Private Structure MINMAXINFO
+    Public ptReserved As Point
+    Public ptMaxSize As Size
+    Public ptMaxPosition As Point
+    Public ptMinTrackSize As Size
+    Public ptMaxTrackSize As Size
+  End Structure
+
+  Const WM_GETMINMAXINFO As Integer = &H24
+
+  'Protected Overrides Sub WndProc(ByRef m As Message)
+  '  If m.Msg = WM_GETMINMAXINFO Then
+  '    Dim mmi As MINMAXINFO = CType(Marshal.PtrToStructure(m.LParam, GetType(MINMAXINFO)), MINMAXINFO)
+  '    mmi.ptMaxSize = Screen.GetWorkingArea(Me).Size
+  '    Debug.Print(mmi.ptMaxSize.ToString + " ----- " & Me.Width)
+  '    Marshal.StructureToPtr(mmi, m.LParam, False)
+  '    m.Result = IntPtr.Zero
+  '    Return
+  '  End If
+  '  MyBase.WndProc(m)
+  'End Sub
+
+  ' '' ''  <DllImport("user32")> _
+  ' '' ''Private Shared Function GetMonitorInfo(ByVal hMonitor As IntPtr, ByRef lpmi As MonitorInfo) As Boolean
+  ' '' ''  End Function
+  ' '' ''  <DllImport("User32")> _
+  ' '' ''  Private Shared Function MonitorFromWindow(ByVal handle As IntPtr, ByVal flags As Integer) As IntPtr
+  ' '' ''  End Function
+  ' '' ''  <StructLayout(LayoutKind.Sequential)> _
+  ' '' ''Private Structure MonitorInfo
+  ' '' ''    Public Size As Integer
+  ' '' ''    Public rcMonitor As RECT
+  ' '' ''    Public rcWork As RECT
+  ' '' ''    Public Flags As UInteger
+  ' '' ''    Public Sub Init()
+  ' '' ''      Me.Size = 40
+  ' '' ''    End Sub
+  ' '' ''  End Structure
+  ' '' ''  <StructLayout(LayoutKind.Sequential)> _
+  ' '' ''  Private Structure MINMAXINFO
+  ' '' ''    Dim ptReserved As Point
+  ' '' ''    Dim ptMaxSize As Point
+  ' '' ''    Dim ptMaxPosition As Point
+  ' '' ''    Dim ptMinTrackSize As Point
+  ' '' ''    Dim ptMaxTrackSize As Point
+  ' '' ''  End Structure
+
+  ' '' ''  Protected Overrides Sub WndProc(ByRef m As System.Windows.Forms.Message)
+  ' '' ''    Select Case m.Msg
+  ' '' ''      Case &H24
+  ' '' ''        WmGetMinMaxInfo(m.HWnd, m.LParam)
+  ' '' ''      Case Else
+
+  ' '' ''        MyBase.WndProc(m)
+  ' '' ''    End Select
+  ' '' ''  End Sub
+
+  ' '' ''  Private Shared Sub WmGetMinMaxInfo(ByVal hwnd As System.IntPtr, ByVal lParam As System.IntPtr)
+  ' '' ''    Dim mmi As MINMAXINFO = DirectCast(Marshal.PtrToStructure(lParam, GetType(MINMAXINFO)), MINMAXINFO)
+
+  ' '' ''    ' Adjust the maximized size and position to fit the work area of the correct monitor
+  ' '' ''    Dim MONITOR_DEFAULTTONEAREST As Integer = &H2
+  ' '' ''    Dim monitor As System.IntPtr = MonitorFromWindow(hwnd, MONITOR_DEFAULTTONEAREST)
+
+  ' '' ''    If monitor <> System.IntPtr.Zero Then
+
+  ' '' ''      Dim monitorInfo As New MonitorInfo() : monitorInfo.Init()
+  ' '' ''      GetMonitorInfo(monitor, monitorInfo)
+  ' '' ''      Dim rcWorkArea As RECT = monitorInfo.rcWork
+  ' '' ''      Dim rcMonitorArea As RECT = monitorInfo.rcMonitor
+  ' '' ''      mmi.ptMaxPosition.x = Math.Abs(rcWorkArea.Left - rcMonitorArea.Left)
+  ' '' ''      mmi.ptMaxPosition.y = Math.Abs(rcWorkArea.Top - rcMonitorArea.Top)
+  ' '' ''      mmi.ptMaxSize.x = Math.Abs(rcWorkArea.Right - rcWorkArea.Left)
+  ' '' ''      mmi.ptMaxSize.y = Math.Abs(rcWorkArea.Bottom - rcWorkArea.Top)
+  ' '' ''    End If
+
+  ' '' ''    Marshal.StructureToPtr(mmi, lParam, True)
+  ' '' ''  End Sub
+#End Region
+
 
   Dim paletteWindows As New List(Of Form)
   Sub addPaletteWindow(ByVal frm As Form)
@@ -77,73 +214,13 @@ Public Class frm_mdiViewer2
     putWinAfter(frm_paletteColor.Handle, New IntPtr(-2))
   End Sub
 
-  Private Sub frm_mdiViewer2_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragDrop
-    If e.Data.GetDataPresent("FileDrop") Then
-      Dim pos As Point = vcc.PictureBox1.PointToClient(New Point(e.X, e.Y))
-
-      Dim files() As String = e.Data.GetData("FileDrop")
-      For Each fileSpec In files
-        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
-        Select Case ext
-          Case ".JPG", ".BMP", ".PNG", ".GIF", ".TIF", ".WMF"
-            Dim obj As New VImage
-            obj.name = "img_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
-            obj.img = Image.FromFile(fileSpec)
-            obj.source = "FILE:" + fileSpec
-            obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
-            'obj.setBorder(2, Color.RoyalBlue)
-            vcc.canvas.addObject(obj)
-
-          Case ".ICO"
-            Dim obj As New VImage
-            Dim ico As New Icon(fileSpec)
-            obj.name = "icon_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
-            obj.img = ico.ToBitmap
-            ico.Dispose()
-            obj.source = "FILE:" + fileSpec
-            obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
-            'obj.setBorder(2, Color.RoyalBlue)
-            vcc.canvas.addObject(obj)
-
-          Case ".CUR"
-            Dim obj As New VImage
-            Dim bmp As New Bitmap(32, 32)
-            obj.name = "cursor_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
-            Dim g = Graphics.FromImage(bmp)
-            Try
-              Dim c As New Cursor(fileSpec)
-              c.DrawStretched(g, New Rectangle(0, 0, 32, 32))
-              c.Dispose()
-            Catch ex As Exception
-              g.DrawString(ex.Message, New Font("Arial", 6, FontStyle.Regular, GraphicsUnit.Point), Brushes.Black, New Rectangle(0, 0, 32, 32))
-            End Try
-            g.Dispose()
-            obj.img = bmp
-            obj.source = "FILE:" + fileSpec
-            obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
-            'obj.setBorder(2, Color.RoyalBlue)
-            vcc.canvas.addObject(obj)
-
-        End Select
-      Next
-
-      vcc.PictureBox1.Refresh()
-    End If
-  End Sub
-
-
-
   Sub addPicClient()
     Dim img = getCompleteImage()
     If img Is Nothing Then Exit Sub
+    If vcc() Is Nothing Then newClient()
     vcc.canvas.addPicClient(img, "GRAB:" + getDestRect.ToString)
   End Sub
 
-  Private Sub frm_mdiViewer2_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles Me.DragEnter
-    If e.Data.GetDataPresent("FileDrop") Then
-      e.Effect = DragDropEffects.Copy
-    End If
-  End Sub
 
   Private Sub frm_mdiViewer2_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
     If vcc.CheckFileDirty() = False Then e.Cancel = True : Exit Sub
@@ -156,21 +233,38 @@ Public Class frm_mdiViewer2
     glob.para("frm_mdiViewer2__arrowDefaultLength") = nudArrowLength.Value
     glob.para("frm_mdiViewer2__lineDefaultStyle") = cmbLineStyle.SelectedIndex
     glob.para("frm_mdiViewer2__textDefaultText") = txtTextDefault.Text
-    glob.para("frm_mdiViewer2__textDefaultFontSize") = defaultFont.SizeInPoints
-    glob.para("frm_mdiViewer2__textDefaultFontFamily") = defaultFont.Name
-    glob.para("frm_mdiViewer2__textDefaultFontStyle") = defaultFont.Style
+    glob.para("frm_mdiViewer2__textDefaultFontSize") = DefaultFont.SizeInPoints
+    glob.para("frm_mdiViewer2__textDefaultFontFamily") = DefaultFont.Name
+    glob.para("frm_mdiViewer2__textDefaultFontStyle") = DefaultFont.Style
+
+    glob.saveFormPos(Me)
 
     FRM.qq_chkAutoCollage.Enabled = False
     FRM.qq_chkAutoCollage.Checked = False
   End Sub
 
   Private Sub frm_mdiViewer2_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
-    vcc.KeyboardHandler(e)
-    If e.Control And e.KeyCode = Keys.S Then
-      vcc.saveFile(e.Shift)
-    End If
+
     If e.Control And e.KeyCode = Keys.O Then
       vcc.openFile()
+    End If
+
+    If vcc() Is Nothing Then Return
+
+    vcc.KeyboardHandler(e)
+    If e.KeyCode = Keys.F1 Then
+      Dim chh = MdiChildren
+      Dim pos = Array.IndexOf(chh, ActiveMdiChild) - 1
+      If pos < 0 Then pos = chh.Length - 1
+      chh(pos).Activate()
+    End If
+    If e.KeyCode = Keys.F2 Then
+      Dim chh = MdiChildren
+      Dim pos = Array.IndexOf(chh, ActiveMdiChild)
+      chh((pos + 1) Mod chh.Length).Activate()
+    End If
+    If e.Control And e.KeyCode = Keys.S Then
+      vcc.saveFile(e.Shift)
     End If
     If e.Control And e.KeyCode = Keys.G Then
       CodeGenerierenToolStripMenuItem_Click(Nothing, EventArgs.Empty)
@@ -179,36 +273,48 @@ Public Class frm_mdiViewer2
       Dim id As Integer = e.KeyCode - Keys.D0
       toolboxButton_Click(pnlToolbox.Controls("btn_tb_" & id), EventArgs.Empty)
     End If
+    If e.KeyCode = Keys.Escape Then
+      vcc.toolboxSelElement = VCanvasControl.toolboxElement.None
+    End If
   End Sub
   Private Sub frm_mdiViewer2_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-    If vcc.multitouch IsNot Nothing Then
-      CheckBox1.Visible = True
-      CheckBox1.Enabled = True
-    End If
+    'If vcc.multitouch IsNot Nothing Then
+    '  CheckBox1.Visible = True
+    '  CheckBox1.Enabled = True
+    'End If
+
+    pnlLeft.Width = 6
+
+    'vcc.canvas.UseIntersectionForSelection = glob.para("frm_options__chkCollageHitTestIntersect", "FALSE") = "TRUE"
+    'vcc.canvas.IsInsertionMode = False
+    'vcc.canvas.IsObjectBorderSelectionMode = False
 
     ' addPaletteWindow(frm_paletteProperties)
-    addPaletteWindow(frm_paletteFile)
-    addPaletteWindow(frm_paletteCursor)
+    'addPaletteWindow(frm_paletteFile)
+    'addPaletteWindow(frm_paletteCursor)
+
+    glob.readFormPos(Me)
 
     makeFormGlassReady(Me, Panel1, DockStyle.Top)
 
-    frm_paletteFile.MyCanvas = vcc.canvas
+    'frm_paletteFile.MyCanvas = vcc.canvas
 
     For i = 0 To COLOR_PALETTE_ROWS * COLOR_PALETTE_COLS - 1
       colorPalette(i) = ColorTranslator.FromHtml(glob.para("frm_mdiViewer2__colorPalette_" & i, "#" + Hex(i + 4) + Hex(i + 4) + Hex(i + 4)))
     Next
-    vcc.defaultFg = ColorTranslator.FromHtml(glob.para("frm_mdiViewer2__colorDefaultFg", "#000"))
-    vcc.defaultBg = ColorTranslator.FromHtml(glob.para("frm_mdiViewer2__colorDefaultBg", "#fff"))
     nudLineWidth.Value = glob.para("frm_mdiViewer2__lineDefaultWidth", "1")
     nudArrowLength.Value = glob.para("frm_mdiViewer2__arrowDefaultLength", "10")
     cmbLineStyle.SelectedIndex = glob.para("frm_mdiViewer2__lineDefaultStyle", "0")
     txtTextDefault.Text = glob.para("frm_mdiViewer2__textDefaultText", "(Neu Textfeld)")
-    vcc.defaultFont = New Font(glob.para("frm_mdiViewer2__textDefaultFontFamily", "Arial"), glob.para("frm_mdiViewer2__textDefaultFontSize", "10"), _
-         glob.para("frm_mdiViewer2__textDefaultFontStyle", 0), GraphicsUnit.Point)
+   
+    btnNav01.Text = IO.Path.GetFileName(glob.para("frm_mdiViewer2__quickNavBtn__btnNav01"))
+    btnNav02.Text = IO.Path.GetFileName(glob.para("frm_mdiViewer2__quickNavBtn__btnNav02"))
+    btnNav03.Text = IO.Path.GetFileName(glob.para("frm_mdiViewer2__quickNavBtn__btnNav03"))
+    FolderBrowser1.SelectPath(glob.para("frm_mdiViewer2__folderSel", "C:\"), True)
 
-    Dim ImHauptfensterLadenToolStripMenuItem As New ToolStripMenuItem("Im Hauptfenster laden")
-    AddHandler ImHauptfensterLadenToolStripMenuItem.Click, AddressOf ImHauptfensterLadenToolStripMenuItem_Click
-    vcc.cmsCanvas.Items.Insert(5, ImHauptfensterLadenToolStripMenuItem)
+    'Dim ImHauptfensterLadenToolStripMenuItem As New ToolStripMenuItem("Im Hauptfenster laden")
+    'AddHandler ImHauptfensterLadenToolStripMenuItem.Click, AddressOf ImHauptfensterLadenToolStripMenuItem_Click
+    'vcc.cmsCanvas.Items.Insert(5, ImHauptfensterLadenToolStripMenuItem)
 
     '  vcc.canvas.KeyHandlerControl = Me
 
@@ -224,36 +330,51 @@ Public Class frm_mdiViewer2
     'obj.bounds = New Rectangle(100, 100, 50, 80)
     'obj.setBorder(4, Color.Red)
     'canvas.objects.Add(obj)
+    pnlSideLocFiles.BringToFront()
+
+    Show()
+
+
   End Sub
 
   Private Sub Panel1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) _
-  Handles PictureBox2.MouseDown, Panel1.MouseDown
-    FormMoveTricky(Me.Handle)
-    If e.Button = Windows.Forms.MouseButtons.Right Then
-      frm_paletteCursor.Show()
+  Handles PictureBox2.MouseDown, Panel1.MouseDown, lblFilename.MouseDown
+    If e.Button = Windows.Forms.MouseButtons.Left Then
 
+      FormMoveTricky(Me.Handle)
+    ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
+      Clipboard.SetText(lblFilename.Text)
+      lblFilename.BackColor = Color.BlueViolet
+      Application.DoEvents()
+      Threading.Thread.Sleep(500)
+      lblFilename.BackColor = Color.Transparent
     End If
+    'If e.Button = Windows.Forms.MouseButtons.Right Then
+    '  frm_paletteCursor.Show()
+
+    'End If
   End Sub
 
-  Private Sub ZusatzfensterAnzeigenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ZusatzfensterAnzeigenToolStripMenuItem.Click
-    showProperties(vcc.canvas.GetFirstSelectedObject, True)
-  End Sub
+  'Private Sub ZusatzfensterAnzeigenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ZusatzfensterAnzeigenToolStripMenuItem.Click
+  '  showProperties(vcc.canvas.GetFirstSelectedObject, True)
+  'End Sub
 
-  Sub showProperties(ByVal obj As VObject, Optional ByVal force As Boolean = False)
-    If force = True Then
-      frm_paletteFile.Show()
-      frm_paletteFile.Activate()
-    ElseIf force = False And frm_paletteFile.Visible = False Then
-      Exit Sub
-    End If
-    ' frm_paletteFile.MyCanvas = Me
-    frm_paletteFile.RefreshItemList()
-    frm_paletteFile.SelectedObject = obj
-  End Sub
+  'Sub showProperties(ByVal obj As VObject, Optional ByVal force As Boolean = False)
+  '  If force = True Then
+  '    frm_paletteFile.Show()
+  '    frm_paletteFile.Activate()
+  '  ElseIf force = False And frm_paletteFile.Visible = False Then
+  '    Exit Sub
+  '  End If
+  '  ' frm_paletteFile.MyCanvas = Me
+  '  frm_paletteFile.RefreshItemList()
+  '  frm_paletteFile.SelectedObject = obj
+  'End Sub
 
   Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
 
   End Sub
+
 
   Private Sub frm_mdiViewer2_Move(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Move
     repositionPaletteWindows()
@@ -284,32 +405,12 @@ Public Class frm_mdiViewer2
     Me.WindowState = FormWindowState.Minimized
   End Sub
 
-  Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    ' vcc.canvas.readHtmlPage()
-  End Sub
 
-
-  Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    ' vcc.canvas.createHtmlPage()
-  End Sub
-
-  Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    frm_paletteFile.Show()
-    frm_paletteFile.Activate()
-    repositionPaletteWindows()
-    frm_paletteFile.TabControl1.SelectedIndex = 1
-
-  End Sub
 
   Private Sub CheckBox1_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckBox1.CheckedChanged
     vcc.canvas.IsMultitouchMode = CheckBox1.Checked
   End Sub
 
-
-  Private Sub ImHauptfensterLadenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    Dim img As VImage = vcc.canvas.GetFirstSelectedObject()
-    loadImage(img.img)
-  End Sub
 
 
   Private Sub pbColorPalette_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pbColorPalette.MouseClick
@@ -341,7 +442,7 @@ Public Class frm_mdiViewer2
       Exit Sub
     End If
 
-    setCurrentDefaultColor(clickedColor)
+    vcc.setCurrentDefaultColor(clickedColor)
 
   End Sub
 
@@ -372,12 +473,6 @@ Public Class frm_mdiViewer2
     refreshToolboxButtonColors()
   End Sub
 
-  Sub resetToolboxIfTemporary()
-    If Not toolboxPermanent Then
-      vcc.toolboxSelElement = 1
-      refreshToolboxButtonColors()
-    End If
-  End Sub
 
   Sub refreshToolboxButtonColors()
     If vcc.toolboxSelElement = 1 Then toolboxPermanent = True
@@ -386,7 +481,8 @@ Public Class frm_mdiViewer2
       DirectCast(item, Button).UseVisualStyleBackColor = item.Tag <> vcc.toolboxSelElement
     Next
 
-    vcc.canvas.IsInsertionMode = (vcc.toolboxSelElement <> VCanvasControl.toolboxElement.Cursor)
+    vcc.canvas.IsInsertionMode = (vcc.toolboxSelElement <> VCanvasControl.toolboxElement.Cursor) And _
+        (vcc.toolboxSelElement <> VCanvasControl.toolboxElement.ColorPicker)
     vcc.canvas.IsLineDrawingMode = (vcc.toolboxSelElement = VCanvasControl.toolboxElement.Line) Or _
        (vcc.toolboxSelElement = VCanvasControl.toolboxElement.Arrow)
 
@@ -397,17 +493,21 @@ Public Class frm_mdiViewer2
     grpText.Visible = vcc.toolboxSelElement = VCanvasControl.toolboxElement.Textbox
     grpArrow.Visible = vcc.toolboxSelElement = VCanvasControl.toolboxElement.Arrow
 
-    If vcc.toolboxSelElement <> VCanvasControl.toolboxElement.Arrow And vcc.defaultColorSelected = -1 Then _
-      vcc.defaultColorSelected = 1 : refreshDefaultColorBoxes()
+    If vcc.toolboxSelElement <> VCanvasControl.toolboxElement.Arrow And vcc.DefaultColorSelected = -1 Then _
+      vcc.DefaultColorSelected = 1
   End Sub
 
   Sub refreshItemList()
-    'cmbElementNames.Items.Clear()
-    'For Each v In vcc.canvas.objects
-    '  cmbElementNames.Items.Add(v.name)
-    '  If v.isSelected Then cmbElementNames.SelectedIndex = cmbElementNames.Items.Count - 1
-    'Next
-    If vcc.canvas.SelectionCount <> 1 Then cmbElementNames.SelectedIndex = -1
+    lstElementNames.Items.Clear()
+    For Each v In vcc.canvas.objects
+      'lstElementNames.Items.Add(v.name)
+      lstElementNames.Items.Add(v)
+      'If v.isSelected Then lstElementNames.SetItemChecked(lstElementNames.Items.Count - 1, True)
+    Next
+    txtElementName.Text = Join(client.selnames, ", ")
+    txtElementName.Enabled = vcc.canvas.SelectionCount = 1
+
+    ' If vcc.canvas.SelectionCount <> 1 Then lstElementNames.SelectedIndex = -1
   End Sub
 
   Function showColorPalettteIfNotVisible() As Boolean
@@ -422,104 +522,41 @@ Public Class frm_mdiViewer2
   End Function
 
   Private Sub pbDefaultBg_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pbDefaultBg.MouseClick
+    If vcc() Is Nothing Then Return
     'canvas.DeselectAll()
-    vcc.defaultColorSelected = 2
-    refreshDefaultColorBoxes()
+    vcc.DefaultColorSelected = 2
     If e.Button = Windows.Forms.MouseButtons.Right Then
       If Not showColorPalettteIfNotVisible() Then
-        setCurrentDefaultColor(frm_paletteColor.GColorPicker1.Value)
+        vcc.setCurrentDefaultColor(frm_paletteColor.GColorPicker1.Value)
       End If
     End If
   End Sub
   Private Sub pbDefaultFg_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles pbDefaultFg.MouseClick
+    If vcc() Is Nothing Then Return
     'canvas.DeselectAll()
-    vcc.defaultColorSelected = 1
-    refreshDefaultColorBoxes()
+    vcc.DefaultColorSelected = 1
     If e.Button = Windows.Forms.MouseButtons.Right Then
       If Not showColorPalettteIfNotVisible() Then
-        setCurrentDefaultColor(frm_paletteColor.GColorPicker1.Value)
+        vcc.setCurrentDefaultColor(frm_paletteColor.GColorPicker1.Value)
       End If
     End If
   End Sub
 
   Private Sub pbDefaultBg_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles pbDefaultBg.Paint
+    If vcc() Is Nothing Then Return
     DrawColorRect(e.Graphics, New SolidBrush(vcc.defaultBg), 0, 0, pbDefaultBg.Width, pbDefaultBg.Height)
-    If vcc.defaultColorSelected = 2 Then e.Graphics.DrawRectangle(Pens.Red, 0, 0, pbDefaultBg.Width - 1, pbDefaultBg.Height - 1)
+    If vcc.DefaultColorSelected = 2 Then e.Graphics.DrawRectangle(Pens.Red, 0, 0, pbDefaultBg.Width - 1, pbDefaultBg.Height - 1)
   End Sub
   Private Sub pbDefaultFg_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles pbDefaultFg.Paint
+    If vcc() Is Nothing Then Return
     DrawColorRect(e.Graphics, New SolidBrush(vcc.defaultFg), 0, 0, pbDefaultFg.Width, pbDefaultFg.Height)
-    If vcc.defaultColorSelected = 1 Then e.Graphics.DrawRectangle(Pens.Red, 0, 0, pbDefaultFg.Width - 1, pbDefaultFg.Height - 1)
-  End Sub
-
-  Sub refreshDefaultColorBoxes()
-    Static isRefreshing As Boolean = False '  StackOverflow verhindern
-    If isRefreshing Then Exit Sub
-    isRefreshing = True
-    pbDefaultBg.Invalidate()
-    pbDefaultFg.Invalidate()
-    If vcc.defaultColorSelected = -1 Then
-      frm_paletteColor.GColorPicker1.Enabled = False
-    Else
-      frm_paletteColor.GColorPicker1.Enabled = True
-      '...dies würde zu einem StackOverflow führen, da ColorChanging wieder einen refresh auslöst:
-      frm_paletteColor.GColorPicker1.Value = If(vcc.defaultColorSelected = 1, vcc.defaultFg, vcc.defaultBg)
-    End If
-    isRefreshing = False
-  End Sub
-
-  Sub setDefaultColor(ByVal id As Integer, ByVal newColor As Color)
-    If getDefaultColor(id) = newColor Then Return
-    Select Case id
-      Case 1 : vcc.defaultFg = newColor
-      Case 2 : vcc.defaultBg = newColor
-    End Select
-    refreshDefaultColorBoxes()
-  End Sub
-
-  Sub setCurrentDefaultColor(ByVal newColor As Color)
-    If getDefaultColor(vcc.defaultColorSelected) = newColor Then Return
-    setDefaultColor(vcc.defaultColorSelected, newColor)
-
-    For i = 0 To vcc.canvas.selectedObjects.Count - 1
-      Dim obj = vcc.canvas.selectedObjects(i)
-      If vcc.defaultColorSelected = 1 Then
-        obj.Color1 = newColor
-      ElseIf vcc.defaultColorSelected = 2 Then
-        obj.Color2 = newColor
-      End If
-    Next
-    vcc.canvas.Invalidate()
-  End Sub
-
-  Function getDefaultColor(ByVal id As Integer) As Color
-    Select Case id
-      Case 1 : Return vcc.defaultFg
-      Case 2 : Return vcc.defaultBg
-    End Select
-  End Function
-
-  Private Sub vcc_ElementInserted() Handles vcc.ElementInserted
-    resetToolboxIfTemporary()
-  End Sub
-
-  Private Sub vcc_SelectionChanged(ByVal names() As String) Handles vcc.SelectionChanged
-    If frm_paletteFile.Visible And vcc.canvas.SelectionCount = 1 Then
-      frm_paletteFile.SelectedObject = vcc.canvas.selectedObjects(0)
-    End If
-    If frm_paletteFile.Visible And vcc.canvas.SelectionCount <> 1 Then
-      frm_paletteFile.SelectedObject = Nothing
-    End If
-    'defaultColorSelected = -1
-    'refreshDefaultColorBoxes()
-
-    refreshDefaultColorBoxes()
-    cmbElementNames.Text = Join(names, ", ")
-    ' cmbElementNames.SelectedIndex = If(canvas.SelectionCount = 1, cmbElementNames.Items.IndexOf(canvas.selectedObjects(0).name), -1)
+    If vcc.DefaultColorSelected = 1 Then e.Graphics.DrawRectangle(Pens.Red, 0, 0, pbDefaultFg.Width - 1, pbDefaultFg.Height - 1)
   End Sub
 
   Private Sub btnDefaultFontChange_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDefaultFontChange.Click
+    If vcc() Is Nothing Then Return
     Using fd As New FontDialog
-      fd.Font = defaultFont
+      fd.Font = DefaultFont
       fd.FontMustExist = True
 
       If fd.ShowDialog = Windows.Forms.DialogResult.OK Then
@@ -544,27 +581,44 @@ Public Class frm_mdiViewer2
 
 
   Private Sub NeuToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NeuToolStripMenuItem.Click
-    If vcc.CheckFileDirty() Then
-      vcc.canvas.clearCanvas()
-      vcc.FileSpec = ""
-      vcc.Dirty = False
-    End If
+    'If vcc.CheckFileDirty() Then
+    '  vcc.canvas.clearCanvas()
+    '  vcc.FileSpec = ""
+    '  vcc.Dirty = False
+    'End If
+    newClient()
   End Sub
 
   Private Sub OeffnenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OeffnenToolStripMenuItem.Click
-    vcc.openFile()
+    'vcc.openFile()
+
+    Using ofd As New OpenFileDialog
+      ofd.InitialDirectory = lblCurPath.Text
+      ofd.Filter = "Alle unterstützten Dateiformate (*.html, *.htm, *.sgcollage)|*.html;*.htm;*.sgcollage|HTML-Dateien (*.html, *.htm)|*.html;*.htm|Screengrab-Collagen (*.sgcollage)|*.sgcollage|Alle Dateien|*.*"
+      If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
+        Dim c = newClient()
+        c.vcc.openFile(ofd.FileName)
+      End If
+    End Using
   End Sub
 
 
+  Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+    If vcc() Is Nothing Then Return
+    vcc.saveFile(False)
+  End Sub
   Private Sub SpeichernToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SpeichernToolStripMenuItem.Click
+    If vcc() Is Nothing Then Return
     vcc.saveFile(False)
   End Sub
 
   Private Sub SpeichernUnterToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SpeichernUnterToolStripMenuItem.Click
+    If vcc() Is Nothing Then Return
     vcc.saveFile(True)
   End Sub
 
   Private Sub CodeGenerierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CodeGenerierenToolStripMenuItem.Click
+    If vcc() Is Nothing Then Return
     If String.IsNullOrEmpty(vcc.FileSpec) Then
       MsgBox("Die Collage muss vorher abgespeichert werden.", MsgBoxStyle.Information)
       Exit Sub
@@ -578,6 +632,7 @@ Public Class frm_mdiViewer2
   End Sub
 
   Private Sub ExportierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportierenToolStripMenuItem.Click
+    If vcc() Is Nothing Then Return
     MsgBox("Dies ist eine experimentelle Funktion, die evtl. zum Absturz des Programms führen kann. Es wird empfohlen, die Collage vorher zu speichern. Das resultierende PDF-Dokument kann Fehler enthalten. (schlechte Bildqualität, falsche Darstellung von Pfeilen)", MsgBoxStyle.Information, "Du befindest dich im Labor...")
     Using sfd As New SaveFileDialog
       sfd.Title = "Als PDF exportieren ..."
@@ -613,35 +668,564 @@ Public Class frm_mdiViewer2
   Private Sub Panel3_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel3.Paint
     Try
       Dim r As New Rectangle(0, 0, Panel3.Width, Panel3.Height)
-      Dim bg As New Drawing2D.LinearGradientBrush(r, Color.FromArgb(55, 55, 55), Color.FromArgb(22, 22, 22), Drawing2D.LinearGradientMode.Horizontal)
+      Dim bg As New Drawing2D.LinearGradientBrush(r, Color.FromArgb(66, 66, 66), Color.FromArgb(11, 11, 11), Drawing2D.LinearGradientMode.Horizontal)
       e.Graphics.FillRectangle(bg, r)
       bg.Dispose()
     Catch : End Try
   End Sub
 
 
-  Private Sub vcc_DirtyChanged() Handles vcc.DirtyChanged
-    Label9.BackColor = If(vcc.Dirty, Color.Red, Color.Transparent)
-  End Sub
 
   Private Sub nudLineWidth_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles nudLineWidth.ValueChanged
+    If vcc() Is Nothing Then Return
     vcc.lineWidth = nudLineWidth.Value
   End Sub
 
   Private Sub cmbLineStyle_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbLineStyle.SelectedIndexChanged
+    If vcc() Is Nothing Then Return
     vcc.lineStyle = cmbLineStyle.SelectedIndex
   End Sub
 
-  Private Sub vcc_FileSpecChanged() Handles vcc.FileSpecChanged
-    Me.Text = IO.Path.GetFileName(vcc.Filespec) + " - ScreenGrab " + My.Application.Info.Version.ToString(2) + " Collage-Modus"
-    TextBox1.Text = vcc.FileSpec
+  Public Sub refreshFileInfo()
+    If vcc() Is Nothing Then Return
+    Dim filename As String = vcc.FileSpec
+    If String.IsNullOrEmpty(filename) Then filename = client.Text
+    Me.Text = IO.Path.GetFileName(filename) + " - ScreenGrab " + My.Application.Info.Version.ToString(2) + " Collage-Modus"
+    lblFilename.Text = filename
+
+    Label9.BackColor = If(vcc.Dirty, Color.Red, Color.Transparent)
+    btnSave.Enabled = vcc.Dirty
   End Sub
 
   Private Sub txtTextDefault_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTextDefault.TextChanged
+    If vcc() Is Nothing Then Return
     vcc.defaultText = txtTextDefault.Text
   End Sub
 
   Private Sub nudArrowLength_ValueChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles nudArrowLength.ValueChanged
+    If vcc() Is Nothing Then Return
     vcc.defaultArrowLength = nudArrowLength.Value
   End Sub
+
+  Private Sub Panel1_Paint_1(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
+    e.Graphics.FillRectangle(titleBarGradient, sender.Bounds)
+
+  End Sub
+
+  Private Sub btnShowElementList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    pnlSideElements.Visible = Not pnlSideElements.Visible
+    If pnlSideElements.Visible Then lstElementNames.Focus()
+  End Sub
+
+  Private Sub lstElementNames_DrawItem(ByVal sender As Object, ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles lstElementNames.DrawItem
+    If e.Index < 0 Then Return
+    Dim obj As VObject = lstElementNames.Items(e.Index)
+
+    Windows.Forms.ControlPaint.DrawCheckBox(e.Graphics, e.Bounds.X + 1, e.Bounds.Y + 10, 16, 16, _
+                                            If(obj.isSelected, ButtonState.Checked, ButtonState.Normal))
+
+    e.Graphics.DrawImage(obj.GetAsImage(), e.Bounds.X + 20, e.Bounds.Y, e.Bounds.Width - 20, e.Bounds.Height)
+
+  End Sub
+
+  Private Sub lstElementNames_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstElementNames.LostFocus
+    ' pnlElements.Hide()
+  End Sub
+
+  Private Sub lstElementNames_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lstElementNames.MouseDown
+    If vcc() Is Nothing Then Return
+    If e.Button = Windows.Forms.MouseButtons.Left Then
+      Dim idx = lstElementNames.IndexFromPoint(e.Location)
+      If idx = -1 Then Return
+      'Dim obj = vcc.canvas.GetObjectByID(lstElementNames.Items(idx))
+      Dim obj As VObject = lstElementNames.Items(idx)
+      obj.isSelected = Not obj.isSelected
+      vcc.canvas.OnSelectionChanged()
+      Return
+    End If
+
+    If e.Button = Windows.Forms.MouseButtons.Right Then
+      Dim idx = lstElementNames.IndexFromPoint(e.Location)
+      If idx > -1 Then
+        vcc.canvas.SelectObject(lstElementNames.Items(idx))
+      End If
+    End If
+
+    ' pnlElements.Hide()
+  End Sub
+
+  Private Sub Label2_MouseEnter(ByVal sender As Label, ByVal e As System.EventArgs) Handles Label3.MouseEnter, Label2.MouseEnter, Label1.MouseEnter
+    sender.BackColor = Color.White
+  End Sub
+
+  Private Sub Label2_MouseLeave(ByVal sender As Label, ByVal e As System.EventArgs) Handles Label3.MouseLeave, Label2.MouseLeave, Label1.MouseLeave
+    sender.BackColor = Color.Transparent
+  End Sub
+
+
+  Private Sub lblToggleLeftPanel_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblToggleLeftPanel.MouseDown
+    If e.Button = Windows.Forms.MouseButtons.Left Then
+      pnlLeft.Width = If(pnlLeft.Width = 6, 232, 6)
+    ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
+      Me.TopMost = Not Me.TopMost
+      lblToggleLeftPanel.BackColor = If(Me.TopMost, Color.CornflowerBlue, Color.OliveDrab)
+    ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
+      lstTrace.BringToFront()
+      ' lstTrace.Visible = Not lstTrace.Visible
+    End If
+  End Sub
+
+  Private Sub ExpTree1_ExpTreeNodeSelected(ByVal SelPath As String, ByVal Item As ExplorerControls.CShItem)
+
+  End Sub
+
+  Dim lstFileListMouseDownPoint As Point
+
+  Private Sub ListBox1_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ListBox1.MouseDoubleClick
+    Dim fileSpecSel As String = IO.Path.Combine(lblCurPath.Text, ListBox1.SelectedItem)
+    Dim c = newClient()
+    c.vcc.openFile(fileSpecSel)
+  End Sub
+  Private Sub ListBox1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ListBox1.MouseDown
+    ListBox1.SelectedIndex = ListBox1.IndexFromPoint(e.Location)
+    lstFileListMouseDownPoint = e.Location
+  End Sub
+
+  Private Sub ListBox1_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ListBox1.MouseMove
+    If e.Button = Windows.Forms.MouseButtons.Left AndAlso ListBox1.SelectedIndex > -1 _
+        AndAlso lstFileListMouseDownPoint <> Nothing _
+        AndAlso (Math.Abs(lstFileListMouseDownPoint.X - e.Location.X) > 2 Or Math.Abs(lstFileListMouseDownPoint.Y - e.Location.Y) > 2) Then
+      lstFileListMouseDownPoint = Nothing
+      Dim fileSpecSel As String = IO.Path.Combine(lblCurPath.Text, ListBox1.SelectedItem)
+      Dim datObj As New DataObject("FileDrop", New String() {fileSpecSel})
+      ListBox1.DoDragDrop(datObj, DragDropEffects.Copy)
+    End If
+  End Sub
+
+  Private Sub ListBox1_MouseUp(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ListBox1.MouseUp
+    If isKeyPressed(Keys.ControlKey) Then
+      Dim fileSpecSel As String = IO.Path.Combine(lblCurPath.Text, ListBox1.SelectedItem)
+      Dim c = newClient()
+      c.vcc.openFile(fileSpecSel)
+    ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
+      If vcc() Is Nothing Then Return
+      Dim fileSpecSel As String = IO.Path.Combine(lblCurPath.Text, ListBox1.SelectedItem)
+      vcc.openFile(fileSpecSel)
+    End If
+  End Sub
+
+  Private Sub Button1_MouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles btnNav03.MouseUp, btnNav02.MouseUp, btnNav01.MouseUp, btnNav04.MouseUp
+    If e.Button = Windows.Forms.MouseButtons.Right Then
+      glob.para("frm_mdiViewer2__quickNavBtn__" + sender.name) = lblCurPath.Text
+      sender.text = IO.Path.GetFileName(lblCurPath.Text)
+    Else
+      FolderBrowser1.SelectPath(glob.para("frm_mdiViewer2__quickNavBtn__" + sender.name), True)
+    End If
+  End Sub
+
+  Private Sub FolderBrowser1_SelectedFolderChanged(ByVal sender As System.Object, ByVal e As DirectoryBrowser.SelectedFolderChangedEventArgs) Handles FolderBrowser1.SelectedFolderChanged
+
+    ListBox1.Items.Clear()
+    glob.para("frm_mdiViewer2__folderSel") = e.Path
+    lblCurPath.Text = e.Path
+    If vcc() IsNot Nothing Then vcc.FileDialogInitialDirectory = e.Path
+    Dim files() As String = IO.Directory.GetFiles(e.Path)
+    For Each file In files
+      ListBox1.Items.Add(IO.Path.GetFileName(file))
+    Next
+
+  End Sub
+
+  Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListBox1.SelectedIndexChanged
+    If ListBox1.SelectedIndex > -1 Then
+      Dim fileSpecSel As String = IO.Path.Combine(lblCurPath.Text, ListBox1.SelectedItem)
+
+      Select Case IO.Path.GetExtension(fileSpecSel).ToUpper
+        Case ".BMP", ".GIF", ".JPG", ".PNG"
+          pbPreview.Image = Image.FromFile(fileSpecSel)
+        Case ".SGCOLLAGE", ".HTML", ".HTM"
+
+      End Select
+
+    End If
+
+  End Sub
+
+  Private Sub TabControl1_TabPaintBorder(ByVal sender As Object, ByVal e As MdiTabControl.TabControl.TabPaintEventArgs) Handles TabControl1.TabPaintBorder
+    If e.Selected Or e.Hot Then
+      e.Handled = False
+      e.Graphics.FillRectangle(Brushes.Orange, 0, 0, e.TabWidth, 3)
+    End If
+  End Sub
+
+
+
+  Private Sub vcc_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles MyBase.DragEnter
+    If e.Data.GetDataPresent("FileDrop") Then
+      Dim files() As String = e.Data.GetData("FileDrop")
+      For Each fileSpec In files
+        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
+        Select Case ext
+          Case ".HTM", ".HTML", ".SGCOLLAGE"
+            e.Effect = DragDropEffects.Copy
+        End Select
+      Next
+    End If
+  End Sub
+
+  Private Sub vcc_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles MyBase.DragDrop
+    If e.Data.GetDataPresent("FileDrop") Then
+      Dim pos As Point = vcc.PictureBox1.PointToClient(New Point(e.X, e.Y))
+
+      Dim files() As String = e.Data.GetData("FileDrop")
+      For Each fileSpec In files
+        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
+        Select Case ext
+          Case ".HTM", ".HTML", ".SGCOLLAGE"
+            Dim c = newClient()
+            c.vcc.openFile(fileSpec)
+        End Select
+      Next
+
+      vcc.PictureBox1.Refresh()
+    End If
+  End Sub
+
+
+#Region "Sidebar"
+
+  Private Sub lstTrace_MouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lstTrace.MouseUp
+    If e.Button = Windows.Forms.MouseButtons.Middle Then
+      lstTrace.Items.Clear()
+    End If
+    If e.Button = Windows.Forms.MouseButtons.Right Then
+      TextBox1.Visible = Not TextBox1.Visible
+      TextBox1.Height = Me.ClientSize.Height - 50
+
+    End If
+    TextBox1.Text = lstTrace.SelectedItem
+  End Sub
+
+
+  Public Function TryLoadJSON(ByVal uri As String, Optional ByVal post As String = Nothing) As Hashtable
+    Dim RESULT_String As String, success As Boolean
+    If post = Nothing Then
+      RESULT_String = TwAjax.getUrlContent(uri)
+    Else
+      RESULT_String = TwAjax.postUrl(uri, post)
+    End If
+    Dim RESULT As Hashtable = JSON.JsonDecode(RESULT_String, success)
+    If success = False Then
+      lstTrace.Items.Add("errMes : " + RESULT_String)
+      MsgBox("Es konnte keine Verbindung zum Server aufgebaut werden. Bitte überprüfe, ob die Verbindung mit dem Internet hergestellt ist.", MsgBoxStyle.Critical, "Fehler")
+      Return Nothing
+    End If
+    Return RESULT
+  End Function
+
+
+  Sub InitDropme()
+    Dim RESULT As Hashtable = TryLoadJSON("http://dropme.de/api/clipboards/favtag/fav", dropme_postData)
+    If RESULT Is Nothing Then Return
+    If RESULT("success") <> True Then
+      If MsgBox("Der Server hat eine Fehlermeldung zurückgeliefert. Bitte überprüfe, ob die Verbindung mit dem Internet hergestellt ist und die richtigen Logindaten für DropMe.de eingetragen sind." + vbNewLine + vbNewLine + "Fehlermeldung: " + RESULT("error") + vbNewLine + vbNewLine + "Sollen die Einstellungen geöffnet werden, um die Logindaten zu überprüfen?", MsgBoxStyle.Critical Or MsgBoxStyle.YesNo, "Fehler") = MsgBoxResult.Yes Then
+        frm_options.Show()
+      End If
+      Return
+    End If
+
+    cmbDropmeClipboard.Items.Clear()
+    Dim LIST As ArrayList = RESULT("list")
+    For Each item As Hashtable In LIST
+      If item("owner") = "" Then
+        cmbDropmeClipboard.Items.Add(item("name"))
+      Else
+        cmbDropmeClipboard.Items.Add(item("owner") + "/" + item("name"))
+      End If
+    Next
+    If cmbDropmeClipboard.Items.Count > 0 Then cmbDropmeClipboard.SelectedIndex = 0
+  End Sub
+
+  Dim loadDropmeThumbnails_CANCEL_FLAG As Boolean = False
+  Dim loadDropmeThumbnails_RUNNING_FLAG As Boolean = False
+
+  Private Sub cmbDropmeClipboard_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbDropmeClipboard.SelectedIndexChanged
+    loadDropmeThumbnails_CANCEL_FLAG = True
+
+    Dim selClip = Split(DirectCast(cmbDropmeClipboard.Text, String), "/", 2)
+    If selClip.Length = 1 Then selClip = New String() {"", selClip(0)}
+    Dim RESULT As Hashtable = TryLoadJSON("http://dropme.de/api/info?owner=" + selClip(0) + "&name=" + selClip(1), dropme_postData)
+    If RESULT Is Nothing Then
+      MsgBox("Invalid Clipboard")
+      Return
+    End If
+
+    Dim RESULT2 As Hashtable = TryLoadJSON("http://dropme.de/api/items/" + RESULT("cbid"), dropme_postData)
+    If RESULT2 Is Nothing Then
+      MsgBox("Invalid Clipboard.")
+      Return
+    End If
+
+    ImageList1.Images.Clear()
+    ListView1.Items.Clear()
+    For Each item As Hashtable In RESULT2("item_list")
+      Dim lvi = ListView1.Items.Add(CStr(item("filename")))
+      lvi.Tag = item
+    Next
+
+
+    'While loadDropmeThumbnails_RUNNING_FLAG
+    '  Beep()
+    '  Threading.Thread.Sleep(150)
+    '  Application.DoEvents()
+    'End While
+
+    loadDropmeThumbnails_CANCEL_FLAG = False
+    Dim t As New Threading.Thread(AddressOf loadDropmeThumbnailsThread)
+    t.Start(RESULT2("item_list"))
+  End Sub
+
+  Private Sub llSidebar2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llSidebar2.LinkClicked
+    InitDropme()
+  End Sub
+
+  Private Sub loadDropmeThumbnailsThread(ByVal arrayList As Object)
+    loadDropmeThumbnails_RUNNING_FLAG = True
+    Try
+      Dim tempFolder = IO.Path.Combine(IO.Path.GetTempPath, "SgCollageDropmeThumbs")
+      IO.Directory.CreateDirectory(tempFolder)
+      For i = 0 To arrayList.Count - 1
+        Dim tempFile = IO.Path.Combine(tempFolder, arrayList(i)("cid") + ".jpg")
+        If (IO.File.Exists(tempFile)) Then
+          Me.Invoke(dloadDropmeThumbnailsCallback, i, Image.FromFile(tempFile))
+        Else
+
+          Dim img = ImageFromWeb("http://dropme.de/api/preview_image/" + arrayList(i)("cid") + "/256", dropme_postData)
+          If loadDropmeThumbnails_CANCEL_FLAG Then GoTo exit_Sub
+          If img IsNot Nothing Then
+            img.Save(tempFile, System.Drawing.Imaging.ImageFormat.Jpeg)
+            Me.Invoke(dloadDropmeThumbnailsCallback, i, img)
+          End If
+        End If
+
+        If loadDropmeThumbnails_CANCEL_FLAG Then GoTo exit_Sub
+
+      Next
+    Catch ex As Exception
+      MsgBox("error in loadDropmeThumbnailsThread" + vbNewLine + ex.Message)
+    End Try
+exit_Sub:
+    loadDropmeThumbnails_CANCEL_FLAG = False
+    loadDropmeThumbnails_RUNNING_FLAG = False
+  End Sub
+
+  Private dloadDropmeThumbnailsCallback As New dddloadDropmeThumbnailsCallback(AddressOf loadDropmeThumbnailsCallback)
+  Private Delegate Sub dddloadDropmeThumbnailsCallback(ByVal index As Integer, ByVal payload As Image)
+  Private Sub loadDropmeThumbnailsCallback(ByVal index As Integer, ByVal payload As Image)
+    Try
+      ImageList1.Images.Add("i_" & index, payload)
+      ListView1.Items(index).ImageKey = "i_" & index
+
+    Catch : loadDropmeThumbnails_CANCEL_FLAG = True : End Try
+  End Sub
+
+  Private Sub llSidebar3_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles llSidebar3.MouseDown, llSidebar2.MouseDown, llSidebar1.MouseDown, llSidebar4.MouseDown
+    llSidebar1.BackColor = Color.DarkGray : llSidebar2.BackColor = Color.DarkGray : llSidebar3.BackColor = Color.DarkGray : llSidebar4.BackColor = Color.DarkGray
+    sender.backcolor = Color.Gainsboro
+    If sender Is llSidebar1 Then pnlSideLocFiles.BringToFront()
+    If sender Is llSidebar2 Then pnlSideDropme.BringToFront()
+    If sender Is llSidebar3 Then lstTrace.BringToFront()
+    If sender Is llSidebar4 Then pnlSideElements.BringToFront()
+
+  End Sub
+
+  Private Sub txtDropMeSave_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtDropMeSave.KeyDown
+    If e.KeyCode = Keys.Enter Then
+      btnDropMeSave_Click(Nothing, Nothing)
+    End If
+  End Sub
+
+
+  Dim WithEvents bwUploadDropme As New System.ComponentModel.BackgroundWorker
+
+  Private Sub btnDropMeSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDropMeSave.Click
+    pnlDropMeSave.Enabled = False
+
+    dropme_sourceFilespec = dropme_cacheDir + txtDropMeSave.Text + ".html"
+    IO.Directory.CreateDirectory(dropme_cacheDir)
+    vcc.FileSpec = dropme_sourceFilespec
+    vcc.saveFile(False)
+
+    ProgressBar1.Maximum = FileLen(dropme_sourceFilespec)
+    ProgressBar1.Show()
+
+    bwUploadDropme.WorkerReportsProgress = True
+    bwUploadDropme.WorkerSupportsCancellation = True
+    bwUploadDropme.RunWorkerAsync(cmbDropmeClipboard.Text)
+
+    Enabled = True
+  End Sub
+
+
+
+  Private Sub bwUploadDropme_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwUploadDropme.DoWork
+    Try
+      Dim selClip = Split(DirectCast(e.Argument, String), "/", 2)
+      If selClip.Length = 1 Then selClip = New String() {"", selClip(0)}
+      Dim RESULT As Hashtable = TryLoadJSON("http://dropme.de/api/info?owner=" + selClip(0) + "&name=" + selClip(1), dropme_postData)
+      If RESULT Is Nothing Then
+        e.Result = New Object() {0, "Invalid Clipboard"}
+        Return
+      End If
+
+      Dim cbid As String = RESULT("cbid")
+
+      Dim Idboundary = "sg6collagedropmeupload" & Now.Ticks    ' you can generate this number
+      Dim strBoundary = Strings.StrDup(27, "-") & Idboundary     ' mutipart post need "-" sign 
+
+      Dim fieldPart As String = _
+        "--" & strBoundary & vbCrLf & _
+        "Content-Disposition: form-data; name=""force""" & vbCrLf & _
+        vbCrLf & "1" & _
+        vbCrLf & "--" & strBoundary & vbCrLf & _
+        "Content-Disposition: form-data; name=""key""" & vbCrLf & _
+        vbCrLf & "8b95f50a-959f-4684-8918-f3ab6fc7968a" & _
+        vbCrLf & "--" & strBoundary & vbCrLf & _
+        "Content-Disposition: form-data; name=""username""" & vbCrLf & _
+        vbCrLf & glob.para("frm_options__txtLoginUser") & _
+        vbCrLf & "--" & strBoundary & vbCrLf & _
+        "Content-Disposition: form-data; name=""password""" & vbCrLf & _
+        vbCrLf & glob.para("frm_options__txtLoginPass") & _
+        vbCrLf & "--" & strBoundary & vbCrLf & _
+        "Content-Disposition: form-data; name=""uploaded""; filename=""" + txtDropMeSave.Text + ".html""" & vbCrLf & _
+        "Content-Type: application/octet-stream" & vbCrLf & vbCrLf '& _
+
+      Dim cl As Integer = FileLen(dropme_sourceFilespec) + fieldPart.Length + 8 + strBoundary.Length
+
+      'Dim headerPart As String = _
+      '  "POST /api/write/" & cbid & " HTTP/1.1" & vbCrLf & _
+      '  "Host: dropme.de" & vbCrLf & _
+      '  "User-Agent: ScreenGrab/" & My.Application.Info.Version.ToString & vbCrLf & _
+      '  "Content-Type: multipart/form-data; boundary=" & strBoundary & vbCrLf & _
+      '  "Content-Length: " & cl & vbCrLf & vbCrLf
+
+      ' IO.File.ReadAllText(sourceFilespec, System.Text.Encoding.ASCII) & vbCrLf & vbCrLf & _
+      '"--" & strBoundary & "--"
+      'WICHTIG: Es müssen zwei CRLF sein -- sonst schneidet er den Anfang der Datei ab
+
+      'Dim sock As New System.Net.Sockets.TcpClient("localhost", 880) 
+      'Dim sock As New System.Net.Sockets.TcpClient("dropme.de", 80)
+      Dim uri As String = "http://dropme.de/api/write/" & cbid
+      Dim hr As System.Net.HttpWebRequest = System.Net.WebRequest.Create(uri)
+
+      hr.Method = "POST"
+      hr.ContentType = "multipart/form-data; boundary=" & strBoundary
+
+      Dim ns = hr.GetRequestStream
+
+      'Dim header() As Byte = System.Text.Encoding.Default.GetBytes(headerPart)
+      'ns.Write(header, 0, header.Length)
+
+      Dim header() As Byte = System.Text.Encoding.Default.GetBytes(fieldPart)
+      ns.Write(header, 0, header.Length)
+
+      Dim fileStream As New IO.FileStream(dropme_sourceFilespec, IO.FileMode.Open, IO.FileAccess.Read, IO.FileShare.Read)
+      Dim bytesSize As Integer, buffer(2048) As Byte, bytesCount As Integer
+      bytesSize = fileStream.Read(buffer, 0, buffer.Length)
+      While bytesSize > 0
+        ns.Write(buffer, 0, bytesSize)
+        bytesSize = fileStream.Read(buffer, 0, buffer.Length)
+        bytesCount += bytesSize : bwUploadDropme.ReportProgress(bytesCount)
+      End While
+      fileStream.Close()
+
+      header = System.Text.Encoding.Default.GetBytes(vbCrLf & vbCrLf & "--" & strBoundary & "--")
+      ns.Write(header, 0, header.Length)
+
+      'Dim sr As New System.IO.StreamReader(ns, System.Text.Encoding.ASCII)
+      'Dim data As String = sr.ReadToEnd
+
+      'Dim recv(sock.ReceiveBufferSize) As Byte
+      'Dim count = ns.Read(recv, 0, sock.ReceiveBufferSize)
+      'Dim data = System.Text.Encoding.ASCII.GetString(recv)
+
+      ns.Close()
+      'sock.Close()
+
+      Dim RES = hr.GetResponse   '      T E S T  !!!
+      Dim recv = RES.GetResponseStream
+      Dim reader As New System.IO.StreamReader(recv)
+      Dim data = reader.ReadToEnd
+
+      'MsgBox(data)
+
+      'Dim httpParts() = Split(data, vbCrLf & vbCrLf, 2)
+      'If httpParts.Length = 1 Then
+      '  e.Result = New Object() {0, "HTTP Fehler"}
+      '  Return
+      'End If
+
+      Dim RESULT2 As Hashtable = JSON.JsonDecode(data)
+      If RESULT2 Is Nothing Then
+        e.Result = New Object() {0, "Ungültige Serverantwort", data}
+        Return
+      End If
+
+      If RESULT2("success") <> True Then
+        e.Result = New Object() {0, RESULT2("error"), data}
+        Return
+      End If
+
+
+      e.Result = New Object() {1, RESULT2("new_item")("url")}
+
+
+    Catch ex As System.Net.WebException
+      e.Result = New Object() {0, ex.Message, New IO.StreamReader(ex.Response.GetResponseStream).ReadToEnd}
+
+    Catch ex As Exception
+      e.Result = New Object() {0, ex.Message, ex.ToString}
+      Return
+    End Try
+  End Sub
+
+  Private Sub bwUploadDropme_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles bwUploadDropme.ProgressChanged
+    ProgressBar1.Value = e.ProgressPercentage
+  End Sub
+
+  Private Sub bwUploadDropme_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwUploadDropme.RunWorkerCompleted
+    ProgressBar1.Hide()
+    pnlDropMeSave.Enabled = True
+
+    If e.Result(0) = 0 Then
+      'Fehler
+      lstTrace.Items.Add("errMes     : " + e.Result(1))
+      lstTrace.Items.Add("errDetails : " + e.Result(2))
+      MsgBox(e.Result(1), MsgBoxStyle.Exclamation)
+    Else
+      'OK
+      PictureBox1.Hide()
+
+      Clipboard.Clear()
+      Clipboard.SetText(e.Result(1))
+
+      lstTrace.Items.Add("success : " + e.Result(1))
+
+      My.Computer.Audio.Play("C:\windows\media\chimes.wav")
+
+      Application.DoEvents()
+      Threading.Thread.Sleep(300)
+      PictureBox1.Show()
+      Application.DoEvents()
+      Threading.Thread.Sleep(300)
+      PictureBox1.Hide()
+      Application.DoEvents()
+      Threading.Thread.Sleep(300)
+      PictureBox1.Show()
+    End If
+  End Sub
+
+
+#End Region
+
 End Class

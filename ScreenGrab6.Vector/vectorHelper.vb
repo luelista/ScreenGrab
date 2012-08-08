@@ -8,6 +8,9 @@ Public Enum VResizeDirection
   TopRight
   BottomLeft
   BottomRight
+  Rotation
+  Custom1
+  Custom2
   Top
   Left
   Bottom

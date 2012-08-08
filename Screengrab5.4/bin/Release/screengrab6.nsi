@@ -14,7 +14,7 @@
 
 
 !define MY_PROG_STATE "release"
-!define MY_PROG_VER "6.8"
+!define MY_PROG_VER "6.10"
 
 
 !if ${MY_PROG_STATE} == "release"

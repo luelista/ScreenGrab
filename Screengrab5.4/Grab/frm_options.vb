@@ -288,4 +288,8 @@ Public Class frm_options
   Private Sub btnShowHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnShowHistory.Click
     uploadHistoryOpen()
   End Sub
+
+  Private Sub chkCollageHitTestIntersect_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkCollageHitTestIntersect.CheckedChanged
+
+  End Sub
 End Class

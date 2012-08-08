@@ -10,8 +10,8 @@
   Private Sub oIntWin_InitCommandDefinition(ByVal e As sys_interproc.commandDefEventArgs) Handles oIntWin.InitCommandDefinition
     
     e.Add("QUERY", "GetGrabPos", "-", "gibt die aktuelle Screenshot-Position zurück")
-    ' e.Add("CMD  ", "PreviewURL", "URL", "")
-    ' e.Add("CMD  ", "StartGrab", "-", "GRAB starten")
+    e.Add("CMD  ", "Load", "filespec", "Load image at filespec in main window")
+    e.Add("CMD  ", "StartGrab", "-", "GRAB starten")
     e.Add("CMD  ", "DoQuickUpload", "", "Schnellupload ")
   End Sub
 

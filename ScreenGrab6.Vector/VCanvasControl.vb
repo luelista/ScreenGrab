@@ -1,33 +1,46 @@
 ﻿Imports System.Drawing
 Imports System.Windows.Forms
 Imports System.Drawing.Drawing2D
+Imports System.ComponentModel
 
 Public Class VCanvasControl
 
-  Public WithEvents canvas As Vector.Canvas
+  Protected WithEvents _canvas As Vector.Canvas
 
+  <Browsable(False), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)> _
   Public WithEvents multitouch As TouchHelper
 
   Public insertRelationType As Integer, insertRelationStartObject As VObject, insertRelationStartPosition As Single, insertRelationStartDock As DockStyle
   Public modifyRelationObject As VLine
   Public borderSelectionMode As BorderSelMode
 
-  Public defaultColorSelected As Integer
-  Public defaultFont As Font
+  Private _defaultColorSelected As Integer
+  Public Shared defaultFont As Font
   Public defaultFg, defaultBg As Color
   Public toolboxSelElement As toolboxElement
 
+  Public FileDialogInitialDirectory As String
+
   Event DirtyChanged()
   Event ElementInserted()
+  Event ColorPicked()
   Event SelectionChanged(ByVal names() As String)
   Event FileSpecChanged()
+  Event DefaultColorChanged()
 
-  Public lineWidth As Integer
-  Public lineStyle As dashstyle
-  Public defaultText As String
-  Public defaultArrowLength As Integer
+  Public Shared lineWidth As Integer
+  Public Shared lineStyle As DashStyle
+  Public Shared defaultText As String
+  Public Shared defaultArrowLength As Integer
+
+  ReadOnly Property canvas() As Vector.Canvas
+    Get
+      Return _canvas
+    End Get
+  End Property
 
   Private _globAktFileSpec As String
+  <Browsable(False), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)> _
   Public Property FileSpec() As String
     Get
       Return _globAktFileSpec
@@ -46,6 +59,7 @@ Public Class VCanvasControl
   End Enum
 
   Private _dirty As Boolean
+  <Browsable(False), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)> _
   Public Property Dirty() As Boolean
     Get
       Return _dirty
@@ -92,9 +106,9 @@ Public Class VCanvasControl
     InitializeComponent()
 
     ' Add any initialization after the InitializeComponent() call.
-    canvas = New Vector.Canvas
-    canvas.PicBox = PictureBox1
-    canvas.EditTB = txtEditTB
+    _canvas = New Vector.Canvas
+    _canvas.PicBox = PictureBox1
+    _canvas.EditTB = txtEditTB
 
     Try
       Dim filters() As String = IO.File.ReadAllLines("ConvolutionFilters.txt")
@@ -110,8 +124,8 @@ Public Class VCanvasControl
 
     End Try
 
-    PictureBox1.Width = Panel2.Width - 50
-    PictureBox1.Height = Panel2.Height - 50
+    PictureBox1.Width = 2048 'Panel2.Width - 50
+    PictureBox1.Height = 2048 'Panel2.Height - 50
 
     multitouch = TouchHelper.RegisterForTouch(Me.PictureBox1)
   End Sub
@@ -123,7 +137,7 @@ Public Class VCanvasControl
 
 #Region "Canvas Events"
 
-  Private Sub canvas_SelectionChanged() Handles canvas.SelectionChanged
+  Private Sub canvas_SelectionChanged() Handles _canvas.SelectionChanged
 
     Dim names(canvas.SelectionCount - 1) As String
     If canvas.SelectionCount > 0 Then
@@ -135,37 +149,38 @@ Public Class VCanvasControl
         If clr2 <> canvas.selectedObjects(i).Color2 Then clr2 = Nothing
       Next
       If clr1 = Nothing Then
-        If defaultColorSelected = 1 Then defaultColorSelected = -1
+        If DefaultColorSelected = 1 Then DefaultColorSelected = -1
         defaultFg = Color.Transparent
       Else
-        If defaultColorSelected = -1 Then defaultColorSelected = 1
+        If DefaultColorSelected = -1 Then DefaultColorSelected = 1
         defaultFg = clr1
       End If
       If clr2 = Nothing Then
-        If defaultColorSelected = 2 Then defaultColorSelected = -1
+        If DefaultColorSelected = 2 Then DefaultColorSelected = -1
         defaultBg = Color.Transparent
       Else
-        If defaultColorSelected = -1 Then defaultColorSelected = 2
+        If DefaultColorSelected = -1 Then DefaultColorSelected = 2
         defaultBg = clr2
       End If
     Else
-      defaultColorSelected = -1
+      DefaultColorSelected = -1
     End If
+    RaiseEvent DefaultColorChanged()
     RaiseEvent SelectionChanged(names)
     ' cmbElementNames.SelectedIndex = If(canvas.SelectionCount = 1, cmbElementNames.Items.IndexOf(canvas.selectedObjects(0).name), -1)
   End Sub
 
-  Private Sub canvas_ContentChanged(ByVal inElement As Vector.VObject) Handles canvas.ContentChanged
+  Private Sub canvas_ContentChanged(ByVal inElement As Vector.VObject) Handles _canvas.ContentChanged
     Dirty = True
   End Sub
 
-  Private Sub canvas_ContextMenu() Handles canvas.ContextMenu
+  Private Sub canvas_ContextMenu() Handles _canvas.ContextMenu
     canvas.SetContext(cmsCanvas.Items)
     cmsCanvas.Show(Cursor.Position)
   End Sub
 
 
-  Private Sub canvas_ObjectBorderClicked(ByVal obj As Vector.VObject, ByVal border As System.Windows.Forms.DockStyle, ByVal location As Single) Handles canvas.ObjectBorderClicked
+  Private Sub canvas_ObjectBorderClicked(ByVal obj As Vector.VObject, ByVal border As System.Windows.Forms.DockStyle, ByVal location As Single) Handles _canvas.ObjectBorderClicked
     If borderSelectionMode = BorderSelMode.InsertRelationStart Then
       If obj IsNot insertRelationStartObject Then Exit Sub
       insertRelationStartPosition = location
@@ -174,7 +189,7 @@ Public Class VCanvasControl
 
     ElseIf borderSelectionMode = BorderSelMode.InsertRelationEnd Then
       Dim line As New VLine
-      line.name = "arrow_" & Now.Ticks
+      line.name = "arrow_" & canvas.NextIndex()
       line.Color1 = defaultFg
       line.Color2 = defaultBg
       line.BorderWidth = 3
@@ -215,11 +230,11 @@ Public Class VCanvasControl
     End If
   End Sub
 
-  Private Sub canvas_InsertElement(ByVal rect As System.Drawing.Rectangle) Handles canvas.InsertElement
+  Private Sub canvas_InsertElement(ByVal rect As System.Drawing.Rectangle) Handles _canvas.InsertElement
     Select Case toolboxSelElement
       Case toolboxElement.Rectangle
         Dim obj As New VRectangle
-        obj.name = "rect_" & Now.Ticks
+        obj.name = "rect_" & canvas.NextIndex()
         obj.Color1 = defaultFg
         obj.Color2 = defaultBg
         obj.BorderWidth = lineWidth
@@ -230,7 +245,7 @@ Public Class VCanvasControl
 
       Case toolboxElement.UmlClass
         Dim obj As New VUMLClass
-        obj.name = "umlc_" & Now.Ticks
+        obj.name = "umlc_" & canvas.NextIndex()
         obj.Color1 = defaultFg
         obj.Color2 = defaultBg
         obj.BorderWidth = lineWidth
@@ -247,7 +262,7 @@ Public Class VCanvasControl
 
       Case toolboxElement.Ellipse
         Dim obj As New VElipse
-        obj.name = "eli_" & Now.Ticks
+        obj.name = "eli_" & canvas.NextIndex()
         obj.Color1 = defaultFg
         obj.Color2 = defaultBg
         obj.BorderWidth = lineWidth
@@ -258,7 +273,7 @@ Public Class VCanvasControl
 
       Case toolboxElement.Textbox
         Dim obj As New VTextbox
-        obj.name = "textbox_" & Now.Ticks
+        obj.name = "textbox_" & canvas.NextIndex()
         obj.Color1 = defaultFg
         obj.Color2 = defaultBg
         obj.Font = defaultFont
@@ -270,7 +285,7 @@ Public Class VCanvasControl
 
       Case toolboxElement.Line
         Dim obj As New VLine
-        obj.name = "line_" & Now.Ticks
+        obj.name = "line_" & canvas.NextIndex()
         obj.Color1 = defaultFg
         obj.Color2 = defaultBg
         obj.BorderWidth = lineWidth
@@ -279,9 +294,21 @@ Public Class VCanvasControl
         canvas.addObject(obj)
         RaiseEvent ElementInserted()
 
+      Case toolboxElement.GaussianBlur
+        Dim obj As New VFilter
+        obj.name = "filter_" & canvas.NextIndex()
+        obj.Color1 = defaultFg
+        obj.Color2 = defaultBg
+        obj.BorderWidth = lineWidth
+        obj.borderPen.DashStyle = lineStyle
+        obj.bounds = rect
+        canvas.addObject(obj)
+        'obj.ApplyMatrix(conv
+        RaiseEvent ElementInserted()
+
       Case toolboxElement.Arrow
         Dim obj As New VLine
-        obj.name = "arrow_" & Now.Ticks
+        obj.name = "arrow_" & canvas.NextIndex()
         obj.Color1 = defaultFg
         obj.Color2 = defaultBg
         obj.BorderWidth = lineWidth
@@ -336,13 +363,17 @@ Public Class VCanvasControl
 
   Private Sub SchriftartToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SchriftartToolStripMenuItem.Click
     Using fd As New FontDialog
-      fd.Font = DirectCast(canvas.GetFirstSelectedObject(), VTextbox).Font
-      If fd.ShowDialog = Windows.Forms.DialogResult.OK Then
-        For i = 0 To canvas.selectedObjects.Count - 1
-          DirectCast(canvas.selectedObjects(i), VTextbox).Font = fd.Font
-        Next
-        canvas.Invalidate()
-      End If
+      Try
+        fd.Font = DirectCast(canvas.GetFirstSelectedObject(), VTextbox).Font
+        If fd.ShowDialog = Windows.Forms.DialogResult.OK Then
+          For i = 0 To canvas.selectedObjects.Count - 1
+            DirectCast(canvas.selectedObjects(i), VTextbox).Font = fd.Font
+          Next
+          canvas.Invalidate()
+        End If
+      Catch ex As Exception
+        MsgBox(ex.Message, MsgBoxStyle.Information, "Schriftart")
+      End Try
     End Using
   End Sub
 
@@ -359,7 +390,8 @@ Public Class VCanvasControl
   End Sub
 
   Private Sub DuplizierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DuplizierenToolStripMenuItem.Click
-
+    canvas.CopySelection()
+    canvas.Paste()
   End Sub
 
   Private Sub LoeschenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LoeschenToolStripMenuItem.Click
@@ -405,7 +437,7 @@ Public Class VCanvasControl
 
   Private Sub DrehenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DrehenToolStripMenuItem.Click
     If canvas.SelectionCount = 0 Then Exit Sub
-    Using dlg As New frm_setGradient
+    Using dlg As New frm_rotateElement
       dlg.SetCanvas(canvas)
       dlg.ShowDialog()
     End Using
@@ -433,6 +465,13 @@ Public Class VCanvasControl
     canvas.MoveObjectZ(canvas.GetFirstSelectedObject, False, True)
   End Sub
 
+  Private Sub GruppierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GruppierenToolStripMenuItem.Click
+    canvas.groupSelection()
+  End Sub
+
+  Private Sub GruppierungAufhebenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GruppierungAufhebenToolStripMenuItem.Click
+    canvas.ungroupSelection()
+  End Sub
 
   Private Sub FarbverlaufZuweisenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles FarbverlaufZuweisenToolStripMenuItem.Click
     Using f As New frm_setGradient
@@ -443,7 +482,7 @@ Public Class VCanvasControl
 
   Private Sub GaussianBlurToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     Try
-      Dim img As VImage = canvas.GetFirstSelectedObject()
+      Dim img As IFilterableVectorObject = canvas.GetFirstSelectedObject()
       Dim m As New CSharpFilters.ConvMatrix()
       Dim inte(9) As Integer
       For i = 0 To 8 : inte(i) = sender.tag(i + 1) : Next
@@ -516,6 +555,61 @@ Public Class VCanvasControl
   End Sub
 #End Region
 
+  Private Sub PictureBox1_MouseMove(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PictureBox1.MouseMove
+    If (toolboxSelElement = toolboxElement.ColorPicker) Then
+      setCurrentDefaultColor(getScreenPixelColorFromCursor())
+    End If
+  End Sub
+  Private Sub PictureBox1_Mouseup(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles PictureBox1.MouseUp
+    If (toolboxSelElement = toolboxElement.ColorPicker) Then
+      RaiseEvent ColorPicked()
+    End If
+  End Sub
+
+#Region "Default Color Management"
+
+  <Browsable(False), DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)> _
+  Property DefaultColorSelected() As Integer
+    Get
+      Return _defaultColorSelected
+    End Get
+    Set(ByVal value As Integer)
+      _defaultColorSelected = value
+      RaiseEvent DefaultColorChanged()
+    End Set
+  End Property
+
+  Sub setDefaultColor(ByVal id As Integer, ByVal newColor As Color)
+    If getDefaultColor(id) = newColor Then Return
+    Select Case id
+      Case 1 : defaultFg = newColor
+      Case 2 : Me.defaultBg = newColor
+    End Select
+    RaiseEvent DefaultColorChanged()
+  End Sub
+
+  Sub setCurrentDefaultColor(ByVal newColor As Color)
+    If getDefaultColor(Me.DefaultColorSelected) = newColor Then Return
+    setDefaultColor(Me.DefaultColorSelected, newColor)
+
+    For i = 0 To Me.canvas.selectedObjects.Count - 1
+      Dim obj = Me.canvas.selectedObjects(i)
+      If Me.DefaultColorSelected = 1 Then
+        obj.Color1 = newColor
+      ElseIf Me.DefaultColorSelected = 2 Then
+        obj.Color2 = newColor
+      End If
+    Next
+    Me.canvas.Invalidate()
+  End Sub
+
+  Function getDefaultColor(ByVal id As Integer) As Color
+    Select Case id
+      Case 1 : Return Me.defaultFg
+      Case 2 : Return Me.defaultBg
+    End Select
+  End Function
+#End Region
 
 
   Private Sub PictureBox1_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles PictureBox1.Resize
@@ -683,6 +777,7 @@ Public Class VCanvasControl
 #End Region
 
   Sub KeyboardHandler(ByVal e As KeyEventArgs)
+    canvas.KeyboardHandler(e)
 
     If e.Alt And e.KeyCode = Keys.R Then
       DrehenToolStripMenuItem_Click(Nothing, EventArgs.Empty)
@@ -712,12 +807,22 @@ Public Class VCanvasControl
       canvas.DeselectAll()
 
     End If
+    If e.KeyCode = Keys.F7 Then
+      canvas.groupSelection()
+    End If
+    If e.KeyCode = Keys.F8 Then
+      canvas.ungroupSelection()
+    End If
+    If e.KeyCode = Keys.F9 Then
+
+    End If
   End Sub
 
 
   Sub openFile()
     If CheckFileDirty() Then
       Using ofd As New OpenFileDialog
+        If String.IsNullOrEmpty(FileSpec) = False Then ofd.InitialDirectory = IO.Path.GetDirectoryName(FileSpec) Else ofd.InitialDirectory = FileDialogInitialDirectory
         ofd.Filter = "Alle unterstützten Dateiformate (*.html, *.htm, *.sgcollage)|*.html;*.htm;*.sgcollage|HTML-Dateien (*.html, *.htm)|*.html;*.htm|Screengrab-Collagen (*.sgcollage)|*.sgcollage|Alle Dateien|*.*"
         If ofd.ShowDialog = Windows.Forms.DialogResult.OK Then
           canvas.clearCanvas()
@@ -728,9 +833,18 @@ Public Class VCanvasControl
       Dirty = False
     End If
   End Sub
+  Sub openFile(ByVal fileSpecToOpen As String)
+    If CheckFileDirty() Then
+      canvas.clearCanvas()
+      FileSpec = fileSpecToOpen
+      canvas.readHtmlPage(fileSpecToOpen)
+      Dirty = False
+    End If
+  End Sub
   Function saveFile(ByVal saveAs As Boolean) As Boolean
     If String.IsNullOrEmpty(FileSpec) Or saveAs Then
       Using sfd As New SaveFileDialog
+        '' If String.IsNullOrEmpty(FileSpec) = False Then sfd.FileName = FileSpec Else sfd.InitialDirectory = FileDialogInitialDirectory
         sfd.Filter = "Screengrab-Collagen (*.sgcollage)|*.sgcollage|HTML-Dateien (*.html, *.htm)|*.html;*.htm|Alle Dateien|*.*"
         If sfd.ShowDialog = Windows.Forms.DialogResult.OK Then
           FileSpec = sfd.FileName

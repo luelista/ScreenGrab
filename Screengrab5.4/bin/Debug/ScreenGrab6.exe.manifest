@@ -4,7 +4,7 @@
   <description asmv2:iconFile="AcroRd32_18434.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ScreenGrab6" version="6.8.0.0" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="ScreenGrab6" version="6.10.0.0" language="neutral" processorArchitecture="x86" />
     <commandLine file="ScreenGrab6.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -45,6 +45,18 @@
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="stdole" version="7.0.3300.0" publicKeyToken="B03F5F7F11D50A3A" language="neutral" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Antlr3.Runtime.dll" size="99328">
+      <assemblyIdentity name="Antlr3.Runtime" version="3.3.1.7705" publicKeyToken="EB42632606E9261F" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>hI8VnsxU82a0W71QqE6wn4IO/UE=</dsig:DigestValue>
+      </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
@@ -120,6 +132,18 @@
     </dependentAssembly>
   </dependency>
   <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExplorerControls.dll" size="270336">
+      <assemblyIdentity name="ExplorerControls" version="3.1.0.23500" publicKeyToken="11D92DC49B2BEE68" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>iCF5oo/YiPv/Xiwcx7qFnMY2zrg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Interop.CCRPFolderTV6.dll" size="49152">
       <assemblyIdentity name="Interop.CCRPFolderTV6" version="1.2.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
@@ -168,38 +192,62 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.exe" size="817152">
-      <assemblyIdentity name="ScreenGrab6" version="6.8.0.0" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Jint.dll" size="366080">
+      <assemblyIdentity name="Jint" version="0.9.2.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>BnkB0irByAwf3crNe09MQ+wAupk=</dsig:DigestValue>
+        <dsig:DigestValue>4h1/NxB6CNM1kTYW1hgqojL+ePk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.HelperLib.dll" size="10240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="MdiTabControl.dll" size="91648">
+      <assemblyIdentity name="MdiTabControl" version="1.1.3159.34934" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>mr8EouGvhCyoO8Pd0Nf13gj+CjY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.exe" size="700928">
+      <assemblyIdentity name="ScreenGrab6" version="6.10.0.0" language="neutral" processorArchitecture="x86" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>Wrh+XBD3HhstOmnHPeriQCu8RtU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.HelperLib.dll" size="178688">
       <assemblyIdentity name="ScreenGrab6.HelperLib" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>SuqcONR+ABuvXjei0WtzjBWFW80=</dsig:DigestValue>
+        <dsig:DigestValue>nr3rx+yMkxyJst4ynHf/ke5fgKY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.Vector.dll" size="218624">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.Vector.dll" size="246272">
       <assemblyIdentity name="ScreenGrab6.Vector" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>2RGNu6ShCejhCWt5x7cUuo6r+nk=</dsig:DigestValue>
+        <dsig:DigestValue>zIhw7aisS6I9rcesqpmTkxHlgMc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -222,6 +270,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>oP2d9u94yStV9DvJ07mfNPOXlvU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="CollageModus\Antlr3.Runtime.dll" size="99328">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>hI8VnsxU82a0W71QqE6wn4IO/UE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CollageModus\ControlsEx.dll" size="126976">
@@ -249,6 +306,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>7EHLAtt1nLZYgZjvUEZ8l8ZyGkE=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="CollageModus\MdiTabControl.dll" size="91648">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>mr8EouGvhCyoO8Pd0Nf13gj+CjY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="ConvolutionFilters.txt" size="253">

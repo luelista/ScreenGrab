@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>ScreenGrab6.Collage.My.MyApplication</StartupObject>
+    <RootNamespace>ScreenGrab6.Collage</RootNamespace>
+    <AssemblyName>Collage</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <TargetFrameworkSubset>
+    </TargetFrameworkSubset>
+    <ApplicationIcon>grab.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Collage.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Collage.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ButtonListbar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Controls\ButtonListbar.dll</HintPath>
+    </Reference>
+    <Reference Include="ControlsEx, Version=1.0.3579.42446, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="DrawingEx, Version=1.0.4317.22846, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="itextsharp, Version=5.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
+    <Reference Include="MdiTabControl, Version=1.1.3159.34934, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="app_interprocHandler.vb" />
+    <Compile Include="app_main.vb" />
+    <Compile Include="CollageModus\collageModusDOMWindow.vb" />
+    <Compile Include="CollageModus\frm_mdiClient.Designer.vb">
+      <DependentUpon>frm_mdiClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CollageModus\frm_mdiClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CollageModus\frm_mdiViewer2.Designer.vb">
+      <DependentUpon>frm_mdiViewer2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CollageModus\frm_mdiViewer2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CollageModus\frm_paletteColor.Designer.vb">
+      <DependentUpon>frm_paletteColor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CollageModus\frm_paletteColor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorExtensions.vb" />
+    <Compile Include="Controls\gColorComboBox.Designer.vb">
+      <DependentUpon>gColorComboBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\gColorComboBox.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\gColorPicker.designer.vb">
+      <DependentUpon>gColorPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\gColorPicker.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\gEyeDropper.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\gTrackBar.Designer.vb">
+      <DependentUpon>gTrackBar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\gTrackBar.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="frm_options.designer.vb">
+      <DependentUpon>frm_options.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frm_options.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libs\app_winVista.vb" />
+    <Compile Include="Libs\cls_globPara.vb" />
+    <Compile Include="Libs\HotKeyFormLib.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Libs\JSON.vb" />
+    <Compile Include="Libs\ScreenArea.vb" />
+    <Compile Include="Libs\ScreenshotGenerator.vb" />
+    <Compile Include="Libs\sys_editWindowMenu.vb" />
+    <Compile Include="Libs\sys_forceForegroundWindow.vb" />
+    <Compile Include="Libs\sys_formMoveTricky.vb" />
+    <Compile Include="Libs\sys_getAsyncKeyState.vb" />
+    <Compile Include="Libs\sys_imageFromWeb.vb" />
+    <Compile Include="Libs\sys_interproc.vb" />
+    <Compile Include="Libs\sys_mwRegistry.vb" />
+    <Compile Include="Libs\sys_mwTrace.vb" />
+    <Compile Include="Libs\sys_rc4encryption.vb" />
+    <Compile Include="Libs\sys_setWindowPos.vb" />
+    <Compile Include="Libs\TwAjax.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CollageModus\frm_mdiClient.resx">
+      <DependentUpon>frm_mdiClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollageModus\frm_mdiViewer2.resx">
+      <DependentUpon>frm_mdiViewer2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CollageModus\frm_paletteColor.resx">
+      <DependentUpon>frm_paletteColor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\gColorPicker.resx">
+      <DependentUpon>gColorPicker.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\gTrackBar.resx">
+      <DependentUpon>gTrackBar.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_options.resx">
+      <DependentUpon>frm_options.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Libs\HotKeyFormLib.resx">
+      <DependentUpon>HotKeyFormLib.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CollageModus\Antlr3.Runtime.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CollageModus\ControlsEx.dll" />
+    <Content Include="CollageModus\DrawingEx.dll" />
+    <Content Include="CollageModus\itextsharp.dll" />
+    <Content Include="CollageModus\MdiTabControl.dll" />
+    <Content Include="ConvolutionFilters.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="grab.ico" />
+    <None Include="app.config" />
+    <None Include="Resources\closedisabled.png" />
+    <None Include="Resources\close.png" />
+    <None Include="Resources\closehot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ScreenGrab6.HelperLib\ScreenGrab6.HelperLib.csproj">
+      <Project>{64AF3C31-F33C-4DA4-87A8-C620DF892556}</Project>
+      <Name>ScreenGrab6.HelperLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScreenGrab6.Vector\ScreenGrab6.Vector.vbproj">
+      <Project>{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}</Project>
+      <Name>ScreenGrab6.Vector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

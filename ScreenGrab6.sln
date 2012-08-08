@@ -1,0 +1,49 @@
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ScreenGrab5", "Screengrab5.4\ScreenGrab5.vbproj", "{D5CE7CF2-503C-4D58-A7E7-19540B56FB4E}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VUMLCodeGeneration", "VUMLCodeGeneration\VUMLCodeGeneration.vbproj", "{7FBDA1EF-4CC6-47DC-9170-AD3A423F9352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenGrab6.HelperLib", "ScreenGrab6.HelperLib\ScreenGrab6.HelperLib.csproj", "{64AF3C31-F33C-4DA4-87A8-C620DF892556}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ScreenGrab6.Alpha", "ScreenGrab6.Alpha\ScreenGrab6.Alpha.vbproj", "{65B34038-C29A-4C3E-A22C-D59B9E902FC8}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ScreenGrab6.Vector", "ScreenGrab6.Vector\ScreenGrab6.Vector.vbproj", "{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Collage", "Collage\Collage.vbproj", "{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D5CE7CF2-503C-4D58-A7E7-19540B56FB4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5CE7CF2-503C-4D58-A7E7-19540B56FB4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5CE7CF2-503C-4D58-A7E7-19540B56FB4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5CE7CF2-503C-4D58-A7E7-19540B56FB4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FBDA1EF-4CC6-47DC-9170-AD3A423F9352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FBDA1EF-4CC6-47DC-9170-AD3A423F9352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FBDA1EF-4CC6-47DC-9170-AD3A423F9352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FBDA1EF-4CC6-47DC-9170-AD3A423F9352}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64AF3C31-F33C-4DA4-87A8-C620DF892556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64AF3C31-F33C-4DA4-87A8-C620DF892556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64AF3C31-F33C-4DA4-87A8-C620DF892556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64AF3C31-F33C-4DA4-87A8-C620DF892556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B34038-C29A-4C3E-A22C-D59B9E902FC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B34038-C29A-4C3E-A22C-D59B9E902FC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B34038-C29A-4C3E-A22C-D59B9E902FC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B34038-C29A-4C3E-A22C-D59B9E902FC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

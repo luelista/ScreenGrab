@@ -127,17 +127,17 @@ Module app_grabWindow
     histItem.x = x : histItem.y = y : histItem.xx = XX : histItem.yy = YY
     FRM.AddToHistory(histItem)
 
+    grabWindowCancel()
     onScreenshotTaken()
 
-    grabWindowCancel()
   End Sub
 
   Sub onScreenshotTaken()
 
     'verschiedene Automatiken
 
-    If frm_mdiViewer2.Visible And FRM.qq_chkAutoCollage.Checked Then 'AndAlso frm_mdiViewer.AutomatischEinfuegenToolStripMenuItem.Checked Then
-      frm_mdiViewer2.addPicClient()
+    If FRM.qq_chkAutoCollage.Checked Then 'AndAlso frm_mdiViewer.AutomatischEinfuegenToolStripMenuItem.Checked Then
+      FRM.onCollage()
     End If
 
     If FRM.chkAutoCopy.Checked Then

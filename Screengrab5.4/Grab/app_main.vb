@@ -16,6 +16,7 @@ Public Module app_main
   Public AutoUpload2 As Boolean
 
   Public FRM As frm_blueScreen
+  'Public MDI As frm_mdiViewer2
 
   Public fullDesktopImage As Image
 
@@ -75,14 +76,14 @@ Public Module app_main
   '  End If
   'End Function
 
-  Dim uplForm As frm_uploadingMulti
+  'Dim uplForm As frm_uploadingMulti
 
-  Function getUplForm() As frm_uploadingMulti
-    If uplForm Is Nothing OrElse uplForm.IsDisposed Then
-      uplForm = New frm_uploadingMulti
-    End If
-    Return uplForm
-  End Function
+  'Function getUplForm() As frm_uploadingMulti
+  '  If uplForm Is Nothing OrElse uplForm.IsDisposed Then
+  '    uplForm = New frm_uploadingMulti
+  '  End If
+  '  Return uplForm
+  'End Function
 
   Function getLastTargets() As String()
     Return Split(glob.para("lastTargets"), "::")
@@ -104,16 +105,16 @@ Public Module app_main
 
 
 
-  Sub showUploadInProgress()
-    frm_tempScreenShotName.Top = frm_blueScreen.Top + (frm_blueScreen.Height - frm_tempScreenShotName.Height) / 2
-    frm_tempScreenShotName.Left = frm_blueScreen.Left + (frm_blueScreen.Width - frm_tempScreenShotName.Width) / 2
+  'Sub showUploadInProgress()
+  '  frm_tempScreenShotName.Top = frm_blueScreen.Top + (frm_blueScreen.Height - frm_tempScreenShotName.Height) / 2
+  '  frm_tempScreenShotName.Left = frm_blueScreen.Left + (frm_blueScreen.Width - frm_tempScreenShotName.Width) / 2
 
-    frm_tempScreenShotName.ViewUpload = True
-    frm_tempScreenShotName.Show()
-    frm_tempScreenShotName.Activate()
-    Application.DoEvents()
+  '  frm_tempScreenShotName.ViewUpload = True
+  '  frm_tempScreenShotName.Show()
+  '  frm_tempScreenShotName.Activate()
+  '  Application.DoEvents()
 
-  End Sub
+  'End Sub
 
 
   Function CreateNiceFileSize(ByVal size As Long) As String
@@ -156,9 +157,9 @@ Public Module app_main
   End Sub
 
 
-  Function GetUsername() As String
-    Return twLoginuser
-  End Function
+  'Function GetUsername() As String
+  '  Return twLoginuser
+  'End Function
 
   'Sub ActiveImage_upload()
   '  If Not frm_main.ActiveMdiChild Is Nothing Then
