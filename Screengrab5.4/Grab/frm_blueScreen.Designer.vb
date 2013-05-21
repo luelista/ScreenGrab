@@ -66,8 +66,10 @@ Partial Class frm_blueScreen
     Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
     Me.Button3 = New System.Windows.Forms.Button
     Me.btnSaveToWeb = New System.Windows.Forms.Button
+    Me.btn_android2sg = New System.Windows.Forms.Button
     Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
     Me.pnlViewPartial = New System.Windows.Forms.Panel
+    Me.Label1 = New System.Windows.Forms.Label
     Me.pnlSidebar = New System.Windows.Forms.Panel
     Me.chkAutoCopy = New System.Windows.Forms.CheckBox
     Me.chkAutoSave = New System.Windows.Forms.CheckBox
@@ -89,6 +91,7 @@ Partial Class frm_blueScreen
     Me.picOpenedFile = New System.Windows.Forms.PictureBox
     Me.Label4 = New System.Windows.Forms.Label
     Me.lstHistory = New System.Windows.Forms.ListBox
+    Me.tmr_android2SgRequest = New System.Windows.Forms.Timer(Me.components)
     CType(Me.pic_viewPartial, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.ContextMenuStrip1.SuspendLayout()
     CType(Me.tbrZoom, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -400,11 +403,22 @@ Partial Class frm_blueScreen
     Me.btnSaveToWeb.Name = "btnSaveToWeb"
     Me.btnSaveToWeb.Size = New System.Drawing.Size(81, 41)
     Me.btnSaveToWeb.TabIndex = 35
-    Me.btnSaveToWeb.Text = "Upload" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "& Share"
+    Me.btnSaveToWeb.Text = "Upload" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "&& Share"
     Me.btnSaveToWeb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     Me.btnSaveToWeb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
     Me.ToolTip1.SetToolTip(Me.btnSaveToWeb, "Hochladen (Strg+U)")
     Me.btnSaveToWeb.UseVisualStyleBackColor = True
+    '
+    'btn_android2sg
+    '
+    Me.btn_android2sg.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.btn_android2sg.Image = CType(resources.GetObject("btn_android2sg.Image"), System.Drawing.Image)
+    Me.btn_android2sg.Location = New System.Drawing.Point(2, 406)
+    Me.btn_android2sg.Name = "btn_android2sg"
+    Me.btn_android2sg.Size = New System.Drawing.Size(81, 46)
+    Me.btn_android2sg.TabIndex = 49
+    Me.ToolTip1.SetToolTip(Me.btn_android2sg, "Hilfe")
+    Me.btn_android2sg.UseVisualStyleBackColor = True
     '
     'NotifyIcon1
     '
@@ -422,17 +436,31 @@ Partial Class frm_blueScreen
     Me.pnlViewPartial.BackColor = System.Drawing.Color.WhiteSmoke
     Me.pnlViewPartial.BackgroundImage = CType(resources.GetObject("pnlViewPartial.BackgroundImage"), System.Drawing.Image)
     Me.pnlViewPartial.ContextMenuStrip = Me.ContextMenuStrip1
+    Me.pnlViewPartial.Controls.Add(Me.Label1)
     Me.pnlViewPartial.Controls.Add(Me.pic_viewPartial)
     Me.pnlViewPartial.Location = New System.Drawing.Point(88, 0)
     Me.pnlViewPartial.Name = "pnlViewPartial"
     Me.pnlViewPartial.Size = New System.Drawing.Size(713, 499)
     Me.pnlViewPartial.TabIndex = 24
     '
+    'Label1
+    '
+    Me.Label1.BackColor = System.Drawing.Color.Lavender
+    Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.25!)
+    Me.Label1.Location = New System.Drawing.Point(137, 156)
+    Me.Label1.Name = "Label1"
+    Me.Label1.Size = New System.Drawing.Size(365, 136)
+    Me.Label1.TabIndex = 9
+    Me.Label1.Text = """Send To ScreenGrab""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Bild wird empfangen ..."
+    Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+    Me.Label1.Visible = False
+    '
     'pnlSidebar
     '
     Me.pnlSidebar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                 Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(78, Byte), Integer))
+    Me.pnlSidebar.Controls.Add(Me.btn_android2sg)
     Me.pnlSidebar.Controls.Add(Me.chkAutoCopy)
     Me.pnlSidebar.Controls.Add(Me.chkAutoSave)
     Me.pnlSidebar.Controls.Add(Me.qq_chkAutoCollage)
@@ -506,7 +534,7 @@ Partial Class frm_blueScreen
     'chk_streaming
     '
     Me.chk_streaming.ForeColor = System.Drawing.Color.White
-    Me.chk_streaming.Location = New System.Drawing.Point(7, 412)
+    Me.chk_streaming.Location = New System.Drawing.Point(7, 459)
     Me.chk_streaming.Name = "chk_streaming"
     Me.chk_streaming.Size = New System.Drawing.Size(74, 16)
     Me.chk_streaming.TabIndex = 41
@@ -634,6 +662,11 @@ Partial Class frm_blueScreen
     Me.lstHistory.TabIndex = 27
     Me.lstHistory.Visible = False
     '
+    'tmr_android2SgRequest
+    '
+    Me.tmr_android2SgRequest.Enabled = True
+    Me.tmr_android2SgRequest.Interval = 30000
+    '
     'frm_blueScreen
     '
     Me.AllowDrop = True
@@ -726,4 +759,7 @@ Partial Class frm_blueScreen
   Friend WithEvents qq_chkAutoCollage As System.Windows.Forms.CheckBox
   Friend WithEvents chkAutoWord As System.Windows.Forms.CheckBox
   Friend WithEvents chkAutoCopy As System.Windows.Forms.CheckBox
+  Friend WithEvents btn_android2sg As System.Windows.Forms.Button
+  Friend WithEvents tmr_android2SgRequest As System.Windows.Forms.Timer
+  Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

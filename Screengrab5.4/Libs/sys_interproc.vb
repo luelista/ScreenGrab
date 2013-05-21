@@ -211,6 +211,10 @@ Public Class sys_interproc
         End If
       End If
       Process.Start(appFileSpec, "/IPROC_ENSUREAPPRUNNING")
+      For i = 0 To 50
+        If getWindow(winTitle) <> IntPtr.Zero Then Exit For
+        Threading.Thread.Sleep(100)
+      Next
     End If
   End Sub
 

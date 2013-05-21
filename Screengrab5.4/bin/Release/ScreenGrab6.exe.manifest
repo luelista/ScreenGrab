@@ -211,7 +211,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>eg5XTXlVusB/YSRY7YFlb+ks4ZA=</dsig:DigestValue>
+        <dsig:DigestValue>lQlhvC3rKD7o3RLbzRzAiFAsFuM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -228,14 +228,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.Vector.dll" size="233472">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.Vector.dll" size="237056">
       <assemblyIdentity name="ScreenGrab6.Vector" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>fO9Al/0MOLErHqTAkjCIhKvmox0=</dsig:DigestValue>
+        <dsig:DigestValue>jzi+x3wJ2pJrs77LfjC56pohKBM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -25,3 +25,14 @@ C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Rele
 C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\DirectoryBrowser.FolderBrowser.resources
 C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\ScreenGrab6.HelperLib.Properties.Resources.resources
 C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\ScreenGrab6.HelperLib.csproj.GenerateResource.Cache
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\bin\Release\ScreenGrab6.HelperLib.dll
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\bin\Release\ScreenGrab6.HelperLib.pdb
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\bin\Release\ControlsEx.dll
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\bin\Release\DrawingEx.dll
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\ResolveAssemblyReference.cache
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\FileBrowser.Browser.resources
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\DirectoryBrowser.FolderBrowser.resources
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\ScreenGrab6.HelperLib.Properties.Resources.resources
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\ScreenGrab6.HelperLib.csproj.GenerateResource.Cache
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\ScreenGrab6.HelperLib.dll
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.HelperLib\obj\Release\ScreenGrab6.HelperLib.pdb

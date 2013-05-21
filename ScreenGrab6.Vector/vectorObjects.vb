@@ -75,25 +75,27 @@ Public MustInherit Class VObject
   End Sub
 
   Public Sub DrawObject(ByVal g As Graphics)
+    ' If g.Transform Is Nothing Then g.Transform = New Matrix
     Dim m, oldm As Matrix
     If Rotation > 0 Then
-      m = New Matrix
+      m = g.Transform.Clone
       m.RotateAt(Rotation, New PointF(Me.bounds.X + Me.bounds.Width / 2, Me.bounds.Y + Me.bounds.Height / 2))
       oldm = g.Transform
       g.Transform = m
     End If
-    If Group IsNot Nothing Then
-      g.TranslateTransform(Group.Left, Group.Top)
-    End If
+    'If Group IsNot Nothing Then
+    '  g.TranslateTransform(Group.Left, Group.Top)
+    'End If
 
     DrawObjectInternal(g)
     If Rotation > 0 Then
+      'g.Transform.RotateAt(-Rotation, New PointF(Me.bounds.X + Me.bounds.Width / 2, Me.bounds.Y + Me.bounds.Height / 2))
       g.Transform = oldm
       m.Dispose()
     End If
-    If Group IsNot Nothing Then
-      g.TranslateTransform(-Group.Left, -Group.Top)
-    End If
+    'If Group IsNot Nothing Then
+    '  g.TranslateTransform(-Group.Left, -Group.Top)
+    'End If
     DrawSelection(g)
   End Sub
 
@@ -119,6 +121,16 @@ Public MustInherit Class VObject
     Return bmp
   End Function
 
+  Public ReadOnly Property absoluteBounds() As Rectangle
+    Get
+      If Group Is Nothing Then
+        Return m_bounds
+      Else
+        Dim ab = Group.absoluteBounds
+        Return New Rectangle(m_bounds.X + ab.X, m_bounds.Y + ab.Y, m_bounds.Width, m_bounds.Height)
+      End If
+    End Get
+  End Property
   Public Property bounds() As Rectangle
     Get
       Return m_bounds
@@ -360,7 +372,7 @@ Public MustInherit Class VObject
   End Sub
 
   Public Overridable Function HitTest(ByVal pnt As Point) As Boolean
-    Return bounds.Contains(pnt)
+    Return absoluteBounds.Contains(pnt)
   End Function
 
   Public Overridable Function HitTestResizer(ByVal pnt As Point) As VResizeDirection
@@ -1305,9 +1317,14 @@ Public Class VGroup
   End Sub
 
   Protected Overrides Sub DrawObjectInternal(ByVal g As System.Drawing.Graphics)
+    Dim oldm As Matrix = g.Transform, m = oldm.Clone
+
+    m.Translate(bounds.X, bounds.Y)
+    g.Transform = m
     For i = 0 To subObjects.Count - 1
       subObjects(i).DrawObject(g)
     Next
+    g.Transform = oldm
   End Sub
 
 

@@ -6,7 +6,27 @@ ScreenGrab6.Vector
 </name>
 </assembly>
 <members>
-<member name="M:ScreenGrab6.Vector.JSON.JsonDecode(System.String)">
+<member name="M:ScreenGrab6.Vector.Helper.GetFontFilespec(System.String)">
+	<summary>
+ Gets the physical location of a font family from the registry
+ </summary>
+	<param name="fontName">Font family name</param>
+	<returns>File path or String.Empty</returns>
+	<remarks></remarks>
+</member><member name="P:ScreenGrab6.Vector.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ScreenGrab6.Vector.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ScreenGrab6.Vector.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:ScreenGrab6.Vector.JSON.JsonDecode(System.String)">
 	<summary>
  Parses the string json into a value
  </summary>
@@ -40,13 +60,6 @@ ScreenGrab6.Vector
  JSON uses Arrays and Objects. These correspond here to the datatypes ArrayList and Hashtable.
  All numbers are parsed to doubles.
  </summary>
-</member><member name="M:ScreenGrab6.Vector.Helper.GetFontFilespec(System.String)">
-	<summary>
- Gets the physical location of a font family from the registry
- </summary>
-	<param name="fontName">Font family name</param>
-	<returns>File path or String.Empty</returns>
-	<remarks></remarks>
 </member>
 </members>
 </doc>

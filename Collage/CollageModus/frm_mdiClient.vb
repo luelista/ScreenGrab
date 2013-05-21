@@ -89,95 +89,144 @@ Public Class frm_mdiClient
 
 
   Private Sub vcc_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles vcc.DragEnter
+    
     If e.Data.GetDataPresent("FileDrop") Then
-      Dim files() As String = e.Data.GetData("FileDrop")
-      For Each fileSpec In files
-        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
-        Select Case ext
-          Case ".JPG", ".BMP", ".PNG", ".GIF", ".TIF", ".WMF", ".TXT", ".ICO", ".CUR", ".HTM", ".HTML", ".SGCOLLAGE"
-            e.Effect = DragDropEffects.Copy
-        End Select
-      Next
-    Else 'If e.Data.GetDataPresent(DataFormats.Text) Then
-      e.Effect = DragDropEffects.Copy
-      If (e.KeyState And Keys.ControlKey) <> 0 Then
+      If isKeyPressed(Keys.Menu) Then
         e.Effect = DragDropEffects.Link
+      Else
+
+        Dim files() As String = e.Data.GetData("FileDrop")
+        For Each fileSpec In files
+          Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
+          Select Case ext
+            Case ".JPG", ".BMP", ".PNG", ".GIF", ".TIF", ".WMF", ".TXT", ".ICO", ".CUR", ".HTM", ".HTML", ".SGCOLLAGE"
+              e.Effect = DragDropEffects.Copy
+          End Select
+        Next
       End If
+    Else 'If e.Data.GetDataPresent(DataFormats.Text) Then
+      ' e.Effect = DragDropEffects.Copy
+
     End If
   End Sub
+
+  Function insertShortcut(ByVal filespec As String) As VGroup
+    vcc.canvas.DeselectAll()
+
+    'Dim border As New VRectangle
+    'border.bounds = New Rectangle(0, 0, 64, 64)
+    'border.BorderWidth = 2
+    'border.Color1 = Color.Gray
+    'border.isSelected = True
+    'vcc.canvas.addObject(border)
+
+    Dim icon As New VImage
+    icon.bounds = New Rectangle(14, 5, 32, 32)
+    icon.img = GetAssociatedIconAsImage(filespec, assoc_iconSize.SHGFI_LARGEICON)
+    icon.isSelected = True
+    vcc.canvas.addObject(icon)
+
+    Dim txt As New VTextbox
+    txt.bounds = New Rectangle(5, 40, 55, 20)
+    txt.Color1 = Color.DarkBlue
+    txt.Text = IO.Path.GetFileName(filespec)
+    txt.Font = New Font("Microsoft Sans Serif", 7, FontStyle.Regular, GraphicsUnit.Point)
+    txt.isSelected = True
+    vcc.canvas.addObject(txt)
+
+    vcc.canvas.OnSelectionChanged()
+    vcc.canvas.groupSelection()
+
+    Dim shortcut As VGroup = vcc.canvas.GetFirstSelectedObject
+    shortcut.onevent("ondblclick") = "window.shellExecute(""" + filespec.Replace("\", "\\").Replace("""", "\""") + """);"
+
+    Return shortcut
+  End Function
 
   Private Sub vcc_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles vcc.DragDrop
     Dim pos As Point = vcc.PictureBox1.PointToClient(New Point(e.X, e.Y))
     If e.Data.GetDataPresent("FileDrop") Then
-
       Dim files() As String = e.Data.GetData("FileDrop")
-      For Each fileSpec In files
-        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
-        Select Case ext
-          Case ".JPG", ".BMP", ".PNG", ".GIF", ".TIF", ".WMF"
-            Dim obj As New VImage
-            obj.name = "img_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
-            obj.img = Image.FromFile(fileSpec)
-            obj.source = "FILE:" + fileSpec
-            obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
-            'obj.setBorder(2, Color.RoyalBlue)
-            vcc.canvas.addObject(obj)
+      If isKeyPressed(Keys.Menu) Then
+        Dim fileSpec As String = files(0)
+        Dim shortcut As VGroup = insertShortcut(fileSpec)
 
-          Case ".TXT"
-            Dim obj As New VTextbox
-            obj.name = "txt_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
-            obj.Text = IO.File.ReadAllText(fileSpec)
-            obj.bounds = New Rectangle(pos.X, pos.Y, 200, 200)
-            obj.Font = DefaultFont
-            'obj.setBorder(2, Color.RoyalBlue)
-            vcc.canvas.addObject(obj)
+        shortcut.Left = pos.X - 20
+        shortcut.Top = pos.Y - 30
 
-          Case ".ICO"
-            Dim obj As New VImage
-            Dim ico As New Icon(fileSpec)
-            obj.name = "icon_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
-            obj.img = ico.ToBitmap
-            ico.Dispose()
-            obj.source = "FILE:" + fileSpec
-            obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
-            'obj.setBorder(2, Color.RoyalBlue)
-            vcc.canvas.addObject(obj)
+      Else
 
-          Case ".CUR"
-            Dim obj As New VImage
-            Dim bmp As New Bitmap(32, 32)
-            obj.name = "cursor_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
-            Dim g = Graphics.FromImage(bmp)
-            Try
-              Dim c As New Cursor(fileSpec)
-              c.DrawStretched(g, New Rectangle(0, 0, 32, 32))
-              c.Dispose()
-            Catch ex As Exception
-              g.DrawString(ex.Message, New Font("Arial", 6, FontStyle.Regular, GraphicsUnit.Point), Brushes.Black, New Rectangle(0, 0, 32, 32))
-            End Try
-            g.Dispose()
-            obj.img = bmp
-            obj.source = "FILE:" + fileSpec
-            obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
-            'obj.setBorder(2, Color.RoyalBlue)
-            vcc.canvas.addObject(obj)
+        For Each fileSpec In files
+          Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
+          Select Case ext
+            Case ".JPG", ".BMP", ".PNG", ".GIF", ".TIF", ".WMF"
+              Dim obj As New VImage
+              obj.name = "img_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
+              obj.img = Image.FromFile(fileSpec)
+              obj.source = "FILE:" + fileSpec
+              Dim xx As Integer = obj.img.Width, yy As Integer = obj.img.Height
+              If xx > Math.Min(Width, vcc.PictureBox1.Width) Then xx = Math.Min(Width, vcc.PictureBox1.Width) - 100 : yy *= xx / obj.img.Width
+              obj.bounds = New Rectangle(pos.X, pos.Y, xx, yy)
+              'obj.setBorder(2, Color.RoyalBlue)
+              vcc.canvas.addObject(obj)
 
-          Case ".HTM", ".HTML", ".SGCOLLAGE"
-            Dim newCanvas As New Vector.Canvas()
-            newCanvas.readHtmlPage(fileSpec)
-            For i = 0 To newCanvas.objects.Count - 1
-              newCanvas.objects(i).isSelected = True
-            Next
-            newCanvas.OnSelectionChanged()
-            newCanvas.groupSelection()
-            newCanvas.CopySelection()
+            Case ".TXT"
+              Dim obj As New VTextbox
+              obj.name = "txt_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
+              obj.Text = IO.File.ReadAllText(fileSpec)
+              obj.bounds = New Rectangle(pos.X, pos.Y, 200, 200)
+              obj.Font = DefaultFont
+              'obj.setBorder(2, Color.RoyalBlue)
+              vcc.canvas.addObject(obj)
 
-            vcc.canvas.Paste()
-            Dim b As Rectangle = vcc.canvas.GetFirstSelectedObject().bounds
-            b.Location = pos
-            vcc.canvas.GetFirstSelectedObject().bounds = b
-        End Select
-      Next
+            Case ".ICO"
+              Dim obj As New VImage
+              Dim ico As New Icon(fileSpec)
+              obj.name = "icon_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
+              obj.img = ico.ToBitmap
+              ico.Dispose()
+              obj.source = "FILE:" + fileSpec
+              obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
+              'obj.setBorder(2, Color.RoyalBlue)
+              vcc.canvas.addObject(obj)
+
+            Case ".CUR"
+              Dim obj As New VImage
+              Dim bmp As New Bitmap(32, 32)
+              obj.name = "cursor_" + IO.Path.GetFileName(fileSpec) + "_" + Now.Ticks.ToString
+              Dim g = Graphics.FromImage(bmp)
+              Try
+                Dim c As New Cursor(fileSpec)
+                c.DrawStretched(g, New Rectangle(0, 0, 32, 32))
+                c.Dispose()
+              Catch ex As Exception
+                g.DrawString(ex.Message, New Font("Arial", 6, FontStyle.Regular, GraphicsUnit.Point), Brushes.Black, New Rectangle(0, 0, 32, 32))
+              End Try
+              g.Dispose()
+              obj.img = bmp
+              obj.source = "FILE:" + fileSpec
+              obj.bounds = New Rectangle(pos.X, pos.Y, obj.img.Width, obj.img.Height)
+              'obj.setBorder(2, Color.RoyalBlue)
+              vcc.canvas.addObject(obj)
+
+            Case ".HTM", ".HTML", ".SGCOLLAGE"
+              Dim newCanvas As New Vector.Canvas()
+              newCanvas.readHtmlPage(fileSpec)
+              For i = 0 To newCanvas.objects.Count - 1
+                newCanvas.objects(i).isSelected = True
+              Next
+              newCanvas.OnSelectionChanged()
+              If newCanvas.SelectionCount > 1 Then newCanvas.groupSelection()
+              newCanvas.CopySelection()
+
+              vcc.canvas.Paste()
+              Dim b As Rectangle = vcc.canvas.GetFirstSelectedObject().bounds
+              b.Location = pos
+              vcc.canvas.GetFirstSelectedObject().bounds = b
+          End Select
+        Next
+
+      End If
 
     Else
       Dim tx = ""

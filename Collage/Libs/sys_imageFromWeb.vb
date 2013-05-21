@@ -19,6 +19,15 @@ Module sys_imageFromWeb
   Public Sub URLDownloadToFile(ByVal pAxCaller As IntPtr, <MarshalAs(UnmanagedType.LPWStr)> ByVal szURL As String, <MarshalAs(UnmanagedType.LPWStr)> ByVal szFileName As String, <MarshalAs(UnmanagedType.U4)> ByVal dwReserved As UInteger, ByVal lpfnCB As IntPtr)
   End Sub
 
+  Public Function LoadImage(ByVal filespec As String) As Image
+    ' Stream-Objekt mit den Bilddaten erstellen
+    Dim oStream As New StreamReader(filespec)
+
+    ' Bild aus dem Stream-Objekt in ein Image-Objekt kopieren
+    Dim oImg As Image = Image.FromStream(oStream.BaseStream)
+    oStream.Close()
+    Return oImg
+  End Function
 
   ' Bild von Webserver laden
   Public Function ImageFromWeb(ByVal sURL As String, Optional ByVal postData As String = Nothing) As Image

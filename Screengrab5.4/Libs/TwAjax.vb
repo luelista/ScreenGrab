@@ -20,6 +20,25 @@ Public Class TwAjax
     getUrlContent = xmlhttp.ResponseText
     xmlhttp = Nothing
   End Function
+  Public Shared Function subscribe(ByVal url As String, ByRef timestamp As String, ByRef etag As String) As String
+    Dim xmlhttp As Object = CreateObject("Msxml2.XMLHTTP.3.0") 'MSXML2.ServerXMLHTTP")
+    xmlhttp.Open("GET", url, True)
+    xmlhttp.setRequestHeader("If-Modified-Since", timestamp)
+    xmlhttp.setRequestHeader("If-None-Match", etag)
+    xmlhttp.send("")
+
+    Dim timer = 0
+    While xmlhttp.ReadyState <> 4
+      Threading.Thread.Sleep(10)
+      If timer > 2600 Then xmlhttp = Nothing : Return ""
+      timer += 1
+    End While
+
+    subscribe = xmlhttp.ResponseText
+    timestamp = xmlhttp.getResponseHeader("Last-Modified")
+    etag = xmlhttp.getResponseHeader("ETag")
+    xmlhttp = Nothing
+  End Function
 
   Public Shared Function postUrl(ByVal url As String, ByVal post As String, Optional ByVal cookies As String = "") As String
     Dim xmlhttp As Object = CreateObject("Msxml2.XMLHTTP.3.0") 'MSXML2.ServerXMLHTTP")

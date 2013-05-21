@@ -82,11 +82,19 @@ Partial Class frm_mdiViewer2
     Me.pnlSideElements = New System.Windows.Forms.Panel
     Me.lstElementNames = New System.Windows.Forms.ListBox
     Me.pnlLeft = New System.Windows.Forms.Panel
+    Me.llSidebar5 = New System.Windows.Forms.LinkLabel
     Me.llSidebar4 = New System.Windows.Forms.LinkLabel
     Me.llSidebar3 = New System.Windows.Forms.LinkLabel
     Me.llSidebar2 = New System.Windows.Forms.LinkLabel
     Me.llSidebar1 = New System.Windows.Forms.LinkLabel
     Me.lblToggleLeftPanel = New System.Windows.Forms.Label
+    Me.pnlSideTemplates = New System.Windows.Forms.Panel
+    Me.Panel2 = New System.Windows.Forms.Panel
+    Me.TextBox2 = New System.Windows.Forms.TextBox
+    Me.btnTemplateAddSel = New System.Windows.Forms.Button
+    Me.Label10 = New System.Windows.Forms.Label
+    Me.lvTemplates = New System.Windows.Forms.ListView
+    Me.ImageList2 = New System.Windows.Forms.ImageList(Me.components)
     Me.pnlSideDropme = New System.Windows.Forms.Panel
     Me.pnlDropMeSave = New System.Windows.Forms.Panel
     Me.PictureBox1 = New System.Windows.Forms.PictureBox
@@ -123,6 +131,8 @@ Partial Class frm_mdiViewer2
     Me.cmsFileMenu.SuspendLayout()
     Me.pnlSideElements.SuspendLayout()
     Me.pnlLeft.SuspendLayout()
+    Me.pnlSideTemplates.SuspendLayout()
+    Me.Panel2.SuspendLayout()
     Me.pnlSideDropme.SuspendLayout()
     Me.pnlDropMeSave.SuspendLayout()
     CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -588,7 +598,7 @@ Partial Class frm_mdiViewer2
     '
     Me.cmsFileMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuToolStripMenuItem, Me.OeffnenToolStripMenuItem, Me.SpeichernToolStripMenuItem, Me.SpeichernUnterToolStripMenuItem, Me.ToolStripMenuItem7, Me.ExportierenToolStripMenuItem, Me.CodeGenerierenToolStripMenuItem, Me.ZusatzfensterAnzeigenToolStripMenuItem, Me.ToolStripMenuItem6, Me.OptionenToolStripMenuItem, Me.ToolStripMenuItem2, Me.SchliessenToolStripMenuItem})
     Me.cmsFileMenu.Name = "cmsFileMenu"
-    Me.cmsFileMenu.Size = New System.Drawing.Size(232, 242)
+    Me.cmsFileMenu.Size = New System.Drawing.Size(232, 220)
     '
     'NeuToolStripMenuItem
     '
@@ -675,7 +685,7 @@ Partial Class frm_mdiViewer2
     Me.pnlSideElements.BackColor = System.Drawing.Color.Crimson
     Me.pnlSideElements.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
     Me.pnlSideElements.Controls.Add(Me.lstElementNames)
-    Me.pnlSideElements.Location = New System.Drawing.Point(6, 24)
+    Me.pnlSideElements.Location = New System.Drawing.Point(6, 23)
     Me.pnlSideElements.Name = "pnlSideElements"
     Me.pnlSideElements.Size = New System.Drawing.Size(224, 579)
     Me.pnlSideElements.TabIndex = 12
@@ -696,6 +706,7 @@ Partial Class frm_mdiViewer2
     'pnlLeft
     '
     Me.pnlLeft.BackColor = System.Drawing.Color.DimGray
+    Me.pnlLeft.Controls.Add(Me.llSidebar5)
     Me.pnlLeft.Controls.Add(Me.llSidebar4)
     Me.pnlLeft.Controls.Add(Me.llSidebar3)
     Me.pnlLeft.Controls.Add(Me.llSidebar2)
@@ -705,17 +716,30 @@ Partial Class frm_mdiViewer2
     Me.pnlLeft.Controls.Add(Me.pnlSideLocFiles)
     Me.pnlLeft.Controls.Add(Me.lstTrace)
     Me.pnlLeft.Controls.Add(Me.pnlSideElements)
+    Me.pnlLeft.Controls.Add(Me.pnlSideTemplates)
     Me.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left
     Me.pnlLeft.Location = New System.Drawing.Point(0, 30)
     Me.pnlLeft.Name = "pnlLeft"
     Me.pnlLeft.Size = New System.Drawing.Size(232, 603)
     Me.pnlLeft.TabIndex = 13
     '
+    'llSidebar5
+    '
+    Me.llSidebar5.AutoSize = True
+    Me.llSidebar5.BackColor = System.Drawing.Color.DarkGray
+    Me.llSidebar5.Location = New System.Drawing.Point(41, 1)
+    Me.llSidebar5.Name = "llSidebar5"
+    Me.llSidebar5.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
+    Me.llSidebar5.Size = New System.Drawing.Size(49, 23)
+    Me.llSidebar5.TabIndex = 16
+    Me.llSidebar5.TabStop = True
+    Me.llSidebar5.Text = "Vorlagen"
+    '
     'llSidebar4
     '
     Me.llSidebar4.AutoSize = True
     Me.llSidebar4.BackColor = System.Drawing.Color.DarkGray
-    Me.llSidebar4.Location = New System.Drawing.Point(130, 1)
+    Me.llSidebar4.Location = New System.Drawing.Point(139, 1)
     Me.llSidebar4.Name = "llSidebar4"
     Me.llSidebar4.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
     Me.llSidebar4.Size = New System.Drawing.Size(51, 23)
@@ -727,7 +751,7 @@ Partial Class frm_mdiViewer2
     '
     Me.llSidebar3.AutoSize = True
     Me.llSidebar3.BackColor = System.Drawing.Color.DarkGray
-    Me.llSidebar3.Location = New System.Drawing.Point(183, 1)
+    Me.llSidebar3.Location = New System.Drawing.Point(192, 1)
     Me.llSidebar3.Name = "llSidebar3"
     Me.llSidebar3.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
     Me.llSidebar3.Size = New System.Drawing.Size(35, 23)
@@ -739,7 +763,7 @@ Partial Class frm_mdiViewer2
     '
     Me.llSidebar2.AutoSize = True
     Me.llSidebar2.BackColor = System.Drawing.Color.DarkGray
-    Me.llSidebar2.Location = New System.Drawing.Point(83, 1)
+    Me.llSidebar2.Location = New System.Drawing.Point(92, 1)
     Me.llSidebar2.Name = "llSidebar2"
     Me.llSidebar2.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
     Me.llSidebar2.Size = New System.Drawing.Size(45, 23)
@@ -754,10 +778,10 @@ Partial Class frm_mdiViewer2
     Me.llSidebar1.Location = New System.Drawing.Point(6, 1)
     Me.llSidebar1.Name = "llSidebar1"
     Me.llSidebar1.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-    Me.llSidebar1.Size = New System.Drawing.Size(74, 23)
+    Me.llSidebar1.Size = New System.Drawing.Size(33, 23)
     Me.llSidebar1.TabIndex = 12
     Me.llSidebar1.TabStop = True
-    Me.llSidebar1.Text = "Lokale Ordner"
+    Me.llSidebar1.Text = "Lokal"
     '
     'lblToggleLeftPanel
     '
@@ -769,6 +793,75 @@ Partial Class frm_mdiViewer2
     Me.lblToggleLeftPanel.Size = New System.Drawing.Size(6, 603)
     Me.lblToggleLeftPanel.TabIndex = 0
     '
+    'pnlSideTemplates
+    '
+    Me.pnlSideTemplates.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.pnlSideTemplates.BackColor = System.Drawing.Color.Gainsboro
+    Me.pnlSideTemplates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+    Me.pnlSideTemplates.Controls.Add(Me.Panel2)
+    Me.pnlSideTemplates.Controls.Add(Me.lvTemplates)
+    Me.pnlSideTemplates.Location = New System.Drawing.Point(6, 24)
+    Me.pnlSideTemplates.Name = "pnlSideTemplates"
+    Me.pnlSideTemplates.Size = New System.Drawing.Size(224, 577)
+    Me.pnlSideTemplates.TabIndex = 17
+    '
+    'Panel2
+    '
+    Me.Panel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.Panel2.BackColor = System.Drawing.Color.DarkOrange
+    Me.Panel2.Controls.Add(Me.TextBox2)
+    Me.Panel2.Controls.Add(Me.btnTemplateAddSel)
+    Me.Panel2.Controls.Add(Me.Label10)
+    Me.Panel2.Location = New System.Drawing.Point(3, 529)
+    Me.Panel2.Name = "Panel2"
+    Me.Panel2.Size = New System.Drawing.Size(217, 44)
+    Me.Panel2.TabIndex = 6
+    '
+    'TextBox2
+    '
+    Me.TextBox2.Location = New System.Drawing.Point(7, 18)
+    Me.TextBox2.Name = "TextBox2"
+    Me.TextBox2.Size = New System.Drawing.Size(126, 20)
+    Me.TextBox2.TabIndex = 5
+    Me.TextBox2.Text = "such..."
+    '
+    'btnTemplateAddSel
+    '
+    Me.btnTemplateAddSel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.btnTemplateAddSel.Location = New System.Drawing.Point(157, 5)
+    Me.btnTemplateAddSel.Name = "btnTemplateAddSel"
+    Me.btnTemplateAddSel.Size = New System.Drawing.Size(55, 35)
+    Me.btnTemplateAddSel.TabIndex = 3
+    Me.btnTemplateAddSel.Text = "+++"
+    Me.btnTemplateAddSel.UseVisualStyleBackColor = True
+    '
+    'Label10
+    '
+    Me.Label10.BackColor = System.Drawing.Color.Transparent
+    Me.Label10.Location = New System.Drawing.Point(4, 4)
+    Me.Label10.Name = "Label10"
+    Me.Label10.Size = New System.Drawing.Size(99, 17)
+    Me.Label10.TabIndex = 4
+    Me.Label10.Text = "Element-Vorlagen"
+    '
+    'lvTemplates
+    '
+    Me.lvTemplates.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.lvTemplates.LargeImageList = Me.ImageList2
+    Me.lvTemplates.Location = New System.Drawing.Point(3, 9)
+    Me.lvTemplates.Name = "lvTemplates"
+    Me.lvTemplates.Size = New System.Drawing.Size(218, 513)
+    Me.lvTemplates.TabIndex = 1
+    Me.lvTemplates.UseCompatibleStateImageBehavior = False
+    '
+    'ImageList2
+    '
+    Me.ImageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit
+    Me.ImageList2.ImageSize = New System.Drawing.Size(150, 150)
+    Me.ImageList2.TransparentColor = System.Drawing.Color.Transparent
+    '
     'pnlSideDropme
     '
     Me.pnlSideDropme.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -779,7 +872,7 @@ Partial Class frm_mdiViewer2
     Me.pnlSideDropme.Controls.Add(Me.pnlDropMeSave)
     Me.pnlSideDropme.Controls.Add(Me.ListView1)
     Me.pnlSideDropme.Controls.Add(Me.cmbDropmeClipboard)
-    Me.pnlSideDropme.Location = New System.Drawing.Point(6, 25)
+    Me.pnlSideDropme.Location = New System.Drawing.Point(6, 24)
     Me.pnlSideDropme.Name = "pnlSideDropme"
     Me.pnlSideDropme.Size = New System.Drawing.Size(224, 577)
     Me.pnlSideDropme.TabIndex = 10
@@ -874,9 +967,9 @@ Partial Class frm_mdiViewer2
     Me.pnlSideLocFiles.Controls.Add(Me.btnNav02)
     Me.pnlSideLocFiles.Controls.Add(Me.lblCurPath)
     Me.pnlSideLocFiles.Controls.Add(Me.ListBox1)
-    Me.pnlSideLocFiles.Location = New System.Drawing.Point(7, 25)
+    Me.pnlSideLocFiles.Location = New System.Drawing.Point(7, 24)
     Me.pnlSideLocFiles.Name = "pnlSideLocFiles"
-    Me.pnlSideLocFiles.Size = New System.Drawing.Size(224, 578)
+    Me.pnlSideLocFiles.Size = New System.Drawing.Size(223, 578)
     Me.pnlSideLocFiles.TabIndex = 11
     '
     'btnNav04
@@ -893,7 +986,7 @@ Partial Class frm_mdiViewer2
                 Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.pbPreview.Location = New System.Drawing.Point(0, 478)
     Me.pbPreview.Name = "pbPreview"
-    Me.pbPreview.Size = New System.Drawing.Size(225, 99)
+    Me.pbPreview.Size = New System.Drawing.Size(224, 99)
     Me.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
     Me.pbPreview.TabIndex = 8
     Me.pbPreview.TabStop = False
@@ -956,9 +1049,9 @@ Partial Class frm_mdiViewer2
                 Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.lstTrace.FormattingEnabled = True
     Me.lstTrace.IntegralHeight = False
-    Me.lstTrace.Location = New System.Drawing.Point(7, 25)
+    Me.lstTrace.Location = New System.Drawing.Point(7, 24)
     Me.lstTrace.Name = "lstTrace"
-    Me.lstTrace.Size = New System.Drawing.Size(224, 577)
+    Me.lstTrace.Size = New System.Drawing.Size(223, 577)
     Me.lstTrace.TabIndex = 9
     '
     'TextBox1
@@ -1026,6 +1119,9 @@ Partial Class frm_mdiViewer2
     Me.pnlSideElements.ResumeLayout(False)
     Me.pnlLeft.ResumeLayout(False)
     Me.pnlLeft.PerformLayout()
+    Me.pnlSideTemplates.ResumeLayout(False)
+    Me.Panel2.ResumeLayout(False)
+    Me.Panel2.PerformLayout()
     Me.pnlSideDropme.ResumeLayout(False)
     Me.pnlDropMeSave.ResumeLayout(False)
     Me.pnlDropMeSave.PerformLayout()
@@ -1120,4 +1216,12 @@ Partial Class frm_mdiViewer2
   Friend WithEvents NeuToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
   Friend WithEvents OptionenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
   Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripSeparator
+  Friend WithEvents pnlSideTemplates As System.Windows.Forms.Panel
+  Friend WithEvents lvTemplates As System.Windows.Forms.ListView
+  Friend WithEvents btnTemplateAddSel As System.Windows.Forms.Button
+  Friend WithEvents llSidebar5 As System.Windows.Forms.LinkLabel
+  Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+  Friend WithEvents ImageList2 As System.Windows.Forms.ImageList
+  Friend WithEvents Label10 As System.Windows.Forms.Label
+  Friend WithEvents Panel2 As System.Windows.Forms.Panel
 End Class

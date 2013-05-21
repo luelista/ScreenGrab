@@ -868,11 +868,11 @@ Partial Class frm_options
     Me.LinkLabel3.LinkColor = System.Drawing.Color.White
     Me.LinkLabel3.Location = New System.Drawing.Point(101, 105)
     Me.LinkLabel3.Name = "LinkLabel3"
-    Me.LinkLabel3.Size = New System.Drawing.Size(103, 13)
+    Me.LinkLabel3.Size = New System.Drawing.Size(150, 13)
     Me.LinkLabel3.TabIndex = 6
     Me.LinkLabel3.TabStop = True
-    Me.LinkLabel3.Tag = "http://screengrab.tk"
-    Me.LinkLabel3.Text = "http://screengrab.tk"
+    Me.LinkLabel3.Tag = "http://screengrab.teamwiki.de"
+    Me.LinkLabel3.Text = "http://screengrab.teamwiki.de"
     '
     'Label18
     '

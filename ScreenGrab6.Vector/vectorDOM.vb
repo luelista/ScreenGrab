@@ -1,5 +1,7 @@
 ﻿Public Class vectorDOMWindow
 
+  Private allowShellEx As Boolean = False
+
   Private _document As vectorDOMDocument
   Public Property Document() As vectorDOMDocument
     Get
@@ -16,6 +18,14 @@
   Public Function confirm(ByVal str As String) As Boolean
     Return (MsgBox(str, MsgBoxStyle.Question + MsgBoxStyle.OkCancel, "Confirm") = MsgBoxResult.Ok)
   End Function
+
+  Public Sub shellExecute(ByVal filespec As String, Optional ByVal para As String = "")
+    If allowShellEx OrElse MsgBoxResult.Ok = MsgBox("Achtung! Ein Skript in diesem Dokument möchte folgenden Befehl ausführen:" + vbNewLine + vbNewLine + filespec + " " + para + vbNewLine + vbNewLine + "Klicken Sie auf OK, um den Befehl auszuführen und diesen Dialog bis zum Schließen des Dokuments nicht mehr anzuzeigen." + vbNewLine + "Klicken Sie auf Abbrechen, um den Befehl nicht auszuführen.", MsgBoxStyle.OkCancel Or MsgBoxStyle.DefaultButton2 Or MsgBoxStyle.Exclamation, "ShellExecute") Then
+
+      allowShellEx = True
+      Process.Start(filespec, para)
+    End If
+  End Sub
 
 End Class
 

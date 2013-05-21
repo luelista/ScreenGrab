@@ -4,7 +4,7 @@
   <description asmv2:iconFile="AcroRd32_18434.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ScreenGrab6" version="6.10.0.0" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="ScreenGrab6" version="6.11.0.0" language="neutral" processorArchitecture="x86" />
     <commandLine file="ScreenGrab6.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -216,14 +216,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.exe" size="700928">
-      <assemblyIdentity name="ScreenGrab6" version="6.10.0.0" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.exe" size="586240">
+      <assemblyIdentity name="ScreenGrab6" version="6.11.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Wrh+XBD3HhstOmnHPeriQCu8RtU=</dsig:DigestValue>
+        <dsig:DigestValue>vd28btTrNA0eWwSzFn9i1ecSKHw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -240,14 +240,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.Vector.dll" size="246272">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ScreenGrab6.Vector.dll" size="252416">
       <assemblyIdentity name="ScreenGrab6.Vector" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>zIhw7aisS6I9rcesqpmTkxHlgMc=</dsig:DigestValue>
+        <dsig:DigestValue>7ugMkEiUrCWw6mWtBYQcb7W3blM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -270,60 +270,6 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>oP2d9u94yStV9DvJ07mfNPOXlvU=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="CollageModus\Antlr3.Runtime.dll" size="99328">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>hI8VnsxU82a0W71QqE6wn4IO/UE=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="CollageModus\ControlsEx.dll" size="126976">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>knfKiaqLd6EtvOVy00A91Rh9XdQ=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="CollageModus\DrawingEx.dll" size="208896">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>mepmHPa33rh97AD2nC78lBTYiDI=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="CollageModus\itextsharp.dll" size="3526656">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>7EHLAtt1nLZYgZjvUEZ8l8ZyGkE=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="CollageModus\MdiTabControl.dll" size="91648">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>mr8EouGvhCyoO8Pd0Nf13gj+CjY=</dsig:DigestValue>
-    </hash>
-  </file>
-  <file name="ConvolutionFilters.txt" size="253">
-    <hash>
-      <dsig:Transforms>
-        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
-      </dsig:Transforms>
-      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>/v7H4YpDr7FZUezeAJc3I+aThCs=</dsig:DigestValue>
     </hash>
   </file>
   <file name="grab.ico" size="766">

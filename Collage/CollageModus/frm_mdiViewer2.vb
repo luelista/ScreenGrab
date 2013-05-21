@@ -7,6 +7,8 @@ Public Class frm_mdiViewer2
   Dim dropme_cacheDir As String = IO.Path.Combine(IO.Path.GetTempPath, "SgCollageDropmeFiles\")
   Dim dropme_sourceFilespec As String
 
+  Dim templateFolder As String = "C:\yPara\ScreenGrab5\Collagetemplates\"
+   
   Public Const COLOR_PALETTE_ITEM_SIZE = 18
   Public Const COLOR_PALETTE_ROWS = 8
   Public Const COLOR_PALETTE_COLS = 3
@@ -250,23 +252,30 @@ Public Class frm_mdiViewer2
   Private Sub frm_mdiViewer2_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
 
     If e.Control And e.KeyCode = Keys.O Then
-      vcc.openFile()
+      OeffnenToolStripMenuItem_Click(Nothing, Nothing)
+    End If
+    If e.Control And e.KeyCode = Keys.N Then
+      NeuToolStripMenuItem_Click(Nothing, Nothing)
+    End If
+
+    If e.KeyCode = Keys.F4 Then
+      toggleLeftPanel()
     End If
 
     If vcc() Is Nothing Then Return
 
     vcc.KeyboardHandler(e)
-    If e.KeyCode = Keys.F1 Then
-      Dim chh = MdiChildren
-      Dim pos = Array.IndexOf(chh, ActiveMdiChild) - 1
-      If pos < 0 Then pos = chh.Length - 1
-      chh(pos).Activate()
-    End If
-    If e.KeyCode = Keys.F2 Then
-      Dim chh = MdiChildren
-      Dim pos = Array.IndexOf(chh, ActiveMdiChild)
-      chh((pos + 1) Mod chh.Length).Activate()
-    End If
+    'If e.KeyCode = Keys.F1 Then
+    '  Dim chh = MdiChildren
+    '  Dim pos = Array.IndexOf(chh, ActiveMdiChild) - 1
+    '  If pos < 0 Then pos = chh.Length - 1
+    '  chh(pos).Activate()
+    'End If
+    'If e.KeyCode = Keys.F2 Then
+    '  Dim chh = MdiChildren
+    '  Dim pos = Array.IndexOf(chh, ActiveMdiChild)
+    '  chh((pos + 1) Mod chh.Length).Activate()
+    'End If
     If e.Control And e.KeyCode = Keys.S Then
       vcc.saveFile(e.Shift)
     End If
@@ -326,6 +335,7 @@ Public Class frm_mdiViewer2
     'vcc.cmsCanvas.Items.Insert(5, ImHauptfensterLadenToolStripMenuItem)
 
     '  vcc.canvas.KeyHandlerControl = Me
+    IO.Directory.CreateDirectory(templateFolder)
 
     'obj = New VImage()
     'obj.name = "test_image"
@@ -772,10 +782,71 @@ Public Class frm_mdiViewer2
     sender.BackColor = Color.Transparent
   End Sub
 
+  Private Sub TabControl1_TabPaintBorder(ByVal sender As Object, ByVal e As MdiTabControl.TabControl.TabPaintEventArgs) Handles TabControl1.TabPaintBorder
+    If e.Selected Or e.Hot Then
+      e.Handled = False
+      e.Graphics.FillRectangle(Brushes.Orange, 0, 0, e.TabWidth, 3)
+    End If
+  End Sub
+
+
+
+  Private Sub vcc_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles MyBase.DragEnter
+    If e.Data.GetDataPresent("FileDrop") Then
+      Dim files() As String = e.Data.GetData("FileDrop")
+      For Each fileSpec In files
+        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
+        Select Case ext
+          Case ".HTM", ".HTML", ".SGCOLLAGE"
+            e.Effect = DragDropEffects.Copy
+        End Select
+      Next
+    End If
+  End Sub
+
+  Private Sub vcc_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles MyBase.DragDrop
+    If e.Data.GetDataPresent("FileDrop") Then
+      Dim pos As Point = vcc.PictureBox1.PointToClient(New Point(e.X, e.Y))
+
+      Dim files() As String = e.Data.GetData("FileDrop")
+      For Each fileSpec In files
+        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
+        Select Case ext
+          Case ".HTM", ".HTML", ".SGCOLLAGE"
+            Dim c = newClient()
+            c.vcc.openFile(fileSpec)
+        End Select
+      Next
+
+      vcc.PictureBox1.Refresh()
+    End If
+  End Sub
+
+  Private Sub OptionenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OptionenToolStripMenuItem.Click
+    frm_options.Show() : frm_options.Activate()
+  End Sub
+
+
+#Region "Sidebar: General"
+
+  Private Sub llSidebar3_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) _
+  Handles llSidebar3.MouseDown, llSidebar2.MouseDown, llSidebar1.MouseDown, llSidebar4.MouseDown, llSidebar5.MouseDown
+    llSidebar1.BackColor = Color.DarkGray : llSidebar2.BackColor = Color.DarkGray : llSidebar3.BackColor = Color.DarkGray : llSidebar4.BackColor = Color.DarkGray : llSidebar5.BackColor = Color.DarkGray
+    sender.backcolor = Color.Gainsboro
+    If sender Is llSidebar1 Then pnlSideLocFiles.BringToFront()
+    If sender Is llSidebar2 Then pnlSideDropme.BringToFront()
+    If sender Is llSidebar3 Then lstTrace.BringToFront()
+    If sender Is llSidebar4 Then pnlSideElements.BringToFront()
+    If sender Is llSidebar5 Then pnlSideTemplates.BringToFront()
+
+  End Sub
+  Sub toggleLeftPanel()
+    pnlLeft.Width = If(pnlLeft.Width = 6, 232, 6)
+  End Sub
 
   Private Sub lblToggleLeftPanel_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblToggleLeftPanel.MouseDown
     If e.Button = Windows.Forms.MouseButtons.Left Then
-      pnlLeft.Width = If(pnlLeft.Width = 6, 232, 6)
+      toggleLeftPanel()
     ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
       Me.TopMost = Not Me.TopMost
       lblToggleLeftPanel.BackColor = If(Me.TopMost, Color.CornflowerBlue, Color.OliveDrab)
@@ -784,6 +855,9 @@ Public Class frm_mdiViewer2
       ' lstTrace.Visible = Not lstTrace.Visible
     End If
   End Sub
+
+#End Region
+#Region "Sidebar: Lokal"
 
 
   Dim lstFileListMouseDownPoint As Point
@@ -805,7 +879,7 @@ Public Class frm_mdiViewer2
       lstFileListMouseDownPoint = Nothing
       Dim fileSpecSel As String = IO.Path.Combine(lblCurPath.Text, ListBox1.SelectedItem)
       Dim datObj As New DataObject("FileDrop", New String() {fileSpecSel})
-      ListBox1.DoDragDrop(datObj, DragDropEffects.Copy)
+      ListBox1.DoDragDrop(datObj, DragDropEffects.Copy Or DragDropEffects.Link)
     End If
   End Sub
 
@@ -858,48 +932,8 @@ Public Class frm_mdiViewer2
 
   End Sub
 
-  Private Sub TabControl1_TabPaintBorder(ByVal sender As Object, ByVal e As MdiTabControl.TabControl.TabPaintEventArgs) Handles TabControl1.TabPaintBorder
-    If e.Selected Or e.Hot Then
-      e.Handled = False
-      e.Graphics.FillRectangle(Brushes.Orange, 0, 0, e.TabWidth, 3)
-    End If
-  End Sub
-
-
-
-  Private Sub vcc_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles MyBase.DragEnter
-    If e.Data.GetDataPresent("FileDrop") Then
-      Dim files() As String = e.Data.GetData("FileDrop")
-      For Each fileSpec In files
-        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
-        Select Case ext
-          Case ".HTM", ".HTML", ".SGCOLLAGE"
-            e.Effect = DragDropEffects.Copy
-        End Select
-      Next
-    End If
-  End Sub
-
-  Private Sub vcc_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles MyBase.DragDrop
-    If e.Data.GetDataPresent("FileDrop") Then
-      Dim pos As Point = vcc.PictureBox1.PointToClient(New Point(e.X, e.Y))
-
-      Dim files() As String = e.Data.GetData("FileDrop")
-      For Each fileSpec In files
-        Dim ext As String = IO.Path.GetExtension(fileSpec).ToUpper
-        Select Case ext
-          Case ".HTM", ".HTML", ".SGCOLLAGE"
-            Dim c = newClient()
-            c.vcc.openFile(fileSpec)
-        End Select
-      Next
-
-      vcc.PictureBox1.Refresh()
-    End If
-  End Sub
-
-
-#Region "Sidebar"
+#End Region
+#Region "Sidebar: Trace"
 
   Private Sub lstTrace_MouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lstTrace.MouseUp
     If e.Button = Windows.Forms.MouseButtons.Middle Then
@@ -912,6 +946,9 @@ Public Class frm_mdiViewer2
     End If
     TextBox1.Text = lstTrace.SelectedItem
   End Sub
+
+#End Region
+#Region "Sidebar: Dropme"
 
 
   Public Function TryLoadJSON(ByVal uri As String, Optional ByVal post As String = Nothing) As Hashtable
@@ -1034,16 +1071,6 @@ exit_Sub:
       ListView1.Items(index).ImageKey = "i_" & index
 
     Catch : loadDropmeThumbnails_CANCEL_FLAG = True : End Try
-  End Sub
-
-  Private Sub llSidebar3_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles llSidebar3.MouseDown, llSidebar2.MouseDown, llSidebar1.MouseDown, llSidebar4.MouseDown
-    llSidebar1.BackColor = Color.DarkGray : llSidebar2.BackColor = Color.DarkGray : llSidebar3.BackColor = Color.DarkGray : llSidebar4.BackColor = Color.DarkGray
-    sender.backcolor = Color.Gainsboro
-    If sender Is llSidebar1 Then pnlSideLocFiles.BringToFront()
-    If sender Is llSidebar2 Then pnlSideDropme.BringToFront()
-    If sender Is llSidebar3 Then lstTrace.BringToFront()
-    If sender Is llSidebar4 Then pnlSideElements.BringToFront()
-
   End Sub
 
   Private Sub txtDropMeSave_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtDropMeSave.KeyDown
@@ -1234,16 +1261,16 @@ exit_Sub:
     End If
   End Sub
 
-
-#End Region
-
-  Private Sub OptionenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OptionenToolStripMenuItem.Click
-    frm_options.Show() : frm_options.Activate()
-  End Sub
-
   Private Sub ListView1_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles ListView1.MouseDoubleClick
     If ListView1.SelectedItems.Count = 1 Then
       Dim ht As Hashtable = ListView1.SelectedItems(0).Tag
+      Dim fext = IO.Path.GetExtension(CStr(ht("filename"))).ToUpper
+      If fext <> ".HTM" And fext <> ".HTML" And fext <> ".SGCOLLAGE" Then
+        If MsgBoxResult.Yes = MsgBox("Dieser Dateityp wird nicht unterstützt. Möchten Sie die Datei im Browser öffnen?", MsgBoxStyle.YesNo Or MsgBoxStyle.DefaultButton2, "DropMe") Then
+          Process.Start(ht("url"))
+        End If
+        Exit Sub
+      End If
       Dim dlFilespec As String = dropme_cacheDir + ht("filename")
       ProgressBar1.Show()
       ProgressBar1.Style = ProgressBarStyle.Marquee
@@ -1259,7 +1286,55 @@ exit_Sub:
     End If
   End Sub
 
-  Private Sub ListView1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListView1.SelectedIndexChanged
 
+#End Region
+
+#Region "Sidebar: Templates"
+
+
+  Sub loadtemplateList()
+    Dim templateFolder As String = "C:\yPara\ScreenGrab5\Collagetemplates\"
+    IO.Directory.CreateDirectory(templateFolder)
+
+    Dim files() = IO.Directory.GetFiles(templateFolder, "*.html")
+    ImageList2.images.clear()
+    lvTemplates.Items.Clear()
+    For Each filespec In files
+      Dim lvi = lvTemplates.Items.Add(IO.Path.GetFileNameWithoutExtension(filespec))
+      lvi.Tag = filespec
+      ImageList2.Images.Add(Helper.extractThumbnail(filespec))
+      lvi.ImageIndex = ImageList2.Images.Count - 1
+    Next
   End Sub
+
+  Private Sub btnTemplateAddSel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTemplateAddSel.Click
+    If vcc.canvas.SelectionCount <> 1 OrElse Not (TypeOf vcc.canvas.GetFirstSelectedObject Is VGroup) Then
+      MsgBox("Bitte stellen Sie sicher, dass eine Objektgruppe selektiert ist.", MsgBoxStyle.Critical, "Templateerstellung fehlgeschlagen")
+      Exit Sub
+    End If
+
+    vcc.canvas.CopySelection()
+    Dim cvs As New Canvas()
+    cvs.PicBox = New PictureBox
+    cvs.Paste()
+    Dim o = cvs.GetFirstSelectedObject
+    o.Top = 0 : o.Left = 0
+    cvs.PicBox.Width = o.Width : cvs.PicBox.Height = o.Height
+    cvs.createHtmlPage(templateFolder + Now.ToString("yyyy-MM-dd-HH-mm-ss") + ".html")
+    loadtemplateList()
+  End Sub
+
+  Private Sub lvTemplates_ItemDrag(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemDragEventArgs) Handles lvTemplates.ItemDrag
+
+    Dim filespec() As String = New String() {e.Item.tag}
+    Dim d As New DataObject("FileDrop", filespec)
+    lvTemplates.DoDragDrop(d, DragDropEffects.Copy)
+  End Sub
+
+  Private Sub llSidebar5_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llSidebar5.LinkClicked
+    loadtemplateList()
+  End Sub
+
+#End Region
+
 End Class

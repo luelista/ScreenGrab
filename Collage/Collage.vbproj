@@ -36,7 +36,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\Release\</OutputPath>
     <DocumentationFile>Collage.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <PlatformTarget>x86</PlatformTarget>
@@ -126,6 +126,7 @@
     <Compile Include="Libs\JSON.vb" />
     <Compile Include="Libs\ScreenArea.vb" />
     <Compile Include="Libs\ScreenshotGenerator.vb" />
+    <Compile Include="Libs\sys_assocIcon.vb" />
     <Compile Include="Libs\sys_editWindowMenu.vb" />
     <Compile Include="Libs\sys_forceForegroundWindow.vb" />
     <Compile Include="Libs\sys_formMoveTricky.vb" />
@@ -201,7 +202,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CollageModus\Antlr3.Runtime.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="CollageModus\ControlsEx.dll" />
     <Content Include="CollageModus\DrawingEx.dll" />

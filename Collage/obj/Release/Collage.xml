@@ -6,48 +6,7 @@ Collage
 </name>
 </assembly>
 <members>
-<member name="M:ScreenGrab6.Collage.ColorExtensions.GetNearestName(System.Drawing.Color)">
-	<summary>
- Gets the <see cref="P:System.Drawing.Color.Name">System.Drawing.Color.Name</see> of the closest matching color.
- </summary>
-	<example>
-		<code>
-    Private Sub Example()
-        Dim oColor As Color = Color.FromName(GetNearestName(Color.FromArgb(255, 255, 255, 0)))
-        Debug.Assert(oColor.Name = "Yellow")
-    End Sub
- </code>
-	</example>
-</member><member name="M:ScreenGrab6.Collage.ColorExtensions.GetNearestKnownColor(System.Drawing.Color)">
-	<summary>
- Gets the <see cref="T:System.Drawing.KnownColor">System.Drawing.KnownColor</see> of the closest matching known color.
- </summary>
-	<example>
-		<code>
-    Private Sub Example()
-        Dim oColor As Color =  Color.FromKnownColor(GetNearestKnownColor(Color.FromArgb(255, 255, 255, 0)))
-        Debug.Assert(oColor.Name = "Yellow")
-    End Sub
- </code>
-	</example>
-</member><member name="M:ScreenGrab6.Collage.ColorExtensions.ColorName.ToRGBString">
-	<summary>
- Returns RGB=(212,208,200)
- </summary>
-</member><member name="P:ScreenGrab6.Collage.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:ScreenGrab6.Collage.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="T:ScreenGrab6.Collage.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="F:ScreenGrab6.Collage.sys_setWindowPos.SetWindowPosFlags.SynchronousWindowPosition">
+<member name="F:ScreenGrab6.Collage.sys_setWindowPos.SetWindowPosFlags.SynchronousWindowPosition">
 	<summary>If the calling thread and the thread that owns the window are attached to different input queues, 
  the system posts the request to the thread that owns the window. This prevents the calling thread from 
  blocking its execution while other threads process the request.</summary>
@@ -103,58 +62,40 @@ Collage
 </member><member name="F:ScreenGrab6.Collage.sys_setWindowPos.SetWindowPosFlags.ShowWindow">
 	<summary>Displays the window.</summary>
 	<remarks>SWP_SHOWWINDOW</remarks>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.LeftMostBound">
+</member><member name="M:ScreenGrab6.Collage.JSON.JsonDecode(System.String)">
 	<summary>
- Gets the least "x" coordinate of all screens on the system
+ Parses the string json into a value
  </summary>
-	<returns>The smallest visible "x" screen coordinate</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.RightMostBound">
+	<param name="json">A JSON string.</param>
+	<returns>An ArrayList, a Hashtable, a double, a string, null, true, or false</returns>
+</member><member name="M:ScreenGrab6.Collage.JSON.JsonDecode(System.String,System.Boolean@)">
 	<summary>
- Gets the greatest "x" coordinate of all screens on the system
+ Parses the string json into a value; and fills 'success' with the successfullness of the parse.
  </summary>
-	<returns>The largest visible "x" screen coordinate</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.TopMostBound">
+	<param name="json">A JSON string.</param>
+	<param name="success">Successful parse?</param>
+	<returns>An ArrayList, a Hashtable, a double, a string, null, true, or false</returns>
+</member><member name="M:ScreenGrab6.Collage.JSON.JsonEncode(System.Object)">
 	<summary>
- Gets the least "y" coordinate of all screens on the system
+ Converts a Hashtable / ArrayList object into a JSON string
  </summary>
-	<returns>The smallest visible "y" screen coordinate</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.BottomMostBound">
+	<param name="json">A Hashtable / ArrayList</param>
+	<returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
+</member><member name="M:ScreenGrab6.Collage.JSON.IsNumeric(System.Object)">
 	<summary>
- Gets the greatest "y" coordinate of all screens on the system
+ Determines if a given object is numeric in any way
+ (can be integer, double, null, etc). 
+ 
+ Thanks to mtighe for pointing out Double.TryParse to me.
  </summary>
-	<returns>The largest visible "y" screen coordinate</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.MaximumWidth">
+</member><member name="T:ScreenGrab6.Collage.JSON">
 	<summary>
- Gets the width of the screen with the highest resolution.
+ This class encodes and decodes JSON strings.
+ Spec. details, see http://www.json.org/
+ 
+ JSON uses Arrays and Objects. These correspond here to the datatypes ArrayList and Hashtable.
+ All numbers are parsed to doubles.
  </summary>
-	<returns>The width of the screen with the highest resolution.</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.MinimumWidth">
-	<summary>
- Gets the width of the screen with the lowest resolution.
- </summary>
-	<returns>The width of the screen with the lowest resolution.</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.MaximumHeight">
-	<summary>
- Gets the height of the screen with the highest resolution.
- </summary>
-	<returns>The height of the screen with the highest resolution.</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.MinimumHeight">
-	<summary>
- Gets the height of the screen with the lowest resolution.
- </summary>
-	<returns>The height of the screen with the lowest resolution.</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.TotalWidth">
-	<summary>
- Gets the total width of all the screens relative to their arrangement.
- </summary>
-	<returns>The total width of all the screens relative to their arrangement.</returns>
-</member><member name="P:ScreenGrab6.Collage.ScreenArea.TotalHeight">
-	<summary>
- Gets the total height of all the screens relative to their arrangement.
- </summary>
-	<returns>The total height of all the screens relative to their arrangement.</returns>
-</member><member name="T:ScreenGrab6.Collage.ScreenArea">
-	<summary>Returns screen area statistics and capture functionality for all connected screens.</summary>
 </member><member name="F:ScreenGrab6.Collage.app_winVista.WTNCA_NODRAWCAPTION">
 	<summary>
  Do Not Draw The Caption (Text)
@@ -233,6 +174,86 @@ Collage
  </summary>
 	<param name="hwnd"></param>
 	<remarks></remarks>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.LeftMostBound">
+	<summary>
+ Gets the least "x" coordinate of all screens on the system
+ </summary>
+	<returns>The smallest visible "x" screen coordinate</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.RightMostBound">
+	<summary>
+ Gets the greatest "x" coordinate of all screens on the system
+ </summary>
+	<returns>The largest visible "x" screen coordinate</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.TopMostBound">
+	<summary>
+ Gets the least "y" coordinate of all screens on the system
+ </summary>
+	<returns>The smallest visible "y" screen coordinate</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.BottomMostBound">
+	<summary>
+ Gets the greatest "y" coordinate of all screens on the system
+ </summary>
+	<returns>The largest visible "y" screen coordinate</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.MaximumWidth">
+	<summary>
+ Gets the width of the screen with the highest resolution.
+ </summary>
+	<returns>The width of the screen with the highest resolution.</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.MinimumWidth">
+	<summary>
+ Gets the width of the screen with the lowest resolution.
+ </summary>
+	<returns>The width of the screen with the lowest resolution.</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.MaximumHeight">
+	<summary>
+ Gets the height of the screen with the highest resolution.
+ </summary>
+	<returns>The height of the screen with the highest resolution.</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.MinimumHeight">
+	<summary>
+ Gets the height of the screen with the lowest resolution.
+ </summary>
+	<returns>The height of the screen with the lowest resolution.</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.TotalWidth">
+	<summary>
+ Gets the total width of all the screens relative to their arrangement.
+ </summary>
+	<returns>The total width of all the screens relative to their arrangement.</returns>
+</member><member name="P:ScreenGrab6.Collage.ScreenArea.TotalHeight">
+	<summary>
+ Gets the total height of all the screens relative to their arrangement.
+ </summary>
+	<returns>The total height of all the screens relative to their arrangement.</returns>
+</member><member name="T:ScreenGrab6.Collage.ScreenArea">
+	<summary>Returns screen area statistics and capture functionality for all connected screens.</summary>
+</member><member name="M:ScreenGrab6.Collage.ColorExtensions.GetNearestName(System.Drawing.Color)">
+	<summary>
+ Gets the <see cref="P:System.Drawing.Color.Name">System.Drawing.Color.Name</see> of the closest matching color.
+ </summary>
+	<example>
+		<code>
+    Private Sub Example()
+        Dim oColor As Color = Color.FromName(GetNearestName(Color.FromArgb(255, 255, 255, 0)))
+        Debug.Assert(oColor.Name = "Yellow")
+    End Sub
+ </code>
+	</example>
+</member><member name="M:ScreenGrab6.Collage.ColorExtensions.GetNearestKnownColor(System.Drawing.Color)">
+	<summary>
+ Gets the <see cref="T:System.Drawing.KnownColor">System.Drawing.KnownColor</see> of the closest matching known color.
+ </summary>
+	<example>
+		<code>
+    Private Sub Example()
+        Dim oColor As Color =  Color.FromKnownColor(GetNearestKnownColor(Color.FromArgb(255, 255, 255, 0)))
+        Debug.Assert(oColor.Name = "Yellow")
+    End Sub
+ </code>
+	</example>
+</member><member name="M:ScreenGrab6.Collage.ColorExtensions.ColorName.ToRGBString">
+	<summary>
+ Returns RGB=(212,208,200)
+ </summary>
 </member><member name="M:ScreenGrab6.Collage.sys_imageFromWeb.MD5HashForString(System.String)">
 	<summary>
  Liefert den MD5-Hash-Wert eines Strings als Byte-Array zurück
@@ -248,40 +269,19 @@ Collage
 	<param name="arrInput"></param>
 	<returns></returns>
 	<remarks></remarks>
-</member><member name="M:ScreenGrab6.Collage.JSON.JsonDecode(System.String)">
+</member><member name="P:ScreenGrab6.Collage.My.Resources.Resources.ResourceManager">
 	<summary>
- Parses the string json into a value
- </summary>
-	<param name="json">A JSON string.</param>
-	<returns>An ArrayList, a Hashtable, a double, a string, null, true, or false</returns>
-</member><member name="M:ScreenGrab6.Collage.JSON.JsonDecode(System.String,System.Boolean@)">
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:ScreenGrab6.Collage.My.Resources.Resources.Culture">
 	<summary>
- Parses the string json into a value; and fills 'success' with the successfullness of the parse.
- </summary>
-	<param name="json">A JSON string.</param>
-	<param name="success">Successful parse?</param>
-	<returns>An ArrayList, a Hashtable, a double, a string, null, true, or false</returns>
-</member><member name="M:ScreenGrab6.Collage.JSON.JsonEncode(System.Object)">
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:ScreenGrab6.Collage.My.Resources.Resources">
 	<summary>
- Converts a Hashtable / ArrayList object into a JSON string
- </summary>
-	<param name="json">A Hashtable / ArrayList</param>
-	<returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
-</member><member name="M:ScreenGrab6.Collage.JSON.IsNumeric(System.Object)">
-	<summary>
- Determines if a given object is numeric in any way
- (can be integer, double, null, etc). 
- 
- Thanks to mtighe for pointing out Double.TryParse to me.
- </summary>
-</member><member name="T:ScreenGrab6.Collage.JSON">
-	<summary>
- This class encodes and decodes JSON strings.
- Spec. details, see http://www.json.org/
- 
- JSON uses Arrays and Objects. These correspond here to the datatypes ArrayList and Hashtable.
- All numbers are parsed to doubles.
- </summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
 </member>
 </members>
 </doc>

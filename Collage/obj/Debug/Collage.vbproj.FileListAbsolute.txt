@@ -1,4 +1,3 @@
-C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Collage\bin\Debug\CollageModus\Antlr3.Runtime.dll
 C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Collage\bin\Debug\ConvolutionFilters.txt
 C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Collage\bin\Debug\Collage.exe
 C:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\Collage\bin\Debug\Collage.pdb

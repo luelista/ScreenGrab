@@ -48,7 +48,12 @@ Public Class Canvas
     js.SetParameter("window", window)
     js.SetParameter("target", obj)
     js.SetParameter("eventName", eventName)
-    js.Run(eventCode)
+    Try
+      js.Run(eventCode)
+    Catch ex As Exception
+      MsgBox(ex.ToString, MsgBoxStyle.Exclamation, "JavaScript Error in """ + eventName + """ Event Handler")
+    End Try
+
   End Sub
 
   Public Function NextIndex() As Long
@@ -251,10 +256,11 @@ Public Class Canvas
   End Sub
 
   Sub startEditMode(ByVal tb As VTextbox)
-    EditTB.Bounds = New Rectangle(tb.Left - 1, tb.Top - 2, tb.Width + 4, tb.Height + 4)
+    EditTB.Bounds = tb.absoluteBounds
+    EditTB.Left -= 1 : EditTB.Top -= 2 : EditTB.Width += 4 : EditTB.Height += 4
     'EditTB.Top += 28
-
-    EditTB.Text = tb.text
+    tb.GetOuterBounds()
+    EditTB.Text = tb.Text
     EditTB.Font = tb.Font
     EditTB.Show()
     EditTB.Focus()
@@ -332,8 +338,22 @@ Public Class Canvas
   Private Sub box_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles box.MouseDoubleClick
     If IsInsertionMode Or IsObjectBorderSelectionMode Or IsLineDrawingMode Then Exit Sub
     Dim selObj = GetFirstSelectedObject()
-    If selObj IsNot Nothing AndAlso TypeOf selObj Is VTextbox Then
-      startEditMode(selObj)
+    If selObj IsNot Nothing Then
+      If TypeOf selObj Is VTextbox Then
+        startEditMode(selObj)
+        Exit Sub
+      End If
+
+      If TypeOf selObj Is VGroup Then
+        For Each tx In DirectCast(selObj, VGroup).subObjects
+          If TypeOf tx Is VTextbox AndAlso tx.HitTest(New Point(e.Location.X, e.Location.Y)) Then
+            startEditMode(tx)
+            Exit Sub
+          End If
+        Next
+      End If
+
+      Me.OnEvent("ondblclick", selObj)
     End If
   End Sub
 
@@ -404,7 +424,11 @@ Public Class Canvas
     ElseIf resizeDirection = VResizeDirection.Rotation Then
       Dim delta As Integer = mouseDownPnt.Y - e.Location.Y
       Dim obj = GetFirstSelectedObject()
-      obj.Rotation = origCustom + delta
+      If isKeyPressed(Keys.ControlKey) Then
+        obj.Rotation = ((origCustom + delta) \ 15) * 15
+      Else
+        obj.Rotation = (origCustom + delta)
+      End If
       Invalidate()
 
     ElseIf resizeDirection = VResizeDirection.Custom1 Then
@@ -834,12 +858,12 @@ Public Class Canvas
 
   Sub CutSelection()
     CopySelection()
-    'delete selected
+    'TODO: delete selected
   End Sub
 
   Sub Paste()
     DeselectAll()
-    If Clipboard.ContainsData("ScreenGrabCollageItemList") Then
+    If Clipboard.ContainsData("ScreenGrabCollageItemList") And Not isKeyPressed(Keys.ShiftKey) Then
       Dim items() As String = Clipboard.GetData("ScreenGrabCollageItemList")
       For Each item As String In items
         If String.IsNullOrEmpty(item) Then Continue For
@@ -854,6 +878,14 @@ Public Class Canvas
       v.isSelected = True
       v.name = "paste_" & Now.Ticks
       '   addObject(v)
+    ElseIf Clipboard.ContainsText Then
+      Dim v As VTextbox
+      v.Top = 100 : v.Left = 100 : v.Width = 200 : v.Height = 100
+      v.Font = New Font("Courier New", 10, FontStyle.Regular, GraphicsUnit.Point)
+      v.Text = Clipboard.GetText
+      v.isSelected = True
+      v.name = "paste_" & Now.Ticks
+      addObject(v)
     End If
     OnSelectionChanged()
 
@@ -939,7 +971,7 @@ Public Class Canvas
     'End Using
     cleanUpZIndex()
 
-    Dim previewImg = GetPartialImage(0, 0, box.Width, box.Height, Nothing).GetThumbnailImage(100, 100, Nothing, IntPtr.Zero)
+    Dim previewImg = GetPartialImage(0, 0, box.Width, box.Height, Nothing).GetThumbnailImage(150, 150, Nothing, IntPtr.Zero)
 
 
     Dim sw As New IO.StreamWriter(fileSpec)
@@ -1127,6 +1159,26 @@ Public Class Canvas
     End If
     If e.KeyCode = Keys.Enter And (e.Control Or e.Shift) Then
       acceptEditMode()
+    End If
+    If e.KeyCode = Keys.F And e.Control Then
+      EditObject.Font = New Font(EditObject.Font, EditObject.Font.Style Xor FontStyle.Bold)
+      EditTB.Font = EditObject.Font
+    End If
+    If e.KeyCode = Keys.K And e.Control Then
+      EditObject.Font = New Font(EditObject.Font, EditObject.Font.Style Xor FontStyle.Italic)
+      EditTB.Font = EditObject.Font
+    End If
+    If e.KeyCode = Keys.U And e.Control Then
+      EditObject.Font = New Font(EditObject.Font, EditObject.Font.Style Xor FontStyle.Underline)
+      EditTB.Font = EditObject.Font
+    End If
+    If e.KeyCode = Keys.Oemplus And e.Control Then
+      EditObject.Font = New Font(EditObject.Font.FontFamily, EditObject.Font.SizeInPoints + 1, EditObject.Font.Style, GraphicsUnit.Point)
+      EditTB.Font = EditObject.Font
+    End If
+    If e.KeyCode = Keys.OemMinus And e.Control Then
+      EditObject.Font = New Font(EditObject.Font.FontFamily, EditObject.Font.SizeInPoints - 1, EditObject.Font.Style, GraphicsUnit.Point)
+      EditTB.Font = EditObject.Font
     End If
   End Sub
 

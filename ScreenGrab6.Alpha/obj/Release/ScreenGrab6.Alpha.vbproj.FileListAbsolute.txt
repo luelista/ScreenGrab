@@ -34,3 +34,15 @@ D:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\
 D:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.exe
 D:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.xml
 D:\Users\mw\Dropbox\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.pdb
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\bin\Release\ScreenGrab6.Alpha.exe
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\bin\Release\ScreenGrab6.Alpha.pdb
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\bin\Release\ScreenGrab6.Alpha.xml
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\bin\Release\ScreenGrab6.HelperLib.dll
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\bin\Release\ScreenGrab6.HelperLib.pdb
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ResolveAssemblyReference.cache
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.Form1.resources
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.Resources.resources
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.vbproj.GenerateResource.Cache
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.exe
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.xml
+D:\Projekte\netProjekte2\ScreenGrab6_2008\ScreenGrab6.Alpha\obj\Release\ScreenGrab6.Alpha.pdb

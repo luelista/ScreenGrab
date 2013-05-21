@@ -39,6 +39,20 @@ End Enum
 End Structure
 Public Class Helper
 
+  Public Shared Function extractThumbnail(ByVal filespec As String) As Image
+    Dim sr As New IO.StreamReader(filespec)
+    While Not sr.EndOfStream
+      Dim l = sr.ReadLine
+      Dim p = l.IndexOf("<!-- ##PREVIEW##")
+      Dim e = l.LastIndexOf("##-->")
+      If p > -1 And e > -1 Then
+        Dim part = l.Substring(p + 16, e - p - 16)
+        Return Helper.Base64ToImage(New System.Text.StringBuilder(part))
+      End If
+    End While
+    Return Nothing
+  End Function
+
   ''' <summary>
   ''' Gets the physical location of a font family from the registry
   ''' </summary>
@@ -110,6 +124,8 @@ Public Class Helper
       'resizes += "RGT "    'right resize
       GetResizedRect.Width = deltaX
     End If
+
+    If isKeyPressed(Keys.ShiftKey) Then GetResizedRect.Height = sourceRect.Height * GetResizedRect.Width / sourceRect.Width
 
     'Debug.Print(resizes)
   End Function

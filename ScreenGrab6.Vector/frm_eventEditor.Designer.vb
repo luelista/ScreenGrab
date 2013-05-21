@@ -48,7 +48,7 @@ Partial Class frm_eventEditor
     'ListBox1
     '
     Me.ListBox1.FormattingEnabled = True
-    Me.ListBox1.Items.AddRange(New Object() {"onclick", "onmousedown", "onmouseup", "onmouseenter", "onmouseout"})
+    Me.ListBox1.Items.AddRange(New Object() {"onclick", "ondblclick", "onmousedown", "onmouseup", "onmouseenter", "onmouseout"})
     Me.ListBox1.Location = New System.Drawing.Point(10, 11)
     Me.ListBox1.Name = "ListBox1"
     Me.ListBox1.Size = New System.Drawing.Size(127, 290)

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Collage", "Collage.vbproj", "{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreenGrab6.HelperLib", "..\ScreenGrab6.HelperLib\ScreenGrab6.HelperLib.csproj", "{64AF3C31-F33C-4DA4-87A8-C620DF892556}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ScreenGrab6.Vector", "..\ScreenGrab6.Vector\ScreenGrab6.Vector.vbproj", "{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F81F60FB-6D95-4033-8CE2-AC1C76DE4373}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64AF3C31-F33C-4DA4-87A8-C620DF892556}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64AF3C31-F33C-4DA4-87A8-C620DF892556}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64AF3C31-F33C-4DA4-87A8-C620DF892556}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64AF3C31-F33C-4DA4-87A8-C620DF892556}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
