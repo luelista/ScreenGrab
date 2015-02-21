@@ -25,7 +25,7 @@ Public Class frm_commonUpload
 
   Private Sub frm_dropmeUpload_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
     pnlDropme.Location = New Point(0, 40)
-    pnlFacebook.Location = New Point(0, 40)
+    pnlMediacrush.Location = New Point(0, 40)
     pnlImgur.Location = New Point(0, 40)
     pnlFtp.Location = New Point(0, 40)
     pnlImageshack.Location = New Point(0, 40)
@@ -52,11 +52,11 @@ Public Class frm_commonUpload
   End Sub
 
   Sub onTargetSelected()
-    pnlDropme.Hide() : pnlFacebook.Hide() : pnlImgur.Hide() : pnlFtp.Hide() : pnlImageshack.Hide()
+    pnlDropme.Hide() : pnlMediacrush.Hide() : pnlImgur.Hide() : pnlFtp.Hide() : pnlImageshack.Hide()
     Dim deltaY = Me.Height - Me.ClientSize.Height
     Select Case cmbSelectUploadTarget.SelectedIndex
       Case 1 : pnlDropme.Show() : Me.Height = pnlDropme.Top + pnlDropme.Height + deltaY : Me.AcceptButton = btnUploadDropme : InitDropme()
-      Case 2 : pnlFacebook.Show() : Me.Height = pnlFacebook.Top + pnlFacebook.Height + deltaY : Me.AcceptButton = btnUploadFacebook : InitFacebook()
+      Case 2 : pnlMediacrush.Show() : Me.Height = pnlMediacrush.Top + pnlMediacrush.Height + deltaY : Me.AcceptButton = btnUploadMediacrush : InitMediacrush()
       Case 3 : pnlImgur.Show() : Me.Height = pnlImgur.Top + pnlImgur.Height + deltaY : Me.AcceptButton = btnUploadImgur
       Case 4 : pnlFtp.Show() : Me.Height = pnlFtp.Top + pnlFtp.Height + deltaY : Me.AcceptButton = btnUploadFtp
       Case 5 : pnlImageshack.Show() : Me.Height = pnlImageshack.Top + pnlImageshack.Height + deltaY : Me.AcceptButton = btnUploadImageshack
@@ -265,196 +265,14 @@ Public Class frm_commonUpload
 #End Region
 
 
-#Region "Facebook"
+#Region "Mediacrush"
+  Sub InitMediacrush()
 
-  Sub InitFacebook()
-    If pnlFacebook.Enabled Then Return
-
-    If glob.para("facebook_access_token_2") = "" Then
-      If DialogResult.Yes = MsgBox("Du musst dich zuerst mit Facebook einloggen, um Dateien mit ScreenGrab hochladen zu können. Möchtest du das jetzt tun?", MsgBoxStyle.Question Or MsgBoxStyle.YesNo) Then
-        frm_fbLogin.ShowDialog()
-        If glob.para("facebook_access_token_2") = "" Then Return
-      Else : Return
-      End If
-    End If
-
-    cmbFbAccount.SelectedIndex = -1
-    Dim accounts As Hashtable = TryLoadJSON("https://graph.facebook.com/me/accounts?" + glob.para("facebook_access_token_2"))
-    cmbFbAccount.Items.Add("In den eigenen Account hochladen")
-    facebookUpload_accountList.Add(New String() {"", "me", glob.para("facebook_access_token_2")})
-    For Each account As Hashtable In accounts("data")
-      cmbFbAccount.Items.Add(account("name"))
-      facebookUpload_accountList.Add(New String() {"", account("id"), "access_token=" + account("access_token")})
-    Next
-    Try : cmbFbAccount.SelectedIndex = glob.para("facebook_last_account", "0") : Catch : End Try
-
-    pnlFacebook.Enabled = True
-  End Sub
-
-  Private Sub cmbFbAccount_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbFbAccount.SelectedIndexChanged
-    pnlFbContent.Enabled = False : ListBox1.Items.Clear()
-    If cmbFbAccount.SelectedIndex < 0 Then Return
-    facebookUpload_account = facebookUpload_accountList(cmbFbAccount.SelectedIndex)
-    Dim albums As Hashtable = TryLoadJSON("https://graph.facebook.com/" + facebookUpload_account(1) + "/albums?" + facebookUpload_account(2))
-    For Each album As Hashtable In albums("data")
-      ListBox1.Items.Add(album("name") + vbTab + vbTab + vbTab + vbTab + "|##|" + album("id"))
-    Next
-    pnlFbContent.Enabled = True
-  End Sub
-
-  Private Sub btnUploadFacebook_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUploadFacebook.Click
-    If ListBox1.SelectedIndex = -1 Then MsgBox("Bitte wähle ein Album aus!", MsgBoxStyle.Information) : Return
-
-    Dim albumInfo() As String = Split(ListBox1.SelectedItem, "|##|")
-    facebookUpload_msg = TextBox2.Text
-    If facebookUpload_account.Length <> 3 Then pnlFbContent.Enabled = False : Return
-
-    pbFacebook.Maximum = FileLen(sourceFilespec)
-    pbFacebook.Show()
-
-    pnlFacebook.Enabled = False : cmbSelectUploadTarget.Enabled = False
-
-    bwUploadFacebook.WorkerReportsProgress = True
-    bwUploadFacebook.WorkerSupportsCancellation = True
-    bwUploadFacebook.RunWorkerAsync(albumInfo(1))
   End Sub
 
 
-  Private Sub bwUploadFacebook_DoWork(ByVal sender As Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bwUploadFacebook.DoWork
-    Try
-      Dim Idboundary = "sg6facebookupload." & Now.Ticks    ' you can generate this number
-      Dim strBoundary = Strings.StrDup(27, "-") & Idboundary     ' mutipart post need "-" sign 
-
-      Dim uri = "https://graph.facebook.com/" & e.Argument & "/photos?" & facebookUpload_account(2)
-      Dim hr As System.Net.HttpWebRequest = System.Net.WebRequest.Create(uri)
-
-      hr.Method = "POST"
-      hr.ContentType = "multipart/form-data; boundary=" & strBoundary
-
-      Dim ns = hr.GetRequestStream
-
-      Dim fieldPart As String = _
-        "--" & strBoundary & vbCrLf & _
-        "Content-Disposition: form-data; name=""message""" & vbCrLf & _
-        vbCrLf & facebookUpload_msg & _
-        vbCrLf & "--" & strBoundary & vbCrLf & _
-        "Content-Disposition: form-data; name=""source""; filename=""fbimage.png""" & vbCrLf & _
-        "Content-Type: image/png" & vbCrLf & vbCrLf '& _
-
-      'Dim cl As Integer = FileLen(sourceFilespec) + fieldPart.Length + 8 + strBoundary.Length
-
-      'Dim headerPart As String = _
-      '  "POST /" & e.Argument & "/photos?" & glob.para("facebook_access_token_2") & " HTTP/1.1" & vbCrLf & _
-      '  "Host: graph.facebook.com" & vbCrLf & _
-      '  "User-Agent: ScreenGrab/" & My.Application.Info.Version.ToString & vbCrLf & _
-      '  "Content-Type: multipart/form-data; boundary=" & strBoundary & vbCrLf & _
-      '  "Content-Length: " & cl & vbCrLf & vbCrLf
-
-      ' IO.File.ReadAllText(sourceFilespec, System.Text.Encoding.ASCII) & vbCrLf & vbCrLf & _
-      '"--" & strBoundary & "--"
-      'WICHTIG: Es müssen zwei CRLF sein -- sonst schneidet er den Anfang der Datei ab
-
-      'Dim sock As New System.Net.Sockets.TcpClient("localhost", 880) 
-      'Dim sock As New System.Net.Sockets.TcpClient("graph.facebook.com", 80)
-      'Dim ns = sock.GetStream
-
-      'Dim header() As Byte = System.Text.Encoding.Default.GetBytes(headerPart)
-      'ns.Write(header, 0, header.Length)
-
-      Dim header() As Byte = System.Text.Encoding.Default.GetBytes(fieldPart)
-      ns.Write(header, 0, header.Length)
-
-      Dim fileStream As New IO.FileStream(sourceFilespec, IO.FileMode.Open, IO.FileAccess.Read, IO.FileShare.Read)
-      Dim bytesSize As Integer, buffer(2048) As Byte, bytesCount As Integer
-      bytesSize = fileStream.Read(buffer, 0, buffer.Length)
-      While bytesSize > 0
-        ns.Write(buffer, 0, bytesSize)
-        bytesSize = fileStream.Read(buffer, 0, buffer.Length)
-        bytesCount += bytesSize : bwUploadFacebook.ReportProgress(bytesCount)
-      End While
-      fileStream.Close()
-
-      header = System.Text.Encoding.Default.GetBytes(vbCrLf & vbCrLf & "--" & strBoundary & "--")
-      ns.Write(header, 0, header.Length)
-
-      ns.Close()
-
-      'Dim sr As New System.IO.StreamReader(ns, System.Text.Encoding.ASCII)
-      'Dim data As String = sr.ReadToEnd
-
-      Dim RES = hr.GetResponse   '      T E S T  !!!
-      Dim recv = RES.GetResponseStream
-      Dim reader As New System.IO.StreamReader(recv)
-      Dim data = reader.ReadToEnd
-
-      ' MsgBox(data)
-
-      Dim RESULT2 As Hashtable = JSON.JsonDecode(data)
-      If RESULT2 Is Nothing Then
-        e.Result = New Object() {0, "Ungültige Serverantwort"}
-        Return
-      End If
-
-      If RESULT2.ContainsKey("id") Then
-        Dim photoInfo As Hashtable = TryLoadJSON("https://graph.facebook.com/" & RESULT2("id") & "?" & facebookUpload_account(2))
-        'Stop
-        e.Result = New Object() {1, photoInfo("link")}
-        Return
-      Else
-        e.Result = New Object() {0, "Keine ID zurückgeliefert"}
-      End If
-
-
-    Catch ex As System.Net.WebException
-      e.Result = New Object() {0, ex.Message + vbNewLine + New IO.StreamReader(ex.Response.GetResponseStream).ReadToEnd}
-
-    Catch ex As Exception
-      e.Result = New Object() {0, ex.Message}
-      Return
-    End Try
-  End Sub
-
-  Private Sub bwUploadFacebook_ProgressChanged(ByVal sender As Object, ByVal e As System.ComponentModel.ProgressChangedEventArgs) Handles bwUploadFacebook.ProgressChanged
-    pbFacebook.Value = e.ProgressPercentage
-  End Sub
-
-  Private Sub bwUploadFacebook_RunWorkerCompleted(ByVal sender As Object, ByVal e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles bwUploadFacebook.RunWorkerCompleted
-    If e.Result(0) = 0 Then
-      'Fehler
-      pbFacebook.Hide()
-      pnlFacebook.Enabled = True : cmbSelectUploadTarget.Enabled = True
-      lblFacebookError.Text = e.Result(1)
-      lblFacebookError.Show()
-    Else
-      'OK
-      Clipboard.Clear()
-      Clipboard.SetText(e.Result(1))
-      Dim histItem As New frm_blueScreen.HistoryItem
-      histItem.isUpload = True : histItem.url = e.Result(1)
-      FRM.AddToHistory(histItem)
-
-      uploadHistoryAdd("<a href=""" + e.Result(1) + """>" + e.Result(1) + "</a>")
-
-      Beep()
-      Close()
-    End If
-  End Sub
-
-  Private Sub btnCreateAlbum_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCreateAlbum.Click
-    Dim albName As String = InputBox("Bitte gib einen Namen für das neue Album ein:", "Upload zu Facebook.com")
-    If albName = "" Then Return
-
-    albName = HttpUtility.UrlEncode(albName)
-    Dim RESULT = TryLoadJSON("https://graph.facebook.com/me/albums?" & glob.para("facebook_access_token_2"), "name=" & albName & "&message=Created with ScreenGrab " + My.Application.Info.Version.ToString(2))
-
-    If RESULT IsNot Nothing And RESULT.ContainsKey("id") Then
-      ListBox1.Items.Insert(0, albName + vbTab + vbTab + vbTab + vbTab + "|##|" + RESULT("id"))
-      ListBox1.SelectedIndex = 0
-    End If
-  End Sub
 
 #End Region
-
 
 #Region "Imgur"
 
@@ -659,7 +477,7 @@ Public Class frm_commonUpload
       Dim data = reader.ReadToEnd
 
       e.Result = New Object() {1, data}
-      
+
     Catch ex As System.Net.WebException
       e.Result = New Object() {0, ex.Message + vbNewLine + New IO.StreamReader(ex.Response.GetResponseStream).ReadToEnd}
 

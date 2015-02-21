@@ -33,17 +33,6 @@ Partial Class frm_commonUpload
     Me.lblDropmeError = New System.Windows.Forms.Label
     Me.cmbSelectUploadTarget = New System.Windows.Forms.ComboBox
     Me.pnlDropme = New System.Windows.Forms.Panel
-    Me.pnlFacebook = New System.Windows.Forms.Panel
-    Me.pnlFbContent = New System.Windows.Forms.Panel
-    Me.btnCreateAlbum = New System.Windows.Forms.Button
-    Me.pbFacebook = New System.Windows.Forms.ProgressBar
-    Me.btnCancel2 = New System.Windows.Forms.Button
-    Me.btnUploadFacebook = New System.Windows.Forms.Button
-    Me.TextBox2 = New System.Windows.Forms.TextBox
-    Me.Label2 = New System.Windows.Forms.Label
-    Me.Label5 = New System.Windows.Forms.Label
-    Me.ListBox1 = New System.Windows.Forms.ListBox
-    Me.cmbFbAccount = New System.Windows.Forms.ComboBox
     Me.pnlImgur = New System.Windows.Forms.Panel
     Me.pbImgur = New System.Windows.Forms.ProgressBar
     Me.btnCancel3 = New System.Windows.Forms.Button
@@ -69,13 +58,27 @@ Partial Class frm_commonUpload
     Me.pbImageshack = New System.Windows.Forms.ProgressBar
     Me.btnCancel5 = New System.Windows.Forms.Button
     Me.btnUploadImageshack = New System.Windows.Forms.Button
-    Me.lblFacebookError = New System.Windows.Forms.TextBox
+    Me.pnlMediacrush = New System.Windows.Forms.Panel
+    Me.ComboBox1 = New System.Windows.Forms.ComboBox
+    Me.Label11 = New System.Windows.Forms.Label
+    Me.ProgressBar1 = New System.Windows.Forms.ProgressBar
+    Me.Button1 = New System.Windows.Forms.Button
+    Me.btnUploadMediacrush = New System.Windows.Forms.Button
+    Me.Panel1 = New System.Windows.Forms.Panel
+    Me.cmbWebdavServer = New System.Windows.Forms.ComboBox
+    Me.Label2 = New System.Windows.Forms.Label
+    Me.ProgressBar2 = New System.Windows.Forms.ProgressBar
+    Me.Button2 = New System.Windows.Forms.Button
+    Me.Button3 = New System.Windows.Forms.Button
+    Me.Label5 = New System.Windows.Forms.Label
+    Me.TextBox1 = New System.Windows.Forms.TextBox
+    Me.Label12 = New System.Windows.Forms.Label
     Me.pnlDropme.SuspendLayout()
-    Me.pnlFacebook.SuspendLayout()
-    Me.pnlFbContent.SuspendLayout()
     Me.pnlImgur.SuspendLayout()
     Me.pnlFtp.SuspendLayout()
     Me.pnlImageshack.SuspendLayout()
+    Me.pnlMediacrush.SuspendLayout()
+    Me.Panel1.SuspendLayout()
     Me.SuspendLayout()
     '
     'txtDropmeFilename
@@ -152,7 +155,7 @@ Partial Class frm_commonUpload
     '
     Me.cmbSelectUploadTarget.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
     Me.cmbSelectUploadTarget.FormattingEnabled = True
-    Me.cmbSelectUploadTarget.Items.AddRange(New Object() {"--- bitte auswählen ---", "DropMe", "Facebook", "Imgur", "FTP", "Imageshack"})
+    Me.cmbSelectUploadTarget.Items.AddRange(New Object() {"--- bitte auswählen ---", "MediaCrush (kompatibel)", "DropMe", "WebDAV", "Imgur", "FTP", "Imageshack"})
     Me.cmbSelectUploadTarget.Location = New System.Drawing.Point(23, 12)
     Me.cmbSelectUploadTarget.Name = "cmbSelectUploadTarget"
     Me.cmbSelectUploadTarget.Size = New System.Drawing.Size(506, 21)
@@ -173,120 +176,6 @@ Partial Class frm_commonUpload
     Me.pnlDropme.Name = "pnlDropme"
     Me.pnlDropme.Size = New System.Drawing.Size(544, 123)
     Me.pnlDropme.TabIndex = 1
-    '
-    'pnlFacebook
-    '
-    Me.pnlFacebook.BackColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(152, Byte), Integer))
-    Me.pnlFacebook.Controls.Add(Me.pnlFbContent)
-    Me.pnlFacebook.Controls.Add(Me.cmbFbAccount)
-    Me.pnlFacebook.Enabled = False
-    Me.pnlFacebook.Location = New System.Drawing.Point(0, 165)
-    Me.pnlFacebook.Name = "pnlFacebook"
-    Me.pnlFacebook.Size = New System.Drawing.Size(544, 328)
-    Me.pnlFacebook.TabIndex = 2
-    '
-    'pnlFbContent
-    '
-    Me.pnlFbContent.Controls.Add(Me.btnCreateAlbum)
-    Me.pnlFbContent.Controls.Add(Me.pbFacebook)
-    Me.pnlFbContent.Controls.Add(Me.btnCancel2)
-    Me.pnlFbContent.Controls.Add(Me.btnUploadFacebook)
-    Me.pnlFbContent.Controls.Add(Me.TextBox2)
-    Me.pnlFbContent.Controls.Add(Me.Label2)
-    Me.pnlFbContent.Controls.Add(Me.Label5)
-    Me.pnlFbContent.Controls.Add(Me.ListBox1)
-    Me.pnlFbContent.Controls.Add(Me.lblFacebookError)
-    Me.pnlFbContent.ForeColor = System.Drawing.Color.White
-    Me.pnlFbContent.Location = New System.Drawing.Point(17, 37)
-    Me.pnlFbContent.Name = "pnlFbContent"
-    Me.pnlFbContent.Size = New System.Drawing.Size(526, 290)
-    Me.pnlFbContent.TabIndex = 10
-    '
-    'btnCreateAlbum
-    '
-    Me.btnCreateAlbum.BackColor = System.Drawing.SystemColors.Control
-    Me.btnCreateAlbum.ForeColor = System.Drawing.SystemColors.ControlText
-    Me.btnCreateAlbum.Location = New System.Drawing.Point(5, 254)
-    Me.btnCreateAlbum.Name = "btnCreateAlbum"
-    Me.btnCreateAlbum.Size = New System.Drawing.Size(106, 24)
-    Me.btnCreateAlbum.TabIndex = 2
-    Me.btnCreateAlbum.Text = "Neues Album"
-    Me.btnCreateAlbum.UseVisualStyleBackColor = True
-    '
-    'pbFacebook
-    '
-    Me.pbFacebook.Location = New System.Drawing.Point(195, 163)
-    Me.pbFacebook.Name = "pbFacebook"
-    Me.pbFacebook.Size = New System.Drawing.Size(317, 22)
-    Me.pbFacebook.TabIndex = 5
-    Me.pbFacebook.Visible = False
-    '
-    'btnCancel2
-    '
-    Me.btnCancel2.BackColor = System.Drawing.SystemColors.Control
-    Me.btnCancel2.DialogResult = System.Windows.Forms.DialogResult.Cancel
-    Me.btnCancel2.ForeColor = System.Drawing.SystemColors.ControlText
-    Me.btnCancel2.Location = New System.Drawing.Point(275, 255)
-    Me.btnCancel2.Name = "btnCancel2"
-    Me.btnCancel2.Size = New System.Drawing.Size(94, 23)
-    Me.btnCancel2.TabIndex = 8
-    Me.btnCancel2.Text = "Abbrechen"
-    Me.btnCancel2.UseVisualStyleBackColor = True
-    '
-    'btnUploadFacebook
-    '
-    Me.btnUploadFacebook.BackColor = System.Drawing.SystemColors.Control
-    Me.btnUploadFacebook.ForeColor = System.Drawing.SystemColors.ControlText
-    Me.btnUploadFacebook.Location = New System.Drawing.Point(375, 256)
-    Me.btnUploadFacebook.Name = "btnUploadFacebook"
-    Me.btnUploadFacebook.Size = New System.Drawing.Size(137, 23)
-    Me.btnUploadFacebook.TabIndex = 7
-    Me.btnUploadFacebook.Text = "Hochladen"
-    Me.btnUploadFacebook.UseVisualStyleBackColor = True
-    '
-    'TextBox2
-    '
-    Me.TextBox2.Location = New System.Drawing.Point(195, 21)
-    Me.TextBox2.Multiline = True
-    Me.TextBox2.Name = "TextBox2"
-    Me.TextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-    Me.TextBox2.Size = New System.Drawing.Size(317, 114)
-    Me.TextBox2.TabIndex = 4
-    '
-    'Label2
-    '
-    Me.Label2.AutoSize = True
-    Me.Label2.Location = New System.Drawing.Point(192, 5)
-    Me.Label2.Name = "Label2"
-    Me.Label2.Size = New System.Drawing.Size(91, 13)
-    Me.Label2.TabIndex = 3
-    Me.Label2.Text = "Bildbeschreibung:"
-    '
-    'Label5
-    '
-    Me.Label5.AutoSize = True
-    Me.Label5.Location = New System.Drawing.Point(6, 5)
-    Me.Label5.Name = "Label5"
-    Me.Label5.Size = New System.Drawing.Size(39, 13)
-    Me.Label5.TabIndex = 0
-    Me.Label5.Text = "Album:"
-    '
-    'ListBox1
-    '
-    Me.ListBox1.FormattingEnabled = True
-    Me.ListBox1.Location = New System.Drawing.Point(6, 21)
-    Me.ListBox1.Name = "ListBox1"
-    Me.ListBox1.Size = New System.Drawing.Size(179, 225)
-    Me.ListBox1.TabIndex = 1
-    '
-    'cmbFbAccount
-    '
-    Me.cmbFbAccount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-    Me.cmbFbAccount.FormattingEnabled = True
-    Me.cmbFbAccount.Location = New System.Drawing.Point(23, 10)
-    Me.cmbFbAccount.Name = "cmbFbAccount"
-    Me.cmbFbAccount.Size = New System.Drawing.Size(506, 21)
-    Me.cmbFbAccount.TabIndex = 9
     '
     'pnlImgur
     '
@@ -485,7 +374,7 @@ Partial Class frm_commonUpload
     Me.pnlImageshack.Controls.Add(Me.pbImageshack)
     Me.pnlImageshack.Controls.Add(Me.btnCancel5)
     Me.pnlImageshack.Controls.Add(Me.btnUploadImageshack)
-    Me.pnlImageshack.Location = New System.Drawing.Point(0, 268)
+    Me.pnlImageshack.Location = New System.Drawing.Point(0, 178)
     Me.pnlImageshack.Name = "pnlImageshack"
     Me.pnlImageshack.Size = New System.Drawing.Size(544, 48)
     Me.pnlImageshack.TabIndex = 5
@@ -517,15 +406,147 @@ Partial Class frm_commonUpload
     Me.btnUploadImageshack.Text = "Speichern"
     Me.btnUploadImageshack.UseVisualStyleBackColor = True
     '
-    'lblFacebookError
+    'pnlMediacrush
     '
-    Me.lblFacebookError.BackColor = System.Drawing.Color.FromArgb(CType(CType(59, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(152, Byte), Integer))
-    Me.lblFacebookError.BorderStyle = System.Windows.Forms.BorderStyle.None
-    Me.lblFacebookError.Location = New System.Drawing.Point(195, 157)
-    Me.lblFacebookError.Multiline = True
-    Me.lblFacebookError.Name = "lblFacebookError"
-    Me.lblFacebookError.Size = New System.Drawing.Size(316, 88)
-    Me.lblFacebookError.TabIndex = 9
+    Me.pnlMediacrush.Controls.Add(Me.ComboBox1)
+    Me.pnlMediacrush.Controls.Add(Me.Label11)
+    Me.pnlMediacrush.Controls.Add(Me.ProgressBar1)
+    Me.pnlMediacrush.Controls.Add(Me.Button1)
+    Me.pnlMediacrush.Controls.Add(Me.btnUploadMediacrush)
+    Me.pnlMediacrush.Location = New System.Drawing.Point(0, 241)
+    Me.pnlMediacrush.Name = "pnlMediacrush"
+    Me.pnlMediacrush.Size = New System.Drawing.Size(544, 87)
+    Me.pnlMediacrush.TabIndex = 6
+    '
+    'ComboBox1
+    '
+    Me.ComboBox1.FormattingEnabled = True
+    Me.ComboBox1.Items.AddRange(New Object() {"https://chat2.teamwiki.net"})
+    Me.ComboBox1.Location = New System.Drawing.Point(136, 11)
+    Me.ComboBox1.Name = "ComboBox1"
+    Me.ComboBox1.Size = New System.Drawing.Size(392, 21)
+    Me.ComboBox1.TabIndex = 8
+    Me.ComboBox1.Text = "https://chat2.teamwiki.net"
+    '
+    'Label11
+    '
+    Me.Label11.AutoSize = True
+    Me.Label11.Location = New System.Drawing.Point(19, 14)
+    Me.Label11.Name = "Label11"
+    Me.Label11.Size = New System.Drawing.Size(41, 13)
+    Me.Label11.TabIndex = 7
+    Me.Label11.Text = "Server:"
+    '
+    'ProgressBar1
+    '
+    Me.ProgressBar1.Location = New System.Drawing.Point(22, 47)
+    Me.ProgressBar1.Name = "ProgressBar1"
+    Me.ProgressBar1.Size = New System.Drawing.Size(256, 22)
+    Me.ProgressBar1.TabIndex = 4
+    Me.ProgressBar1.Visible = False
+    '
+    'Button1
+    '
+    Me.Button1.DialogResult = System.Windows.Forms.DialogResult.Cancel
+    Me.Button1.Location = New System.Drawing.Point(291, 47)
+    Me.Button1.Name = "Button1"
+    Me.Button1.Size = New System.Drawing.Size(95, 23)
+    Me.Button1.TabIndex = 6
+    Me.Button1.Text = "Abbrechen"
+    Me.Button1.UseVisualStyleBackColor = True
+    '
+    'btnUploadMediacrush
+    '
+    Me.btnUploadMediacrush.Location = New System.Drawing.Point(392, 47)
+    Me.btnUploadMediacrush.Name = "btnUploadMediacrush"
+    Me.btnUploadMediacrush.Size = New System.Drawing.Size(137, 23)
+    Me.btnUploadMediacrush.TabIndex = 5
+    Me.btnUploadMediacrush.Text = "Speichern"
+    Me.btnUploadMediacrush.UseVisualStyleBackColor = True
+    '
+    'Panel1
+    '
+    Me.Panel1.Controls.Add(Me.TextBox1)
+    Me.Panel1.Controls.Add(Me.Label12)
+    Me.Panel1.Controls.Add(Me.Label5)
+    Me.Panel1.Controls.Add(Me.cmbWebdavServer)
+    Me.Panel1.Controls.Add(Me.Label2)
+    Me.Panel1.Controls.Add(Me.ProgressBar2)
+    Me.Panel1.Controls.Add(Me.Button2)
+    Me.Panel1.Controls.Add(Me.Button3)
+    Me.Panel1.Location = New System.Drawing.Point(0, 333)
+    Me.Panel1.Name = "Panel1"
+    Me.Panel1.Size = New System.Drawing.Size(544, 136)
+    Me.Panel1.TabIndex = 7
+    '
+    'cmbWebdavServer
+    '
+    Me.cmbWebdavServer.FormattingEnabled = True
+    Me.cmbWebdavServer.Location = New System.Drawing.Point(136, 11)
+    Me.cmbWebdavServer.Name = "cmbWebdavServer"
+    Me.cmbWebdavServer.Size = New System.Drawing.Size(392, 21)
+    Me.cmbWebdavServer.TabIndex = 8
+    '
+    'Label2
+    '
+    Me.Label2.AutoSize = True
+    Me.Label2.Location = New System.Drawing.Point(19, 14)
+    Me.Label2.Name = "Label2"
+    Me.Label2.Size = New System.Drawing.Size(32, 13)
+    Me.Label2.TabIndex = 7
+    Me.Label2.Text = "URL:"
+    '
+    'ProgressBar2
+    '
+    Me.ProgressBar2.Location = New System.Drawing.Point(22, 99)
+    Me.ProgressBar2.Name = "ProgressBar2"
+    Me.ProgressBar2.Size = New System.Drawing.Size(256, 22)
+    Me.ProgressBar2.TabIndex = 4
+    Me.ProgressBar2.Visible = False
+    '
+    'Button2
+    '
+    Me.Button2.DialogResult = System.Windows.Forms.DialogResult.Cancel
+    Me.Button2.Location = New System.Drawing.Point(291, 99)
+    Me.Button2.Name = "Button2"
+    Me.Button2.Size = New System.Drawing.Size(95, 23)
+    Me.Button2.TabIndex = 6
+    Me.Button2.Text = "Abbrechen"
+    Me.Button2.UseVisualStyleBackColor = True
+    '
+    'Button3
+    '
+    Me.Button3.Location = New System.Drawing.Point(392, 99)
+    Me.Button3.Name = "Button3"
+    Me.Button3.Size = New System.Drawing.Size(137, 23)
+    Me.Button3.TabIndex = 5
+    Me.Button3.Text = "Speichern"
+    Me.Button3.UseVisualStyleBackColor = True
+    '
+    'Label5
+    '
+    Me.Label5.AutoSize = True
+    Me.Label5.Location = New System.Drawing.Point(133, 35)
+    Me.Label5.Name = "Label5"
+    Me.Label5.Size = New System.Drawing.Size(390, 13)
+    Me.Label5.TabIndex = 9
+    Me.Label5.Text = "Format: https://benutzername@passwort:webdav.example.com/ein/unterordner/"
+    '
+    'TextBox1
+    '
+    Me.TextBox1.Location = New System.Drawing.Point(135, 66)
+    Me.TextBox1.Name = "TextBox1"
+    Me.TextBox1.Size = New System.Drawing.Size(392, 20)
+    Me.TextBox1.TabIndex = 11
+    '
+    'Label12
+    '
+    Me.Label12.AutoSize = True
+    Me.Label12.Location = New System.Drawing.Point(17, 69)
+    Me.Label12.Name = "Label12"
+    Me.Label12.Size = New System.Drawing.Size(61, 13)
+    Me.Label12.TabIndex = 10
+    Me.Label12.Text = "Dateiname:"
     '
     'frm_commonUpload
     '
@@ -533,10 +554,11 @@ Partial Class frm_commonUpload
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.ClientSize = New System.Drawing.Size(544, 752)
+    Me.Controls.Add(Me.Panel1)
+    Me.Controls.Add(Me.pnlMediacrush)
     Me.Controls.Add(Me.pnlImageshack)
     Me.Controls.Add(Me.pnlFtp)
     Me.Controls.Add(Me.pnlImgur)
-    Me.Controls.Add(Me.pnlFacebook)
     Me.Controls.Add(Me.cmbSelectUploadTarget)
     Me.Controls.Add(Me.pnlDropme)
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -549,14 +571,15 @@ Partial Class frm_commonUpload
     Me.Text = "Datei im Web speichern ..."
     Me.pnlDropme.ResumeLayout(False)
     Me.pnlDropme.PerformLayout()
-    Me.pnlFacebook.ResumeLayout(False)
-    Me.pnlFbContent.ResumeLayout(False)
-    Me.pnlFbContent.PerformLayout()
     Me.pnlImgur.ResumeLayout(False)
     Me.pnlImgur.PerformLayout()
     Me.pnlFtp.ResumeLayout(False)
     Me.pnlFtp.PerformLayout()
     Me.pnlImageshack.ResumeLayout(False)
+    Me.pnlMediacrush.ResumeLayout(False)
+    Me.pnlMediacrush.PerformLayout()
+    Me.Panel1.ResumeLayout(False)
+    Me.Panel1.PerformLayout()
     Me.ResumeLayout(False)
 
   End Sub
@@ -570,15 +593,6 @@ Partial Class frm_commonUpload
   Friend WithEvents lblDropmeError As System.Windows.Forms.Label
   Friend WithEvents cmbSelectUploadTarget As System.Windows.Forms.ComboBox
   Friend WithEvents pnlDropme As System.Windows.Forms.Panel
-  Friend WithEvents pnlFacebook As System.Windows.Forms.Panel
-  Friend WithEvents btnCreateAlbum As System.Windows.Forms.Button
-  Friend WithEvents pbFacebook As System.Windows.Forms.ProgressBar
-  Friend WithEvents btnCancel2 As System.Windows.Forms.Button
-  Friend WithEvents btnUploadFacebook As System.Windows.Forms.Button
-  Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
-  Friend WithEvents Label2 As System.Windows.Forms.Label
-  Friend WithEvents Label5 As System.Windows.Forms.Label
-  Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
   Friend WithEvents pnlImgur As System.Windows.Forms.Panel
   Friend WithEvents btnCancel3 As System.Windows.Forms.Button
   Friend WithEvents btnUploadImgur As System.Windows.Forms.Button
@@ -604,7 +618,19 @@ Partial Class frm_commonUpload
   Friend WithEvents pbImageshack As System.Windows.Forms.ProgressBar
   Friend WithEvents btnCancel5 As System.Windows.Forms.Button
   Friend WithEvents btnUploadImageshack As System.Windows.Forms.Button
-  Friend WithEvents cmbFbAccount As System.Windows.Forms.ComboBox
-  Friend WithEvents pnlFbContent As System.Windows.Forms.Panel
-  Friend WithEvents lblFacebookError As System.Windows.Forms.TextBox
+  Friend WithEvents pnlMediacrush As System.Windows.Forms.Panel
+  Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+  Friend WithEvents Label11 As System.Windows.Forms.Label
+  Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
+  Friend WithEvents Button1 As System.Windows.Forms.Button
+  Friend WithEvents btnUploadMediacrush As System.Windows.Forms.Button
+  Friend WithEvents Panel1 As System.Windows.Forms.Panel
+  Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+  Friend WithEvents Label12 As System.Windows.Forms.Label
+  Friend WithEvents Label5 As System.Windows.Forms.Label
+  Friend WithEvents cmbWebdavServer As System.Windows.Forms.ComboBox
+  Friend WithEvents Label2 As System.Windows.Forms.Label
+  Friend WithEvents ProgressBar2 As System.Windows.Forms.ProgressBar
+  Friend WithEvents Button2 As System.Windows.Forms.Button
+  Friend WithEvents Button3 As System.Windows.Forms.Button
 End Class
