@@ -1,3 +1,0 @@
-C:\_sync\vbNet\ScreenGrab2.0\obj\Release\ScreenGrab2.0.exe
-C:\_sync\vbNet\ScreenGrab2.0\obj\Release\ScreenGrab2._0.xml
-C:\_sync\vbNet\ScreenGrab2.0\obj\Release\ScreenGrab2.0.pdb
