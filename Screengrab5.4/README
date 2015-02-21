@@ -1,0 +1,26 @@
+This is the main Visual Studio project folder of Screengrab.
+
+Directory tree overview:
+
+ScreenGrab5.4
+	\ Controls
+		ColorPicker control
+	\ Grab
+		Main window and screen shot taking functionality, options
+		dialog, auto-update etc.
+	\ Libs
+		Various re-usable / re-used code libraries
+	\ Uploads
+		Uploading screenshots to different web services
+	\ ScreenGrab5.vbprof
+
+
+Despite the directory name Screengrab5.4 and the project file name 
+ScreenGrab5.vbproj, which are there for historical reasons, this is 
+a new version. The version number is stored in the auto-generated
+file ./My Project/AssemblyInfo.vb
+
+
+Copyright (c) 2010-2015 Maximilian Weller
+http://home.max-weller.de
+
