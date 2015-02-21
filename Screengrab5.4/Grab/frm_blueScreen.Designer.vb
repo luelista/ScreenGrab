@@ -459,7 +459,7 @@ Partial Class frm_blueScreen
     '
     Me.pnlSidebar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                 Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(43, Byte), Integer), CType(CType(51, Byte), Integer), CType(CType(78, Byte), Integer))
+    Me.pnlSidebar.BackColor = System.Drawing.Color.DimGray
     Me.pnlSidebar.Controls.Add(Me.btn_android2sg)
     Me.pnlSidebar.Controls.Add(Me.chkAutoCopy)
     Me.pnlSidebar.Controls.Add(Me.chkAutoSave)

@@ -252,20 +252,24 @@ Public Class frm_blueScreen
       FRM.pnlViewPartial.BackColor = ColorTranslator.FromHtml(glob.para("frm_options__txtMainWinBG", "#eeeeee"))
     Catch : End Try
 
-    makeFormGlassReady(Me, pnlSidebar, DockStyle.Left)
+    ' makeFormGlassReady(Me, pnlSidebar, DockStyle.Left)
 
     initHotkeys()
     If chk_blueScreenMode.Checked = False Then
       '''''''''''''''''''''''''' openGrabWindow()
     End If
 
-    'a2sgSubscribe_timestamp = Now.ToUniversalTime().ToString("ddd, dd MMM yyyy HH':'mm':'ss 'GMT'")
-    a2sg_zs = New ZeroconfService.NetService("", "_ssft._tcp", "ScreenGrab6", 1993)
-    a2sg_zs.Publish()
+    Try
+      'a2sgSubscribe_timestamp = Now.ToUniversalTime().ToString("ddd, dd MMM yyyy HH':'mm':'ss 'GMT'")
+      a2sg_zs = New ZeroconfService.NetService("", "_ssft._tcp", "ScreenGrab6", 1993)
+      a2sg_zs.Publish()
 
-    a2sg_receiver = New System.Net.Sockets.TcpListener(1993)
-    a2sg_receiver.Start()
-    a2sg_receiver.BeginAcceptTcpClient(AddressOf onA2SGConnection, Nothing)
+      a2sg_receiver = New System.Net.Sockets.TcpListener(1993)
+      a2sg_receiver.Start()
+      a2sg_receiver.BeginAcceptTcpClient(AddressOf onA2SGConnection, Nothing)
+    Catch ex As Exception
+      btn_android2sg.Enabled = False
+    End Try
 
     'a2sg_listener.Start()
 
