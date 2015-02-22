@@ -170,13 +170,7 @@ Public Class frm_options
     FRM.chk_streaming.Visible = True
   End Sub
 
-  Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-    frm_fbLogin.ShowDialog()
-  End Sub
 
-  Private Sub LinkLabel2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel2.LinkClicked
-    Process.Start("https://www.facebook.com/apps/application.php?id=109707115775453&sk=wall")
-  End Sub
 
   Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
     Process.Start("http://dropme.de/?source=sg_settings_reglink")

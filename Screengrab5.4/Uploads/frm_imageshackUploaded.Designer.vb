@@ -71,7 +71,6 @@ Partial Class frm_imageshackUploaded
     Me.MinimizeBox = False
     Me.Name = "frm_imageshackUploaded"
     Me.ShowIcon = False
-    Me.ShowInTaskbar = False
     Me.Text = "Bild hochgeladen"
     CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
