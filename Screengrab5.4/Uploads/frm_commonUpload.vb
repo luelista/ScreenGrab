@@ -18,6 +18,7 @@ Public Class frm_commonUpload
 
     cmbSelectUploadTarget.Items.Add(New UploadMediacrush())
     cmbSelectUploadTarget.Items.Add(New UploadDropme())
+    cmbSelectUploadTarget.Items.Add(New UploadWebDAV())
     cmbSelectUploadTarget.Items.Add(New UploadImgur())
     cmbSelectUploadTarget.Items.Add(New UploadImageshack())
 
