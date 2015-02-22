@@ -9,6 +9,14 @@ Module app_grabWindow
   Private Function GetForegroundWindow() As IntPtr
   End Function
 
+  Sub grabFullScreen()
+    grabTempScreenshot = grabsch.ScreenCapture()
+    loadImage(grabTempScreenshot)
+    onScreenshotTaken()
+    frm_blueScreen.Show()
+    FRM.Activate()
+  End Sub
+
   Sub grabCurrentWindow()
 
     Dim window As IntPtr = GetForegroundWindow()

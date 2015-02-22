@@ -56,10 +56,6 @@ Partial Class frm_options
     Me.btnImgurAuth = New System.Windows.Forms.Button
     Me.rbImgurLogin__on = New System.Windows.Forms.RadioButton
     Me.rbImgurLogin__off = New System.Windows.Forms.RadioButton
-    Me.GroupBox5 = New System.Windows.Forms.GroupBox
-    Me.Label4 = New System.Windows.Forms.Label
-    Me.LinkLabel2 = New System.Windows.Forms.LinkLabel
-    Me.Button2 = New System.Windows.Forms.Button
     Me.GroupBox3 = New System.Windows.Forms.GroupBox
     Me.txtProxyDOM = New System.Windows.Forms.TextBox
     Me.Label5 = New System.Windows.Forms.Label
@@ -115,7 +111,6 @@ Partial Class frm_options
     Me.TabPage3.SuspendLayout()
     Me.GroupBox6.SuspendLayout()
     Me.pnlImgurVerify.SuspendLayout()
-    Me.GroupBox5.SuspendLayout()
     Me.GroupBox3.SuspendLayout()
     Me.GroupBox1.SuspendLayout()
     CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -375,7 +370,6 @@ Partial Class frm_options
     'TabPage3
     '
     Me.TabPage3.Controls.Add(Me.GroupBox6)
-    Me.TabPage3.Controls.Add(Me.GroupBox5)
     Me.TabPage3.Controls.Add(Me.GroupBox3)
     Me.TabPage3.Controls.Add(Me.GroupBox1)
     Me.TabPage3.Location = New System.Drawing.Point(4, 22)
@@ -392,7 +386,7 @@ Partial Class frm_options
     Me.GroupBox6.Controls.Add(Me.pnlImgurVerify)
     Me.GroupBox6.Controls.Add(Me.rbImgurLogin__on)
     Me.GroupBox6.Controls.Add(Me.rbImgurLogin__off)
-    Me.GroupBox6.Location = New System.Drawing.Point(17, 236)
+    Me.GroupBox6.Location = New System.Drawing.Point(17, 151)
     Me.GroupBox6.Name = "GroupBox6"
     Me.GroupBox6.Size = New System.Drawing.Size(444, 87)
     Me.GroupBox6.TabIndex = 17
@@ -467,48 +461,6 @@ Partial Class frm_options
     Me.rbImgurLogin__off.Text = "ohne Login verwenden"
     Me.rbImgurLogin__off.UseVisualStyleBackColor = True
     '
-    'GroupBox5
-    '
-    Me.GroupBox5.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.GroupBox5.Controls.Add(Me.Label4)
-    Me.GroupBox5.Controls.Add(Me.LinkLabel2)
-    Me.GroupBox5.Controls.Add(Me.Button2)
-    Me.GroupBox5.Location = New System.Drawing.Point(17, 148)
-    Me.GroupBox5.Name = "GroupBox5"
-    Me.GroupBox5.Size = New System.Drawing.Size(445, 73)
-    Me.GroupBox5.TabIndex = 16
-    Me.GroupBox5.TabStop = False
-    Me.GroupBox5.Text = "Facebook.com"
-    '
-    'Label4
-    '
-    Me.Label4.AutoSize = True
-    Me.Label4.Location = New System.Drawing.Point(141, 45)
-    Me.Label4.Name = "Label4"
-    Me.Label4.Size = New System.Drawing.Size(275, 13)
-    Me.Label4.TabIndex = 2
-    Me.Label4.Text = "Klicke dort auf ""Gefällt mir"", wenn du ScreenGrab magst."
-    '
-    'LinkLabel2
-    '
-    Me.LinkLabel2.AutoSize = True
-    Me.LinkLabel2.Location = New System.Drawing.Point(141, 25)
-    Me.LinkLabel2.Name = "LinkLabel2"
-    Me.LinkLabel2.Size = New System.Drawing.Size(205, 13)
-    Me.LinkLabel2.TabIndex = 1
-    Me.LinkLabel2.TabStop = True
-    Me.LinkLabel2.Text = "Facebook-Seite von ScreenGrab aufrufen"
-    '
-    'Button2
-    '
-    Me.Button2.Location = New System.Drawing.Point(17, 23)
-    Me.Button2.Name = "Button2"
-    Me.Button2.Size = New System.Drawing.Size(98, 23)
-    Me.Button2.TabIndex = 0
-    Me.Button2.Text = "Einloggen"
-    Me.Button2.UseVisualStyleBackColor = True
-    '
     'GroupBox3
     '
     Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -519,7 +471,7 @@ Partial Class frm_options
     Me.GroupBox3.Controls.Add(Me.Label3)
     Me.GroupBox3.Controls.Add(Me.txtProxyUN)
     Me.GroupBox3.Controls.Add(Me.Label2)
-    Me.GroupBox3.Location = New System.Drawing.Point(17, 336)
+    Me.GroupBox3.Location = New System.Drawing.Point(17, 251)
     Me.GroupBox3.Name = "GroupBox3"
     Me.GroupBox3.Size = New System.Drawing.Size(445, 88)
     Me.GroupBox3.TabIndex = 15
@@ -1017,8 +969,6 @@ Partial Class frm_options
     Me.GroupBox6.PerformLayout()
     Me.pnlImgurVerify.ResumeLayout(False)
     Me.pnlImgurVerify.PerformLayout()
-    Me.GroupBox5.ResumeLayout(False)
-    Me.GroupBox5.PerformLayout()
     Me.GroupBox3.ResumeLayout(False)
     Me.GroupBox3.PerformLayout()
     Me.GroupBox1.ResumeLayout(False)
@@ -1079,11 +1029,7 @@ Partial Class frm_options
   Friend WithEvents Label15 As System.Windows.Forms.Label
   Friend WithEvents chk_disp_size_in_tb As System.Windows.Forms.CheckBox
   Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
-  Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
-  Friend WithEvents Button2 As System.Windows.Forms.Button
-  Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
   Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
-  Friend WithEvents Label4 As System.Windows.Forms.Label
   Friend WithEvents GroupBox6 As System.Windows.Forms.GroupBox
   Friend WithEvents rbImgurLogin__on As System.Windows.Forms.RadioButton
   Friend WithEvents rbImgurLogin__off As System.Windows.Forms.RadioButton

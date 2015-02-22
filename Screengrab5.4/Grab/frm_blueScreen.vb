@@ -200,6 +200,9 @@ Public Class frm_blueScreen
     If e.Control And (e.KeyCode = Keys.P) Then
       btnPrint_Click(Nothing, Nothing)
     End If
+    If e.Control And e.KeyCode = Keys.Q Then
+      Me.Close()
+    End If
     'If e.KeyCode = Keys.F3 Or (e.Control And (e.KeyCode = Keys.U Or e.KeyCode = Keys.H Or e.KeyCode = Keys.Enter)) Then
     '  frm_saveFile.urlMode = False
     '  frm_saveFile.ShowDialog()
@@ -648,8 +651,8 @@ Public Class frm_blueScreen
     'MDI.Show()
     'MDI.Activate()
     'MDI.addPicClient()
-    'qq_chkAutoCollage.Enabled = True
-    'qq_chkAutoCollage.Checked = True
+    qq_chkAutoCollage.Enabled = True
+    qq_chkAutoCollage.Checked = True
     oIntWin.EnsureAppRunning("collage", "collage")
     Dim tmpFilespec As String = IO.Path.Combine(IO.Path.GetTempPath, "ScreenGrab-to-Collage.png")
     getCompleteImage.Save(tmpFilespec, System.Drawing.Imaging.ImageFormat.Png)

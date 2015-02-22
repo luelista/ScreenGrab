@@ -121,12 +121,6 @@
     <Compile Include="Uploads\frm_commonUpload.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Uploads\frm_fbLogin.Designer.vb">
-      <DependentUpon>frm_fbLogin.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Uploads\frm_fbLogin.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Grab\frm_blueScreen.Designer.vb">
       <DependentUpon>frm_blueScreen.vb</DependentUpon>
     </Compile>
@@ -221,10 +215,6 @@
       <DependentUpon>frm_commonUpload.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Uploads\frm_fbLogin.resx">
-      <DependentUpon>frm_fbLogin.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Grab\frm_blueScreen.resx">
       <DependentUpon>frm_blueScreen.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -314,7 +304,12 @@
     <Compile Include="Grab\frm_softwareUpdate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Uploads\ICommonUploader.vb" />
     <Compile Include="Uploads\OAuth.OAuthBase.vb" />
+    <Compile Include="Uploads\UploadDropme.vb" />
+    <Compile Include="Uploads\UploadImageshack.vb" />
+    <Compile Include="Uploads\UploadImgur.vb" />
+    <Compile Include="Uploads\UploadMediacrush.vb" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
