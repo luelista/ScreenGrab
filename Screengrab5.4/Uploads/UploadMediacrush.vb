@@ -3,6 +3,7 @@
   Private errorMsg As String
   Private resultUrl As String
   Private sourceFilespec As String
+  Private endpoint As String
 
   Public Function getErrorMessage() As String Implements ICommonUploader.getErrorMessage
     Return errorMsg
@@ -13,10 +14,13 @@
   End Sub
 
   Public Sub initializeOptions(ByVal optionsPanel As IUploadOptionsPanel) Implements ICommonUploader.initializeOptions
-    optionsPanel.addTextbox("url", "Server", "https://chat2.teamwiki.de")
+    Dim lastServer As String = glob.para("lastMediacrushAPIServer", "https://chat2.teamwiki.de")
+    optionsPanel.addTextbox("url", "Server", lastServer)
   End Sub
 
   Public Sub runResultGui() Implements ICommonUploader.runResultGui
+    glob.para("lastMediacrushAPIServer") = endpoint
+
     Dim link As String = resultUrl
     Process.Start(link)
 
@@ -35,7 +39,7 @@
       Dim Idboundary = "sg6upload." & Now.Ticks    ' you can generate this number
       Dim strBoundary = Strings.StrDup(27, "-") & Idboundary     ' mutipart post need "-" sign 
 
-      Dim endpoint As String = progressReceiver.getValue("url")
+      endpoint = progressReceiver.getValue("url")
       Dim upload_uri As String = endpoint + "/api/upload/file"
 
       Dim hr As System.Net.HttpWebRequest = System.Net.WebRequest.Create(upload_uri)
