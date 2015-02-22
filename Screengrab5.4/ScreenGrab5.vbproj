@@ -310,6 +310,7 @@
     <Compile Include="Uploads\UploadImageshack.vb" />
     <Compile Include="Uploads\UploadImgur.vb" />
     <Compile Include="Uploads\UploadMediacrush.vb" />
+    <Compile Include="Uploads\UploadWebDAV.vb" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">

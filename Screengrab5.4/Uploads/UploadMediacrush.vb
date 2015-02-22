@@ -14,12 +14,12 @@
   End Sub
 
   Public Sub initializeOptions(ByVal optionsPanel As IUploadOptionsPanel) Implements ICommonUploader.initializeOptions
-    Dim lastServer As String = glob.para("lastMediacrushAPIServer", "https://chat2.teamwiki.de")
+    Dim lastServer As String = glob.para("UploadMediacrush__APIEndpoint", "https://chat2.teamwiki.de")
     optionsPanel.addTextbox("url", "Server", lastServer)
   End Sub
 
   Public Sub runResultGui() Implements ICommonUploader.runResultGui
-    glob.para("lastMediacrushAPIServer") = endpoint
+    glob.para("UploadMediacrush__APIEndpoint") = endpoint
 
     Dim link As String = resultUrl
     Process.Start(link)
