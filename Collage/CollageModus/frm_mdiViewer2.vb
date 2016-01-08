@@ -310,9 +310,6 @@ Public Class frm_mdiViewer2
 
     mwRegisterSelf()
     glob.readFormPos(Me)
-
-    makeFormGlassReady(Me, Panel1, DockStyle.Top)
-
     'frm_paletteFile.MyCanvas = vcc.canvas
 
     For i = 0 To COLOR_PALETTE_ROWS * COLOR_PALETTE_COLS - 1

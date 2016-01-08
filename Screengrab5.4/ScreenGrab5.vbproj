@@ -111,9 +111,7 @@
     <Compile Include="Grab\app_hotkey.vb" />
     <Compile Include="Grab\app_interprocHandler.vb" />
     <Compile Include="Grab\app_main.vb" />
-    <Compile Include="Grab\app_mjpegServer.vb" />
     <Compile Include="Grab\app_updateScreenGrab.vb" />
-    <Compile Include="Libs\app_winVista.vb" />
     <Compile Include="Libs\cls_globPara.vb" />
     <Compile Include="Uploads\frm_commonUpload.Designer.vb">
       <DependentUpon>frm_commonUpload.vb</DependentUpon>
@@ -200,9 +198,6 @@
       <DependentUpon>gTrackBar.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Uploads\frm_a2sg.resx">
-      <DependentUpon>frm_a2sg.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Uploads\frm_imageshackUploaded.resx">
       <DependentUpon>frm_imageshackUploaded.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -286,12 +281,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Uploads\app_uploadHistory.vb" />
-    <Compile Include="Uploads\frm_a2sg.Designer.vb">
-      <DependentUpon>frm_a2sg.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Uploads\frm_a2sg.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Uploads\frm_imageshackUploaded.Designer.vb">
       <DependentUpon>frm_imageshackUploaded.vb</DependentUpon>
     </Compile>

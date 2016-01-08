@@ -6,13 +6,10 @@ Imports System.Collections
 Imports System.ComponentModel
 Imports System.Windows.Forms
 Imports System.Data
+Imports ScreenGrab6.vbAccelerator.Components.HotKey
 
 Public Class frm_blueScreen
   Dim aktUploadDestFilename As String
-  Public a2sg_receiver As System.Net.Sockets.TcpListener
-
-  Dim a2sg_zs As ZeroconfService.NetService
-  'Dim ftp As New Utilities.FTP.FTPclient("www.teamwiki.de", "vserver3", "xxxxxxxxxxxxxxxxxx")
 
   Structure HistoryItem
     Dim isUpload As Boolean
@@ -109,11 +106,9 @@ Public Class frm_blueScreen
   End Sub
 
   Private Sub frm_blueScreen_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
-    Try : a2sg_receiver.Stop() : Catch : End Try
     glob.saveFormPos(Me)
     glob.saveTuttiFrutti(Me)
     Hide()
-    a2sg_zs.Stop()
     If glob.para("frm_options__chkAutoUpdate", "TRUE") = "TRUE" AndAlso checkForUpdate() Then
       frm_softwareUpdate.Show()
       frm_softwareUpdate.shutdownOnClose = True
@@ -203,6 +198,9 @@ Public Class frm_blueScreen
     If e.Control And e.KeyCode = Keys.Q Then
       Me.Close()
     End If
+    If e.Control And e.KeyCode = Keys.Oemcomma Then
+      OptionenToolStripMenuItem_Click(Nothing, Nothing)
+    End If
     'If e.KeyCode = Keys.F3 Or (e.Control And (e.KeyCode = Keys.U Or e.KeyCode = Keys.H Or e.KeyCode = Keys.Enter)) Then
     '  frm_saveFile.urlMode = False
     '  frm_saveFile.ShowDialog()
@@ -255,41 +253,17 @@ Public Class frm_blueScreen
       FRM.pnlViewPartial.BackColor = ColorTranslator.FromHtml(glob.para("frm_options__txtMainWinBG", "#eeeeee"))
     Catch : End Try
 
-    ' makeFormGlassReady(Me, pnlSidebar, DockStyle.Left)
 
     initHotkeys()
     If chk_blueScreenMode.Checked = False Then
       '''''''''''''''''''''''''' openGrabWindow()
     End If
 
-    Try
-      'a2sgSubscribe_timestamp = Now.ToUniversalTime().ToString("ddd, dd MMM yyyy HH':'mm':'ss 'GMT'")
-      a2sg_zs = New ZeroconfService.NetService("", "_ssft._tcp", "ScreenGrab6", 1993)
-      a2sg_zs.Publish()
-
-      a2sg_receiver = New System.Net.Sockets.TcpListener(1993)
-      a2sg_receiver.Start()
-      a2sg_receiver.BeginAcceptTcpClient(AddressOf onA2SGConnection, Nothing)
-    Catch ex As Exception
-      btn_android2sg.Enabled = False
-    End Try
-
-    'a2sg_listener.Start()
-
-    'If glob.para("frm_options__chkEnableHistory", "FALSE") = "FALSE" Then chkViewHist.Visible = False : chkViewHist.Checked = False
+    GrabToolStripMenuItem.ShortcutKeyDisplayString = _
+        hotkeyToString(glob.para("HotkeyKey", "71"), glob.para("HotkeyModifier", "8"))
 
     Show()
   End Sub
-
-  Sub onA2SGConnection(ByVal ar As System.IAsyncResult)
-    Try
-      Dim sock As System.Net.Sockets.TcpClient
-      sock = a2sg_receiver.EndAcceptTcpClient(ar)
-      Me.Invoke(New frm_a2sg.dhandleConnection(AddressOf frm_a2sg.handleConnection), sock)
-    Catch
-    End Try
-  End Sub
-
 
 
   Private Sub frm_blueScreen_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
@@ -655,8 +629,11 @@ Public Class frm_blueScreen
     qq_chkAutoCollage.Checked = True
     oIntWin.EnsureAppRunning("collage", "collage")
     Dim tmpFilespec As String = IO.Path.Combine(IO.Path.GetTempPath, "ScreenGrab-to-Collage.png")
-    getCompleteImage.Save(tmpFilespec, System.Drawing.Imaging.ImageFormat.Png)
-    oIntWin.SendCommand("collage", "AddImage", tmpFilespec)
+    Dim image = getCompleteImage()
+    If image IsNot Nothing Then
+      image.Save(tmpFilespec, System.Drawing.Imaging.ImageFormat.Png)
+      oIntWin.SendCommand("collage", "AddImage", tmpFilespec)
+    End If
   End Sub
 
   Private Sub NotifyIcon1_MouseDoubleClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles NotifyIcon1.MouseDoubleClick
@@ -722,15 +699,11 @@ Public Class frm_blueScreen
     pnlOpenedFile.Hide()
   End Sub
 
-  Private Sub Button3_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+  Private Sub Button3_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
     frm_helpFile.Show()
     frm_helpFile.Activate()
   End Sub
 
-  Private Sub chk_streaming_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chk_streaming.CheckedChanged
-    MJPEGListenerActive = chk_streaming.Checked
-
-  End Sub
 
   Private Sub txtImageSizeWidth_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) _
   Handles txtImageSizeWidth.KeyUp, txtImageSizeHeight.KeyUp

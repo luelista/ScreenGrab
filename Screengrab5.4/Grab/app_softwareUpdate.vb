@@ -1,6 +1,6 @@
 ﻿Module app_softwareUpdate
 
-  Public updateCheckURL As String = "https://secure.teamwiki.net/m.w/screengrab_update/versionInfo.txt"
+  Public updateCheckURL As String = "https://downloads.max-weller.de/screengrab/versionInfo.txt"
   Public updateDownloadURL As String
   Public updateInfoText As String
   Public updateNewVersion As String

@@ -13,7 +13,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("ScreenGrab 6")> 
 <Assembly: AssemblyCopyright("Copyright © Max Weller 2009-2012")> 
-<Assembly: AssemblyTrademark("www.screengrab.tk")> 
+<Assembly: AssemblyTrademark("screengrab.teamwiki.de")> 
 
 <Assembly: ComVisible(False)>
 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("6.15.0.0")> 
-<Assembly: AssemblyFileVersion("6.15.0.0")> 
+<Assembly: AssemblyVersion("6.16.0.0")> 
+<Assembly: AssemblyFileVersion("6.16.0.0")> 

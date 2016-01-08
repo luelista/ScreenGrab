@@ -70,19 +70,6 @@ Partial Class frm_options
     Me.txtLoginUser = New System.Windows.Forms.TextBox
     Me.Label15 = New System.Windows.Forms.Label
     Me.PictureBox2 = New System.Windows.Forms.PictureBox
-    Me.TabPage2 = New System.Windows.Forms.TabPage
-    Me.Button3 = New System.Windows.Forms.Button
-    Me.ListBox1 = New System.Windows.Forms.ListBox
-    Me.Label14 = New System.Windows.Forms.Label
-    Me.txtLSInfo = New System.Windows.Forms.TextBox
-    Me.Label12 = New System.Windows.Forms.Label
-    Me.txtLSHeight = New System.Windows.Forms.TextBox
-    Me.txtLSWidth = New System.Windows.Forms.TextBox
-    Me.Label11 = New System.Windows.Forms.Label
-    Me.Label10 = New System.Windows.Forms.Label
-    Me.txtLSFooter = New System.Windows.Forms.TextBox
-    Me.Label9 = New System.Windows.Forms.Label
-    Me.Label1 = New System.Windows.Forms.Label
     Me.TabPage4 = New System.Windows.Forms.TabPage
     Me.qq_TextBox2 = New System.Windows.Forms.TextBox
     Me.LinkLabel5 = New System.Windows.Forms.LinkLabel
@@ -101,6 +88,12 @@ Partial Class frm_options
     Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
     Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
     Me.ofdChooseIcon = New System.Windows.Forms.OpenFileDialog
+    Me.GroupBox5 = New System.Windows.Forms.GroupBox
+    Me.chkHotkeyCtrl = New System.Windows.Forms.CheckBox
+    Me.chkHotkeyAlt = New System.Windows.Forms.CheckBox
+    Me.chkHotkeyShift = New System.Windows.Forms.CheckBox
+    Me.chkHotkeyWin = New System.Windows.Forms.CheckBox
+    Me.cmbHotkeyKey = New System.Windows.Forms.ComboBox
     Me.TabControl1.SuspendLayout()
     Me.TabPage1.SuspendLayout()
     Me.GroupBox8.SuspendLayout()
@@ -114,9 +107,9 @@ Partial Class frm_options
     Me.GroupBox3.SuspendLayout()
     Me.GroupBox1.SuspendLayout()
     CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.TabPage2.SuspendLayout()
     Me.TabPage4.SuspendLayout()
     CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.GroupBox5.SuspendLayout()
     Me.SuspendLayout()
     '
     'TabControl1
@@ -126,7 +119,6 @@ Partial Class frm_options
                 Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.TabControl1.Controls.Add(Me.TabPage1)
     Me.TabControl1.Controls.Add(Me.TabPage3)
-    Me.TabControl1.Controls.Add(Me.TabPage2)
     Me.TabControl1.Controls.Add(Me.TabPage4)
     Me.TabControl1.Location = New System.Drawing.Point(100, 0)
     Me.TabControl1.Name = "TabControl1"
@@ -136,6 +128,7 @@ Partial Class frm_options
     '
     'TabPage1
     '
+    Me.TabPage1.Controls.Add(Me.GroupBox5)
     Me.TabPage1.Controls.Add(Me.GroupBox8)
     Me.TabPage1.Controls.Add(Me.GroupBox7)
     Me.TabPage1.Controls.Add(Me.GroupBox4)
@@ -152,7 +145,7 @@ Partial Class frm_options
     'GroupBox8
     '
     Me.GroupBox8.Controls.Add(Me.chkCollageHitTestIntersect)
-    Me.GroupBox8.Location = New System.Drawing.Point(17, 314)
+    Me.GroupBox8.Location = New System.Drawing.Point(17, 352)
     Me.GroupBox8.Name = "GroupBox8"
     Me.GroupBox8.Size = New System.Drawing.Size(445, 57)
     Me.GroupBox8.TabIndex = 18
@@ -173,7 +166,7 @@ Partial Class frm_options
     '
     Me.GroupBox7.Controls.Add(Me.btnShowHistory)
     Me.GroupBox7.Controls.Add(Me.chkEnableHistory)
-    Me.GroupBox7.Location = New System.Drawing.Point(17, 251)
+    Me.GroupBox7.Location = New System.Drawing.Point(17, 289)
     Me.GroupBox7.Name = "GroupBox7"
     Me.GroupBox7.Size = New System.Drawing.Size(445, 57)
     Me.GroupBox7.TabIndex = 17
@@ -210,7 +203,7 @@ Partial Class frm_options
     Me.GroupBox4.Controls.Add(Me.txtMainWinBG)
     Me.GroupBox4.Controls.Add(Me.Label8)
     Me.GroupBox4.Controls.Add(Me.checkHideWhileGrab)
-    Me.GroupBox4.Location = New System.Drawing.Point(17, 150)
+    Me.GroupBox4.Location = New System.Drawing.Point(17, 188)
     Me.GroupBox4.Name = "GroupBox4"
     Me.GroupBox4.Size = New System.Drawing.Size(445, 95)
     Me.GroupBox4.TabIndex = 16
@@ -287,9 +280,9 @@ Partial Class frm_options
     Me.GroupBox2.Controls.Add(Me.jpegQuality)
     Me.GroupBox2.Controls.Add(Me.Label6)
     Me.GroupBox2.Controls.Add(Me.btnDefaultFolder_choose)
-    Me.GroupBox2.Location = New System.Drawing.Point(17, 21)
+    Me.GroupBox2.Location = New System.Drawing.Point(17, 72)
     Me.GroupBox2.Name = "GroupBox2"
-    Me.GroupBox2.Size = New System.Drawing.Size(445, 115)
+    Me.GroupBox2.Size = New System.Drawing.Size(445, 110)
     Me.GroupBox2.TabIndex = 0
     Me.GroupBox2.TabStop = False
     Me.GroupBox2.Text = "Dateiverwaltung"
@@ -297,7 +290,7 @@ Partial Class frm_options
     'lnkExploreDefaultFolder
     '
     Me.lnkExploreDefaultFolder.AutoSize = True
-    Me.lnkExploreDefaultFolder.Location = New System.Drawing.Point(360, 53)
+    Me.lnkExploreDefaultFolder.Location = New System.Drawing.Point(360, 48)
     Me.lnkExploreDefaultFolder.Name = "lnkExploreDefaultFolder"
     Me.lnkExploreDefaultFolder.Size = New System.Drawing.Size(39, 13)
     Me.lnkExploreDefaultFolder.TabIndex = 15
@@ -306,7 +299,7 @@ Partial Class frm_options
     '
     'btnChooseDefaultFolder
     '
-    Me.btnChooseDefaultFolder.Location = New System.Drawing.Point(404, 26)
+    Me.btnChooseDefaultFolder.Location = New System.Drawing.Point(404, 21)
     Me.btnChooseDefaultFolder.Name = "btnChooseDefaultFolder"
     Me.btnChooseDefaultFolder.Size = New System.Drawing.Size(35, 23)
     Me.btnChooseDefaultFolder.TabIndex = 14
@@ -316,7 +309,7 @@ Partial Class frm_options
     'chkAlwaysUseDefaultFolder
     '
     Me.chkAlwaysUseDefaultFolder.AutoSize = True
-    Me.chkAlwaysUseDefaultFolder.Location = New System.Drawing.Point(128, 52)
+    Me.chkAlwaysUseDefaultFolder.Location = New System.Drawing.Point(128, 47)
     Me.chkAlwaysUseDefaultFolder.Name = "chkAlwaysUseDefaultFolder"
     Me.chkAlwaysUseDefaultFolder.Size = New System.Drawing.Size(179, 17)
     Me.chkAlwaysUseDefaultFolder.TabIndex = 13
@@ -327,7 +320,7 @@ Partial Class frm_options
     '
     'txtDefaultFolder
     '
-    Me.txtDefaultFolder.Location = New System.Drawing.Point(128, 28)
+    Me.txtDefaultFolder.Location = New System.Drawing.Point(128, 23)
     Me.txtDefaultFolder.Name = "txtDefaultFolder"
     Me.txtDefaultFolder.Size = New System.Drawing.Size(271, 20)
     Me.txtDefaultFolder.TabIndex = 5
@@ -335,7 +328,7 @@ Partial Class frm_options
     'Label7
     '
     Me.Label7.AutoSize = True
-    Me.Label7.Location = New System.Drawing.Point(12, 31)
+    Me.Label7.Location = New System.Drawing.Point(12, 26)
     Me.Label7.Name = "Label7"
     Me.Label7.Size = New System.Drawing.Size(101, 13)
     Me.Label7.TabIndex = 4
@@ -343,7 +336,7 @@ Partial Class frm_options
     '
     'jpegQuality
     '
-    Me.jpegQuality.Location = New System.Drawing.Point(128, 79)
+    Me.jpegQuality.Location = New System.Drawing.Point(128, 74)
     Me.jpegQuality.Name = "jpegQuality"
     Me.jpegQuality.Size = New System.Drawing.Size(82, 20)
     Me.jpegQuality.TabIndex = 12
@@ -352,7 +345,7 @@ Partial Class frm_options
     'Label6
     '
     Me.Label6.AutoSize = True
-    Me.Label6.Location = New System.Drawing.Point(36, 81)
+    Me.Label6.Location = New System.Drawing.Point(36, 76)
     Me.Label6.Name = "Label6"
     Me.Label6.Size = New System.Drawing.Size(76, 13)
     Me.Label6.TabIndex = 11
@@ -596,140 +589,6 @@ Partial Class frm_options
     Me.PictureBox2.TabIndex = 15
     Me.PictureBox2.TabStop = False
     '
-    'TabPage2
-    '
-    Me.TabPage2.Controls.Add(Me.Button3)
-    Me.TabPage2.Controls.Add(Me.ListBox1)
-    Me.TabPage2.Controls.Add(Me.Label14)
-    Me.TabPage2.Controls.Add(Me.txtLSInfo)
-    Me.TabPage2.Controls.Add(Me.Label12)
-    Me.TabPage2.Controls.Add(Me.txtLSHeight)
-    Me.TabPage2.Controls.Add(Me.txtLSWidth)
-    Me.TabPage2.Controls.Add(Me.Label11)
-    Me.TabPage2.Controls.Add(Me.Label10)
-    Me.TabPage2.Controls.Add(Me.txtLSFooter)
-    Me.TabPage2.Controls.Add(Me.Label9)
-    Me.TabPage2.Controls.Add(Me.Label1)
-    Me.TabPage2.Location = New System.Drawing.Point(4, 22)
-    Me.TabPage2.Name = "TabPage2"
-    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-    Me.TabPage2.Size = New System.Drawing.Size(480, 465)
-    Me.TabPage2.TabIndex = 5
-    Me.TabPage2.Text = "TabPage2"
-    Me.TabPage2.UseVisualStyleBackColor = True
-    '
-    'Button3
-    '
-    Me.Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.Button3.Location = New System.Drawing.Point(359, 15)
-    Me.Button3.Name = "Button3"
-    Me.Button3.Size = New System.Drawing.Size(104, 23)
-    Me.Button3.TabIndex = 11
-    Me.Button3.Text = "Apply"
-    Me.Button3.UseVisualStyleBackColor = True
-    '
-    'ListBox1
-    '
-    Me.ListBox1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.ListBox1.FormattingEnabled = True
-    Me.ListBox1.Location = New System.Drawing.Point(16, 367)
-    Me.ListBox1.Name = "ListBox1"
-    Me.ListBox1.Size = New System.Drawing.Size(447, 69)
-    Me.ListBox1.TabIndex = 10
-    '
-    'Label14
-    '
-    Me.Label14.AutoSize = True
-    Me.Label14.Location = New System.Drawing.Point(13, 351)
-    Me.Label14.Name = "Label14"
-    Me.Label14.Size = New System.Drawing.Size(41, 13)
-    Me.Label14.TabIndex = 9
-    Me.Label14.Text = "Logfile:"
-    '
-    'txtLSInfo
-    '
-    Me.txtLSInfo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.txtLSInfo.Location = New System.Drawing.Point(16, 239)
-    Me.txtLSInfo.Multiline = True
-    Me.txtLSInfo.Name = "txtLSInfo"
-    Me.txtLSInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-    Me.txtLSInfo.Size = New System.Drawing.Size(447, 97)
-    Me.txtLSInfo.TabIndex = 8
-    '
-    'Label12
-    '
-    Me.Label12.AutoSize = True
-    Me.Label12.Location = New System.Drawing.Point(13, 223)
-    Me.Label12.Name = "Label12"
-    Me.Label12.Size = New System.Drawing.Size(45, 13)
-    Me.Label12.TabIndex = 7
-    Me.Label12.Text = "Infotext:"
-    '
-    'txtLSHeight
-    '
-    Me.txtLSHeight.Location = New System.Drawing.Point(157, 193)
-    Me.txtLSHeight.Name = "txtLSHeight"
-    Me.txtLSHeight.Size = New System.Drawing.Size(56, 20)
-    Me.txtLSHeight.TabIndex = 6
-    '
-    'txtLSWidth
-    '
-    Me.txtLSWidth.Location = New System.Drawing.Point(77, 193)
-    Me.txtLSWidth.Name = "txtLSWidth"
-    Me.txtLSWidth.Size = New System.Drawing.Size(56, 20)
-    Me.txtLSWidth.TabIndex = 5
-    '
-    'Label11
-    '
-    Me.Label11.AutoSize = True
-    Me.Label11.Location = New System.Drawing.Point(139, 196)
-    Me.Label11.Name = "Label11"
-    Me.Label11.Size = New System.Drawing.Size(12, 13)
-    Me.Label11.TabIndex = 4
-    Me.Label11.Text = "x"
-    '
-    'Label10
-    '
-    Me.Label10.AutoSize = True
-    Me.Label10.Location = New System.Drawing.Point(13, 196)
-    Me.Label10.Name = "Label10"
-    Me.Label10.Size = New System.Drawing.Size(54, 13)
-    Me.Label10.TabIndex = 3
-    Me.Label10.Text = "Bildgröße:"
-    '
-    'txtLSFooter
-    '
-    Me.txtLSFooter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.txtLSFooter.Location = New System.Drawing.Point(16, 62)
-    Me.txtLSFooter.Multiline = True
-    Me.txtLSFooter.Name = "txtLSFooter"
-    Me.txtLSFooter.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-    Me.txtLSFooter.Size = New System.Drawing.Size(447, 120)
-    Me.txtLSFooter.TabIndex = 2
-    '
-    'Label9
-    '
-    Me.Label9.AutoSize = True
-    Me.Label9.Location = New System.Drawing.Point(13, 46)
-    Me.Label9.Name = "Label9"
-    Me.Label9.Size = New System.Drawing.Size(40, 13)
-    Me.Label9.TabIndex = 1
-    Me.Label9.Text = "Footer:"
-    '
-    'Label1
-    '
-    Me.Label1.AutoSize = True
-    Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.Label1.Location = New System.Drawing.Point(12, 12)
-    Me.Label1.Name = "Label1"
-    Me.Label1.Size = New System.Drawing.Size(215, 24)
-    Me.Label1.TabIndex = 0
-    Me.Label1.Text = "Livestream Konfiguration"
-    '
     'TabPage4
     '
     Me.TabPage4.BackColor = System.Drawing.Color.RoyalBlue
@@ -846,7 +705,7 @@ Partial Class frm_options
     Me.Label17.Name = "Label17"
     Me.Label17.Size = New System.Drawing.Size(190, 52)
     Me.Label17.TabIndex = 4
-    Me.Label17.Text = "Copyright (c) 2009-2012 by Max Weller" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Credits:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+    Me.Label17.Text = "Copyright (c) 2009-2016 by Max Weller" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Credits:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
     '
     'btnUpdateCheckNow
     '
@@ -939,6 +798,69 @@ Partial Class frm_options
         " (*.png, *.gif, *.bmp, *.jpg)|*.png;*.gif;*.bmp;*.jpg|Alle Dateien|*"
     Me.ofdChooseIcon.Title = "Icon auswählen (bestenfalls 32x32) ..."
     '
+    'GroupBox5
+    '
+    Me.GroupBox5.Controls.Add(Me.cmbHotkeyKey)
+    Me.GroupBox5.Controls.Add(Me.chkHotkeyWin)
+    Me.GroupBox5.Controls.Add(Me.chkHotkeyShift)
+    Me.GroupBox5.Controls.Add(Me.chkHotkeyAlt)
+    Me.GroupBox5.Controls.Add(Me.chkHotkeyCtrl)
+    Me.GroupBox5.Location = New System.Drawing.Point(17, 10)
+    Me.GroupBox5.Name = "GroupBox5"
+    Me.GroupBox5.Size = New System.Drawing.Size(444, 56)
+    Me.GroupBox5.TabIndex = 19
+    Me.GroupBox5.TabStop = False
+    Me.GroupBox5.Text = "Tastenkürzel"
+    '
+    'chkHotkeyCtrl
+    '
+    Me.chkHotkeyCtrl.AutoSize = True
+    Me.chkHotkeyCtrl.Location = New System.Drawing.Point(15, 24)
+    Me.chkHotkeyCtrl.Name = "chkHotkeyCtrl"
+    Me.chkHotkeyCtrl.Size = New System.Drawing.Size(45, 17)
+    Me.chkHotkeyCtrl.TabIndex = 0
+    Me.chkHotkeyCtrl.Text = "Strg"
+    Me.chkHotkeyCtrl.UseVisualStyleBackColor = True
+    '
+    'chkHotkeyAlt
+    '
+    Me.chkHotkeyAlt.AutoSize = True
+    Me.chkHotkeyAlt.Location = New System.Drawing.Point(65, 24)
+    Me.chkHotkeyAlt.Name = "chkHotkeyAlt"
+    Me.chkHotkeyAlt.Size = New System.Drawing.Size(38, 17)
+    Me.chkHotkeyAlt.TabIndex = 1
+    Me.chkHotkeyAlt.Text = "Alt"
+    Me.chkHotkeyAlt.UseVisualStyleBackColor = True
+    '
+    'chkHotkeyShift
+    '
+    Me.chkHotkeyShift.AutoSize = True
+    Me.chkHotkeyShift.Location = New System.Drawing.Point(109, 24)
+    Me.chkHotkeyShift.Name = "chkHotkeyShift"
+    Me.chkHotkeyShift.Size = New System.Drawing.Size(47, 17)
+    Me.chkHotkeyShift.TabIndex = 2
+    Me.chkHotkeyShift.Text = "Shift"
+    Me.chkHotkeyShift.UseVisualStyleBackColor = True
+    '
+    'chkHotkeyWin
+    '
+    Me.chkHotkeyWin.AutoSize = True
+    Me.chkHotkeyWin.Location = New System.Drawing.Point(162, 24)
+    Me.chkHotkeyWin.Name = "chkHotkeyWin"
+    Me.chkHotkeyWin.Size = New System.Drawing.Size(45, 17)
+    Me.chkHotkeyWin.TabIndex = 3
+    Me.chkHotkeyWin.Text = "Win"
+    Me.chkHotkeyWin.UseVisualStyleBackColor = True
+    '
+    'cmbHotkeyKey
+    '
+    Me.cmbHotkeyKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.cmbHotkeyKey.FormattingEnabled = True
+    Me.cmbHotkeyKey.Location = New System.Drawing.Point(223, 22)
+    Me.cmbHotkeyKey.Name = "cmbHotkeyKey"
+    Me.cmbHotkeyKey.Size = New System.Drawing.Size(197, 21)
+    Me.cmbHotkeyKey.TabIndex = 4
+    '
     'frm_options
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -974,11 +896,11 @@ Partial Class frm_options
     Me.GroupBox1.ResumeLayout(False)
     Me.GroupBox1.PerformLayout()
     CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.TabPage2.ResumeLayout(False)
-    Me.TabPage2.PerformLayout()
     Me.TabPage4.ResumeLayout(False)
     Me.TabPage4.PerformLayout()
     CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.GroupBox5.ResumeLayout(False)
+    Me.GroupBox5.PerformLayout()
     Me.ResumeLayout(False)
 
   End Sub
@@ -1000,8 +922,6 @@ Partial Class frm_options
   Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
   Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
   Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
-  Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
-  Friend WithEvents Label1 As System.Windows.Forms.Label
   Friend WithEvents txtProxyPW As System.Windows.Forms.TextBox
   Friend WithEvents Label3 As System.Windows.Forms.Label
   Friend WithEvents txtProxyUN As System.Windows.Forms.TextBox
@@ -1012,17 +932,6 @@ Partial Class frm_options
   Friend WithEvents Button1 As System.Windows.Forms.Button
   Friend WithEvents txtMainWinBG As System.Windows.Forms.TextBox
   Friend WithEvents Label8 As System.Windows.Forms.Label
-  Friend WithEvents txtLSFooter As System.Windows.Forms.TextBox
-  Friend WithEvents Label9 As System.Windows.Forms.Label
-  Friend WithEvents txtLSHeight As System.Windows.Forms.TextBox
-  Friend WithEvents txtLSWidth As System.Windows.Forms.TextBox
-  Friend WithEvents Label11 As System.Windows.Forms.Label
-  Friend WithEvents Label10 As System.Windows.Forms.Label
-  Friend WithEvents txtLSInfo As System.Windows.Forms.TextBox
-  Friend WithEvents Label12 As System.Windows.Forms.Label
-  Friend WithEvents Button3 As System.Windows.Forms.Button
-  Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
-  Friend WithEvents Label14 As System.Windows.Forms.Label
   Friend WithEvents txtLoginPass As System.Windows.Forms.TextBox
   Friend WithEvents Label13 As System.Windows.Forms.Label
   Friend WithEvents txtLoginUser As System.Windows.Forms.TextBox
@@ -1059,4 +968,10 @@ Partial Class frm_options
   Friend WithEvents lnkExploreDefaultFolder As System.Windows.Forms.LinkLabel
   Friend WithEvents btnShowHistory As System.Windows.Forms.Button
   Friend WithEvents qq_TextBox2 As System.Windows.Forms.TextBox
+  Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
+  Friend WithEvents cmbHotkeyKey As System.Windows.Forms.ComboBox
+  Friend WithEvents chkHotkeyWin As System.Windows.Forms.CheckBox
+  Friend WithEvents chkHotkeyShift As System.Windows.Forms.CheckBox
+  Friend WithEvents chkHotkeyAlt As System.Windows.Forms.CheckBox
+  Friend WithEvents chkHotkeyCtrl As System.Windows.Forms.CheckBox
 End Class

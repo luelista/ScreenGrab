@@ -1,4 +1,4 @@
 
-Copyright (c) 2010-2015 Maxi Weller
+Copyright (c) 2010-2016 Maxi Weller
 http://screengrab.teamwiki.de/
 

@@ -22,6 +22,11 @@
     For Each prn As String In Printing.PrinterSettings.InstalledPrinters
       lstPrinters.Items.Add(prn)
     Next
+    If lstPrinters.Items.Count = 0 Then
+      MsgBox("Keine Drucker installiert.")
+      Close()
+      Exit Sub
+    End If
 
     lstPrinters.SelectedIndex = glob.para("frm_printDialog__selPrinter", "0")
     cmbPaperSource.SelectedIndex = glob.para("frm_printDialog__selPaperTray", "0")
@@ -37,7 +42,7 @@
     TrackBar1.Value = glob.para("frm_printDialog__zoom", "100")
 
     glob.readFormPos(Me, cls_globPara.FormPosFlags.Pos)
-    If glob.para("frm_printDialog__mode", "big") = "small" Then
+    If glob.para("frm_printDialog__mode", "small") = "small" Then
       PreviewVisible = False
     Else
       PreviewVisible = True
@@ -141,7 +146,8 @@
   End Sub
 
   Sub redrawpreview()
-    If glob.para("frm_printDialog__mode", "big") = "small" Then Exit Sub
+    On Error Resume Next
+    If glob.para("frm_printDialog__mode", "small") = "small" Then Exit Sub
 
     pd1.DefaultPageSettings.PaperSize.RawKind = Printing.PaperKind.A4
     pd1.DefaultPageSettings.Landscape = rbOrientation__lands.Checked

@@ -64,19 +64,15 @@ Partial Class frm_blueScreen
     Me.btnCopy = New System.Windows.Forms.Button
     Me.chk_blueScreenMode = New System.Windows.Forms.CheckBox
     Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-    Me.Button3 = New System.Windows.Forms.Button
     Me.btnSaveToWeb = New System.Windows.Forms.Button
-    Me.btn_android2sg = New System.Windows.Forms.Button
     Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
     Me.pnlViewPartial = New System.Windows.Forms.Panel
-    Me.Label1 = New System.Windows.Forms.Label
     Me.pnlSidebar = New System.Windows.Forms.Panel
     Me.chkAutoCopy = New System.Windows.Forms.CheckBox
     Me.chkAutoSave = New System.Windows.Forms.CheckBox
     Me.qq_chkAutoCollage = New System.Windows.Forms.CheckBox
     Me.chkAutoWord = New System.Windows.Forms.CheckBox
     Me.lblPressEnter = New System.Windows.Forms.Label
-    Me.chk_streaming = New System.Windows.Forms.CheckBox
     Me.Label3 = New System.Windows.Forms.Label
     Me.Label2 = New System.Windows.Forms.Label
     Me.IGrid1DefaultCellStyle = New TenTec.Windows.iGridLib.iGCellStyle(True)
@@ -91,7 +87,6 @@ Partial Class frm_blueScreen
     Me.picOpenedFile = New System.Windows.Forms.PictureBox
     Me.Label4 = New System.Windows.Forms.Label
     Me.lstHistory = New System.Windows.Forms.ListBox
-    Me.tmr_android2SgRequest = New System.Windows.Forms.Timer(Me.components)
     CType(Me.pic_viewPartial, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.ContextMenuStrip1.SuspendLayout()
     CType(Me.tbrZoom, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,7 +125,7 @@ Partial Class frm_blueScreen
     '
     Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GrabToolStripMenuItem, Me.ToolStripMenuItem4, Me.ImTeamWikiSpeichernToolStripMenuItem, Me.SpeichernUnterToolStripMenuItem, Me.DruckenToolStripMenuItem, Me.MDIToolStripMenuItem, Me.ToolStripMenuItem3, Me.KopierenToolStripMenuItem, Me.EinfügenToolStripMenuItem, Me.ToolStripMenuItem2, Me.ImmerImVordergrundToolStripMenuItem, Me.OptionenToolStripMenuItem})
     Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-    Me.ContextMenuStrip1.Size = New System.Drawing.Size(275, 220)
+    Me.ContextMenuStrip1.Size = New System.Drawing.Size(275, 242)
     '
     'GrabToolStripMenuItem
     '
@@ -285,7 +280,7 @@ Partial Class frm_blueScreen
     Me.btnCollage.Location = New System.Drawing.Point(2, 227)
     Me.btnCollage.Name = "btnCollage"
     Me.btnCollage.Padding = New System.Windows.Forms.Padding(19, 0, 0, 0)
-    Me.btnCollage.Size = New System.Drawing.Size(81, 23)
+    Me.btnCollage.Size = New System.Drawing.Size(82, 23)
     Me.btnCollage.TabIndex = 30
     Me.btnCollage.Text = "Collage"
     Me.btnCollage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -298,7 +293,7 @@ Partial Class frm_blueScreen
     Me.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
     Me.btnPrint.Location = New System.Drawing.Point(2, 137)
     Me.btnPrint.Name = "btnPrint"
-    Me.btnPrint.Size = New System.Drawing.Size(81, 24)
+    Me.btnPrint.Size = New System.Drawing.Size(82, 24)
     Me.btnPrint.TabIndex = 27
     Me.btnPrint.Text = "Drucken"
     Me.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -312,9 +307,9 @@ Partial Class frm_blueScreen
     Me.btnInsertWord.Location = New System.Drawing.Point(2, 249)
     Me.btnInsertWord.Name = "btnInsertWord"
     Me.btnInsertWord.Padding = New System.Windows.Forms.Padding(19, 0, 0, 0)
-    Me.btnInsertWord.Size = New System.Drawing.Size(81, 37)
+    Me.btnInsertWord.Size = New System.Drawing.Size(82, 24)
     Me.btnInsertWord.TabIndex = 26
-    Me.btnInsertWord.Text = "In Word" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "einfügen"
+    Me.btnInsertWord.Text = "-> Word"
     Me.btnInsertWord.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     Me.btnInsertWord.UseVisualStyleBackColor = True
     '
@@ -324,7 +319,7 @@ Partial Class frm_blueScreen
     Me.btnSaveLocal.Location = New System.Drawing.Point(2, 205)
     Me.btnSaveLocal.Name = "btnSaveLocal"
     Me.btnSaveLocal.Padding = New System.Windows.Forms.Padding(19, 0, 0, 0)
-    Me.btnSaveLocal.Size = New System.Drawing.Size(81, 23)
+    Me.btnSaveLocal.Size = New System.Drawing.Size(82, 23)
     Me.btnSaveLocal.TabIndex = 25
     Me.btnSaveLocal.Text = "Speichern"
     Me.btnSaveLocal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -338,7 +333,7 @@ Partial Class frm_blueScreen
     Me.btnGrab.Location = New System.Drawing.Point(2, 23)
     Me.btnGrab.Name = "btnGrab"
     Me.btnGrab.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-    Me.btnGrab.Size = New System.Drawing.Size(81, 24)
+    Me.btnGrab.Size = New System.Drawing.Size(82, 24)
     Me.btnGrab.TabIndex = 6
     Me.btnGrab.Text = "G R A B"
     Me.btnGrab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
@@ -352,7 +347,7 @@ Partial Class frm_blueScreen
     Me.btnPaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
     Me.btnPaste.Location = New System.Drawing.Point(2, 182)
     Me.btnPaste.Name = "btnPaste"
-    Me.btnPaste.Size = New System.Drawing.Size(81, 24)
+    Me.btnPaste.Size = New System.Drawing.Size(82, 24)
     Me.btnPaste.TabIndex = 4
     Me.btnPaste.Text = "Einfügen"
     Me.btnPaste.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -366,7 +361,7 @@ Partial Class frm_blueScreen
     Me.btnCopy.Location = New System.Drawing.Point(2, 160)
     Me.btnCopy.Name = "btnCopy"
     Me.btnCopy.Padding = New System.Windows.Forms.Padding(19, 0, 0, 0)
-    Me.btnCopy.Size = New System.Drawing.Size(81, 23)
+    Me.btnCopy.Size = New System.Drawing.Size(82, 23)
     Me.btnCopy.TabIndex = 3
     Me.btnCopy.Text = "Kopieren"
     Me.btnCopy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -383,17 +378,6 @@ Partial Class frm_blueScreen
     Me.chk_blueScreenMode.Text = "blueScreen"
     Me.chk_blueScreenMode.UseVisualStyleBackColor = True
     '
-    'Button3
-    '
-    Me.Button3.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-    Me.Button3.Location = New System.Drawing.Point(2, 365)
-    Me.Button3.Name = "Button3"
-    Me.Button3.Size = New System.Drawing.Size(81, 41)
-    Me.Button3.TabIndex = 36
-    Me.ToolTip1.SetToolTip(Me.Button3, "Hilfe")
-    Me.Button3.UseVisualStyleBackColor = True
-    '
     'btnSaveToWeb
     '
     Me.btnSaveToWeb.BackColor = System.Drawing.Color.LightSteelBlue
@@ -401,24 +385,13 @@ Partial Class frm_blueScreen
     Me.btnSaveToWeb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
     Me.btnSaveToWeb.Location = New System.Drawing.Point(2, 97)
     Me.btnSaveToWeb.Name = "btnSaveToWeb"
-    Me.btnSaveToWeb.Size = New System.Drawing.Size(81, 41)
+    Me.btnSaveToWeb.Size = New System.Drawing.Size(82, 41)
     Me.btnSaveToWeb.TabIndex = 35
-    Me.btnSaveToWeb.Text = "Upload" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "&& Share"
+    Me.btnSaveToWeb.Text = "Upload"
     Me.btnSaveToWeb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     Me.btnSaveToWeb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
     Me.ToolTip1.SetToolTip(Me.btnSaveToWeb, "Hochladen (Strg+U)")
     Me.btnSaveToWeb.UseVisualStyleBackColor = True
-    '
-    'btn_android2sg
-    '
-    Me.btn_android2sg.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.btn_android2sg.Image = CType(resources.GetObject("btn_android2sg.Image"), System.Drawing.Image)
-    Me.btn_android2sg.Location = New System.Drawing.Point(2, 406)
-    Me.btn_android2sg.Name = "btn_android2sg"
-    Me.btn_android2sg.Size = New System.Drawing.Size(81, 46)
-    Me.btn_android2sg.TabIndex = 49
-    Me.ToolTip1.SetToolTip(Me.btn_android2sg, "Hilfe")
-    Me.btn_android2sg.UseVisualStyleBackColor = True
     '
     'NotifyIcon1
     '
@@ -436,38 +409,22 @@ Partial Class frm_blueScreen
     Me.pnlViewPartial.BackColor = System.Drawing.Color.WhiteSmoke
     Me.pnlViewPartial.BackgroundImage = CType(resources.GetObject("pnlViewPartial.BackgroundImage"), System.Drawing.Image)
     Me.pnlViewPartial.ContextMenuStrip = Me.ContextMenuStrip1
-    Me.pnlViewPartial.Controls.Add(Me.Label1)
     Me.pnlViewPartial.Controls.Add(Me.pic_viewPartial)
     Me.pnlViewPartial.Location = New System.Drawing.Point(88, 0)
     Me.pnlViewPartial.Name = "pnlViewPartial"
     Me.pnlViewPartial.Size = New System.Drawing.Size(713, 499)
     Me.pnlViewPartial.TabIndex = 24
     '
-    'Label1
-    '
-    Me.Label1.BackColor = System.Drawing.Color.Lavender
-    Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.25!)
-    Me.Label1.Location = New System.Drawing.Point(137, 156)
-    Me.Label1.Name = "Label1"
-    Me.Label1.Size = New System.Drawing.Size(365, 136)
-    Me.Label1.TabIndex = 9
-    Me.Label1.Text = """Send To ScreenGrab""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Bild wird empfangen ..."
-    Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-    Me.Label1.Visible = False
-    '
     'pnlSidebar
     '
     Me.pnlSidebar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                 Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.pnlSidebar.BackColor = System.Drawing.Color.DimGray
-    Me.pnlSidebar.Controls.Add(Me.btn_android2sg)
     Me.pnlSidebar.Controls.Add(Me.chkAutoCopy)
     Me.pnlSidebar.Controls.Add(Me.chkAutoSave)
     Me.pnlSidebar.Controls.Add(Me.qq_chkAutoCollage)
     Me.pnlSidebar.Controls.Add(Me.chkAutoWord)
     Me.pnlSidebar.Controls.Add(Me.lblPressEnter)
-    Me.pnlSidebar.Controls.Add(Me.chk_streaming)
-    Me.pnlSidebar.Controls.Add(Me.Button3)
     Me.pnlSidebar.Controls.Add(Me.btnSaveToWeb)
     Me.pnlSidebar.Controls.Add(Me.btnCollage)
     Me.pnlSidebar.Controls.Add(Me.btnPrint)
@@ -523,24 +480,14 @@ Partial Class frm_blueScreen
     '
     'lblPressEnter
     '
-    Me.lblPressEnter.ForeColor = System.Drawing.Color.Red
-    Me.lblPressEnter.Location = New System.Drawing.Point(4, 348)
+    Me.lblPressEnter.BackColor = System.Drawing.Color.ForestGreen
+    Me.lblPressEnter.ForeColor = System.Drawing.Color.White
+    Me.lblPressEnter.Location = New System.Drawing.Point(1, 344)
     Me.lblPressEnter.Name = "lblPressEnter"
-    Me.lblPressEnter.Size = New System.Drawing.Size(88, 14)
+    Me.lblPressEnter.Size = New System.Drawing.Size(86, 17)
     Me.lblPressEnter.TabIndex = 44
     Me.lblPressEnter.Text = "ENTER drücken"
     Me.lblPressEnter.Visible = False
-    '
-    'chk_streaming
-    '
-    Me.chk_streaming.ForeColor = System.Drawing.Color.White
-    Me.chk_streaming.Location = New System.Drawing.Point(7, 459)
-    Me.chk_streaming.Name = "chk_streaming"
-    Me.chk_streaming.Size = New System.Drawing.Size(74, 16)
-    Me.chk_streaming.TabIndex = 41
-    Me.chk_streaming.Text = "Streamen"
-    Me.chk_streaming.UseVisualStyleBackColor = True
-    Me.chk_streaming.Visible = False
     '
     'Label3
     '
@@ -662,11 +609,6 @@ Partial Class frm_blueScreen
     Me.lstHistory.TabIndex = 27
     Me.lstHistory.Visible = False
     '
-    'tmr_android2SgRequest
-    '
-    Me.tmr_android2SgRequest.Enabled = True
-    Me.tmr_android2SgRequest.Interval = 30000
-    '
     'frm_blueScreen
     '
     Me.AllowDrop = True
@@ -750,16 +692,11 @@ Partial Class frm_blueScreen
   Friend WithEvents lnkOpenfile As System.Windows.Forms.LinkLabel
   Friend WithEvents lnkUploadfile As System.Windows.Forms.LinkLabel
   Friend WithEvents lnkCloseFileBar As System.Windows.Forms.Label
-  Friend WithEvents Button3 As System.Windows.Forms.Button
   Friend WithEvents ImTeamWikiSpeichernToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents chk_streaming As System.Windows.Forms.CheckBox
   Friend WithEvents lstHistory As System.Windows.Forms.ListBox
   Friend WithEvents lblPressEnter As System.Windows.Forms.Label
   Friend WithEvents chkAutoSave As System.Windows.Forms.CheckBox
   Friend WithEvents qq_chkAutoCollage As System.Windows.Forms.CheckBox
   Friend WithEvents chkAutoWord As System.Windows.Forms.CheckBox
   Friend WithEvents chkAutoCopy As System.Windows.Forms.CheckBox
-  Friend WithEvents btn_android2sg As System.Windows.Forms.Button
-  Friend WithEvents tmr_android2SgRequest As System.Windows.Forms.Timer
-  Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

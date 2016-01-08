@@ -1,11 +1,16 @@
 ﻿Imports System.Drawing.Imaging
+Imports System.Runtime.InteropServices
 
 Module app_grabWindow
 
   Dim grabTempScreenshot As Image
   Dim isGrabWindowVisible As Boolean
 
-  <Runtime.InteropServices.DllImport("user32.dll", SetLastError:=True)> _
+  <DllImport("user32.dll")> _
+  Public Function GetWindowRect(ByVal hWnd As IntPtr, ByRef lpRect As RECT) As Boolean
+  End Function
+
+  <DllImport("user32.dll", SetLastError:=True)> _
   Private Function GetForegroundWindow() As IntPtr
   End Function
 
@@ -120,7 +125,7 @@ Module app_grabWindow
 
     If XX = 0 Or YY = 0 Then grabWindowCancel() : Exit Sub
     fullDesktopImage = grabTempScreenshot.Clone()
-    
+
     deltaX = x
     deltaY = y
 

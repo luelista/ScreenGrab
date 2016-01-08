@@ -1,5 +1,6 @@
 ﻿Imports System.IO
 Imports System.Drawing.Drawing2D
+Imports ScreenGrab6.vbAccelerator.Components.HotKey
 
 Public Class frm_options
 
@@ -28,7 +29,17 @@ Public Class frm_options
     glob.saveTuttiFrutti(Me)
     Try
       FRM.pnlViewPartial.BackColor = ColorTranslator.FromHtml(txtMainWinBG.Text)
-    Catch :End Try
+    Catch : End Try
+
+    glob.para("HotkeyKey") = CType(CType(cmbHotkeyKey.SelectedItem, Keys), Integer)
+    Dim modif As Integer = 0
+    If chkHotkeyCtrl.Checked Then modif = modif Or HotKey.HotKeyModifiers.MOD_CONTROL
+    If chkHotkeyAlt.Checked Then modif = modif Or HotKey.HotKeyModifiers.MOD_ALT
+    If chkHotkeyShift.Checked Then modif = modif Or HotKey.HotKeyModifiers.MOD_SHIFT
+    If chkHotkeyWin.Checked Then modif = modif Or HotKey.HotKeyModifiers.MOD_WIN
+    glob.para("HotkeyModifier") = modif
+
+    initHotkeys()
 
     ' FRM.chkViewHist.Checked = (glob.para("frm_options__chkEnableHistory", "FALSE") = "TRUE")
     ' FRM.chkViewHist.Visible = (glob.para("frm_options__chkEnableHistory", "FALSE") = "TRUE")
@@ -48,7 +59,7 @@ Public Class frm_options
 
 
   Private Sub frm_widgetMan_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-    Dim tabs() As String = {"Allgemein", "Accounts && Internet", "Livestream", "Info"}
+    Dim tabs() As String = {"Allgemein", "Accounts && Internet", "Info"}
 
     For i As Integer = 0 To tabs.Length - 1
       ButtonListBar1.Items.Add( _
@@ -72,6 +83,17 @@ Public Class frm_options
     TabControl1.Top = -25
 
     lblProgVer.Text = My.Application.Info.Version.ToString(2)
+
+    For key As Keys = 0 To 256
+      cmbHotkeyKey.Items.Add(key)
+    Next
+    cmbHotkeyKey.SelectedIndex = glob.para("HotkeyKey", "71") 'G
+    Dim modif As Integer = Val(glob.para("HotkeyModifier", "8"))
+    chkHotkeyCtrl.Checked = (modif And HotKey.HotKeyModifiers.MOD_CONTROL) > 0
+    chkHotkeyAlt.Checked = (modif And HotKey.HotKeyModifiers.MOD_ALT) > 0
+    chkHotkeyShift.Checked = (modif And HotKey.HotKeyModifiers.MOD_SHIFT) > 0
+    chkHotkeyWin.Checked = (modif And HotKey.HotKeyModifiers.MOD_WIN) > 0
+
   End Sub
 
 
@@ -157,17 +179,16 @@ Public Class frm_options
     End Using
   End Sub
 
-  Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtLSInfo.TextChanged
+  Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
   End Sub
 
-  Private Sub Label12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label12.Click
+  Private Sub Label12_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
   End Sub
 
-  Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+  Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     glob.saveTuttiFrutti(Me)
-    FRM.chk_streaming.Visible = True
   End Sub
 
 
