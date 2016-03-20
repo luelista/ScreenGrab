@@ -8,7 +8,10 @@ Public Class frm_mdiViewer2
   Dim dropme_sourceFilespec As String
 
   Dim templateFolder As String = "C:\yPara\ScreenGrab5\Collagetemplates\"
-   
+
+  Public traceWin As frm_trace
+
+
   Public Const COLOR_PALETTE_ITEM_SIZE = 18
   Public Const COLOR_PALETTE_ROWS = 8
   Public Const COLOR_PALETTE_COLS = 3
@@ -69,14 +72,14 @@ Public Class frm_mdiViewer2
 
 #Region "TitleBar verstecken"
 
-  Protected Overrides ReadOnly Property CreateParams() As System.Windows.Forms.CreateParams
-    Get
-      Dim cp As CreateParams = MyBase.CreateParams
-      Const WS_CAPTION As Int32 = &HC00000
-      cp.Style = cp.Style And Not WS_CAPTION
-      Return cp
-    End Get
-  End Property
+  'Protected Overrides ReadOnly Property CreateParams() As System.Windows.Forms.CreateParams
+  '  Get
+  '    Dim cp As CreateParams = MyBase.CreateParams
+  '    Const WS_CAPTION As Int32 = &HC00000
+  '    cp.Style = cp.Style And Not WS_CAPTION
+  '    Return cp
+  '  End Get
+  'End Property
 
 #End Region
 
@@ -258,10 +261,6 @@ Public Class frm_mdiViewer2
       NeuToolStripMenuItem_Click(Nothing, Nothing)
     End If
 
-    If e.KeyCode = Keys.F4 Then
-      toggleLeftPanel()
-    End If
-
     If vcc() Is Nothing Then Return
 
     vcc.KeyboardHandler(e)
@@ -296,6 +295,9 @@ Public Class frm_mdiViewer2
     '  CheckBox1.Visible = True
     '  CheckBox1.Enabled = True
     'End If
+
+    traceWin = New frm_trace
+
 
     pnlLeft.Width = 6
 
@@ -346,30 +348,12 @@ Public Class frm_mdiViewer2
     'obj.bounds = New Rectangle(100, 100, 50, 80)
     'obj.setBorder(4, Color.Red)
     'canvas.objects.Add(obj)
-    pnlSideLocFiles.BringToFront()
-
+    
     Show()
 
 
   End Sub
 
-  Private Sub Panel1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) _
-  Handles PictureBox2.MouseDown, Panel1.MouseDown, lblFilename.MouseDown
-    If e.Button = Windows.Forms.MouseButtons.Left Then
-
-      FormMoveTricky(Me.Handle)
-    ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
-      Clipboard.SetText(lblFilename.Text)
-      lblFilename.BackColor = Color.BlueViolet
-      Application.DoEvents()
-      Threading.Thread.Sleep(500)
-      lblFilename.BackColor = Color.Transparent
-    End If
-    'If e.Button = Windows.Forms.MouseButtons.Right Then
-    '  frm_paletteCursor.Show()
-
-    'End If
-  End Sub
 
   'Private Sub ZusatzfensterAnzeigenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ZusatzfensterAnzeigenToolStripMenuItem.Click
   '  showProperties(vcc.canvas.GetFirstSelectedObject, True)
@@ -397,15 +381,10 @@ Public Class frm_mdiViewer2
   End Sub
 
   Private Sub frm_mdiViewer2_Resize(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Resize
-    If Me.WindowState = FormWindowState.Maximized Then
-      Label2.Text = "2"
-    Else
-      Label2.Text = "1"
-    End If
     repositionPaletteWindows()
   End Sub
 
-  Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click
+  Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     If Me.WindowState = FormWindowState.Maximized Then
       Me.WindowState = FormWindowState.Normal
     Else
@@ -413,11 +392,11 @@ Public Class frm_mdiViewer2
     End If
   End Sub
 
-  Private Sub Label1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label1.Click
+  Private Sub Label1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     Me.Close()
   End Sub
 
-  Private Sub Label3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label3.Click
+  Private Sub Label3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     Me.WindowState = FormWindowState.Minimized
   End Sub
 
@@ -590,18 +569,14 @@ Public Class frm_mdiViewer2
 
   End Sub
 
-  Private Sub btnFileMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFileMenu.Click
-    cmsFileMenu.Show(btnFileMenu, 0, btnFileMenu.Height)
-  End Sub
-
-  Private Sub SchliessenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SchliessenToolStripMenuItem.Click
+  Private Sub SchliessenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem12.Click
     Me.Close()
   End Sub
 
 #Region "Datei-Menü"
 
 
-  Private Sub NeuToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NeuToolStripMenuItem.Click
+  Private Sub NeuToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
     'If vcc.CheckFileDirty() Then
     '  vcc.canvas.clearCanvas()
     '  vcc.FileSpec = ""
@@ -610,7 +585,7 @@ Public Class frm_mdiViewer2
     newClient()
   End Sub
 
-  Private Sub OeffnenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OeffnenToolStripMenuItem.Click
+  Private Sub OeffnenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem3.Click
     'vcc.openFile()
 
     Using ofd As New OpenFileDialog
@@ -624,7 +599,7 @@ Public Class frm_mdiViewer2
   End Sub
 
 
-  Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+  Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
     If vcc() Is Nothing Then Return
     vcc.saveFile(False)
   End Sub
@@ -633,12 +608,12 @@ Public Class frm_mdiViewer2
     vcc.saveFile(False)
   End Sub
 
-  Private Sub SpeichernUnterToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SpeichernUnterToolStripMenuItem.Click
+  Private Sub SpeichernUnterToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem5.Click
     If vcc() Is Nothing Then Return
     vcc.saveFile(True)
   End Sub
 
-  Private Sub CodeGenerierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CodeGenerierenToolStripMenuItem.Click
+  Private Sub CodeGenerierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem9.Click
     If vcc() Is Nothing Then Return
     If String.IsNullOrEmpty(vcc.FileSpec) Then
       MsgBox("Die Collage muss vorher abgespeichert werden.", MsgBoxStyle.Information)
@@ -652,7 +627,7 @@ Public Class frm_mdiViewer2
     End Try
   End Sub
 
-  Private Sub ExportierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ExportierenToolStripMenuItem.Click
+  Private Sub ExportierenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem8.Click
     If vcc() Is Nothing Then Return
     MsgBox("Dies ist eine experimentelle Funktion, die evtl. zum Absturz des Programms führen kann. Es wird empfohlen, die Collage vorher zu speichern. Das resultierende PDF-Dokument kann Fehler enthalten. (schlechte Bildqualität, falsche Darstellung von Pfeilen)", MsgBoxStyle.Information, "Du befindest dich im Labor...")
     Using sfd As New SaveFileDialog
@@ -710,10 +685,10 @@ Public Class frm_mdiViewer2
     Dim filename As String = vcc.FileSpec
     If String.IsNullOrEmpty(filename) Then filename = client.Text
     Me.Text = IO.Path.GetFileName(filename) + " - ScreenGrab " + My.Application.Info.Version.ToString(2) + " Collage-Modus"
-    lblFilename.Text = filename
+    'lblFilename.Text = filename
 
     Label9.BackColor = If(vcc.Dirty, Color.Red, Color.Transparent)
-    btnSave.Enabled = vcc.Dirty
+    SpeichernToolStripMenuItem.Enabled = vcc.Dirty
   End Sub
 
   Private Sub txtTextDefault_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles txtTextDefault.TextChanged
@@ -724,15 +699,11 @@ Public Class frm_mdiViewer2
     VCanvasControl.defaultArrowLength = nudArrowLength.Value
   End Sub
 
-  Private Sub Panel1_Paint_1(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
+  Private Sub Panel1_Paint_1(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
     e.Graphics.FillRectangle(titleBarGradient, sender.Bounds)
 
   End Sub
 
-  Private Sub btnShowElementList_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-    pnlSideElements.Visible = Not pnlSideElements.Visible
-    If pnlSideElements.Visible Then lstElementNames.Focus()
-  End Sub
 
   Private Sub lstElementNames_DrawItem(ByVal sender As Object, ByVal e As System.Windows.Forms.DrawItemEventArgs) Handles lstElementNames.DrawItem
     If e.Index < 0 Then Return
@@ -769,14 +740,6 @@ Public Class frm_mdiViewer2
     End If
 
     ' pnlElements.Hide()
-  End Sub
-
-  Private Sub Label2_MouseEnter(ByVal sender As Label, ByVal e As System.EventArgs) Handles Label3.MouseEnter, Label2.MouseEnter, Label1.MouseEnter
-    sender.BackColor = Color.White
-  End Sub
-
-  Private Sub Label2_MouseLeave(ByVal sender As Label, ByVal e As System.EventArgs) Handles Label3.MouseLeave, Label2.MouseLeave, Label1.MouseLeave
-    sender.BackColor = Color.Transparent
   End Sub
 
   Private Sub TabControl1_TabPaintBorder(ByVal sender As Object, ByVal e As MdiTabControl.TabControl.TabPaintEventArgs) Handles TabControl1.TabPaintBorder
@@ -819,26 +782,16 @@ Public Class frm_mdiViewer2
     End If
   End Sub
 
-  Private Sub OptionenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OptionenToolStripMenuItem.Click
+  Private Sub OptionenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem11.Click
     frm_options.Show() : frm_options.Activate()
   End Sub
 
 
 #Region "Sidebar: General"
 
-  Private Sub llSidebar3_MouseDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) _
-  Handles llSidebar3.MouseDown, llSidebar2.MouseDown, llSidebar1.MouseDown, llSidebar4.MouseDown, llSidebar5.MouseDown
-    llSidebar1.BackColor = Color.DarkGray : llSidebar2.BackColor = Color.DarkGray : llSidebar3.BackColor = Color.DarkGray : llSidebar4.BackColor = Color.DarkGray : llSidebar5.BackColor = Color.DarkGray
-    sender.backcolor = Color.Gainsboro
-    If sender Is llSidebar1 Then pnlSideLocFiles.BringToFront()
-    If sender Is llSidebar2 Then pnlSideDropme.BringToFront()
-    If sender Is llSidebar3 Then lstTrace.BringToFront()
-    If sender Is llSidebar4 Then pnlSideElements.BringToFront()
-    If sender Is llSidebar5 Then pnlSideTemplates.BringToFront()
-
-  End Sub
   Sub toggleLeftPanel()
     pnlLeft.Width = If(pnlLeft.Width = 6, 232, 6)
+    SidebarToolStripMenuItem.Checked = pnlLeft.Width > 6
   End Sub
 
   Private Sub lblToggleLeftPanel_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblToggleLeftPanel.MouseDown
@@ -847,9 +800,6 @@ Public Class frm_mdiViewer2
     ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
       Me.TopMost = Not Me.TopMost
       lblToggleLeftPanel.BackColor = If(Me.TopMost, Color.CornflowerBlue, Color.OliveDrab)
-    ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
-      lstTrace.BringToFront()
-      ' lstTrace.Visible = Not lstTrace.Visible
     End If
   End Sub
 
@@ -930,21 +880,8 @@ Public Class frm_mdiViewer2
   End Sub
 
 #End Region
-#Region "Sidebar: Trace"
 
-  Private Sub lstTrace_MouseUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lstTrace.MouseUp
-    If e.Button = Windows.Forms.MouseButtons.Middle Then
-      lstTrace.Items.Clear()
-    End If
-    If e.Button = Windows.Forms.MouseButtons.Right Then
-      TextBox1.Visible = Not TextBox1.Visible
-      TextBox1.Height = Me.ClientSize.Height - 50
 
-    End If
-    TextBox1.Text = lstTrace.SelectedItem
-  End Sub
-
-#End Region
 #Region "Sidebar: Dropme"
 
 
@@ -957,7 +894,7 @@ Public Class frm_mdiViewer2
     End If
     Dim RESULT As Hashtable = JSON.JsonDecode(RESULT_String, success)
     If success = False Then
-      lstTrace.Items.Add("errMes : " + RESULT_String)
+      Trace("errMes : " + RESULT_String)
       MsgBox("Es konnte keine Verbindung zum Server aufgebaut werden. Bitte überprüfe, ob die Verbindung mit dem Internet hergestellt ist.", MsgBoxStyle.Critical, "Fehler")
       Return Nothing
     End If
@@ -965,7 +902,7 @@ Public Class frm_mdiViewer2
   End Function
 
 
-  Private Sub llSidebar2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llSidebar2.LinkClicked
+  Private Sub llSidebar2_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs)
     InitDropme()
   End Sub
   Sub InitDropme()
@@ -1230,8 +1167,8 @@ exit_Sub:
 
     If e.Result(0) = 0 Then
       'Fehler
-      lstTrace.Items.Add("errMes     : " + e.Result(1))
-      lstTrace.Items.Add("errDetails : " + e.Result(2))
+      Trace("errMes     : ", e.Result(1))
+      Trace("errDetails : ", +e.Result(2))
       MsgBox(e.Result(1), MsgBoxStyle.Exclamation)
     Else
       'OK
@@ -1240,7 +1177,7 @@ exit_Sub:
       Clipboard.Clear()
       Clipboard.SetText(e.Result(1))
 
-      lstTrace.Items.Add("success : " + e.Result(1))
+      Trace("success : ", e.Result(1))
 
       My.Computer.Audio.Play("C:\windows\media\chimes.wav")
 
@@ -1328,10 +1265,19 @@ exit_Sub:
     lvTemplates.DoDragDrop(d, DragDropEffects.Copy)
   End Sub
 
-  Private Sub llSidebar5_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles llSidebar5.LinkClicked
+  Private Sub llSidebar5_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs)
     loadtemplateList()
   End Sub
 
 #End Region
 
+  Private Sub DebugfensterAnzeigenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DebugfensterAnzeigenToolStripMenuItem.Click
+    traceWin.Show()
+    traceWin.Activate()
+
+  End Sub
+
+  Private Sub SidebarToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SidebarToolStripMenuItem.Click
+    toggleLeftPanel()
+  End Sub
 End Class

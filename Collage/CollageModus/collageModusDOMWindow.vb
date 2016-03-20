@@ -6,8 +6,7 @@ Public Class collageModusDOMWindow
   Public ReadOnly location As New collageModusDOMLocationObject()
 
   Sub trace(ByVal str As String)
-    MDI.lstTrace.Items.Add(str)
-    MDI.lstTrace.SelectedIndex = MDI.lstTrace.Items.Count - 1
+    sys_mwTrace.Trace("Collage", str)
   End Sub
 
   Sub open(ByVal filespec As String)

@@ -24,16 +24,7 @@ Partial Class frm_mdiViewer2
     Private Sub InitializeComponent()
     Me.components = New System.ComponentModel.Container
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_mdiViewer2))
-    Me.Label3 = New System.Windows.Forms.Label
-    Me.Label2 = New System.Windows.Forms.Label
-    Me.Label1 = New System.Windows.Forms.Label
-    Me.Panel1 = New System.Windows.Forms.Panel
     Me.ProgressBar1 = New System.Windows.Forms.ProgressBar
-    Me.btnSave = New System.Windows.Forms.Button
-    Me.lblFilename = New System.Windows.Forms.Label
-    Me.txtElementName = New System.Windows.Forms.TextBox
-    Me.btnFileMenu = New System.Windows.Forms.Button
-    Me.PictureBox2 = New System.Windows.Forms.PictureBox
     Me.Label9 = New System.Windows.Forms.Label
     Me.CheckBox1 = New System.Windows.Forms.CheckBox
     Me.Panel3 = New System.Windows.Forms.Panel
@@ -66,28 +57,26 @@ Partial Class frm_mdiViewer2
     Me.txtTextDefault = New System.Windows.Forms.TextBox
     Me.GroupBox1 = New System.Windows.Forms.GroupBox
     Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-    Me.cmsFileMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-    Me.NeuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.OeffnenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.SpeichernToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.SpeichernUnterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.ToolStripMenuItem7 = New System.Windows.Forms.ToolStripSeparator
-    Me.ExportierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.CodeGenerierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.ZusatzfensterAnzeigenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.ToolStripMenuItem6 = New System.Windows.Forms.ToolStripSeparator
-    Me.OptionenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator
-    Me.SchliessenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.pnlSideElements = New System.Windows.Forms.Panel
     Me.lstElementNames = New System.Windows.Forms.ListBox
     Me.pnlLeft = New System.Windows.Forms.Panel
-    Me.llSidebar5 = New System.Windows.Forms.LinkLabel
-    Me.llSidebar4 = New System.Windows.Forms.LinkLabel
-    Me.llSidebar3 = New System.Windows.Forms.LinkLabel
-    Me.llSidebar2 = New System.Windows.Forms.LinkLabel
-    Me.llSidebar1 = New System.Windows.Forms.LinkLabel
-    Me.lblToggleLeftPanel = New System.Windows.Forms.Label
+    Me.TabControl2 = New System.Windows.Forms.TabControl
+    Me.TabPage1 = New System.Windows.Forms.TabPage
+    Me.btnNav04 = New System.Windows.Forms.Button
+    Me.btnNav01 = New System.Windows.Forms.Button
+    Me.pbPreview = New System.Windows.Forms.PictureBox
+    Me.ListBox1 = New System.Windows.Forms.ListBox
+    Me.FolderBrowser1 = New DirectoryBrowser.FolderBrowser
+    Me.lblCurPath = New System.Windows.Forms.Label
+    Me.btnNav03 = New System.Windows.Forms.Button
+    Me.btnNav02 = New System.Windows.Forms.Button
+    Me.TabPage2 = New System.Windows.Forms.TabPage
+    Me.Panel2 = New System.Windows.Forms.Panel
+    Me.TextBox2 = New System.Windows.Forms.TextBox
+    Me.btnTemplateAddSel = New System.Windows.Forms.Button
+    Me.Label10 = New System.Windows.Forms.Label
+    Me.lvTemplates = New System.Windows.Forms.ListView
+    Me.ImageList2 = New System.Windows.Forms.ImageList(Me.components)
+    Me.TabPage3 = New System.Windows.Forms.TabPage
     Me.pnlSideDropme = New System.Windows.Forms.Panel
     Me.pnlDropMeSave = New System.Windows.Forms.Panel
     Me.PictureBox1 = New System.Windows.Forms.PictureBox
@@ -97,27 +86,28 @@ Partial Class frm_mdiViewer2
     Me.ListView1 = New System.Windows.Forms.ListView
     Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
     Me.cmbDropmeClipboard = New System.Windows.Forms.ComboBox
-    Me.pnlSideLocFiles = New System.Windows.Forms.Panel
-    Me.btnNav04 = New System.Windows.Forms.Button
-    Me.pbPreview = New System.Windows.Forms.PictureBox
-    Me.FolderBrowser1 = New DirectoryBrowser.FolderBrowser
-    Me.btnNav03 = New System.Windows.Forms.Button
-    Me.btnNav01 = New System.Windows.Forms.Button
-    Me.btnNav02 = New System.Windows.Forms.Button
-    Me.lblCurPath = New System.Windows.Forms.Label
-    Me.ListBox1 = New System.Windows.Forms.ListBox
-    Me.lstTrace = New System.Windows.Forms.ListBox
-    Me.pnlSideTemplates = New System.Windows.Forms.Panel
-    Me.Panel2 = New System.Windows.Forms.Panel
-    Me.TextBox2 = New System.Windows.Forms.TextBox
-    Me.btnTemplateAddSel = New System.Windows.Forms.Button
-    Me.Label10 = New System.Windows.Forms.Label
-    Me.lvTemplates = New System.Windows.Forms.ListView
-    Me.ImageList2 = New System.Windows.Forms.ImageList(Me.components)
-    Me.TextBox1 = New System.Windows.Forms.TextBox
+    Me.TabPage4 = New System.Windows.Forms.TabPage
+    Me.TabPage5 = New System.Windows.Forms.TabPage
+    Me.lblToggleLeftPanel = New System.Windows.Forms.Label
     Me.TabControl1 = New MdiTabControl.TabControl
-    Me.Panel1.SuspendLayout()
-    CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
+    Me.DateiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+    Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem
+    Me.SpeichernToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.ToolStripMenuItem5 = New System.Windows.Forms.ToolStripMenuItem
+    Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator
+    Me.ToolStripMenuItem8 = New System.Windows.Forms.ToolStripMenuItem
+    Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator
+    Me.ToolStripMenuItem12 = New System.Windows.Forms.ToolStripMenuItem
+    Me.AnsichtToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.SidebarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.ExtrasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.ToolStripMenuItem9 = New System.Windows.Forms.ToolStripMenuItem
+    Me.DebugfensterAnzeigenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator
+    Me.ToolStripMenuItem11 = New System.Windows.Forms.ToolStripMenuItem
+    Me.txtElementName = New System.Windows.Forms.ToolStripTextBox
     Me.Panel3.SuspendLayout()
     Me.grpArrow.SuspendLayout()
     CType(Me.nudArrowLength, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,132 +118,29 @@ Partial Class frm_mdiViewer2
     Me.grpLine.SuspendLayout()
     CType(Me.nudLineWidth, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.grpText.SuspendLayout()
-    Me.cmsFileMenu.SuspendLayout()
-    Me.pnlSideElements.SuspendLayout()
     Me.pnlLeft.SuspendLayout()
+    Me.TabControl2.SuspendLayout()
+    Me.TabPage1.SuspendLayout()
+    CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.TabPage2.SuspendLayout()
+    Me.Panel2.SuspendLayout()
+    Me.TabPage3.SuspendLayout()
     Me.pnlSideDropme.SuspendLayout()
     Me.pnlDropMeSave.SuspendLayout()
     CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.pnlSideLocFiles.SuspendLayout()
-    CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.pnlSideTemplates.SuspendLayout()
-    Me.Panel2.SuspendLayout()
+    Me.TabPage4.SuspendLayout()
+    Me.MenuStrip1.SuspendLayout()
     Me.SuspendLayout()
-    '
-    'Label3
-    '
-    Me.Label3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.Label3.BackColor = System.Drawing.Color.Transparent
-    Me.Label3.Font = New System.Drawing.Font("Webdings", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-    Me.Label3.Location = New System.Drawing.Point(832, 5)
-    Me.Label3.Name = "Label3"
-    Me.Label3.Size = New System.Drawing.Size(19, 20)
-    Me.Label3.TabIndex = 2
-    Me.Label3.Text = "0"
-    Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'Label2
-    '
-    Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.Label2.BackColor = System.Drawing.Color.Transparent
-    Me.Label2.Font = New System.Drawing.Font("Webdings", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-    Me.Label2.Location = New System.Drawing.Point(852, 5)
-    Me.Label2.Name = "Label2"
-    Me.Label2.Size = New System.Drawing.Size(19, 20)
-    Me.Label2.TabIndex = 1
-    Me.Label2.Text = "1"
-    Me.Label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'Label1
-    '
-    Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.Label1.BackColor = System.Drawing.Color.Transparent
-    Me.Label1.Font = New System.Drawing.Font("Webdings", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-    Me.Label1.Location = New System.Drawing.Point(872, 5)
-    Me.Label1.Name = "Label1"
-    Me.Label1.Size = New System.Drawing.Size(19, 20)
-    Me.Label1.TabIndex = 0
-    Me.Label1.Text = "r"
-    Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    '
-    'Panel1
-    '
-    Me.Panel1.BackColor = System.Drawing.Color.DarkOliveGreen
-    Me.Panel1.Controls.Add(Me.ProgressBar1)
-    Me.Panel1.Controls.Add(Me.btnSave)
-    Me.Panel1.Controls.Add(Me.lblFilename)
-    Me.Panel1.Controls.Add(Me.txtElementName)
-    Me.Panel1.Controls.Add(Me.btnFileMenu)
-    Me.Panel1.Controls.Add(Me.PictureBox2)
-    Me.Panel1.Controls.Add(Me.Label2)
-    Me.Panel1.Controls.Add(Me.Label1)
-    Me.Panel1.Controls.Add(Me.Label3)
-    Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-    Me.Panel1.Location = New System.Drawing.Point(0, 0)
-    Me.Panel1.Name = "Panel1"
-    Me.Panel1.Size = New System.Drawing.Size(897, 30)
-    Me.Panel1.TabIndex = 7
     '
     'ProgressBar1
     '
     Me.ProgressBar1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
                 Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.ProgressBar1.Location = New System.Drawing.Point(576, 3)
+    Me.ProgressBar1.Location = New System.Drawing.Point(10, 11)
     Me.ProgressBar1.Name = "ProgressBar1"
-    Me.ProgressBar1.Size = New System.Drawing.Size(250, 23)
+    Me.ProgressBar1.Size = New System.Drawing.Size(220, 23)
     Me.ProgressBar1.TabIndex = 11
     Me.ProgressBar1.Visible = False
-    '
-    'btnSave
-    '
-    Me.btnSave.Enabled = False
-    Me.btnSave.Font = New System.Drawing.Font("Wingdings", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(2, Byte))
-    Me.btnSave.Location = New System.Drawing.Point(144, 4)
-    Me.btnSave.Name = "btnSave"
-    Me.btnSave.Size = New System.Drawing.Size(29, 23)
-    Me.btnSave.TabIndex = 10
-    Me.btnSave.Text = "<"
-    Me.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter
-    Me.btnSave.UseVisualStyleBackColor = True
-    '
-    'lblFilename
-    '
-    Me.lblFilename.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.lblFilename.BackColor = System.Drawing.Color.Transparent
-    Me.lblFilename.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.lblFilename.Location = New System.Drawing.Point(373, 10)
-    Me.lblFilename.Name = "lblFilename"
-    Me.lblFilename.Size = New System.Drawing.Size(453, 23)
-    Me.lblFilename.TabIndex = 8
-    Me.lblFilename.Text = "Collage-Modus"
-    '
-    'txtElementName
-    '
-    Me.txtElementName.Location = New System.Drawing.Point(178, 5)
-    Me.txtElementName.Name = "txtElementName"
-    Me.txtElementName.Size = New System.Drawing.Size(189, 20)
-    Me.txtElementName.TabIndex = 7
-    '
-    'btnFileMenu
-    '
-    Me.btnFileMenu.Location = New System.Drawing.Point(41, 4)
-    Me.btnFileMenu.Name = "btnFileMenu"
-    Me.btnFileMenu.Size = New System.Drawing.Size(105, 23)
-    Me.btnFileMenu.TabIndex = 5
-    Me.btnFileMenu.Text = "Collage"
-    Me.btnFileMenu.UseVisualStyleBackColor = True
-    '
-    'PictureBox2
-    '
-    Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
-    Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
-    Me.PictureBox2.Location = New System.Drawing.Point(3, 0)
-    Me.PictureBox2.Name = "PictureBox2"
-    Me.PictureBox2.Size = New System.Drawing.Size(32, 28)
-    Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
-    Me.PictureBox2.TabIndex = 4
-    Me.PictureBox2.TabStop = False
     '
     'Label9
     '
@@ -290,9 +177,9 @@ Partial Class frm_mdiViewer2
     Me.Panel3.Controls.Add(Me.GroupBox1)
     Me.Panel3.Dock = System.Windows.Forms.DockStyle.Right
     Me.Panel3.ForeColor = System.Drawing.Color.WhiteSmoke
-    Me.Panel3.Location = New System.Drawing.Point(833, 30)
+    Me.Panel3.Location = New System.Drawing.Point(833, 27)
     Me.Panel3.Name = "Panel3"
-    Me.Panel3.Size = New System.Drawing.Size(64, 603)
+    Me.Panel3.Size = New System.Drawing.Size(64, 606)
     Me.Panel3.TabIndex = 10
     '
     'grpArrow
@@ -594,102 +481,6 @@ Partial Class frm_mdiViewer2
     '
     Me.ToolTip1.ToolTipTitle = "Werkzeugauswahl"
     '
-    'cmsFileMenu
-    '
-    Me.cmsFileMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NeuToolStripMenuItem, Me.OeffnenToolStripMenuItem, Me.SpeichernToolStripMenuItem, Me.SpeichernUnterToolStripMenuItem, Me.ToolStripMenuItem7, Me.ExportierenToolStripMenuItem, Me.CodeGenerierenToolStripMenuItem, Me.ZusatzfensterAnzeigenToolStripMenuItem, Me.ToolStripMenuItem6, Me.OptionenToolStripMenuItem, Me.ToolStripMenuItem2, Me.SchliessenToolStripMenuItem})
-    Me.cmsFileMenu.Name = "cmsFileMenu"
-    Me.cmsFileMenu.Size = New System.Drawing.Size(232, 220)
-    '
-    'NeuToolStripMenuItem
-    '
-    Me.NeuToolStripMenuItem.Image = CType(resources.GetObject("NeuToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.NeuToolStripMenuItem.Name = "NeuToolStripMenuItem"
-    Me.NeuToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.NeuToolStripMenuItem.Text = "Neu"
-    '
-    'OeffnenToolStripMenuItem
-    '
-    Me.OeffnenToolStripMenuItem.Image = CType(resources.GetObject("OeffnenToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.OeffnenToolStripMenuItem.Name = "OeffnenToolStripMenuItem"
-    Me.OeffnenToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl O"
-    Me.OeffnenToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.OeffnenToolStripMenuItem.Text = "Öffnen"
-    '
-    'SpeichernToolStripMenuItem
-    '
-    Me.SpeichernToolStripMenuItem.Image = CType(resources.GetObject("SpeichernToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.SpeichernToolStripMenuItem.Name = "SpeichernToolStripMenuItem"
-    Me.SpeichernToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl S"
-    Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.SpeichernToolStripMenuItem.Text = "Speichern"
-    '
-    'SpeichernUnterToolStripMenuItem
-    '
-    Me.SpeichernUnterToolStripMenuItem.Name = "SpeichernUnterToolStripMenuItem"
-    Me.SpeichernUnterToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl Shift S"
-    Me.SpeichernUnterToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.SpeichernUnterToolStripMenuItem.Text = "Speichern unter ..."
-    '
-    'ToolStripMenuItem7
-    '
-    Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
-    Me.ToolStripMenuItem7.Size = New System.Drawing.Size(228, 6)
-    '
-    'ExportierenToolStripMenuItem
-    '
-    Me.ExportierenToolStripMenuItem.Name = "ExportierenToolStripMenuItem"
-    Me.ExportierenToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.ExportierenToolStripMenuItem.Text = "Exportieren ..."
-    '
-    'CodeGenerierenToolStripMenuItem
-    '
-    Me.CodeGenerierenToolStripMenuItem.Image = CType(resources.GetObject("CodeGenerierenToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.CodeGenerierenToolStripMenuItem.Name = "CodeGenerierenToolStripMenuItem"
-    Me.CodeGenerierenToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl G"
-    Me.CodeGenerierenToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.CodeGenerierenToolStripMenuItem.Text = "Code generieren ..."
-    '
-    'ZusatzfensterAnzeigenToolStripMenuItem
-    '
-    Me.ZusatzfensterAnzeigenToolStripMenuItem.Name = "ZusatzfensterAnzeigenToolStripMenuItem"
-    Me.ZusatzfensterAnzeigenToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.ZusatzfensterAnzeigenToolStripMenuItem.Text = "Zusatzfenster anzeigen"
-    '
-    'ToolStripMenuItem6
-    '
-    Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-    Me.ToolStripMenuItem6.Size = New System.Drawing.Size(228, 6)
-    '
-    'OptionenToolStripMenuItem
-    '
-    Me.OptionenToolStripMenuItem.Name = "OptionenToolStripMenuItem"
-    Me.OptionenToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.OptionenToolStripMenuItem.Text = "Optionen"
-    '
-    'ToolStripMenuItem2
-    '
-    Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-    Me.ToolStripMenuItem2.Size = New System.Drawing.Size(228, 6)
-    '
-    'SchliessenToolStripMenuItem
-    '
-    Me.SchliessenToolStripMenuItem.Name = "SchliessenToolStripMenuItem"
-    Me.SchliessenToolStripMenuItem.ShortcutKeyDisplayString = "Alt F4"
-    Me.SchliessenToolStripMenuItem.Size = New System.Drawing.Size(231, 22)
-    Me.SchliessenToolStripMenuItem.Text = "Schließen"
-    '
-    'pnlSideElements
-    '
-    Me.pnlSideElements.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.pnlSideElements.BackColor = System.Drawing.Color.Crimson
-    Me.pnlSideElements.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-    Me.pnlSideElements.Controls.Add(Me.lstElementNames)
-    Me.pnlSideElements.Location = New System.Drawing.Point(6, 23)
-    Me.pnlSideElements.Name = "pnlSideElements"
-    Me.pnlSideElements.Size = New System.Drawing.Size(224, 579)
-    Me.pnlSideElements.TabIndex = 12
-    '
     'lstElementNames
     '
     Me.lstElementNames.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -698,114 +489,220 @@ Partial Class frm_mdiViewer2
     Me.lstElementNames.FormattingEnabled = True
     Me.lstElementNames.IntegralHeight = False
     Me.lstElementNames.ItemHeight = 50
-    Me.lstElementNames.Location = New System.Drawing.Point(3, 6)
+    Me.lstElementNames.Location = New System.Drawing.Point(0, 6)
     Me.lstElementNames.Name = "lstElementNames"
-    Me.lstElementNames.Size = New System.Drawing.Size(217, 561)
+    Me.lstElementNames.Size = New System.Drawing.Size(217, 532)
     Me.lstElementNames.TabIndex = 1
     '
     'pnlLeft
     '
     Me.pnlLeft.BackColor = System.Drawing.Color.DimGray
-    Me.pnlLeft.Controls.Add(Me.llSidebar5)
-    Me.pnlLeft.Controls.Add(Me.llSidebar4)
-    Me.pnlLeft.Controls.Add(Me.llSidebar3)
-    Me.pnlLeft.Controls.Add(Me.llSidebar2)
-    Me.pnlLeft.Controls.Add(Me.llSidebar1)
+    Me.pnlLeft.Controls.Add(Me.ProgressBar1)
+    Me.pnlLeft.Controls.Add(Me.TabControl2)
     Me.pnlLeft.Controls.Add(Me.lblToggleLeftPanel)
-    Me.pnlLeft.Controls.Add(Me.pnlSideLocFiles)
-    Me.pnlLeft.Controls.Add(Me.lstTrace)
-    Me.pnlLeft.Controls.Add(Me.pnlSideElements)
-    Me.pnlLeft.Controls.Add(Me.pnlSideTemplates)
-    Me.pnlLeft.Controls.Add(Me.pnlSideDropme)
     Me.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left
-    Me.pnlLeft.Location = New System.Drawing.Point(0, 30)
+    Me.pnlLeft.Location = New System.Drawing.Point(0, 27)
     Me.pnlLeft.Name = "pnlLeft"
-    Me.pnlLeft.Size = New System.Drawing.Size(232, 603)
+    Me.pnlLeft.Size = New System.Drawing.Size(233, 606)
     Me.pnlLeft.TabIndex = 13
     '
-    'llSidebar5
+    'TabControl2
     '
-    Me.llSidebar5.AutoSize = True
-    Me.llSidebar5.BackColor = System.Drawing.Color.DarkGray
-    Me.llSidebar5.Location = New System.Drawing.Point(41, 1)
-    Me.llSidebar5.Name = "llSidebar5"
-    Me.llSidebar5.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-    Me.llSidebar5.Size = New System.Drawing.Size(49, 23)
-    Me.llSidebar5.TabIndex = 16
-    Me.llSidebar5.TabStop = True
-    Me.llSidebar5.Text = "Vorlagen"
+    Me.TabControl2.Appearance = System.Windows.Forms.TabAppearance.FlatButtons
+    Me.TabControl2.Controls.Add(Me.TabPage1)
+    Me.TabControl2.Controls.Add(Me.TabPage2)
+    Me.TabControl2.Controls.Add(Me.TabPage3)
+    Me.TabControl2.Controls.Add(Me.TabPage4)
+    Me.TabControl2.Controls.Add(Me.TabPage5)
+    Me.TabControl2.ItemSize = New System.Drawing.Size(44, 21)
+    Me.TabControl2.Location = New System.Drawing.Point(6, 0)
+    Me.TabControl2.Name = "TabControl2"
+    Me.TabControl2.SelectedIndex = 0
+    Me.TabControl2.Size = New System.Drawing.Size(227, 601)
+    Me.TabControl2.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
+    Me.TabControl2.TabIndex = 18
     '
-    'llSidebar4
+    'TabPage1
     '
-    Me.llSidebar4.AutoSize = True
-    Me.llSidebar4.BackColor = System.Drawing.Color.DarkGray
-    Me.llSidebar4.Location = New System.Drawing.Point(139, 1)
-    Me.llSidebar4.Name = "llSidebar4"
-    Me.llSidebar4.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-    Me.llSidebar4.Size = New System.Drawing.Size(51, 23)
-    Me.llSidebar4.TabIndex = 15
-    Me.llSidebar4.TabStop = True
-    Me.llSidebar4.Text = "Elemente"
+    Me.TabPage1.Controls.Add(Me.btnNav04)
+    Me.TabPage1.Controls.Add(Me.btnNav01)
+    Me.TabPage1.Controls.Add(Me.pbPreview)
+    Me.TabPage1.Controls.Add(Me.ListBox1)
+    Me.TabPage1.Controls.Add(Me.FolderBrowser1)
+    Me.TabPage1.Controls.Add(Me.lblCurPath)
+    Me.TabPage1.Controls.Add(Me.btnNav03)
+    Me.TabPage1.Controls.Add(Me.btnNav02)
+    Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+    Me.TabPage1.Name = "TabPage1"
+    Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
+    Me.TabPage1.Size = New System.Drawing.Size(219, 572)
+    Me.TabPage1.TabIndex = 0
+    Me.TabPage1.Text = "Lokal"
+    Me.TabPage1.UseVisualStyleBackColor = True
     '
-    'llSidebar3
+    'btnNav04
     '
-    Me.llSidebar3.AutoSize = True
-    Me.llSidebar3.BackColor = System.Drawing.Color.DarkGray
-    Me.llSidebar3.Location = New System.Drawing.Point(192, 1)
-    Me.llSidebar3.Name = "llSidebar3"
-    Me.llSidebar3.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-    Me.llSidebar3.Size = New System.Drawing.Size(35, 23)
-    Me.llSidebar3.TabIndex = 14
-    Me.llSidebar3.TabStop = True
-    Me.llSidebar3.Text = "Trace"
+    Me.btnNav04.Location = New System.Drawing.Point(159, 1)
+    Me.btnNav04.Name = "btnNav04"
+    Me.btnNav04.Size = New System.Drawing.Size(54, 21)
+    Me.btnNav04.TabIndex = 9
+    Me.btnNav04.UseVisualStyleBackColor = True
     '
-    'llSidebar2
+    'btnNav01
     '
-    Me.llSidebar2.AutoSize = True
-    Me.llSidebar2.BackColor = System.Drawing.Color.DarkGray
-    Me.llSidebar2.Location = New System.Drawing.Point(92, 1)
-    Me.llSidebar2.Name = "llSidebar2"
-    Me.llSidebar2.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-    Me.llSidebar2.Size = New System.Drawing.Size(45, 23)
-    Me.llSidebar2.TabIndex = 13
-    Me.llSidebar2.TabStop = True
-    Me.llSidebar2.Text = "DropMe"
+    Me.btnNav01.Location = New System.Drawing.Point(0, 1)
+    Me.btnNav01.Name = "btnNav01"
+    Me.btnNav01.Size = New System.Drawing.Size(54, 21)
+    Me.btnNav01.TabIndex = 4
+    Me.btnNav01.UseVisualStyleBackColor = True
     '
-    'llSidebar1
+    'pbPreview
     '
-    Me.llSidebar1.AutoSize = True
-    Me.llSidebar1.BackColor = System.Drawing.Color.Gainsboro
-    Me.llSidebar1.Location = New System.Drawing.Point(6, 1)
-    Me.llSidebar1.Name = "llSidebar1"
-    Me.llSidebar1.Padding = New System.Windows.Forms.Padding(0, 5, 0, 5)
-    Me.llSidebar1.Size = New System.Drawing.Size(33, 23)
-    Me.llSidebar1.TabIndex = 12
-    Me.llSidebar1.TabStop = True
-    Me.llSidebar1.Text = "Lokal"
+    Me.pbPreview.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
+                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.pbPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+    Me.pbPreview.Location = New System.Drawing.Point(0, 469)
+    Me.pbPreview.Name = "pbPreview"
+    Me.pbPreview.Size = New System.Drawing.Size(222, 99)
+    Me.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+    Me.pbPreview.TabIndex = 8
+    Me.pbPreview.TabStop = False
     '
-    'lblToggleLeftPanel
+    'ListBox1
     '
-    Me.lblToggleLeftPanel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+    Me.ListBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                 Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.lblToggleLeftPanel.BackColor = System.Drawing.Color.OliveDrab
-    Me.lblToggleLeftPanel.Location = New System.Drawing.Point(0, 0)
-    Me.lblToggleLeftPanel.Name = "lblToggleLeftPanel"
-    Me.lblToggleLeftPanel.Size = New System.Drawing.Size(6, 603)
-    Me.lblToggleLeftPanel.TabIndex = 0
+    Me.ListBox1.FormattingEnabled = True
+    Me.ListBox1.IntegralHeight = False
+    Me.ListBox1.Location = New System.Drawing.Point(0, 244)
+    Me.ListBox1.Name = "ListBox1"
+    Me.ListBox1.Size = New System.Drawing.Size(220, 224)
+    Me.ListBox1.TabIndex = 2
+    '
+    'FolderBrowser1
+    '
+    Me.FolderBrowser1.Location = New System.Drawing.Point(0, 47)
+    Me.FolderBrowser1.Name = "FolderBrowser1"
+    Me.FolderBrowser1.SelectedNode = Nothing
+    Me.FolderBrowser1.Size = New System.Drawing.Size(220, 194)
+    Me.FolderBrowser1.TabIndex = 7
+    '
+    'lblCurPath
+    '
+    Me.lblCurPath.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+    Me.lblCurPath.Location = New System.Drawing.Point(0, 22)
+    Me.lblCurPath.Name = "lblCurPath"
+    Me.lblCurPath.Size = New System.Drawing.Size(220, 24)
+    Me.lblCurPath.TabIndex = 3
+    Me.lblCurPath.Text = "C:\"
+    '
+    'btnNav03
+    '
+    Me.btnNav03.Location = New System.Drawing.Point(106, 1)
+    Me.btnNav03.Name = "btnNav03"
+    Me.btnNav03.Size = New System.Drawing.Size(54, 21)
+    Me.btnNav03.TabIndex = 6
+    Me.btnNav03.UseVisualStyleBackColor = True
+    '
+    'btnNav02
+    '
+    Me.btnNav02.Location = New System.Drawing.Point(53, 1)
+    Me.btnNav02.Name = "btnNav02"
+    Me.btnNav02.Size = New System.Drawing.Size(54, 21)
+    Me.btnNav02.TabIndex = 5
+    Me.btnNav02.UseVisualStyleBackColor = True
+    '
+    'TabPage2
+    '
+    Me.TabPage2.Controls.Add(Me.Panel2)
+    Me.TabPage2.Controls.Add(Me.lvTemplates)
+    Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+    Me.TabPage2.Name = "TabPage2"
+    Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+    Me.TabPage2.Size = New System.Drawing.Size(219, 572)
+    Me.TabPage2.TabIndex = 1
+    Me.TabPage2.Text = "Vorlagen"
+    Me.TabPage2.UseVisualStyleBackColor = True
+    '
+    'Panel2
+    '
+    Me.Panel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.Panel2.BackColor = System.Drawing.Color.DarkOrange
+    Me.Panel2.Controls.Add(Me.TextBox2)
+    Me.Panel2.Controls.Add(Me.btnTemplateAddSel)
+    Me.Panel2.Controls.Add(Me.Label10)
+    Me.Panel2.Location = New System.Drawing.Point(1, 525)
+    Me.Panel2.Name = "Panel2"
+    Me.Panel2.Size = New System.Drawing.Size(217, 44)
+    Me.Panel2.TabIndex = 6
+    '
+    'TextBox2
+    '
+    Me.TextBox2.Location = New System.Drawing.Point(7, 18)
+    Me.TextBox2.Name = "TextBox2"
+    Me.TextBox2.Size = New System.Drawing.Size(126, 20)
+    Me.TextBox2.TabIndex = 5
+    Me.TextBox2.Text = "such..."
+    '
+    'btnTemplateAddSel
+    '
+    Me.btnTemplateAddSel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.btnTemplateAddSel.Location = New System.Drawing.Point(157, 5)
+    Me.btnTemplateAddSel.Name = "btnTemplateAddSel"
+    Me.btnTemplateAddSel.Size = New System.Drawing.Size(55, 35)
+    Me.btnTemplateAddSel.TabIndex = 3
+    Me.btnTemplateAddSel.Text = "+++"
+    Me.btnTemplateAddSel.UseVisualStyleBackColor = True
+    '
+    'Label10
+    '
+    Me.Label10.BackColor = System.Drawing.Color.Transparent
+    Me.Label10.Location = New System.Drawing.Point(4, 4)
+    Me.Label10.Name = "Label10"
+    Me.Label10.Size = New System.Drawing.Size(99, 17)
+    Me.Label10.TabIndex = 4
+    Me.Label10.Text = "Element-Vorlagen"
+    '
+    'lvTemplates
+    '
+    Me.lvTemplates.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+    Me.lvTemplates.LargeImageList = Me.ImageList2
+    Me.lvTemplates.Location = New System.Drawing.Point(1, 6)
+    Me.lvTemplates.Name = "lvTemplates"
+    Me.lvTemplates.Size = New System.Drawing.Size(218, 512)
+    Me.lvTemplates.TabIndex = 1
+    Me.lvTemplates.UseCompatibleStateImageBehavior = False
+    '
+    'ImageList2
+    '
+    Me.ImageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit
+    Me.ImageList2.ImageSize = New System.Drawing.Size(150, 150)
+    Me.ImageList2.TransparentColor = System.Drawing.Color.Transparent
+    '
+    'TabPage3
+    '
+    Me.TabPage3.Controls.Add(Me.pnlSideDropme)
+    Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+    Me.TabPage3.Name = "TabPage3"
+    Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+    Me.TabPage3.Size = New System.Drawing.Size(219, 572)
+    Me.TabPage3.TabIndex = 2
+    Me.TabPage3.Text = "Dropme"
+    Me.TabPage3.UseVisualStyleBackColor = True
     '
     'pnlSideDropme
     '
-    Me.pnlSideDropme.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.pnlSideDropme.BackColor = System.Drawing.Color.Silver
     Me.pnlSideDropme.BackgroundImage = CType(resources.GetObject("pnlSideDropme.BackgroundImage"), System.Drawing.Image)
     Me.pnlSideDropme.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
     Me.pnlSideDropme.Controls.Add(Me.pnlDropMeSave)
     Me.pnlSideDropme.Controls.Add(Me.ListView1)
     Me.pnlSideDropme.Controls.Add(Me.cmbDropmeClipboard)
-    Me.pnlSideDropme.Location = New System.Drawing.Point(6, 24)
+    Me.pnlSideDropme.Dock = System.Windows.Forms.DockStyle.Fill
+    Me.pnlSideDropme.Location = New System.Drawing.Point(3, 3)
     Me.pnlSideDropme.Name = "pnlSideDropme"
-    Me.pnlSideDropme.Size = New System.Drawing.Size(224, 577)
+    Me.pnlSideDropme.Size = New System.Drawing.Size(213, 566)
     Me.pnlSideDropme.TabIndex = 10
     '
     'pnlDropMeSave
@@ -815,7 +712,7 @@ Partial Class frm_mdiViewer2
     Me.pnlDropMeSave.Controls.Add(Me.Label4)
     Me.pnlDropMeSave.Controls.Add(Me.btnDropMeSave)
     Me.pnlDropMeSave.Controls.Add(Me.txtDropMeSave)
-    Me.pnlDropMeSave.Location = New System.Drawing.Point(2, 526)
+    Me.pnlDropMeSave.Location = New System.Drawing.Point(2, 515)
     Me.pnlDropMeSave.Name = "pnlDropMeSave"
     Me.pnlDropMeSave.Size = New System.Drawing.Size(217, 50)
     Me.pnlDropMeSave.TabIndex = 6
@@ -866,7 +763,7 @@ Partial Class frm_mdiViewer2
     Me.ListView1.LargeImageList = Me.ImageList1
     Me.ListView1.Location = New System.Drawing.Point(1, 54)
     Me.ListView1.Name = "ListView1"
-    Me.ListView1.Size = New System.Drawing.Size(219, 471)
+    Me.ListView1.Size = New System.Drawing.Size(219, 460)
     Me.ListView1.TabIndex = 1
     Me.ListView1.UseCompatibleStateImageBehavior = False
     '
@@ -884,195 +781,45 @@ Partial Class frm_mdiViewer2
     Me.cmbDropmeClipboard.Size = New System.Drawing.Size(218, 21)
     Me.cmbDropmeClipboard.TabIndex = 0
     '
-    'pnlSideLocFiles
+    'TabPage4
     '
-    Me.pnlSideLocFiles.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.pnlSideLocFiles.BackColor = System.Drawing.Color.Gainsboro
-    Me.pnlSideLocFiles.Controls.Add(Me.btnNav04)
-    Me.pnlSideLocFiles.Controls.Add(Me.pbPreview)
-    Me.pnlSideLocFiles.Controls.Add(Me.FolderBrowser1)
-    Me.pnlSideLocFiles.Controls.Add(Me.btnNav03)
-    Me.pnlSideLocFiles.Controls.Add(Me.btnNav01)
-    Me.pnlSideLocFiles.Controls.Add(Me.btnNav02)
-    Me.pnlSideLocFiles.Controls.Add(Me.lblCurPath)
-    Me.pnlSideLocFiles.Controls.Add(Me.ListBox1)
-    Me.pnlSideLocFiles.Location = New System.Drawing.Point(7, 24)
-    Me.pnlSideLocFiles.Name = "pnlSideLocFiles"
-    Me.pnlSideLocFiles.Size = New System.Drawing.Size(223, 578)
-    Me.pnlSideLocFiles.TabIndex = 11
+    Me.TabPage4.Controls.Add(Me.lstElementNames)
+    Me.TabPage4.Location = New System.Drawing.Point(4, 25)
+    Me.TabPage4.Name = "TabPage4"
+    Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
+    Me.TabPage4.Size = New System.Drawing.Size(219, 572)
+    Me.TabPage4.TabIndex = 3
+    Me.TabPage4.Text = "Elemente"
+    Me.TabPage4.UseVisualStyleBackColor = True
     '
-    'btnNav04
+    'TabPage5
     '
-    Me.btnNav04.Location = New System.Drawing.Point(159, 4)
-    Me.btnNav04.Name = "btnNav04"
-    Me.btnNav04.Size = New System.Drawing.Size(54, 21)
-    Me.btnNav04.TabIndex = 9
-    Me.btnNav04.UseVisualStyleBackColor = True
+    Me.TabPage5.Location = New System.Drawing.Point(4, 25)
+    Me.TabPage5.Name = "TabPage5"
+    Me.TabPage5.Padding = New System.Windows.Forms.Padding(3)
+    Me.TabPage5.Size = New System.Drawing.Size(219, 572)
+    Me.TabPage5.TabIndex = 4
+    Me.TabPage5.Text = "Trace"
+    Me.TabPage5.UseVisualStyleBackColor = True
     '
-    'pbPreview
+    'lblToggleLeftPanel
     '
-    Me.pbPreview.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.pbPreview.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-    Me.pbPreview.Location = New System.Drawing.Point(0, 478)
-    Me.pbPreview.Name = "pbPreview"
-    Me.pbPreview.Size = New System.Drawing.Size(222, 99)
-    Me.pbPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-    Me.pbPreview.TabIndex = 8
-    Me.pbPreview.TabStop = False
-    '
-    'FolderBrowser1
-    '
-    Me.FolderBrowser1.Location = New System.Drawing.Point(0, 50)
-    Me.FolderBrowser1.Name = "FolderBrowser1"
-    Me.FolderBrowser1.SelectedNode = Nothing
-    Me.FolderBrowser1.Size = New System.Drawing.Size(220, 194)
-    Me.FolderBrowser1.TabIndex = 7
-    '
-    'btnNav03
-    '
-    Me.btnNav03.Location = New System.Drawing.Point(106, 4)
-    Me.btnNav03.Name = "btnNav03"
-    Me.btnNav03.Size = New System.Drawing.Size(54, 21)
-    Me.btnNav03.TabIndex = 6
-    Me.btnNav03.UseVisualStyleBackColor = True
-    '
-    'btnNav01
-    '
-    Me.btnNav01.Location = New System.Drawing.Point(0, 4)
-    Me.btnNav01.Name = "btnNav01"
-    Me.btnNav01.Size = New System.Drawing.Size(54, 21)
-    Me.btnNav01.TabIndex = 4
-    Me.btnNav01.UseVisualStyleBackColor = True
-    '
-    'btnNav02
-    '
-    Me.btnNav02.Location = New System.Drawing.Point(53, 4)
-    Me.btnNav02.Name = "btnNav02"
-    Me.btnNav02.Size = New System.Drawing.Size(54, 21)
-    Me.btnNav02.TabIndex = 5
-    Me.btnNav02.UseVisualStyleBackColor = True
-    '
-    'lblCurPath
-    '
-    Me.lblCurPath.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.lblCurPath.Location = New System.Drawing.Point(0, 25)
-    Me.lblCurPath.Name = "lblCurPath"
-    Me.lblCurPath.Size = New System.Drawing.Size(220, 24)
-    Me.lblCurPath.TabIndex = 3
-    Me.lblCurPath.Text = "C:\"
-    '
-    'ListBox1
-    '
-    Me.ListBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+    Me.lblToggleLeftPanel.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
                 Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.ListBox1.FormattingEnabled = True
-    Me.ListBox1.IntegralHeight = False
-    Me.ListBox1.Location = New System.Drawing.Point(0, 247)
-    Me.ListBox1.Name = "ListBox1"
-    Me.ListBox1.Size = New System.Drawing.Size(220, 230)
-    Me.ListBox1.TabIndex = 2
-    '
-    'lstTrace
-    '
-    Me.lstTrace.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.lstTrace.FormattingEnabled = True
-    Me.lstTrace.IntegralHeight = False
-    Me.lstTrace.Location = New System.Drawing.Point(7, 24)
-    Me.lstTrace.Name = "lstTrace"
-    Me.lstTrace.Size = New System.Drawing.Size(223, 577)
-    Me.lstTrace.TabIndex = 9
-    '
-    'pnlSideTemplates
-    '
-    Me.pnlSideTemplates.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.pnlSideTemplates.BackColor = System.Drawing.Color.Gainsboro
-    Me.pnlSideTemplates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-    Me.pnlSideTemplates.Controls.Add(Me.Panel2)
-    Me.pnlSideTemplates.Controls.Add(Me.lvTemplates)
-    Me.pnlSideTemplates.Location = New System.Drawing.Point(6, 24)
-    Me.pnlSideTemplates.Name = "pnlSideTemplates"
-    Me.pnlSideTemplates.Size = New System.Drawing.Size(224, 577)
-    Me.pnlSideTemplates.TabIndex = 17
-    '
-    'Panel2
-    '
-    Me.Panel2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.Panel2.BackColor = System.Drawing.Color.DarkOrange
-    Me.Panel2.Controls.Add(Me.TextBox2)
-    Me.Panel2.Controls.Add(Me.btnTemplateAddSel)
-    Me.Panel2.Controls.Add(Me.Label10)
-    Me.Panel2.Location = New System.Drawing.Point(3, 529)
-    Me.Panel2.Name = "Panel2"
-    Me.Panel2.Size = New System.Drawing.Size(217, 44)
-    Me.Panel2.TabIndex = 6
-    '
-    'TextBox2
-    '
-    Me.TextBox2.Location = New System.Drawing.Point(7, 18)
-    Me.TextBox2.Name = "TextBox2"
-    Me.TextBox2.Size = New System.Drawing.Size(126, 20)
-    Me.TextBox2.TabIndex = 5
-    Me.TextBox2.Text = "such..."
-    '
-    'btnTemplateAddSel
-    '
-    Me.btnTemplateAddSel.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.btnTemplateAddSel.Location = New System.Drawing.Point(157, 5)
-    Me.btnTemplateAddSel.Name = "btnTemplateAddSel"
-    Me.btnTemplateAddSel.Size = New System.Drawing.Size(55, 35)
-    Me.btnTemplateAddSel.TabIndex = 3
-    Me.btnTemplateAddSel.Text = "+++"
-    Me.btnTemplateAddSel.UseVisualStyleBackColor = True
-    '
-    'Label10
-    '
-    Me.Label10.BackColor = System.Drawing.Color.Transparent
-    Me.Label10.Location = New System.Drawing.Point(4, 4)
-    Me.Label10.Name = "Label10"
-    Me.Label10.Size = New System.Drawing.Size(99, 17)
-    Me.Label10.TabIndex = 4
-    Me.Label10.Text = "Element-Vorlagen"
-    '
-    'lvTemplates
-    '
-    Me.lvTemplates.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.lvTemplates.LargeImageList = Me.ImageList2
-    Me.lvTemplates.Location = New System.Drawing.Point(3, 9)
-    Me.lvTemplates.Name = "lvTemplates"
-    Me.lvTemplates.Size = New System.Drawing.Size(218, 513)
-    Me.lvTemplates.TabIndex = 1
-    Me.lvTemplates.UseCompatibleStateImageBehavior = False
-    '
-    'ImageList2
-    '
-    Me.ImageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth24Bit
-    Me.ImageList2.ImageSize = New System.Drawing.Size(150, 150)
-    Me.ImageList2.TransparentColor = System.Drawing.Color.Transparent
-    '
-    'TextBox1
-    '
-    Me.TextBox1.Font = New System.Drawing.Font("Courier New", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.TextBox1.Location = New System.Drawing.Point(233, 0)
-    Me.TextBox1.Multiline = True
-    Me.TextBox1.Name = "TextBox1"
-    Me.TextBox1.Size = New System.Drawing.Size(600, 10)
-    Me.TextBox1.TabIndex = 16
-    Me.TextBox1.Visible = False
+    Me.lblToggleLeftPanel.BackColor = System.Drawing.Color.OliveDrab
+    Me.lblToggleLeftPanel.Location = New System.Drawing.Point(0, 0)
+    Me.lblToggleLeftPanel.Name = "lblToggleLeftPanel"
+    Me.lblToggleLeftPanel.Size = New System.Drawing.Size(6, 606)
+    Me.lblToggleLeftPanel.TabIndex = 0
     '
     'TabControl1
     '
     Me.TabControl1.Alignment = MdiTabControl.TabControl.TabAlignment.Top
     Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-    Me.TabControl1.Location = New System.Drawing.Point(232, 30)
+    Me.TabControl1.Location = New System.Drawing.Point(233, 27)
     Me.TabControl1.MenuRenderer = Nothing
     Me.TabControl1.Name = "TabControl1"
-    Me.TabControl1.Size = New System.Drawing.Size(601, 603)
+    Me.TabControl1.Size = New System.Drawing.Size(600, 606)
     Me.TabControl1.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None
     Me.TabControl1.TabBorderEnhanced = True
     Me.TabControl1.TabBorderEnhanceWeight = MdiTabControl.TabControl.Weight.Soft
@@ -1083,6 +830,134 @@ Partial Class frm_mdiViewer2
     Me.TabControl1.TabIndex = 15
     Me.TabControl1.TabsDirection = MdiTabControl.TabControl.FlowDirection.LeftToRight
     '
+    'MenuStrip1
+    '
+    Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.AnsichtToolStripMenuItem, Me.ExtrasToolStripMenuItem, Me.txtElementName})
+    Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+    Me.MenuStrip1.Name = "MenuStrip1"
+    Me.MenuStrip1.Size = New System.Drawing.Size(897, 27)
+    Me.MenuStrip1.TabIndex = 16
+    Me.MenuStrip1.Text = "MenuStrip1"
+    '
+    'DateiToolStripMenuItem
+    '
+    Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.ToolStripMenuItem3, Me.SpeichernToolStripMenuItem, Me.ToolStripMenuItem5, Me.ToolStripSeparator1, Me.ToolStripMenuItem8, Me.ToolStripSeparator3, Me.ToolStripMenuItem12})
+    Me.DateiToolStripMenuItem.Name = "DateiToolStripMenuItem"
+    Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(46, 23)
+    Me.DateiToolStripMenuItem.Text = "Datei"
+    '
+    'ToolStripMenuItem1
+    '
+    Me.ToolStripMenuItem1.Image = CType(resources.GetObject("ToolStripMenuItem1.Image"), System.Drawing.Image)
+    Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+    Me.ToolStripMenuItem1.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+    Me.ToolStripMenuItem1.Size = New System.Drawing.Size(243, 22)
+    Me.ToolStripMenuItem1.Text = "Neu"
+    '
+    'ToolStripMenuItem3
+    '
+    Me.ToolStripMenuItem3.Image = CType(resources.GetObject("ToolStripMenuItem3.Image"), System.Drawing.Image)
+    Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+    Me.ToolStripMenuItem3.ShortcutKeyDisplayString = "Strg+O"
+    Me.ToolStripMenuItem3.Size = New System.Drawing.Size(243, 22)
+    Me.ToolStripMenuItem3.Text = "Öffnen"
+    '
+    'SpeichernToolStripMenuItem
+    '
+    Me.SpeichernToolStripMenuItem.Image = CType(resources.GetObject("SpeichernToolStripMenuItem.Image"), System.Drawing.Image)
+    Me.SpeichernToolStripMenuItem.Name = "SpeichernToolStripMenuItem"
+    Me.SpeichernToolStripMenuItem.ShortcutKeyDisplayString = "Strg+S"
+    Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(243, 22)
+    Me.SpeichernToolStripMenuItem.Text = "Speichern"
+    '
+    'ToolStripMenuItem5
+    '
+    Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
+    Me.ToolStripMenuItem5.ShortcutKeyDisplayString = "Strg+Shift+S"
+    Me.ToolStripMenuItem5.Size = New System.Drawing.Size(243, 22)
+    Me.ToolStripMenuItem5.Text = "Speichern unter ..."
+    '
+    'ToolStripSeparator1
+    '
+    Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+    Me.ToolStripSeparator1.Size = New System.Drawing.Size(240, 6)
+    '
+    'ToolStripMenuItem8
+    '
+    Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
+    Me.ToolStripMenuItem8.Size = New System.Drawing.Size(243, 22)
+    Me.ToolStripMenuItem8.Text = "Exportieren ..."
+    '
+    'ToolStripSeparator3
+    '
+    Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+    Me.ToolStripSeparator3.Size = New System.Drawing.Size(240, 6)
+    '
+    'ToolStripMenuItem12
+    '
+    Me.ToolStripMenuItem12.Name = "ToolStripMenuItem12"
+    Me.ToolStripMenuItem12.ShortcutKeyDisplayString = ""
+    Me.ToolStripMenuItem12.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
+    Me.ToolStripMenuItem12.Size = New System.Drawing.Size(243, 22)
+    Me.ToolStripMenuItem12.Text = "Beenden"
+    '
+    'AnsichtToolStripMenuItem
+    '
+    Me.AnsichtToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SidebarToolStripMenuItem})
+    Me.AnsichtToolStripMenuItem.Name = "AnsichtToolStripMenuItem"
+    Me.AnsichtToolStripMenuItem.Size = New System.Drawing.Size(59, 23)
+    Me.AnsichtToolStripMenuItem.Text = "Ansicht"
+    '
+    'SidebarToolStripMenuItem
+    '
+    Me.SidebarToolStripMenuItem.Name = "SidebarToolStripMenuItem"
+    Me.SidebarToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8
+    Me.SidebarToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+    Me.SidebarToolStripMenuItem.Text = "Sidebar"
+    '
+    'ExtrasToolStripMenuItem
+    '
+    Me.ExtrasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem9, Me.DebugfensterAnzeigenToolStripMenuItem, Me.ToolStripSeparator2, Me.ToolStripMenuItem11})
+    Me.ExtrasToolStripMenuItem.Name = "ExtrasToolStripMenuItem"
+    Me.ExtrasToolStripMenuItem.Size = New System.Drawing.Size(49, 23)
+    Me.ExtrasToolStripMenuItem.Text = "Extras"
+    '
+    'ToolStripMenuItem9
+    '
+    Me.ToolStripMenuItem9.Image = CType(resources.GetObject("ToolStripMenuItem9.Image"), System.Drawing.Image)
+    Me.ToolStripMenuItem9.Name = "ToolStripMenuItem9"
+    Me.ToolStripMenuItem9.ShortcutKeyDisplayString = "Strg+G"
+    Me.ToolStripMenuItem9.Size = New System.Drawing.Size(267, 22)
+    Me.ToolStripMenuItem9.Text = "Code generieren ..."
+    '
+    'DebugfensterAnzeigenToolStripMenuItem
+    '
+    Me.DebugfensterAnzeigenToolStripMenuItem.Name = "DebugfensterAnzeigenToolStripMenuItem"
+    Me.DebugfensterAnzeigenToolStripMenuItem.ShortcutKeyDisplayString = "Strg+Shift+J"
+    Me.DebugfensterAnzeigenToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+                Or System.Windows.Forms.Keys.J), System.Windows.Forms.Keys)
+    Me.DebugfensterAnzeigenToolStripMenuItem.Size = New System.Drawing.Size(267, 22)
+    Me.DebugfensterAnzeigenToolStripMenuItem.Text = "Debugfenster anzeigen"
+    '
+    'ToolStripSeparator2
+    '
+    Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+    Me.ToolStripSeparator2.Size = New System.Drawing.Size(264, 6)
+    '
+    'ToolStripMenuItem11
+    '
+    Me.ToolStripMenuItem11.Name = "ToolStripMenuItem11"
+    Me.ToolStripMenuItem11.ShortcutKeyDisplayString = "Strg+,"
+    Me.ToolStripMenuItem11.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Oemcomma), System.Windows.Forms.Keys)
+    Me.ToolStripMenuItem11.Size = New System.Drawing.Size(267, 22)
+    Me.ToolStripMenuItem11.Text = "Optionen"
+    '
+    'txtElementName
+    '
+    Me.txtElementName.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right
+    Me.txtElementName.Name = "txtElementName"
+    Me.txtElementName.Size = New System.Drawing.Size(200, 23)
+    '
     'frm_mdiViewer2
     '
     Me.AllowDrop = True
@@ -1090,18 +965,15 @@ Partial Class frm_mdiViewer2
     Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
     Me.BackColor = System.Drawing.Color.White
     Me.ClientSize = New System.Drawing.Size(897, 633)
-    Me.Controls.Add(Me.TextBox1)
     Me.Controls.Add(Me.TabControl1)
     Me.Controls.Add(Me.Panel3)
     Me.Controls.Add(Me.pnlLeft)
-    Me.Controls.Add(Me.Panel1)
+    Me.Controls.Add(Me.MenuStrip1)
     Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
     Me.KeyPreview = True
+    Me.MainMenuStrip = Me.MenuStrip1
     Me.Name = "frm_mdiViewer2"
     Me.Text = "Collage"
-    Me.Panel1.ResumeLayout(False)
-    Me.Panel1.PerformLayout()
-    CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
     Me.Panel3.ResumeLayout(False)
     Me.Panel3.PerformLayout()
     Me.grpArrow.ResumeLayout(False)
@@ -1116,28 +988,25 @@ Partial Class frm_mdiViewer2
     CType(Me.nudLineWidth, System.ComponentModel.ISupportInitialize).EndInit()
     Me.grpText.ResumeLayout(False)
     Me.grpText.PerformLayout()
-    Me.cmsFileMenu.ResumeLayout(False)
-    Me.pnlSideElements.ResumeLayout(False)
     Me.pnlLeft.ResumeLayout(False)
-    Me.pnlLeft.PerformLayout()
+    Me.TabControl2.ResumeLayout(False)
+    Me.TabPage1.ResumeLayout(False)
+    CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.TabPage2.ResumeLayout(False)
+    Me.Panel2.ResumeLayout(False)
+    Me.Panel2.PerformLayout()
+    Me.TabPage3.ResumeLayout(False)
     Me.pnlSideDropme.ResumeLayout(False)
     Me.pnlDropMeSave.ResumeLayout(False)
     Me.pnlDropMeSave.PerformLayout()
     CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.pnlSideLocFiles.ResumeLayout(False)
-    CType(Me.pbPreview, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.pnlSideTemplates.ResumeLayout(False)
-    Me.Panel2.ResumeLayout(False)
-    Me.Panel2.PerformLayout()
+    Me.TabPage4.ResumeLayout(False)
+    Me.MenuStrip1.ResumeLayout(False)
+    Me.MenuStrip1.PerformLayout()
     Me.ResumeLayout(False)
     Me.PerformLayout()
 
   End Sub
-  Friend WithEvents Label3 As System.Windows.Forms.Label
-  Friend WithEvents Label2 As System.Windows.Forms.Label
-  Friend WithEvents Label1 As System.Windows.Forms.Label
-  Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
-  Friend WithEvents Panel1 As System.Windows.Forms.Panel
   Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
   Friend WithEvents Panel3 As System.Windows.Forms.Panel
   Friend WithEvents pnlToolbox As System.Windows.Forms.Panel
@@ -1163,30 +1032,15 @@ Partial Class frm_mdiViewer2
   Friend WithEvents Label8 As System.Windows.Forms.Label
   Friend WithEvents Label7 As System.Windows.Forms.Label
   Friend WithEvents txtTextDefault As System.Windows.Forms.TextBox
-  Friend WithEvents btnFileMenu As System.Windows.Forms.Button
-  Friend WithEvents cmsFileMenu As System.Windows.Forms.ContextMenuStrip
-  Friend WithEvents OeffnenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents SpeichernToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents SpeichernUnterToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents ToolStripMenuItem7 As System.Windows.Forms.ToolStripSeparator
-  Friend WithEvents ExportierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents ToolStripMenuItem6 As System.Windows.Forms.ToolStripSeparator
-  Friend WithEvents SchliessenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
   Friend WithEvents Label9 As System.Windows.Forms.Label
   Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
   Friend WithEvents btn_tb_9 As System.Windows.Forms.Button
   Friend WithEvents grpArrow As System.Windows.Forms.GroupBox
   Friend WithEvents nudArrowLength As System.Windows.Forms.NumericUpDown
   Friend WithEvents Label11 As System.Windows.Forms.Label
-  Friend WithEvents ZusatzfensterAnzeigenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
   Friend WithEvents btn_tb_0 As System.Windows.Forms.Button
-  Friend WithEvents CodeGenerierenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents lblFilename As System.Windows.Forms.Label
-  Friend WithEvents txtElementName As System.Windows.Forms.TextBox
-  Friend WithEvents pnlSideElements As System.Windows.Forms.Panel
   Friend WithEvents pnlLeft As System.Windows.Forms.Panel
   Friend WithEvents lblToggleLeftPanel As System.Windows.Forms.Label
-  Friend WithEvents btnSave As System.Windows.Forms.Button
   Friend WithEvents ListBox1 As System.Windows.Forms.ListBox
   Friend WithEvents lblCurPath As System.Windows.Forms.Label
   Friend WithEvents btnNav03 As System.Windows.Forms.Button
@@ -1196,16 +1050,10 @@ Partial Class frm_mdiViewer2
   Friend WithEvents pbPreview As System.Windows.Forms.PictureBox
   Friend WithEvents TabControl1 As MdiTabControl.TabControl
   Friend WithEvents lstElementNames As System.Windows.Forms.ListBox
-  Friend WithEvents lstTrace As System.Windows.Forms.ListBox
   Friend WithEvents pnlSideDropme As System.Windows.Forms.Panel
-  Friend WithEvents pnlSideLocFiles As System.Windows.Forms.Panel
   Friend WithEvents cmbDropmeClipboard As System.Windows.Forms.ComboBox
   Friend WithEvents ListView1 As System.Windows.Forms.ListView
-  Friend WithEvents llSidebar3 As System.Windows.Forms.LinkLabel
-  Friend WithEvents llSidebar2 As System.Windows.Forms.LinkLabel
-  Friend WithEvents llSidebar1 As System.Windows.Forms.LinkLabel
   Friend WithEvents ImageList1 As System.Windows.Forms.ImageList
-  Friend WithEvents llSidebar4 As System.Windows.Forms.LinkLabel
   Friend WithEvents btnNav04 As System.Windows.Forms.Button
   Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
   Friend WithEvents Label4 As System.Windows.Forms.Label
@@ -1213,16 +1061,34 @@ Partial Class frm_mdiViewer2
   Friend WithEvents txtDropMeSave As System.Windows.Forms.TextBox
   Friend WithEvents pnlDropMeSave As System.Windows.Forms.Panel
   Friend WithEvents ProgressBar1 As System.Windows.Forms.ProgressBar
-  Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-  Friend WithEvents NeuToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents OptionenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-  Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripSeparator
-  Friend WithEvents pnlSideTemplates As System.Windows.Forms.Panel
   Friend WithEvents lvTemplates As System.Windows.Forms.ListView
   Friend WithEvents btnTemplateAddSel As System.Windows.Forms.Button
-  Friend WithEvents llSidebar5 As System.Windows.Forms.LinkLabel
   Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
   Friend WithEvents ImageList2 As System.Windows.Forms.ImageList
   Friend WithEvents Label10 As System.Windows.Forms.Label
   Friend WithEvents Panel2 As System.Windows.Forms.Panel
+  Friend WithEvents TabControl2 As System.Windows.Forms.TabControl
+  Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
+  Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
+  Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
+  Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
+  Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
+  Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
+  Friend WithEvents DateiToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents SpeichernToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ToolStripMenuItem5 As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ToolStripSeparator1 As System.Windows.Forms.ToolStripSeparator
+  Friend WithEvents ToolStripMenuItem8 As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ToolStripSeparator3 As System.Windows.Forms.ToolStripSeparator
+  Friend WithEvents ToolStripMenuItem12 As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ExtrasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ToolStripMenuItem9 As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents DebugfensterAnzeigenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents ToolStripSeparator2 As System.Windows.Forms.ToolStripSeparator
+  Friend WithEvents ToolStripMenuItem11 As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents txtElementName As System.Windows.Forms.ToolStripTextBox
+  Friend WithEvents AnsichtToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+  Friend WithEvents SidebarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
