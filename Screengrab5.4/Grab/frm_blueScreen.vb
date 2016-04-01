@@ -231,7 +231,7 @@ Public Class frm_blueScreen
 
     ' CheckForIllegalCrossThreadCalls = False
 
-    IO.Directory.CreateDirectory(settingsFolder + "IconCache\")
+    IO.Directory.CreateDirectory(IO.Path.Combine(glob.configDir, "IconCache"))
 
     glob.readTuttiFrutti(Me)
     glob.readFormPos(Me)
@@ -657,7 +657,7 @@ Public Class frm_blueScreen
     Dim pic As System.Drawing.Image = getCompleteImage()
     If pic Is Nothing Then MsgBox("bitte erst einen Screenshot machen!") : Return
 
-    Dim tempFile = glob.fp(IO.Path.GetTempPath(), "grab5_temp.png")
+    Dim tempFile = IO.Path.Combine(IO.Path.GetTempPath(), "grab5_temp.png")
     SaveImage(tempFile, pic)
 
     Using dlg As New frm_commonUpload
@@ -772,4 +772,9 @@ Public Class frm_blueScreen
     InsertImage(getCompleteImage())
   End Sub
 
+  Private Sub InfoScreenGrabToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InfoScreenGrabToolStripMenuItem.Click
+    Using a As New AboutBox
+      a.ShowDialog()
+    End Using
+  End Sub
 End Class

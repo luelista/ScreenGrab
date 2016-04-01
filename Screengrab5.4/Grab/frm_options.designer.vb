@@ -22,80 +22,68 @@ Partial Class frm_options
   'Do not modify it using the code editor.
   <System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container
+    Me.components = New System.ComponentModel.Container()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_options))
-    Me.TabControl1 = New System.Windows.Forms.TabControl
-    Me.TabPage1 = New System.Windows.Forms.TabPage
-    Me.GroupBox8 = New System.Windows.Forms.GroupBox
-    Me.chkCollageHitTestIntersect = New System.Windows.Forms.CheckBox
-    Me.GroupBox7 = New System.Windows.Forms.GroupBox
-    Me.btnShowHistory = New System.Windows.Forms.Button
-    Me.chkEnableHistory = New System.Windows.Forms.CheckBox
-    Me.GroupBox4 = New System.Windows.Forms.GroupBox
-    Me.chk_disp_size_in_tb = New System.Windows.Forms.CheckBox
-    Me.Button1 = New System.Windows.Forms.Button
-    Me.txtMainWinBG = New System.Windows.Forms.TextBox
-    Me.Label8 = New System.Windows.Forms.Label
-    Me.checkHideWhileGrab = New System.Windows.Forms.CheckBox
-    Me.btnClose = New System.Windows.Forms.Button
-    Me.GroupBox2 = New System.Windows.Forms.GroupBox
-    Me.lnkExploreDefaultFolder = New System.Windows.Forms.LinkLabel
-    Me.btnChooseDefaultFolder = New System.Windows.Forms.Button
-    Me.chkAlwaysUseDefaultFolder = New System.Windows.Forms.CheckBox
-    Me.txtDefaultFolder = New System.Windows.Forms.TextBox
-    Me.Label7 = New System.Windows.Forms.Label
-    Me.jpegQuality = New System.Windows.Forms.NumericUpDown
-    Me.Label6 = New System.Windows.Forms.Label
-    Me.btnDefaultFolder_choose = New System.Windows.Forms.Button
-    Me.TabPage3 = New System.Windows.Forms.TabPage
-    Me.GroupBox6 = New System.Windows.Forms.GroupBox
-    Me.lblImgurLogin = New System.Windows.Forms.Label
-    Me.pnlImgurVerify = New System.Windows.Forms.Panel
-    Me.TextBox1 = New System.Windows.Forms.TextBox
-    Me.Label16 = New System.Windows.Forms.Label
-    Me.btnImgurAuth = New System.Windows.Forms.Button
-    Me.rbImgurLogin__on = New System.Windows.Forms.RadioButton
-    Me.rbImgurLogin__off = New System.Windows.Forms.RadioButton
-    Me.GroupBox3 = New System.Windows.Forms.GroupBox
-    Me.txtProxyDOM = New System.Windows.Forms.TextBox
-    Me.Label5 = New System.Windows.Forms.Label
-    Me.txtProxyPW = New System.Windows.Forms.TextBox
-    Me.Label3 = New System.Windows.Forms.Label
-    Me.txtProxyUN = New System.Windows.Forms.TextBox
-    Me.Label2 = New System.Windows.Forms.Label
-    Me.GroupBox1 = New System.Windows.Forms.GroupBox
-    Me.LinkLabel1 = New System.Windows.Forms.LinkLabel
-    Me.txtLoginPass = New System.Windows.Forms.TextBox
-    Me.Label13 = New System.Windows.Forms.Label
-    Me.txtLoginUser = New System.Windows.Forms.TextBox
-    Me.Label15 = New System.Windows.Forms.Label
-    Me.PictureBox2 = New System.Windows.Forms.PictureBox
-    Me.TabPage4 = New System.Windows.Forms.TabPage
-    Me.qq_TextBox2 = New System.Windows.Forms.TextBox
-    Me.LinkLabel5 = New System.Windows.Forms.LinkLabel
-    Me.Label19 = New System.Windows.Forms.Label
-    Me.PictureBox1 = New System.Windows.Forms.PictureBox
-    Me.LinkLabel4 = New System.Windows.Forms.LinkLabel
-    Me.LinkLabel3 = New System.Windows.Forms.LinkLabel
-    Me.Label18 = New System.Windows.Forms.Label
-    Me.Label17 = New System.Windows.Forms.Label
-    Me.btnUpdateCheckNow = New System.Windows.Forms.Button
-    Me.chkAutoUpdate = New System.Windows.Forms.CheckBox
-    Me.lblProgVer = New System.Windows.Forms.Label
-    Me.lblProgName = New System.Windows.Forms.Label
+    Me.TabControl1 = New System.Windows.Forms.TabControl()
+    Me.TabPage1 = New System.Windows.Forms.TabPage()
+    Me.GroupBox5 = New System.Windows.Forms.GroupBox()
+    Me.cmbHotkeyKey = New System.Windows.Forms.ComboBox()
+    Me.chkHotkeyWin = New System.Windows.Forms.CheckBox()
+    Me.chkHotkeyShift = New System.Windows.Forms.CheckBox()
+    Me.chkHotkeyAlt = New System.Windows.Forms.CheckBox()
+    Me.chkHotkeyCtrl = New System.Windows.Forms.CheckBox()
+    Me.GroupBox8 = New System.Windows.Forms.GroupBox()
+    Me.chkCollageHitTestIntersect = New System.Windows.Forms.CheckBox()
+    Me.GroupBox7 = New System.Windows.Forms.GroupBox()
+    Me.btnShowHistory = New System.Windows.Forms.Button()
+    Me.chkEnableHistory = New System.Windows.Forms.CheckBox()
+    Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+    Me.chk_disp_size_in_tb = New System.Windows.Forms.CheckBox()
+    Me.Button1 = New System.Windows.Forms.Button()
+    Me.txtMainWinBG = New System.Windows.Forms.TextBox()
+    Me.Label8 = New System.Windows.Forms.Label()
+    Me.checkHideWhileGrab = New System.Windows.Forms.CheckBox()
+    Me.btnClose = New System.Windows.Forms.Button()
+    Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+    Me.lnkExploreDefaultFolder = New System.Windows.Forms.LinkLabel()
+    Me.btnChooseDefaultFolder = New System.Windows.Forms.Button()
+    Me.chkAlwaysUseDefaultFolder = New System.Windows.Forms.CheckBox()
+    Me.txtDefaultFolder = New System.Windows.Forms.TextBox()
+    Me.Label7 = New System.Windows.Forms.Label()
+    Me.jpegQuality = New System.Windows.Forms.NumericUpDown()
+    Me.Label6 = New System.Windows.Forms.Label()
+    Me.btnDefaultFolder_choose = New System.Windows.Forms.Button()
+    Me.TabPage3 = New System.Windows.Forms.TabPage()
+    Me.GroupBox6 = New System.Windows.Forms.GroupBox()
+    Me.lblImgurLogin = New System.Windows.Forms.Label()
+    Me.pnlImgurVerify = New System.Windows.Forms.Panel()
+    Me.TextBox1 = New System.Windows.Forms.TextBox()
+    Me.Label16 = New System.Windows.Forms.Label()
+    Me.btnImgurAuth = New System.Windows.Forms.Button()
+    Me.rbImgurLogin__on = New System.Windows.Forms.RadioButton()
+    Me.rbImgurLogin__off = New System.Windows.Forms.RadioButton()
+    Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+    Me.txtProxyDOM = New System.Windows.Forms.TextBox()
+    Me.Label5 = New System.Windows.Forms.Label()
+    Me.txtProxyPW = New System.Windows.Forms.TextBox()
+    Me.Label3 = New System.Windows.Forms.Label()
+    Me.txtProxyUN = New System.Windows.Forms.TextBox()
+    Me.Label2 = New System.Windows.Forms.Label()
+    Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+    Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+    Me.txtLoginPass = New System.Windows.Forms.TextBox()
+    Me.Label13 = New System.Windows.Forms.Label()
+    Me.txtLoginUser = New System.Windows.Forms.TextBox()
+    Me.Label15 = New System.Windows.Forms.Label()
+    Me.PictureBox2 = New System.Windows.Forms.PictureBox()
     Me.imlWidgetIcons = New System.Windows.Forms.ImageList(Me.components)
-    Me.ButtonListBar1 = New ButtonListbar.vbAccelerator.Controls.ListBar.ButtonListBar
+    Me.ButtonListBar1 = New ButtonListbar.vbAccelerator.Controls.ListBar.ButtonListBar()
     Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
     Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-    Me.ofdChooseIcon = New System.Windows.Forms.OpenFileDialog
-    Me.GroupBox5 = New System.Windows.Forms.GroupBox
-    Me.chkHotkeyCtrl = New System.Windows.Forms.CheckBox
-    Me.chkHotkeyAlt = New System.Windows.Forms.CheckBox
-    Me.chkHotkeyShift = New System.Windows.Forms.CheckBox
-    Me.chkHotkeyWin = New System.Windows.Forms.CheckBox
-    Me.cmbHotkeyKey = New System.Windows.Forms.ComboBox
+    Me.ofdChooseIcon = New System.Windows.Forms.OpenFileDialog()
     Me.TabControl1.SuspendLayout()
     Me.TabPage1.SuspendLayout()
+    Me.GroupBox5.SuspendLayout()
     Me.GroupBox8.SuspendLayout()
     Me.GroupBox7.SuspendLayout()
     Me.GroupBox4.SuspendLayout()
@@ -107,19 +95,15 @@ Partial Class frm_options
     Me.GroupBox3.SuspendLayout()
     Me.GroupBox1.SuspendLayout()
     CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.TabPage4.SuspendLayout()
-    CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.GroupBox5.SuspendLayout()
     Me.SuspendLayout()
     '
     'TabControl1
     '
     Me.TabControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.TabControl1.Controls.Add(Me.TabPage1)
     Me.TabControl1.Controls.Add(Me.TabPage3)
-    Me.TabControl1.Controls.Add(Me.TabPage4)
     Me.TabControl1.Location = New System.Drawing.Point(100, 0)
     Me.TabControl1.Name = "TabControl1"
     Me.TabControl1.SelectedIndex = 0
@@ -141,6 +125,69 @@ Partial Class frm_options
     Me.TabPage1.TabIndex = 4
     Me.TabPage1.Text = "TabPage1"
     Me.TabPage1.UseVisualStyleBackColor = True
+    '
+    'GroupBox5
+    '
+    Me.GroupBox5.Controls.Add(Me.cmbHotkeyKey)
+    Me.GroupBox5.Controls.Add(Me.chkHotkeyWin)
+    Me.GroupBox5.Controls.Add(Me.chkHotkeyShift)
+    Me.GroupBox5.Controls.Add(Me.chkHotkeyAlt)
+    Me.GroupBox5.Controls.Add(Me.chkHotkeyCtrl)
+    Me.GroupBox5.Location = New System.Drawing.Point(17, 10)
+    Me.GroupBox5.Name = "GroupBox5"
+    Me.GroupBox5.Size = New System.Drawing.Size(444, 56)
+    Me.GroupBox5.TabIndex = 19
+    Me.GroupBox5.TabStop = False
+    Me.GroupBox5.Text = "Tastenkürzel"
+    '
+    'cmbHotkeyKey
+    '
+    Me.cmbHotkeyKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+    Me.cmbHotkeyKey.FormattingEnabled = True
+    Me.cmbHotkeyKey.Location = New System.Drawing.Point(223, 22)
+    Me.cmbHotkeyKey.Name = "cmbHotkeyKey"
+    Me.cmbHotkeyKey.Size = New System.Drawing.Size(197, 21)
+    Me.cmbHotkeyKey.TabIndex = 4
+    '
+    'chkHotkeyWin
+    '
+    Me.chkHotkeyWin.AutoSize = True
+    Me.chkHotkeyWin.Location = New System.Drawing.Point(162, 24)
+    Me.chkHotkeyWin.Name = "chkHotkeyWin"
+    Me.chkHotkeyWin.Size = New System.Drawing.Size(45, 17)
+    Me.chkHotkeyWin.TabIndex = 3
+    Me.chkHotkeyWin.Text = "Win"
+    Me.chkHotkeyWin.UseVisualStyleBackColor = True
+    '
+    'chkHotkeyShift
+    '
+    Me.chkHotkeyShift.AutoSize = True
+    Me.chkHotkeyShift.Location = New System.Drawing.Point(109, 24)
+    Me.chkHotkeyShift.Name = "chkHotkeyShift"
+    Me.chkHotkeyShift.Size = New System.Drawing.Size(47, 17)
+    Me.chkHotkeyShift.TabIndex = 2
+    Me.chkHotkeyShift.Text = "Shift"
+    Me.chkHotkeyShift.UseVisualStyleBackColor = True
+    '
+    'chkHotkeyAlt
+    '
+    Me.chkHotkeyAlt.AutoSize = True
+    Me.chkHotkeyAlt.Location = New System.Drawing.Point(65, 24)
+    Me.chkHotkeyAlt.Name = "chkHotkeyAlt"
+    Me.chkHotkeyAlt.Size = New System.Drawing.Size(38, 17)
+    Me.chkHotkeyAlt.TabIndex = 1
+    Me.chkHotkeyAlt.Text = "Alt"
+    Me.chkHotkeyAlt.UseVisualStyleBackColor = True
+    '
+    'chkHotkeyCtrl
+    '
+    Me.chkHotkeyCtrl.AutoSize = True
+    Me.chkHotkeyCtrl.Location = New System.Drawing.Point(15, 24)
+    Me.chkHotkeyCtrl.Name = "chkHotkeyCtrl"
+    Me.chkHotkeyCtrl.Size = New System.Drawing.Size(45, 17)
+    Me.chkHotkeyCtrl.TabIndex = 0
+    Me.chkHotkeyCtrl.Text = "Strg"
+    Me.chkHotkeyCtrl.UseVisualStyleBackColor = True
     '
     'GroupBox8
     '
@@ -197,7 +244,7 @@ Partial Class frm_options
     'GroupBox4
     '
     Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.GroupBox4.Controls.Add(Me.chk_disp_size_in_tb)
     Me.GroupBox4.Controls.Add(Me.Button1)
     Me.GroupBox4.Controls.Add(Me.txtMainWinBG)
@@ -259,19 +306,18 @@ Partial Class frm_options
     'btnClose
     '
     Me.btnClose.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.btnClose.Image = CType(resources.GetObject("btnClose.Image"), System.Drawing.Image)
     Me.btnClose.Location = New System.Drawing.Point(322, 422)
     Me.btnClose.Name = "btnClose"
-    Me.btnClose.Size = New System.Drawing.Size(126, 31)
+    Me.btnClose.Size = New System.Drawing.Size(126, 28)
     Me.btnClose.TabIndex = 3
-    Me.btnClose.Text = "Schließen"
+    Me.btnClose.Text = "OK"
     Me.btnClose.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
     Me.btnClose.UseVisualStyleBackColor = True
     '
     'GroupBox2
     '
     Me.GroupBox2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.GroupBox2.Controls.Add(Me.lnkExploreDefaultFolder)
     Me.GroupBox2.Controls.Add(Me.btnChooseDefaultFolder)
     Me.GroupBox2.Controls.Add(Me.chkAlwaysUseDefaultFolder)
@@ -314,8 +360,8 @@ Partial Class frm_options
     Me.chkAlwaysUseDefaultFolder.Size = New System.Drawing.Size(179, 17)
     Me.chkAlwaysUseDefaultFolder.TabIndex = 13
     Me.chkAlwaysUseDefaultFolder.Text = "Immer diesen Ordner verwenden"
-    Me.ToolTip1.SetToolTip(Me.chkAlwaysUseDefaultFolder, "Verhindert, dass beim Speichern ein Dialogfeld erscheint, was nach Ort und Name f" & _
-            "ragt.")
+    Me.ToolTip1.SetToolTip(Me.chkAlwaysUseDefaultFolder, "Verhindert, dass beim Speichern ein Dialogfeld erscheint, was nach Ort und Name f" &
+        "ragt.")
     Me.chkAlwaysUseDefaultFolder.UseVisualStyleBackColor = True
     '
     'txtDefaultFolder
@@ -457,7 +503,7 @@ Partial Class frm_options
     'GroupBox3
     '
     Me.GroupBox3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.GroupBox3.Controls.Add(Me.txtProxyDOM)
     Me.GroupBox3.Controls.Add(Me.Label5)
     Me.GroupBox3.Controls.Add(Me.txtProxyPW)
@@ -523,7 +569,7 @@ Partial Class frm_options
     'GroupBox1
     '
     Me.GroupBox1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.GroupBox1.Controls.Add(Me.LinkLabel1)
     Me.GroupBox1.Controls.Add(Me.txtLoginPass)
     Me.GroupBox1.Controls.Add(Me.Label13)
@@ -589,174 +635,6 @@ Partial Class frm_options
     Me.PictureBox2.TabIndex = 15
     Me.PictureBox2.TabStop = False
     '
-    'TabPage4
-    '
-    Me.TabPage4.BackColor = System.Drawing.Color.RoyalBlue
-    Me.TabPage4.Controls.Add(Me.qq_TextBox2)
-    Me.TabPage4.Controls.Add(Me.LinkLabel5)
-    Me.TabPage4.Controls.Add(Me.Label19)
-    Me.TabPage4.Controls.Add(Me.PictureBox1)
-    Me.TabPage4.Controls.Add(Me.LinkLabel4)
-    Me.TabPage4.Controls.Add(Me.LinkLabel3)
-    Me.TabPage4.Controls.Add(Me.Label18)
-    Me.TabPage4.Controls.Add(Me.Label17)
-    Me.TabPage4.Controls.Add(Me.btnUpdateCheckNow)
-    Me.TabPage4.Controls.Add(Me.chkAutoUpdate)
-    Me.TabPage4.Controls.Add(Me.lblProgVer)
-    Me.TabPage4.Controls.Add(Me.lblProgName)
-    Me.TabPage4.Location = New System.Drawing.Point(4, 22)
-    Me.TabPage4.Name = "TabPage4"
-    Me.TabPage4.Padding = New System.Windows.Forms.Padding(3)
-    Me.TabPage4.Size = New System.Drawing.Size(480, 465)
-    Me.TabPage4.TabIndex = 7
-    Me.TabPage4.Text = "TabPage4"
-    '
-    'qq_TextBox2
-    '
-    Me.qq_TextBox2.Location = New System.Drawing.Point(39, 227)
-    Me.qq_TextBox2.Multiline = True
-    Me.qq_TextBox2.Name = "qq_TextBox2"
-    Me.qq_TextBox2.ReadOnly = True
-    Me.qq_TextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-    Me.qq_TextBox2.Size = New System.Drawing.Size(415, 64)
-    Me.qq_TextBox2.TabIndex = 11
-    Me.qq_TextBox2.Text = resources.GetString("qq_TextBox2.Text")
-    '
-    'LinkLabel5
-    '
-    Me.LinkLabel5.AutoSize = True
-    Me.LinkLabel5.BackColor = System.Drawing.Color.Transparent
-    Me.LinkLabel5.LinkColor = System.Drawing.Color.White
-    Me.LinkLabel5.Location = New System.Drawing.Point(101, 156)
-    Me.LinkLabel5.Name = "LinkLabel5"
-    Me.LinkLabel5.Size = New System.Drawing.Size(77, 13)
-    Me.LinkLabel5.TabIndex = 10
-    Me.LinkLabel5.TabStop = True
-    Me.LinkLabel5.Tag = "https://www.facebook.com/apps/application.php?id=109707115775453&sk=wall"
-    Me.LinkLabel5.Text = "Seite anzeigen"
-    Me.ToolTip1.SetToolTip(Me.LinkLabel5, "https://www.facebook.com/apps/application.php?id=109707115775453&sk=wall")
-    '
-    'Label19
-    '
-    Me.Label19.AutoSize = True
-    Me.Label19.BackColor = System.Drawing.Color.Transparent
-    Me.Label19.ForeColor = System.Drawing.Color.White
-    Me.Label19.Location = New System.Drawing.Point(37, 156)
-    Me.Label19.Name = "Label19"
-    Me.Label19.Size = New System.Drawing.Size(58, 13)
-    Me.Label19.TabIndex = 9
-    Me.Label19.Text = "Facebook:"
-    '
-    'PictureBox1
-    '
-    Me.PictureBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
-    Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-    Me.PictureBox1.Location = New System.Drawing.Point(326, 21)
-    Me.PictureBox1.Name = "PictureBox1"
-    Me.PictureBox1.Size = New System.Drawing.Size(128, 128)
-    Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
-    Me.PictureBox1.TabIndex = 8
-    Me.PictureBox1.TabStop = False
-    '
-    'LinkLabel4
-    '
-    Me.LinkLabel4.AutoSize = True
-    Me.LinkLabel4.BackColor = System.Drawing.Color.Transparent
-    Me.LinkLabel4.LinkColor = System.Drawing.Color.White
-    Me.LinkLabel4.Location = New System.Drawing.Point(101, 128)
-    Me.LinkLabel4.Name = "LinkLabel4"
-    Me.LinkLabel4.Size = New System.Drawing.Size(196, 13)
-    Me.LinkLabel4.TabIndex = 7
-    Me.LinkLabel4.TabStop = True
-    Me.LinkLabel4.Tag = "http://www.max-weller.de/screengrab-6"
-    Me.LinkLabel4.Text = "http://www.max-weller.de/screengrab-6"
-    '
-    'LinkLabel3
-    '
-    Me.LinkLabel3.AutoSize = True
-    Me.LinkLabel3.BackColor = System.Drawing.Color.Transparent
-    Me.LinkLabel3.LinkColor = System.Drawing.Color.White
-    Me.LinkLabel3.Location = New System.Drawing.Point(101, 105)
-    Me.LinkLabel3.Name = "LinkLabel3"
-    Me.LinkLabel3.Size = New System.Drawing.Size(150, 13)
-    Me.LinkLabel3.TabIndex = 6
-    Me.LinkLabel3.TabStop = True
-    Me.LinkLabel3.Tag = "http://screengrab.teamwiki.de"
-    Me.LinkLabel3.Text = "http://screengrab.teamwiki.de"
-    '
-    'Label18
-    '
-    Me.Label18.AutoSize = True
-    Me.Label18.BackColor = System.Drawing.Color.Transparent
-    Me.Label18.ForeColor = System.Drawing.Color.White
-    Me.Label18.Location = New System.Drawing.Point(37, 105)
-    Me.Label18.Name = "Label18"
-    Me.Label18.Size = New System.Drawing.Size(62, 13)
-    Me.Label18.TabIndex = 5
-    Me.Label18.Text = "Homepage:"
-    '
-    'Label17
-    '
-    Me.Label17.AutoSize = True
-    Me.Label17.BackColor = System.Drawing.Color.Transparent
-    Me.Label17.ForeColor = System.Drawing.Color.White
-    Me.Label17.Location = New System.Drawing.Point(37, 184)
-    Me.Label17.Name = "Label17"
-    Me.Label17.Size = New System.Drawing.Size(190, 52)
-    Me.Label17.TabIndex = 4
-    Me.Label17.Text = "Copyright (c) 2009-2016 by Max Weller" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Credits:" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-    '
-    'btnUpdateCheckNow
-    '
-    Me.btnUpdateCheckNow.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.btnUpdateCheckNow.BackColor = System.Drawing.SystemColors.Control
-    Me.btnUpdateCheckNow.Location = New System.Drawing.Point(316, 377)
-    Me.btnUpdateCheckNow.Name = "btnUpdateCheckNow"
-    Me.btnUpdateCheckNow.Size = New System.Drawing.Size(138, 23)
-    Me.btnUpdateCheckNow.TabIndex = 3
-    Me.btnUpdateCheckNow.Text = "Auf Updates prüfen"
-    Me.btnUpdateCheckNow.UseVisualStyleBackColor = True
-    '
-    'chkAutoUpdate
-    '
-    Me.chkAutoUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-    Me.chkAutoUpdate.AutoSize = True
-    Me.chkAutoUpdate.BackColor = System.Drawing.Color.Transparent
-    Me.chkAutoUpdate.Checked = True
-    Me.chkAutoUpdate.CheckState = System.Windows.Forms.CheckState.Checked
-    Me.chkAutoUpdate.ForeColor = System.Drawing.Color.White
-    Me.chkAutoUpdate.Location = New System.Drawing.Point(40, 381)
-    Me.chkAutoUpdate.Name = "chkAutoUpdate"
-    Me.chkAutoUpdate.Size = New System.Drawing.Size(203, 17)
-    Me.chkAutoUpdate.TabIndex = 2
-    Me.chkAutoUpdate.Text = "Beim Beenden nach Updates suchen"
-    Me.chkAutoUpdate.UseVisualStyleBackColor = False
-    '
-    'lblProgVer
-    '
-    Me.lblProgVer.AutoSize = True
-    Me.lblProgVer.BackColor = System.Drawing.Color.Transparent
-    Me.lblProgVer.Font = New System.Drawing.Font("Microsoft Sans Serif", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.lblProgVer.ForeColor = System.Drawing.Color.White
-    Me.lblProgVer.Location = New System.Drawing.Point(174, 16)
-    Me.lblProgVer.Name = "lblProgVer"
-    Me.lblProgVer.Size = New System.Drawing.Size(139, 73)
-    Me.lblProgVer.TabIndex = 1
-    Me.lblProgVer.Text = "X.X"
-    '
-    'lblProgName
-    '
-    Me.lblProgName.AutoSize = True
-    Me.lblProgName.BackColor = System.Drawing.Color.Transparent
-    Me.lblProgName.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-    Me.lblProgName.ForeColor = System.Drawing.Color.White
-    Me.lblProgName.Location = New System.Drawing.Point(36, 44)
-    Me.lblProgName.Name = "lblProgName"
-    Me.lblProgName.Size = New System.Drawing.Size(143, 29)
-    Me.lblProgName.TabIndex = 0
-    Me.lblProgName.Text = "ScreenGrab"
-    '
     'imlWidgetIcons
     '
     Me.imlWidgetIcons.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit
@@ -781,9 +659,9 @@ Partial Class frm_options
     Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
     Me.ImageList1.Images.SetKeyName(0, "SHELL32_274.ico")
     Me.ImageList1.Images.SetKeyName(1, "icwconn1_200.ico")
-    Me.ImageList1.Images.SetKeyName(2, "moviemk.ico")
-    Me.ImageList1.Images.SetKeyName(3, "dfshim_103.ico")
-    Me.ImageList1.Images.SetKeyName(4, "ieframe_102.ico")
+    Me.ImageList1.Images.SetKeyName(2, "ieframe_102.ico")
+    Me.ImageList1.Images.SetKeyName(3, "moviemk.ico")
+    Me.ImageList1.Images.SetKeyName(4, "dfshim_103.ico")
     Me.ImageList1.Images.SetKeyName(5, "gohome.png")
     Me.ImageList1.Images.SetKeyName(6, "pkColorPicker-32.png")
     Me.ImageList1.Images.SetKeyName(7, "SHELL32_303.ico")
@@ -794,72 +672,9 @@ Partial Class frm_options
     '
     'ofdChooseIcon
     '
-    Me.ofdChooseIcon.Filter = "Tranparenz-unterstützende Bilddateien (*.png, *.gif)|*.png;*.gif|Alle Bilddateien" & _
-        " (*.png, *.gif, *.bmp, *.jpg)|*.png;*.gif;*.bmp;*.jpg|Alle Dateien|*"
+    Me.ofdChooseIcon.Filter = "Tranparenz-unterstützende Bilddateien (*.png, *.gif)|*.png;*.gif|Alle Bilddateien" &
+    " (*.png, *.gif, *.bmp, *.jpg)|*.png;*.gif;*.bmp;*.jpg|Alle Dateien|*"
     Me.ofdChooseIcon.Title = "Icon auswählen (bestenfalls 32x32) ..."
-    '
-    'GroupBox5
-    '
-    Me.GroupBox5.Controls.Add(Me.cmbHotkeyKey)
-    Me.GroupBox5.Controls.Add(Me.chkHotkeyWin)
-    Me.GroupBox5.Controls.Add(Me.chkHotkeyShift)
-    Me.GroupBox5.Controls.Add(Me.chkHotkeyAlt)
-    Me.GroupBox5.Controls.Add(Me.chkHotkeyCtrl)
-    Me.GroupBox5.Location = New System.Drawing.Point(17, 10)
-    Me.GroupBox5.Name = "GroupBox5"
-    Me.GroupBox5.Size = New System.Drawing.Size(444, 56)
-    Me.GroupBox5.TabIndex = 19
-    Me.GroupBox5.TabStop = False
-    Me.GroupBox5.Text = "Tastenkürzel"
-    '
-    'chkHotkeyCtrl
-    '
-    Me.chkHotkeyCtrl.AutoSize = True
-    Me.chkHotkeyCtrl.Location = New System.Drawing.Point(15, 24)
-    Me.chkHotkeyCtrl.Name = "chkHotkeyCtrl"
-    Me.chkHotkeyCtrl.Size = New System.Drawing.Size(45, 17)
-    Me.chkHotkeyCtrl.TabIndex = 0
-    Me.chkHotkeyCtrl.Text = "Strg"
-    Me.chkHotkeyCtrl.UseVisualStyleBackColor = True
-    '
-    'chkHotkeyAlt
-    '
-    Me.chkHotkeyAlt.AutoSize = True
-    Me.chkHotkeyAlt.Location = New System.Drawing.Point(65, 24)
-    Me.chkHotkeyAlt.Name = "chkHotkeyAlt"
-    Me.chkHotkeyAlt.Size = New System.Drawing.Size(38, 17)
-    Me.chkHotkeyAlt.TabIndex = 1
-    Me.chkHotkeyAlt.Text = "Alt"
-    Me.chkHotkeyAlt.UseVisualStyleBackColor = True
-    '
-    'chkHotkeyShift
-    '
-    Me.chkHotkeyShift.AutoSize = True
-    Me.chkHotkeyShift.Location = New System.Drawing.Point(109, 24)
-    Me.chkHotkeyShift.Name = "chkHotkeyShift"
-    Me.chkHotkeyShift.Size = New System.Drawing.Size(47, 17)
-    Me.chkHotkeyShift.TabIndex = 2
-    Me.chkHotkeyShift.Text = "Shift"
-    Me.chkHotkeyShift.UseVisualStyleBackColor = True
-    '
-    'chkHotkeyWin
-    '
-    Me.chkHotkeyWin.AutoSize = True
-    Me.chkHotkeyWin.Location = New System.Drawing.Point(162, 24)
-    Me.chkHotkeyWin.Name = "chkHotkeyWin"
-    Me.chkHotkeyWin.Size = New System.Drawing.Size(45, 17)
-    Me.chkHotkeyWin.TabIndex = 3
-    Me.chkHotkeyWin.Text = "Win"
-    Me.chkHotkeyWin.UseVisualStyleBackColor = True
-    '
-    'cmbHotkeyKey
-    '
-    Me.cmbHotkeyKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-    Me.cmbHotkeyKey.FormattingEnabled = True
-    Me.cmbHotkeyKey.Location = New System.Drawing.Point(223, 22)
-    Me.cmbHotkeyKey.Name = "cmbHotkeyKey"
-    Me.cmbHotkeyKey.Size = New System.Drawing.Size(197, 21)
-    Me.cmbHotkeyKey.TabIndex = 4
     '
     'frm_options
     '
@@ -868,15 +683,19 @@ Partial Class frm_options
     Me.ClientSize = New System.Drawing.Size(584, 462)
     Me.Controls.Add(Me.ButtonListBar1)
     Me.Controls.Add(Me.TabControl1)
+    Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
     Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
     Me.KeyPreview = True
     Me.MaximizeBox = False
     Me.MinimizeBox = False
     Me.MinimumSize = New System.Drawing.Size(600, 500)
     Me.Name = "frm_options"
-    Me.Text = "ScreenGrab 6      [ [  Optionen  ] ]"
+    Me.ShowIcon = False
+    Me.Text = "Optionen"
     Me.TabControl1.ResumeLayout(False)
     Me.TabPage1.ResumeLayout(False)
+    Me.GroupBox5.ResumeLayout(False)
+    Me.GroupBox5.PerformLayout()
     Me.GroupBox8.ResumeLayout(False)
     Me.GroupBox8.PerformLayout()
     Me.GroupBox7.ResumeLayout(False)
@@ -896,11 +715,6 @@ Partial Class frm_options
     Me.GroupBox1.ResumeLayout(False)
     Me.GroupBox1.PerformLayout()
     CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.TabPage4.ResumeLayout(False)
-    Me.TabPage4.PerformLayout()
-    CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.GroupBox5.ResumeLayout(False)
-    Me.GroupBox5.PerformLayout()
     Me.ResumeLayout(False)
 
   End Sub
@@ -951,23 +765,10 @@ Partial Class frm_options
   Friend WithEvents chkEnableHistory As System.Windows.Forms.CheckBox
   Friend WithEvents GroupBox8 As System.Windows.Forms.GroupBox
   Friend WithEvents chkCollageHitTestIntersect As System.Windows.Forms.CheckBox
-  Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
-  Friend WithEvents LinkLabel4 As System.Windows.Forms.LinkLabel
-  Friend WithEvents LinkLabel3 As System.Windows.Forms.LinkLabel
-  Friend WithEvents Label18 As System.Windows.Forms.Label
-  Friend WithEvents Label17 As System.Windows.Forms.Label
-  Friend WithEvents btnUpdateCheckNow As System.Windows.Forms.Button
-  Friend WithEvents chkAutoUpdate As System.Windows.Forms.CheckBox
-  Friend WithEvents lblProgVer As System.Windows.Forms.Label
-  Friend WithEvents lblProgName As System.Windows.Forms.Label
-  Friend WithEvents LinkLabel5 As System.Windows.Forms.LinkLabel
-  Friend WithEvents Label19 As System.Windows.Forms.Label
-  Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
   Friend WithEvents chkAlwaysUseDefaultFolder As System.Windows.Forms.CheckBox
   Friend WithEvents btnChooseDefaultFolder As System.Windows.Forms.Button
   Friend WithEvents lnkExploreDefaultFolder As System.Windows.Forms.LinkLabel
   Friend WithEvents btnShowHistory As System.Windows.Forms.Button
-  Friend WithEvents qq_TextBox2 As System.Windows.Forms.TextBox
   Friend WithEvents GroupBox5 As System.Windows.Forms.GroupBox
   Friend WithEvents cmbHotkeyKey As System.Windows.Forms.ComboBox
   Friend WithEvents chkHotkeyWin As System.Windows.Forms.CheckBox

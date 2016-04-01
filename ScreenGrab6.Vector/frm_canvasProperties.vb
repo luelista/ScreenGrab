@@ -10,7 +10,7 @@ Public Class frm_canvasProperties
     NumericUpDown1.Value = cv.PicBox.Width
     NumericUpDown2.Value = cv.PicBox.Height
     TextBox1.Text = ColorTranslator.ToHtml(cv.PicBox.BackColor)
-
+    TextBox2.Text = cv.objects.Count.ToString()
   End Sub
 
   Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
@@ -36,5 +36,9 @@ Public Class frm_canvasProperties
 
   Private Sub Cancel_Button_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel_Button.Click
     Me.Close()
+  End Sub
+
+  Private Sub frm_canvasProperties_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
   End Sub
 End Class

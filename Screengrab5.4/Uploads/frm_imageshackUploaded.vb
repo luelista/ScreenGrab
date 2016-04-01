@@ -4,7 +4,9 @@
     For Each key As String In hasht.Keys
       RichTextBox1.AppendText(key + ":" + vbCrLf + hasht(key) + vbCrLf + vbCrLf)
     Next
-    PictureBox1.ImageLocation = hasht("yfrog_thumb")
+    RichTextBox1.SelectionStart = 0
+
+    PictureBox1.ImageLocation = hasht("thumb_link")
     Clipboard.Clear()
     Clipboard.SetText(hasht("is_link"))
   End Sub

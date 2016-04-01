@@ -1,4 +1,4 @@
-Imports ColorPickerLib.ColorExtensions
+
 Imports System.ComponentModel
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(ComboBox))> _
@@ -19,7 +19,7 @@ Public Class gColorComboBox
         InitializeComponent()
         ' Add any initialization after the InitializeComponent() call.
         DrawMode = DrawMode.OwnerDrawFixed
-        AddHandler ComboBox.DrawItem, New DrawItemEventHandler(AddressOf List_DrawItem)
+        AddHandler Me.DrawItem, New DrawItemEventHandler(AddressOf List_DrawItem)
 
         With Me
             .Items.Clear()

@@ -3,9 +3,8 @@ Imports System.Runtime.InteropServices
 Public Module app_main
   Declare Function FindWindow Lib "user32" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
 
-  Public settingsFolder As String = "C:\yPara\ScreenGrab5\"
 
-  Public glob As New cls_globPara(settingsFolder + "MW.ScreenGrab.Para")
+  Public glob As New cls_globPara("Weller IT\ScreenGrab", "ScreenGrab")
 
   Public Const OFFLINE_USER = "_offline_"
 

@@ -10,7 +10,7 @@ Public Class collageModusDOMWindow
   End Sub
 
   Sub open(ByVal filespec As String)
-    Dim c = MDI.newClient
+    Dim c = Program.newClient()
     c.vcc.openFile(filespec)
   End Sub
 
@@ -21,10 +21,10 @@ Public Class collageModusDOMLocationObject
 
   Public Property href() As String
     Get
-      Return MDI.vcc.FileSpec
+      Return Program.vcc().FileSpec
     End Get
     Set(ByVal value As String)
-      MDI.vcc.openFile(value)
+      Program.vcc().openFile(value)
     End Set
   End Property
 

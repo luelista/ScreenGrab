@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -20,7 +20,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <OldToolsVersion>2.0</OldToolsVersion>
+    <OldToolsVersion>3.5</OldToolsVersion>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <PublishUrl>D:\Visual Studio 2005\Projects\ScreenGrab2.0\public_release_2.2\</PublishUrl>
     <Install>true</Install>
@@ -40,7 +40,7 @@
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <ApplicationIcon>AcroRd32_18434.ico</ApplicationIcon>
+    <ApplicationIcon>grab.ico</ApplicationIcon>
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -48,9 +48,9 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DocumentationFile>ScreenGrab2._0.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -60,7 +60,7 @@
     <Optimize>true</Optimize>
     <OutputPath>..\bin\Release\</OutputPath>
     <DocumentationFile>ScreenGrab2._0.xml</DocumentationFile>
-    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
@@ -68,14 +68,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\scriptIDE\rtfTabMDI\ButtonListbar.dll</HintPath>
     </Reference>
-    <Reference Include="ControlsEx, Version=1.0.3579.42446, Culture=neutral, PublicKeyToken=null" />
-    <Reference Include="DrawingEx, Version=1.0.4317.22846, Culture=neutral, processorArchitecture=MSIL" />
-    <Reference Include="ExplorerControls, Version=3.1.0.23500, Culture=neutral, PublicKeyToken=11d92dc49b2bee68, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\yEXE\ExplorerControls.dll</HintPath>
-    </Reference>
-    <Reference Include="itextsharp, Version=5.1.2.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
-    <Reference Include="MdiTabControl, Version=1.1.3159.34934, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic.Compatibility" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -86,14 +78,6 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TenTec.Windows.iGridLib.iGrid, Version=2.50.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\TenTec.Windows.iGridLib.iGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="ZeroconfService, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\ZeroconfService.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Import Include="Microsoft.VisualBasic" />
@@ -106,6 +90,12 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Grab\AboutBox.Designer.vb">
+      <DependentUpon>AboutBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Grab\AboutBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Grab\ApplicationEvents.vb" />
     <Compile Include="Grab\app_grabWindow.vb" />
     <Compile Include="Grab\app_hotkey.vb" />
@@ -197,6 +187,9 @@
     <EmbeddedResource Include="Controls\gTrackBar.resx">
       <DependentUpon>gTrackBar.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Grab\AboutBox.resx">
+      <DependentUpon>AboutBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uploads\frm_imageshackUploaded.resx">
       <DependentUpon>frm_imageshackUploaded.vb</DependentUpon>
@@ -326,71 +319,9 @@
     <None Include="Resources\CloseHot.png" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="AxCCRPFolderTV6">
-      <Guid>{19B7F2A2-1610-11D3-BF30-1AF820524153}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>2</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="AxInetCtlsObjects">
-      <Guid>{48E59290-9880-11CF-9754-00AA00C00908}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="AxMSWinsockLib">
-      <Guid>{248DD890-BB45-11CF-9ABC-0080C7E7B78D}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>aximp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="CCRPFolderTV6">
-      <Guid>{19B7F2A2-1610-11D3-BF30-1AF820524153}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>2</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="InetCtlsObjects">
-      <Guid>{48E59290-9880-11CF-9754-00AA00C00908}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="MSWinsockLib">
-      <Guid>{248DD890-BB45-11CF-9ABC-0080C7E7B78D}</Guid>
-      <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>tlbimp</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-    <COMReference Include="stdole">
-      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
-      <VersionMajor>2</VersionMajor>
-      <VersionMinor>0</VersionMinor>
-      <Lcid>0</Lcid>
-      <WrapperTool>primary</WrapperTool>
-      <Isolated>False</Isolated>
-    </COMReference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ScreenGrab6.HelperLib\ScreenGrab6.HelperLib.csproj">
       <Project>{64AF3C31-F33C-4DA4-87A8-C620DF892556}</Project>
       <Name>ScreenGrab6.HelperLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ScreenGrab6.Vector\ScreenGrab6.Vector.vbproj">
-      <Project>{16761B3C-F9D5-4871-A1D6-9ACB36CE6458}</Project>
-      <Name>ScreenGrab6.Vector</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />

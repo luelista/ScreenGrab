@@ -1,7 +1,7 @@
 ﻿Public Class frm_paletteColor
 
   Private Sub GColorPicker1_ColorChanging(ByVal sender As Object, ByVal CurrentColor As System.Drawing.Color, ByVal ClosestColorName As String) Handles GColorPicker1.ColorChanging
-    MDI.vcc.setCurrentDefaultColor(CurrentColor)
+    Program.vcc().setCurrentDefaultColor(CurrentColor)
     TextBox1.Text = ColorTranslator.ToHtml(CurrentColor)
   End Sub
 

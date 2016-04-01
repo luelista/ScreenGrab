@@ -1,25 +1,32 @@
-﻿Module sys_mwRegistry
-  Const mwRegistryPath = "C:\yPara\mwRegistry\"
+﻿Imports Microsoft.Win32
 
+Module sys_mwRegistry
 
-  Private Function fp(ByVal path As String, Optional ByVal fileName As String = "")
-    fp = path + IIf(path.EndsWith("\"), "", "\") + fileName
-  End Function
-  Private Function appPath() As String
-    Return fp(My.Computer.FileSystem.GetParentPath(Application.ExecutablePath))
-  End Function
+  Public ReadOnly Property ApplicationExecutableDir As String
+    Get
+      Return System.IO.Path.GetDirectoryName(Application.ExecutablePath)
+    End Get
+  End Property
 
-  Sub mwRegisterSelf()
-    Dim exeName As String = IO.Path.GetFileNameWithoutExtension(Application.ExecutablePath)
-    IO.Directory.CreateDirectory(mwRegistryPath)
-    IO.File.WriteAllText(mwRegistryPath + exeName + ".mwreg", Application.ExecutablePath)
+  Public Sub registerAppPath()
+    Dim exePath As String = Application.ExecutablePath
+    Dim exeName As String = System.IO.Path.GetFileName(exePath)
+    Using key = Registry.CurrentUser.CreateSubKey("Software\Microsoft\Windows\CurrentVersion\App Paths\" & exeName)
+      key.SetValue(Nothing, exePath)
+    End Using
   End Sub
 
-  Function ExePath(ByVal appName As String) As String
+  Public Function ExePath(ByVal appName As String) As String
     On Error Resume Next
-    Dim fileName As String = mwRegistryPath + appName + ".mwreg"
-    If IO.File.Exists(fileName) Then Return IO.File.ReadAllText(fileName)
-    If IO.File.Exists(appPath() + appName + ".exe") Then Return appPath() + appName + ".exe"
+    appName = appName.Replace(".exe", "")
+    Dim path As String
+    Using key = Registry.CurrentUser.OpenSubKey("Software\Microsoft\Windows\CurrentVersion\App Paths\" & appName)
+      path = key.GetValue(Nothing)
+      If path IsNot Nothing Then Return path
+    End Using
+    path = System.IO.Path.Combine(ApplicationExecutableDir, appName + ".exe")
+    If IO.File.Exists(path) Then Return path
+    Return Nothing
   End Function
 
 End Module

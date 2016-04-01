@@ -1,26 +1,43 @@
+Imports System.IO
+
 Public Class cls_globPara
 
   ': ========== Globale Variablen ==========================================
 
   Dim m_paraFileSpec As String
   Dim m_content As New Dictionary(Of String, String)
-  Const tabDelimiter As String = "<=" + vbTab
+  Const tabDelimiter As String = vbTab
 
+  Public configDir As String
 
+  Public configDirName As String = My.Application.Info.AssemblyName
+  Public configFileName As String = My.Application.Info.AssemblyName
 
   ': ========== Konstruktor + Destruktor ==================================
 
+  Public Sub New(confDirName As String, confFileName As String)
+    configDirName = confDirName : configFileName = confFileName
+    InitFilespec("")
+    readFile()
+  End Sub
+
   Public Sub New(Optional ByVal fileSpec As String = "")
-    m_paraFileSpec = fileSpec
+    InitFilespec(fileSpec)
+    readFile()
+  End Sub
+  Private Sub InitFilespec(filespec As String)
+    m_paraFileSpec = filespec
     If m_paraFileSpec = "" Then
-      m_paraFileSpec = fp(My.Application.Info.DirectoryPath, My.Application.Info.AssemblyName + ".para.txt")
+      m_paraFileSpec = Path.Combine(My.Application.Info.DirectoryPath, configFileName + ".ini")
+      If Not File.Exists(m_paraFileSpec) Then
+        m_paraFileSpec = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                      configDirName + "\" + configFileName + ".ini")
+      End If
     End If
-    Dim folder As String = My.Computer.FileSystem.GetParentPath(m_paraFileSpec)
-    System.IO.Directory.CreateDirectory(folder)
+    configDir = My.Computer.FileSystem.GetParentPath(m_paraFileSpec)
+    System.IO.Directory.CreateDirectory(configDir)
 
     Debug.Print("paraFilespec: " + m_paraFileSpec)
-
-    readFile()
   End Sub
   Protected Overrides Sub Finalize()
     saveParaFile()
@@ -48,24 +65,35 @@ Public Class cls_globPara
     End Set
   End Property
 
-
   ': ========== Hilfsfunktionen ========================
 
-  Public Function appPath() As String
-    Return fp(My.Computer.FileSystem.GetParentPath(Application.ExecutablePath))
-  End Function
-  Public Function fp(ByVal path As String, Optional ByVal fileName As String = "")
-    fp = path + IIf(path.EndsWith("\"), "", "\") + fileName
-  End Function
-
-  Public Function fpUNIX(ByVal path As String, Optional ByVal fileName As String = "")
-    fpUNIX = path + IIf(path.EndsWith("/"), "", "/") + fileName
-  End Function
-
+  Public Sub DeletePara(key As String)
+    m_content.Remove(key)
+  End Sub
+  Public Sub DeleteParaGroup(prefix As String)
+    For Each key In m_content.Keys
+      If key.StartsWith(prefix) Then
+        m_content.Remove(key)
+      End If
+    Next
+  End Sub
 
   Public Function Contains(ByVal key As String) As Boolean
     Contains = m_content.ContainsKey(key)
 
+  End Function
+
+  Public ReadOnly Property Keys As Dictionary(Of String, String).KeyCollection
+    Get
+      Return m_content.Keys
+    End Get
+  End Property
+
+
+  Public Function appPath() As String
+    appPath = Path.GetDirectoryName(Application.ExecutablePath)
+    If Not appPath.EndsWith("\") Then appPath += "\"
+    Return appPath
   End Function
 
 
@@ -186,15 +214,18 @@ Public Class cls_globPara
 
     If Not My.Computer.FileSystem.FileExists(m_paraFileSpec) Then Exit Sub
 
-    Dim cont() As String = _
+    Dim cont() As String =
        Split(My.Computer.FileSystem.ReadAllText(m_paraFileSpec), vbNewLine)
 
     Dim line(), lineString As String
+    Dim k, v As String
     For Each lineString In cont
       line = Split(lineString, tabDelimiter)
       If line.Length < 2 Then Continue For
+      k = System.Uri.UnescapeDataString(line(0))
+      v = System.Uri.UnescapeDataString(line(1))
 
-      m_content.Add(line(0), Replace(line(1), "|²ZS³|", vbNewLine))
+      m_content.Add(k, v)
       Debug.Print(lineString)
       'Stop
     Next
@@ -210,8 +241,8 @@ Public Class cls_globPara
 
     For Each key In m_content.Keys
       item = m_content.Item(key)
-      item = Replace(item, vbNewLine, "|²ZS³|")
-      cont += key + tabDelimiter + item + tabDelimiter + vbNewLine
+      item = System.Uri.EscapeDataString(item)
+      cont += System.Uri.EscapeDataString(key) + tabDelimiter + item + vbNewLine
     Next
     'MsgBox(cont)
     My.Computer.FileSystem.WriteAllText(m_paraFileSpec, cont, False)

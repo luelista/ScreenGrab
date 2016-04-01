@@ -59,7 +59,7 @@ Public Class frm_options
 
 
   Private Sub frm_widgetMan_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-    Dim tabs() As String = {"Allgemein", "Accounts && Internet", "Info"}
+    Dim tabs() As String = {"Allgemein", "Accounts && Internet"}
 
     For i As Integer = 0 To tabs.Length - 1
       ButtonListBar1.Items.Add( _
@@ -82,7 +82,6 @@ Public Class frm_options
 
     TabControl1.Top = -25
 
-    lblProgVer.Text = My.Application.Info.Version.ToString(2)
 
     For key As Keys = 0 To 256
       cmbHotkeyKey.Items.Add(key)
@@ -264,28 +263,6 @@ Public Class frm_options
 
   End Sub
 
-  Private Sub TabPage4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TabPage4.Click
-
-  End Sub
-
-  Private Sub TabPage4_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles TabPage4.Paint
-    Dim rect As New Rectangle(0, 0, TabPage4.Width, TabPage4.Height)
-    Dim lgb As New Drawing2D.LinearGradientBrush(rect, Color.DodgerBlue, Color.RoyalBlue, LinearGradientMode.Vertical)
-    e.Graphics.FillRectangle(lgb, rect)
-  End Sub
-
-  Private Sub LinkLabel5_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel5.LinkClicked, LinkLabel4.LinkClicked, LinkLabel3.LinkClicked
-    Process.Start(sender.tag)
-  End Sub
-
-  Private Sub btnUpdateCheckNow_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnUpdateCheckNow.Click
-    btnUpdateCheckNow.Enabled = False
-    If checkForUpdate() Then
-      frm_softwareUpdate.Show()
-      frm_softwareUpdate.startDownload()
-    End If
-    btnUpdateCheckNow.Enabled = True
-  End Sub
 
   Private Sub btnChooseDefaultFolder_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnChooseDefaultFolder.Click
     Using fbd As New FolderBrowserDialog
@@ -302,6 +279,10 @@ Public Class frm_options
 
   Private Sub btnShowHistory_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnShowHistory.Click
     uploadHistoryOpen()
+  End Sub
+
+  Private Sub btnUpdateCheckNow_Click(sender As Object, e As EventArgs) 
+
   End Sub
 
   Private Sub chkCollageHitTestIntersect_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles chkCollageHitTestIntersect.CheckedChanged

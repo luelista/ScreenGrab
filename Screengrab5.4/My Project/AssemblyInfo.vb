@@ -9,16 +9,16 @@ Imports System.Runtime.InteropServices
 ' Die Werte der Assemblyattribute überprüfen
 
 <Assembly: AssemblyTitle("ScreenGrab 6")> 
-<Assembly: AssemblyDescription("")> 
-<Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("ScreenGrab 6")> 
-<Assembly: AssemblyCopyright("Copyright © Max Weller 2009-2012")> 
+<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyCompany("Weller IT")>
+<Assembly: AssemblyProduct("ScreenGrab 6")>
+<Assembly: AssemblyCopyright("Copyright © Max Weller 2009-2016")>
 <Assembly: AssemblyTrademark("screengrab.teamwiki.de")> 
 
 <Assembly: ComVisible(False)>
 
 'Die folgende GUID bestimmt die ID der Typbibliothek, wenn dieses Projekt für COM verfügbar gemacht wird
-<Assembly: Guid("926cbd00-f7ea-11dc-95ff-0800200c9a66")> 
+<Assembly: Guid("926cbd00-f7ea-11dc-95ff-0800200c9a66")>
 
 ' Versionsinformationen für eine Assembly bestehen aus den folgenden vier Werten:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("6.16.0.0")> 
-<Assembly: AssemblyFileVersion("6.16.0.0")> 
+<Assembly: AssemblyVersion("6.17.0.0")>
+<Assembly: AssemblyFileVersion("6.17.0.0")>

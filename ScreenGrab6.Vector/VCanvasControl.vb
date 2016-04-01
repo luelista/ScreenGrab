@@ -27,6 +27,8 @@ Public Class VCanvasControl
   Event SelectionChanged(ByVal names() As String)
   Event FileSpecChanged()
   Event DefaultColorChanged()
+  Event DocumentSaved()
+
 
   Public Shared lineWidth As Integer
   Public Shared lineStyle As DashStyle
@@ -444,10 +446,20 @@ Public Class VCanvasControl
   End Sub
 
   Private Sub ZeichenbereichgrößeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ZeichenbereichToolStripMenuItem.Click
+    ShowCanvasProperties()
+  End Sub
+
+  Public Sub ShowCanvasProperties()
     Using dlg As New frm_canvasProperties
       dlg.SetCanvas(canvas)
       dlg.ShowDialog()
     End Using
+    PictureBox1.Top = 0
+    PictureBox1.Left = 0
+    Panel2.ScrollControlIntoView(PictureBox1)
+    Panel2.AutoScroll = False
+    Panel2.AutoScroll = True
+
   End Sub
 
   Private Sub OriginalgroesseToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OriginalgroesseToolStripMenuItem.Click
@@ -618,17 +630,26 @@ Public Class VCanvasControl
     lblResizeDiag.Location = New Point(PictureBox1.Width + PictureBox1.Left, PictureBox1.Height + PictureBox1.Top)
   End Sub
 
-  Private Sub lblResizeHorz_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblResizeHorz.MouseDown
-    FormResizeTricky(PictureBox1.Handle, HitTestValues.HTRIGHT)
-  End Sub
+  'Private Sub lblResizeHorz_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblResizeHorz.MouseDown
+  '  FormResizeTricky(PictureBox1.Handle, HitTestValues.HTRIGHT)
+  '  PictureBox1.Top = 0
+  '  PictureBox1.Left = 0
+  '  Panel2.ScrollControlIntoView(PictureBox1)
+  'End Sub
 
-  Private Sub lblResizeDiag_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblResizeDiag.MouseDown
-    FormResizeTricky(PictureBox1.Handle, HitTestValues.HTBOTTOMRIGHT)
-  End Sub
+  'Private Sub lblResizeDiag_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblResizeDiag.MouseDown
+  '  FormResizeTricky(PictureBox1.Handle, HitTestValues.HTBOTTOMRIGHT)
+  '  PictureBox1.Top = 0
+  '  PictureBox1.Left = 0
+  '  Panel2.ScrollControlIntoView(PictureBox1)
+  'End Sub
 
-  Private Sub lblResizeVert_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblResizeVert.MouseDown
-    FormResizeTricky(PictureBox1.Handle, HitTestValues.HTBOTTOM)
-  End Sub
+  'Private Sub lblResizeVert_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblResizeVert.MouseDown
+  '  FormResizeTricky(PictureBox1.Handle, HitTestValues.HTBOTTOM)
+  '  PictureBox1.Top = 0
+  '  PictureBox1.Left = 0
+  '  Panel2.ScrollControlIntoView(PictureBox1)
+  'End Sub
 
 
 #Region "Multitouch"
@@ -857,10 +878,14 @@ Public Class VCanvasControl
     Try
       canvas.createHtmlPage(FileSpec)
       Dirty = False
+      RaiseEvent DocumentSaved()
 
+      'Catch ex As Win32Exception
+      '  Dirty = True
+      '  MsgBox("Beim Speichern des Dokuments ist ein Fehler aufgetreten." + vbNewLine + vbNewLine + ex.Message + " (0x" + ex.ErrorCode.ToString("x8") + ")", MsgBoxStyle.Critical)
     Catch ex As Exception
       Dirty = True
-      MsgBox("Beim Speichern des Dokuments ist ein Fehler aufgetreten." + vbNewLine + vbNewLine + ex.Message, MsgBoxStyle.Critical)
+      MsgBox("Beim Speichern des Dokuments ist ein Fehler aufgetreten." + vbNewLine + vbNewLine + ex.tostring, MsgBoxStyle.Critical)
     End Try
 
   End Function

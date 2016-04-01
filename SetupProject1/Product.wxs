@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  
+	<Product Id="*" Name="ScreenGrab" Language="1033" Version="6.17.0.0" 
+           Manufacturer="Weller IT" UpgradeCode="30efa644-fa81-491e-9122-d6ce28ca8226">
+    
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." 
+                  Schedule="afterInstallInitialize" AllowSameVersionUpgrades="yes" />
+		<MediaTemplate EmbedCab="yes" />
+
+    <Property Id="LicenseAccepted" Value="1"/>
+    <Feature Id="Complete" Title="ScreenGrab" Display="expand" ConfigurableDirectory="APPLICATIONFOLDER" Level="1">
+      <ComponentGroupRef Id="CommonLibs"/>
+      <Feature Id="MainProgram" Title="Hauptprogramm" Level="1" AllowAdvertise="no" Absent="disallow">
+			  <ComponentGroupRef Id="AppScreengrab" />
+      </Feature>
+      <Feature Id="CollageProgram" Title="Collage-Modus" Level="2" AllowAdvertise="no" Absent="disallow">
+        <ComponentGroupRef Id="AppCollage"/>
+      </Feature>
+      
+		</Feature>
+
+    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.SolutionDir)Setups\license.rtf" />
+    <UI>
+      <Property Id="ApplicationFolderName" Value="ScreenGrab6" />
+      <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
+      <Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONFOLDER" />
+      <Property Id="WixShellExecTarget" Value="[#ScreenGrab6.exe]" />
+      <Publish Dialog="ExitDialog"
+          Control="Finish"
+          Event="DoAction"
+          Value="LaunchApplication"> NOT Installed</Publish>
+
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+      <Property Id="WixUI_Mode" Value="Minimal" />
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+      <DialogRef Id="ProgressDlg" />
+      <DialogRef Id="ResumeDlg" />
+      <DialogRef Id="UserExit" />
+      <DialogRef Id="WelcomeDlg" />
+
+      <Publish Dialog="ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="MaintenanceWelcomeDlg" Control="Next" Event="NewDialog" Value="MaintenanceTypeDlg">1</Publish>
+
+      <Publish Dialog="MaintenanceTypeDlg" Control="RepairButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="RemoveButton" Event="NewDialog" Value="VerifyReadyDlg">1</Publish>
+      <Publish Dialog="MaintenanceTypeDlg" Control="Back" Event="NewDialog" Value="MaintenanceWelcomeDlg">1</Publish>
+
+      <Publish Dialog="WelcomeDlg" Control="Next" Event="NewDialog" Value="VerifyReadyDlg">Installed AND PATCH</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="WelcomeDlg" Order="2">Installed AND PATCH</Publish>
+
+      <InstallUISequence>
+        <Show Dialog="WelcomeDlg" Before="WelcomeReadmeDlg">Installed AND PATCH</Show>
+        <Show Dialog="WelcomeReadmeDlg" Before="ProgressDlg">NOT Installed</Show>
+      </InstallUISequence>
+
+      <Property Id="ARPNOMODIFY" Value="1" />
+    </UI>
+
+    <UIRef Id="WixUI_Common" />
+    
+    <UI>
+        <Dialog Id="WelcomeReadmeDlg" Width="370" Height="270" Title="!(loc.WelcomeEulaDlg_Title)">
+            <Control Id="Bitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="234" TabSkip="no" Text="!(loc.WelcomeEulaDlgBitmap)" />
+            <Control Id="Title" Type="Text" X="130" Y="6" Width="225" Height="30" Transparent="yes" NoPrefix="yes" Text="{\WixUI_Font_Bigger}Willkommen beim Setup-Assistenten von ScreenGrab [ProductVersion]" />
+            <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+            <Control Id="Back" Type="PushButton" X="156" Y="243" Width="56" Height="17" Disabled="yes" Text="!(loc.WixUIBack)" />
+            <Control Id="Install" Type="PushButton" ElevationShield="yes" X="212" Y="243" Width="80" Height="17" Default="yes" Text="!(loc.WelcomeEulaDlgInstall)" Hidden="yes">
+                <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">!(wix.WixUICostingPopupOptOut) OR CostingComplete = 1</Publish>
+                <Publish Event="EndDialog" Value="Return"><![CDATA[OutOfDiskSpace <> 1]]></Publish>
+                <Publish Event="SpawnDialog" Value="OutOfRbDiskDlg">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST="P" OR NOT PROMPTROLLBACKCOST)</Publish>
+                <Publish Event="EndDialog" Value="Return">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"</Publish>
+                <Publish Event="EnableRollback" Value="False">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"</Publish>
+                <Publish Event="SpawnDialog" Value="OutOfDiskDlg">(OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST="F")</Publish>
+                <Condition Action="show">ALLUSERS</Condition>
+            </Control>
+            <Control Id="InstallNoShield" Type="PushButton" ElevationShield="no" X="212" Y="243" Width="80" Height="17" Default="yes" Text="!(loc.WelcomeEulaDlgInstall)" Hidden="yes">
+                <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">!(wix.WixUICostingPopupOptOut) OR CostingComplete = 1</Publish>
+                <Publish Event="EndDialog" Value="Return"><![CDATA[OutOfDiskSpace <> 1]]></Publish>
+                <Publish Event="SpawnDialog" Value="OutOfRbDiskDlg">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND (PROMPTROLLBACKCOST="P" OR NOT PROMPTROLLBACKCOST)</Publish>
+                <Publish Event="EndDialog" Value="Return">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"</Publish>
+                <Publish Event="EnableRollback" Value="False">OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 0 AND PROMPTROLLBACKCOST="D"</Publish>
+                <Publish Event="SpawnDialog" Value="OutOfDiskDlg">(OutOfDiskSpace = 1 AND OutOfNoRbDiskSpace = 1) OR (OutOfDiskSpace = 1 AND PROMPTROLLBACKCOST="F")</Publish>
+                <Condition Action="show">NOT ALLUSERS</Condition>
+            </Control>
+            <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+                <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+            </Control>
+            <Control Id="LicenseText" Type="ScrollableText" X="130" Y="42" Width="226" Height="190" Sunken="yes" TabSkip="no">
+                <Text SourceFile="!(wix.WixUILicenseRtf)" />
+            </Control>
+          <Control Id="Print" Type="PushButton" X="88" Y="243" Width="56" Height="17" Text="!(loc.WixUIPrint)">
+            <Publish Event="DoAction" Value="WixUIPrintEula">1</Publish>
+          </Control>
+        </Dialog>
+    </UI>
+
+    
+    
+    <Icon Id="ScreenGrab6.exe" SourceFile="$(var.SolutionDir)bin\ScreenGrab6.exe" />
+    <Property Id="ARPPRODUCTICON" Value="ScreenGrab6.exe" />
+	</Product>
+
+  
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+        <Directory Id="APPLICATIONFOLDER" Name="ScreenGrab6">
+        </Directory>
+			</Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"></Directory>
+      <Directory Id="ProgramMenuFolder" Name="Programs"></Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+    <ComponentGroup Id="AppScreengrab" Directory="APPLICATIONFOLDER">
+      <Component Id="AppSGExe">
+        <File Id="ScreenGrab6.exe" Name="ScreenGrab6.exe" Source="$(var.SolutionDir)bin\ScreenGrab6.exe" KeyPath="yes">
+          <Shortcut Id="startmenuScreengrab" Directory="ProgramMenuFolder" Name="ScreenGrab"
+                    WorkingDirectory="APPLICATIONFOLDER" Icon="ScreenGrab6.exe" IconIndex="0" Advertise="yes"/>
+          <Shortcut Id="desktopScreengrab" Directory="DesktopFolder" Name="ScreenGrab"
+                    WorkingDirectory="APPLICATIONFOLDER" Icon="ScreenGrab6.exe" IconIndex="0" Advertise="yes"/>
+        </File>
+      </Component>
+      <Component Id="AppSGLib1">
+        <File Name="ScreenGrab6.HelperLib.dll" Source="$(var.SolutionDir)bin\ScreenGrab6.HelperLib.dll" KeyPath="yes"/>
+      </Component>
+      <Component Id="AppSGLib2">
+        <File Name="ScreenGrab6.Vector.dll" Source="$(var.SolutionDir)bin\ScreenGrab6.Vector.dll" KeyPath="yes"/>
+      </Component>
+    </ComponentGroup>
+    
+    <ComponentGroup Id="CommonLibs" Directory="APPLICATIONFOLDER">
+      <Component Id="AppSGLib3">
+        <File Name="ButtonListbar.dll" Source="$(var.SolutionDir)bin\ButtonListbar.dll" KeyPath="yes"/>
+      </Component>
+      
+    </ComponentGroup>
+    
+    <ComponentGroup Id="AppCollage" Directory="APPLICATIONFOLDER">
+      <Component Id="AppCollageExe">
+        <File Id="CollageEXE" Name="Collage.exe" Source="$(var.SolutionDir)bin\Collage.exe" KeyPath="yes">
+        </File>
+      </Component>
+      <Component Id="ConvolutionFiltersTxt">
+        <File Name="ConvolutionFilters.txt" Source="$(var.SolutionDir)bin\ConvolutionFilters.txt" KeyPath="yes"/>
+      </Component>
+      <Component Id="WeifenLuoDockingLib">
+        <File Name="WeifenLuo.WinFormsUI.Docking.dll" Source="$(var.SolutionDir)bin\WeifenLuo.WinFormsUI.Docking.dll" KeyPath="yes"/>
+      </Component>
+      <Component Id="PdfitextsharpLib">
+        <File Name="itextsharp.dll" Source="$(var.SolutionDir)bin\itextsharp.dll" KeyPath="yes"/>
+      </Component>
+      <Component Id="DrawingExLib" Guid="6DB6D676-30E6-4C65-A699-78CA5A2051B9">
+        <File Name="ControlsEx.dll" Source="$(var.SolutionDir)bin\ControlsEx.dll" KeyPath="yes"/>
+        <File Name="DrawingEx.dll" Source="$(var.SolutionDir)bin\DrawingEx.dll" />
+      </Component>
+      <Component Id="AppCollageVUMLCodeGeneration" Guid="5FDB2DE9-B8B2-45BA-9CA3-2661398E303A">
+        <File Name="VUMLCodeGeneration.exe" Source="$(var.SolutionDir)bin\VUMLCodeGeneration.exe" KeyPath="yes"/>
+      </Component>
+      <Component Id="MSScriptControlInterop" Guid="A1038D40-9DE5-4B06-9B36-6B0959C211E0">
+        <File Name="Interop.MSScriptControl.dll" Source="$(var.SolutionDir)bin\Interop.MSScriptControl.dll" />
+        <File Name="AxInterop.MSScriptControl.dll" Source="$(var.SolutionDir)bin\AxInterop.MSScriptControl.dll" />
+      </Component>
+      <Component Id="CodeGenerationScriptDelphi" >
+        <File Name="delphi-export.vbs" Source="$(var.SolutionDir)VUMLCodeGeneration\scripts\delphi-export.vbs" KeyPath="yes"/>
+      </Component>
+      <Component Id="CodeGenerationScriptJava" >
+        <File Name="java-export.vbs" Source="$(var.SolutionDir)VUMLCodeGeneration\scripts\java-export.vbs" KeyPath="yes"/>
+      </Component>
+      <Component Id="CodeGenerationScriptVBNet" >
+        <File Name="vbnet-export.vbs" Source="$(var.SolutionDir)VUMLCodeGeneration\scripts\vbnet-export.vbs" KeyPath="yes"/>
+      </Component>
+    </ComponentGroup>
+	</Fragment>
+</Wix>

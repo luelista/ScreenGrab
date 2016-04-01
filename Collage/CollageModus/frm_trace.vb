@@ -7,12 +7,11 @@
 
     ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
 
-    AddHandler sys_mwTrace.TraceWrite, AddressOf onTraceWrite
   End Sub
 
   Sub onTraceWrite(ByVal para1 As String, ByVal para2 As String, ByVal type As String, ByVal codeLink As String)
-    MDI.traceWin.lstTrace.Items.Add(para1 + "\t" + para2)
-    MDI.traceWin.lstTrace.SelectedIndex = MDI.traceWin.lstTrace.Items.Count - 1
+    Program.traceWin.lstTrace.Items.Add(para1 + "\t" + para2)
+    Program.traceWin.lstTrace.SelectedIndex = Program.traceWin.lstTrace.Items.Count - 1
   End Sub
 
 
@@ -31,5 +30,9 @@
       Hide()
       e.Cancel = True
     End If
+  End Sub
+
+  Private Sub frm_trace_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
   End Sub
 End Class

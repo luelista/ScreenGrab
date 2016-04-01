@@ -1,23 +1,28 @@
-﻿Imports ScreenGrab6.Vector
+﻿Imports net.kvdb.webdav
+Imports ScreenGrab6.Vector
 
 Public Class frm_mdiClient
 
   Public selNames() As String
 
+  Public remotePath As String, remoteFilename As String, remoteServer As Object
+
+
   Private Sub frm_mdiClient_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
     vcc.canvas.window = New collageModusDOMWindow
 
-    vcc.canvas.UseIntersectionForSelection = glob.para("frm_options__chkCollageHitTestIntersect", "FALSE") = "TRUE"
+    vcc.canvas.UseIntersectionForSelection = Program.glob.para("frm_options__chkCollageHitTestIntersect", "FALSE") = "TRUE"
     vcc.canvas.IsInsertionMode = False
     vcc.canvas.IsObjectBorderSelectionMode = False
+    vcc.toolboxSelElement = VCanvasControl.toolboxElement.Cursor
 
     Dim ImHauptfensterLadenToolStripMenuItem As New ToolStripMenuItem("Im Hauptfenster laden")
     AddHandler ImHauptfensterLadenToolStripMenuItem.Click, AddressOf ImHauptfensterLadenToolStripMenuItem_Click
     vcc.cmsCanvas.Items.Insert(5, ImHauptfensterLadenToolStripMenuItem)
 
-    vcc.defaultFg = ColorTranslator.FromHtml(glob.para("frm_mdiViewer2__colorDefaultFg", "#000"))
-    vcc.defaultBg = ColorTranslator.FromHtml(glob.para("frm_mdiViewer2__colorDefaultBg", "#fff"))
-    
+    vcc.defaultFg = ColorTranslator.FromHtml(Program.glob.para("frm_mdiViewer2__colorDefaultFg", "#000"))
+    vcc.defaultBg = ColorTranslator.FromHtml(Program.glob.para("frm_mdiViewer2__colorDefaultBg", "#fff"))
+
   End Sub
 
   Private Sub ImHauptfensterLadenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -25,16 +30,17 @@ Public Class frm_mdiClient
     Dim tmpFilespec As String = IO.Path.Combine(IO.Path.GetTempPath, "SgCollage-to-ScreenGrab.png")
     img.img.Save(tmpFilespec, System.Drawing.Imaging.ImageFormat.Png)
     '  loadImage(img.img)
-    oIntWin.SendCommand("grab5", "Load", tmpFilespec)
+    'oIntWin.SendCommand("grab5", "Load", tmpFilespec)
+    Process.Start(ExePath("ScreenGrab6"), "/load """ & tmpFilespec & """")
   End Sub
 
   Private Sub vcc_DirtyChanged() Handles vcc.DirtyChanged
-    MDI.refreshFileInfo()
+    Program.MDI.refreshFileInfo()
   End Sub
 
   Private Sub vcc_FileSpecChanged() Handles vcc.FileSpecChanged
     Me.Text = IO.Path.GetFileName(vcc.FileSpec)
-    MDI.refreshFileInfo()
+    Program.MDI.refreshFileInfo()
   End Sub
 
 
@@ -46,8 +52,8 @@ Public Class frm_mdiClient
     Static isRefreshing As Boolean = False '  StackOverflow verhindern
     If isRefreshing Then Exit Sub
     isRefreshing = True
-    MDI.pbDefaultBg.Invalidate()
-    MDI.pbDefaultFg.Invalidate()
+    Program.MDI.pbDefaultBg.Invalidate()
+    Program.MDI.pbDefaultFg.Invalidate()
     If vcc.DefaultColorSelected = -1 Then
       frm_paletteColor.GColorPicker1.Enabled = False
     Else
@@ -60,9 +66,9 @@ Public Class frm_mdiClient
 
 
   Sub resetToolboxIfTemporary()
-    If Not MDI.toolboxPermanent Then
+    If Not Program.MDI.toolboxPermanent Then
       vcc.toolboxSelElement = 1
-      MDI.refreshToolboxButtonColors()
+      Program.MDI.refreshToolboxButtonColors()
     End If
   End Sub
 
@@ -81,15 +87,12 @@ Public Class frm_mdiClient
     'refreshDefaultColorBoxes()
 
     selNames = names
-    MDI.refreshItemList()
+    Program.sbElements.refreshItemList()
     ' cmbElementNames.SelectedIndex = If(canvas.SelectionCount = 1, cmbElementNames.Items.IndexOf(canvas.selectedObjects(0).name), -1)
   End Sub
 
-
-
-
   Private Sub vcc_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles vcc.DragEnter
-    
+
     If e.Data.GetDataPresent("FileDrop") Then
       If isKeyPressed(Keys.Menu) Then
         e.Effect = DragDropEffects.Link
@@ -246,5 +249,57 @@ Public Class frm_mdiClient
     vcc.PictureBox1.Refresh()
   End Sub
 
+  Private Sub ZeichenbereichToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ZeichenbereichToolStripMenuItem.Click
+    vcc.ShowCanvasProperties()
+  End Sub
 
+  Private Sub AllesAuswählenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AllesAuswählenToolStripMenuItem.Click
+    vcc().canvas.SelectAll()
+  End Sub
+
+  Private Sub AusschneidenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AusschneidenToolStripMenuItem.Click
+    vcc.canvas.CutSelection()
+  End Sub
+
+  Private Sub KopierenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles KopierenToolStripMenuItem.Click
+    vcc.canvas.CopySelection()
+  End Sub
+
+  Private Sub EinfuegenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EinfuegenToolStripMenuItem.Click
+    vcc.canvas.Paste()
+  End Sub
+
+  Private Sub DuplizierenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DuplizierenToolStripMenuItem.Click
+    vcc().canvas.CopySelection()
+    vcc().canvas.Paste()
+  End Sub
+
+  Private Sub LoeschenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoeschenToolStripMenuItem.Click
+    With vcc()
+      While .canvas.SelectionCount > 0
+        .canvas.removeObject(.canvas.GetFirstSelectedObject())
+      End While
+    End With
+  End Sub
+
+  Private Sub vcc_DocumentSaved() Handles vcc.DocumentSaved
+    If remoteServer Is Nothing Then Return
+
+    If TypeOf remoteServer Is WebDAVClient Then
+      Dim f As New CloudSaveDialog
+      f.init(vcc.FileSpec, CType(remoteServer, WebDAVClient), remotePath, remoteFilename)
+      If f.ShowDialog() = DialogResult.OK Then
+      Else
+        vcc.Dirty = True
+      End If
+    End If
+  End Sub
+
+  Private Sub BearbeitenToolStripMenuItem_DropDownOpening(sender As Object, e As EventArgs) Handles BearbeitenToolStripMenuItem.DropDownOpening
+    vcc().canvas.SetContext(BearbeitenToolStripMenuItem.DropDownItems)
+  End Sub
+
+  Private Sub AuswahlAufhebenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AuswahlAufhebenToolStripMenuItem.Click
+    vcc().canvas.DeselectAll()
+  End Sub
 End Class

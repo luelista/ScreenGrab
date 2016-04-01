@@ -151,8 +151,14 @@ Public Class Helper
   Public Shared Function ImageToBase64(ByVal img As Image) As String
     If img Is Nothing Then Return ""
     Dim ms As New IO.MemoryStream()
-    img.Save(ms, Imaging.ImageFormat.Png)
-    'img.Save(ms, ImageFormat.Gif)
+    Try
+      img.Save(ms, Imaging.ImageFormat.Png)
+    Catch ex As ExternalException
+      Using b As New Bitmap(img)
+        b.Save(ms, Imaging.ImageFormat.Png)
+      End Using
+    End Try
+    'img.Save(ms, Imaging.ImageFormat.Jpeg)
 
     ms.Seek(0, IO.SeekOrigin.Begin)
     Dim buf(ms.Length - 1) As Byte

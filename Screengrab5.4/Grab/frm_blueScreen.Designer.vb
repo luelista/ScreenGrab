@@ -22,83 +22,75 @@ Partial Class frm_blueScreen
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
   '<System.Diagnostics.DebuggerStepThrough()> _
   Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container
+    Me.components = New System.ComponentModel.Container()
     Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frm_blueScreen))
-    Me.IGrid1Col0CellStyle = New TenTec.Windows.iGridLib.iGCellStyle(True)
-    Me.IGrid1Col0ColHdrStyle = New TenTec.Windows.iGridLib.iGColHdrStyle(True)
-    Me.Panel1 = New System.Windows.Forms.Panel
-    Me.pic_viewPartial = New System.Windows.Forms.PictureBox
+    Me.Panel1 = New System.Windows.Forms.Panel()
     Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-    Me.GrabToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator
-    Me.ImTeamWikiSpeichernToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.SpeichernUnterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.DruckenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.MDIToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator
-    Me.KopierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.EinfügenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator
-    Me.ImmerImVordergrundToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-    Me.OptionenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
+    Me.ImTeamWikiSpeichernToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripSeparator()
+    Me.KopierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.EinfügenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+    Me.ImmerImVordergrundToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.tmr_checkAsyncKeyState = New System.Windows.Forms.Timer(Me.components)
-    Me.PageSetupDialog1 = New System.Windows.Forms.PageSetupDialog
-    Me.PrintDialog1 = New System.Windows.Forms.PrintDialog
-    Me.cmbZoom = New System.Windows.Forms.ComboBox
-    Me.txtImageSizeHeight = New System.Windows.Forms.TextBox
-    Me.txtImageSizeWidth = New System.Windows.Forms.TextBox
-    Me.tbrZoom = New System.Windows.Forms.TrackBar
+    Me.PageSetupDialog1 = New System.Windows.Forms.PageSetupDialog()
+    Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
+    Me.cmbZoom = New System.Windows.Forms.ComboBox()
+    Me.txtImageSizeHeight = New System.Windows.Forms.TextBox()
+    Me.txtImageSizeWidth = New System.Windows.Forms.TextBox()
+    Me.tbrZoom = New System.Windows.Forms.TrackBar()
     Me.imlBrowseListviewPreview = New System.Windows.Forms.ImageList(Me.components)
     Me.tmr_asyncUpdatePartialView = New System.Windows.Forms.Timer(Me.components)
-    Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog
-    Me.fntdialog_insertText = New System.Windows.Forms.FontDialog
-    Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
-    Me.bgwImageUpload = New System.ComponentModel.BackgroundWorker
+    Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+    Me.fntdialog_insertText = New System.Windows.Forms.FontDialog()
+    Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+    Me.bgwImageUpload = New System.ComponentModel.BackgroundWorker()
     Me.tmrBogusProgressbar = New System.Windows.Forms.Timer(Me.components)
-    Me.btnCollage = New System.Windows.Forms.Button
-    Me.btnPrint = New System.Windows.Forms.Button
-    Me.btnInsertWord = New System.Windows.Forms.Button
-    Me.btnSaveLocal = New System.Windows.Forms.Button
-    Me.btnGrab = New System.Windows.Forms.Button
-    Me.btnPaste = New System.Windows.Forms.Button
-    Me.btnCopy = New System.Windows.Forms.Button
-    Me.chk_blueScreenMode = New System.Windows.Forms.CheckBox
+    Me.btnCollage = New System.Windows.Forms.Button()
+    Me.btnInsertWord = New System.Windows.Forms.Button()
+    Me.btnSaveLocal = New System.Windows.Forms.Button()
+    Me.btnCopy = New System.Windows.Forms.Button()
+    Me.chk_blueScreenMode = New System.Windows.Forms.CheckBox()
     Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-    Me.btnSaveToWeb = New System.Windows.Forms.Button
     Me.NotifyIcon1 = New System.Windows.Forms.NotifyIcon(Me.components)
-    Me.pnlViewPartial = New System.Windows.Forms.Panel
-    Me.pnlSidebar = New System.Windows.Forms.Panel
-    Me.chkAutoCopy = New System.Windows.Forms.CheckBox
-    Me.chkAutoSave = New System.Windows.Forms.CheckBox
-    Me.qq_chkAutoCollage = New System.Windows.Forms.CheckBox
-    Me.chkAutoWord = New System.Windows.Forms.CheckBox
-    Me.lblPressEnter = New System.Windows.Forms.Label
-    Me.Label3 = New System.Windows.Forms.Label
-    Me.Label2 = New System.Windows.Forms.Label
-    Me.IGrid1DefaultCellStyle = New TenTec.Windows.iGridLib.iGCellStyle(True)
-    Me.IGrid1DefaultColHdrStyle = New TenTec.Windows.iGridLib.iGColHdrStyle(True)
-    Me.IGrid1RowTextColCellStyle = New TenTec.Windows.iGridLib.iGCellStyle(True)
-    Me.pnlOpenedFile = New System.Windows.Forms.Panel
-    Me.lnkCloseFileBar = New System.Windows.Forms.Label
-    Me.lnkAddcolfile = New System.Windows.Forms.LinkLabel
-    Me.lnkOpenfile = New System.Windows.Forms.LinkLabel
-    Me.lnkUploadfile = New System.Windows.Forms.LinkLabel
-    Me.txtOpenedFile = New System.Windows.Forms.TextBox
-    Me.picOpenedFile = New System.Windows.Forms.PictureBox
-    Me.Label4 = New System.Windows.Forms.Label
-    Me.lstHistory = New System.Windows.Forms.ListBox
-    CType(Me.pic_viewPartial, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.pnlSidebar = New System.Windows.Forms.Panel()
+    Me.chkAutoCopy = New System.Windows.Forms.CheckBox()
+    Me.chkAutoSave = New System.Windows.Forms.CheckBox()
+    Me.qq_chkAutoCollage = New System.Windows.Forms.CheckBox()
+    Me.chkAutoWord = New System.Windows.Forms.CheckBox()
+    Me.lblPressEnter = New System.Windows.Forms.Label()
+    Me.Label3 = New System.Windows.Forms.Label()
+    Me.Label2 = New System.Windows.Forms.Label()
+    Me.pnlOpenedFile = New System.Windows.Forms.Panel()
+    Me.lnkAddcolfile = New System.Windows.Forms.LinkLabel()
+    Me.lnkOpenfile = New System.Windows.Forms.LinkLabel()
+    Me.lnkUploadfile = New System.Windows.Forms.LinkLabel()
+    Me.txtOpenedFile = New System.Windows.Forms.TextBox()
+    Me.Label4 = New System.Windows.Forms.Label()
+    Me.lstHistory = New System.Windows.Forms.ListBox()
+    Me.lnkCloseFileBar = New System.Windows.Forms.Label()
+    Me.picOpenedFile = New System.Windows.Forms.PictureBox()
+    Me.btnSaveToWeb = New System.Windows.Forms.Button()
+    Me.btnPrint = New System.Windows.Forms.Button()
+    Me.btnGrab = New System.Windows.Forms.Button()
+    Me.btnPaste = New System.Windows.Forms.Button()
+    Me.pnlViewPartial = New System.Windows.Forms.Panel()
+    Me.pic_viewPartial = New System.Windows.Forms.PictureBox()
+    Me.GrabToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.SpeichernUnterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.DruckenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.MDIToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.OptionenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.InfoScreenGrabToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
     Me.ContextMenuStrip1.SuspendLayout()
     CType(Me.tbrZoom, System.ComponentModel.ISupportInitialize).BeginInit()
-    Me.pnlViewPartial.SuspendLayout()
     Me.pnlSidebar.SuspendLayout()
     Me.pnlOpenedFile.SuspendLayout()
     CType(Me.picOpenedFile, System.ComponentModel.ISupportInitialize).BeginInit()
+    Me.pnlViewPartial.SuspendLayout()
+    CType(Me.pic_viewPartial, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
-    '
-    'IGrid1Col0CellStyle
-    '
-    Me.IGrid1Col0CellStyle.TextTrimming = TenTec.Windows.iGridLib.iGStringTrimming.None
     '
     'Panel1
     '
@@ -111,29 +103,11 @@ Partial Class frm_blueScreen
     Me.Panel1.TabIndex = 7
     Me.Panel1.Visible = False
     '
-    'pic_viewPartial
-    '
-    Me.pic_viewPartial.BackColor = System.Drawing.Color.Transparent
-    Me.pic_viewPartial.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-    Me.pic_viewPartial.Location = New System.Drawing.Point(0, 0)
-    Me.pic_viewPartial.Name = "pic_viewPartial"
-    Me.pic_viewPartial.Size = New System.Drawing.Size(595, 400)
-    Me.pic_viewPartial.TabIndex = 8
-    Me.pic_viewPartial.TabStop = False
-    '
     'ContextMenuStrip1
     '
-    Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GrabToolStripMenuItem, Me.ToolStripMenuItem4, Me.ImTeamWikiSpeichernToolStripMenuItem, Me.SpeichernUnterToolStripMenuItem, Me.DruckenToolStripMenuItem, Me.MDIToolStripMenuItem, Me.ToolStripMenuItem3, Me.KopierenToolStripMenuItem, Me.EinfügenToolStripMenuItem, Me.ToolStripMenuItem2, Me.ImmerImVordergrundToolStripMenuItem, Me.OptionenToolStripMenuItem})
+    Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.GrabToolStripMenuItem, Me.ToolStripMenuItem4, Me.ImTeamWikiSpeichernToolStripMenuItem, Me.SpeichernUnterToolStripMenuItem, Me.DruckenToolStripMenuItem, Me.MDIToolStripMenuItem, Me.ToolStripMenuItem3, Me.KopierenToolStripMenuItem, Me.EinfügenToolStripMenuItem, Me.ToolStripMenuItem2, Me.ImmerImVordergrundToolStripMenuItem, Me.OptionenToolStripMenuItem, Me.InfoScreenGrabToolStripMenuItem})
     Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-    Me.ContextMenuStrip1.Size = New System.Drawing.Size(275, 242)
-    '
-    'GrabToolStripMenuItem
-    '
-    Me.GrabToolStripMenuItem.Image = CType(resources.GetObject("GrabToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.GrabToolStripMenuItem.Name = "GrabToolStripMenuItem"
-    Me.GrabToolStripMenuItem.ShortcutKeyDisplayString = "Windows+G"
-    Me.GrabToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
-    Me.GrabToolStripMenuItem.Text = "GRAB(Auswahlrechteck)"
+    Me.ContextMenuStrip1.Size = New System.Drawing.Size(275, 264)
     '
     'ToolStripMenuItem4
     '
@@ -146,30 +120,6 @@ Partial Class frm_blueScreen
     Me.ImTeamWikiSpeichernToolStripMenuItem.ShortcutKeyDisplayString = "Strg+U"
     Me.ImTeamWikiSpeichernToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
     Me.ImTeamWikiSpeichernToolStripMenuItem.Text = "Hochladen ..."
-    '
-    'SpeichernUnterToolStripMenuItem
-    '
-    Me.SpeichernUnterToolStripMenuItem.Image = CType(resources.GetObject("SpeichernUnterToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.SpeichernUnterToolStripMenuItem.Name = "SpeichernUnterToolStripMenuItem"
-    Me.SpeichernUnterToolStripMenuItem.ShortcutKeyDisplayString = "Strg+S"
-    Me.SpeichernUnterToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
-    Me.SpeichernUnterToolStripMenuItem.Text = "Lokal speichern ..."
-    '
-    'DruckenToolStripMenuItem
-    '
-    Me.DruckenToolStripMenuItem.Image = CType(resources.GetObject("DruckenToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.DruckenToolStripMenuItem.Name = "DruckenToolStripMenuItem"
-    Me.DruckenToolStripMenuItem.ShortcutKeyDisplayString = "Strg+P"
-    Me.DruckenToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
-    Me.DruckenToolStripMenuItem.Text = "Drucken"
-    '
-    'MDIToolStripMenuItem
-    '
-    Me.MDIToolStripMenuItem.Image = CType(resources.GetObject("MDIToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.MDIToolStripMenuItem.Name = "MDIToolStripMenuItem"
-    Me.MDIToolStripMenuItem.ShortcutKeyDisplayString = "Strg+T"
-    Me.MDIToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
-    Me.MDIToolStripMenuItem.Text = "Collage"
     '
     'ToolStripMenuItem3
     '
@@ -201,13 +151,6 @@ Partial Class frm_blueScreen
     Me.ImmerImVordergrundToolStripMenuItem.Name = "ImmerImVordergrundToolStripMenuItem"
     Me.ImmerImVordergrundToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
     Me.ImmerImVordergrundToolStripMenuItem.Text = "Immer im Vordergrund"
-    '
-    'OptionenToolStripMenuItem
-    '
-    Me.OptionenToolStripMenuItem.Image = CType(resources.GetObject("OptionenToolStripMenuItem.Image"), System.Drawing.Image)
-    Me.OptionenToolStripMenuItem.Name = "OptionenToolStripMenuItem"
-    Me.OptionenToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
-    Me.OptionenToolStripMenuItem.Text = "Optionen"
     '
     'tmr_checkAsyncKeyState
     '
@@ -286,21 +229,6 @@ Partial Class frm_blueScreen
     Me.btnCollage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     Me.btnCollage.UseVisualStyleBackColor = True
     '
-    'btnPrint
-    '
-    Me.btnPrint.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.btnPrint.Image = CType(resources.GetObject("btnPrint.Image"), System.Drawing.Image)
-    Me.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-    Me.btnPrint.Location = New System.Drawing.Point(2, 137)
-    Me.btnPrint.Name = "btnPrint"
-    Me.btnPrint.Size = New System.Drawing.Size(82, 24)
-    Me.btnPrint.TabIndex = 27
-    Me.btnPrint.Text = "Drucken"
-    Me.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    Me.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-    Me.ToolTip1.SetToolTip(Me.btnPrint, "Bild drucken (STRG+P)")
-    Me.btnPrint.UseVisualStyleBackColor = True
-    '
     'btnInsertWord
     '
     Me.btnInsertWord.BackColor = System.Drawing.Color.LightSteelBlue
@@ -325,36 +253,6 @@ Partial Class frm_blueScreen
     Me.btnSaveLocal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
     Me.btnSaveLocal.UseVisualStyleBackColor = True
     '
-    'btnGrab
-    '
-    Me.btnGrab.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.btnGrab.Image = CType(resources.GetObject("btnGrab.Image"), System.Drawing.Image)
-    Me.btnGrab.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-    Me.btnGrab.Location = New System.Drawing.Point(2, 23)
-    Me.btnGrab.Name = "btnGrab"
-    Me.btnGrab.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
-    Me.btnGrab.Size = New System.Drawing.Size(82, 24)
-    Me.btnGrab.TabIndex = 6
-    Me.btnGrab.Text = "G R A B"
-    Me.btnGrab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-    Me.ToolTip1.SetToolTip(Me.btnGrab, "Bildschirmausschnitt per Auswahlrechteck wählen (WIN+G)")
-    Me.btnGrab.UseVisualStyleBackColor = True
-    '
-    'btnPaste
-    '
-    Me.btnPaste.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.btnPaste.Image = CType(resources.GetObject("btnPaste.Image"), System.Drawing.Image)
-    Me.btnPaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-    Me.btnPaste.Location = New System.Drawing.Point(2, 182)
-    Me.btnPaste.Name = "btnPaste"
-    Me.btnPaste.Size = New System.Drawing.Size(82, 24)
-    Me.btnPaste.TabIndex = 4
-    Me.btnPaste.Text = "Einfügen"
-    Me.btnPaste.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    Me.btnPaste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-    Me.ToolTip1.SetToolTip(Me.btnPaste, "Einfügen")
-    Me.btnPaste.UseVisualStyleBackColor = True
-    '
     'btnCopy
     '
     Me.btnCopy.BackColor = System.Drawing.Color.LightSteelBlue
@@ -378,21 +276,6 @@ Partial Class frm_blueScreen
     Me.chk_blueScreenMode.Text = "blueScreen"
     Me.chk_blueScreenMode.UseVisualStyleBackColor = True
     '
-    'btnSaveToWeb
-    '
-    Me.btnSaveToWeb.BackColor = System.Drawing.Color.LightSteelBlue
-    Me.btnSaveToWeb.Image = CType(resources.GetObject("btnSaveToWeb.Image"), System.Drawing.Image)
-    Me.btnSaveToWeb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-    Me.btnSaveToWeb.Location = New System.Drawing.Point(2, 97)
-    Me.btnSaveToWeb.Name = "btnSaveToWeb"
-    Me.btnSaveToWeb.Size = New System.Drawing.Size(82, 41)
-    Me.btnSaveToWeb.TabIndex = 35
-    Me.btnSaveToWeb.Text = "Upload"
-    Me.btnSaveToWeb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-    Me.btnSaveToWeb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-    Me.ToolTip1.SetToolTip(Me.btnSaveToWeb, "Hochladen (Strg+U)")
-    Me.btnSaveToWeb.UseVisualStyleBackColor = True
-    '
     'NotifyIcon1
     '
     Me.NotifyIcon1.ContextMenuStrip = Me.ContextMenuStrip1
@@ -400,25 +283,10 @@ Partial Class frm_blueScreen
     Me.NotifyIcon1.Text = "ScreenGrab 5"
     Me.NotifyIcon1.Visible = True
     '
-    'pnlViewPartial
-    '
-    Me.pnlViewPartial.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.pnlViewPartial.AutoScroll = True
-    Me.pnlViewPartial.BackColor = System.Drawing.Color.WhiteSmoke
-    Me.pnlViewPartial.BackgroundImage = CType(resources.GetObject("pnlViewPartial.BackgroundImage"), System.Drawing.Image)
-    Me.pnlViewPartial.ContextMenuStrip = Me.ContextMenuStrip1
-    Me.pnlViewPartial.Controls.Add(Me.pic_viewPartial)
-    Me.pnlViewPartial.Location = New System.Drawing.Point(88, 0)
-    Me.pnlViewPartial.Name = "pnlViewPartial"
-    Me.pnlViewPartial.Size = New System.Drawing.Size(713, 499)
-    Me.pnlViewPartial.TabIndex = 24
-    '
     'pnlSidebar
     '
     Me.pnlSidebar.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.pnlSidebar.BackColor = System.Drawing.Color.DimGray
     Me.pnlSidebar.Controls.Add(Me.chkAutoCopy)
     Me.pnlSidebar.Controls.Add(Me.chkAutoSave)
@@ -510,7 +378,7 @@ Partial Class frm_blueScreen
     'pnlOpenedFile
     '
     Me.pnlOpenedFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.pnlOpenedFile.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(225, Byte), Integer))
     Me.pnlOpenedFile.Controls.Add(Me.lnkCloseFileBar)
     Me.pnlOpenedFile.Controls.Add(Me.lnkAddcolfile)
@@ -524,16 +392,6 @@ Partial Class frm_blueScreen
     Me.pnlOpenedFile.Size = New System.Drawing.Size(713, 91)
     Me.pnlOpenedFile.TabIndex = 25
     Me.pnlOpenedFile.Visible = False
-    '
-    'lnkCloseFileBar
-    '
-    Me.lnkCloseFileBar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-    Me.lnkCloseFileBar.Cursor = System.Windows.Forms.Cursors.Hand
-    Me.lnkCloseFileBar.Image = CType(resources.GetObject("lnkCloseFileBar.Image"), System.Drawing.Image)
-    Me.lnkCloseFileBar.Location = New System.Drawing.Point(677, 9)
-    Me.lnkCloseFileBar.Name = "lnkCloseFileBar"
-    Me.lnkCloseFileBar.Size = New System.Drawing.Size(24, 24)
-    Me.lnkCloseFileBar.TabIndex = 6
     '
     'lnkAddcolfile
     '
@@ -568,7 +426,7 @@ Partial Class frm_blueScreen
     'txtOpenedFile
     '
     Me.txtOpenedFile.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-                Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
     Me.txtOpenedFile.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(225, Byte), Integer))
     Me.txtOpenedFile.BorderStyle = System.Windows.Forms.BorderStyle.None
     Me.txtOpenedFile.Location = New System.Drawing.Point(63, 31)
@@ -576,14 +434,6 @@ Partial Class frm_blueScreen
     Me.txtOpenedFile.Name = "txtOpenedFile"
     Me.txtOpenedFile.Size = New System.Drawing.Size(619, 30)
     Me.txtOpenedFile.TabIndex = 2
-    '
-    'picOpenedFile
-    '
-    Me.picOpenedFile.Location = New System.Drawing.Point(22, 30)
-    Me.picOpenedFile.Name = "picOpenedFile"
-    Me.picOpenedFile.Size = New System.Drawing.Size(32, 32)
-    Me.picOpenedFile.TabIndex = 1
-    Me.picOpenedFile.TabStop = False
     '
     'Label4
     '
@@ -598,7 +448,7 @@ Partial Class frm_blueScreen
     'lstHistory
     '
     Me.lstHistory.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-                Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
     Me.lstHistory.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable
     Me.lstHistory.FormattingEnabled = True
     Me.lstHistory.IntegralHeight = False
@@ -608,6 +458,154 @@ Partial Class frm_blueScreen
     Me.lstHistory.Size = New System.Drawing.Size(92, 153)
     Me.lstHistory.TabIndex = 27
     Me.lstHistory.Visible = False
+    '
+    'lnkCloseFileBar
+    '
+    Me.lnkCloseFileBar.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.lnkCloseFileBar.Cursor = System.Windows.Forms.Cursors.Hand
+    Me.lnkCloseFileBar.Image = CType(resources.GetObject("lnkCloseFileBar.Image"), System.Drawing.Image)
+    Me.lnkCloseFileBar.Location = New System.Drawing.Point(677, 9)
+    Me.lnkCloseFileBar.Name = "lnkCloseFileBar"
+    Me.lnkCloseFileBar.Size = New System.Drawing.Size(24, 24)
+    Me.lnkCloseFileBar.TabIndex = 6
+    '
+    'picOpenedFile
+    '
+    Me.picOpenedFile.Location = New System.Drawing.Point(22, 30)
+    Me.picOpenedFile.Name = "picOpenedFile"
+    Me.picOpenedFile.Size = New System.Drawing.Size(32, 32)
+    Me.picOpenedFile.TabIndex = 1
+    Me.picOpenedFile.TabStop = False
+    '
+    'btnSaveToWeb
+    '
+    Me.btnSaveToWeb.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.btnSaveToWeb.Image = CType(resources.GetObject("btnSaveToWeb.Image"), System.Drawing.Image)
+    Me.btnSaveToWeb.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.btnSaveToWeb.Location = New System.Drawing.Point(2, 97)
+    Me.btnSaveToWeb.Name = "btnSaveToWeb"
+    Me.btnSaveToWeb.Size = New System.Drawing.Size(82, 41)
+    Me.btnSaveToWeb.TabIndex = 35
+    Me.btnSaveToWeb.Text = "Upload"
+    Me.btnSaveToWeb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.btnSaveToWeb.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+    Me.ToolTip1.SetToolTip(Me.btnSaveToWeb, "Hochladen (Strg+U)")
+    Me.btnSaveToWeb.UseVisualStyleBackColor = True
+    '
+    'btnPrint
+    '
+    Me.btnPrint.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.btnPrint.Image = CType(resources.GetObject("btnPrint.Image"), System.Drawing.Image)
+    Me.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.btnPrint.Location = New System.Drawing.Point(2, 137)
+    Me.btnPrint.Name = "btnPrint"
+    Me.btnPrint.Size = New System.Drawing.Size(82, 24)
+    Me.btnPrint.TabIndex = 27
+    Me.btnPrint.Text = "Drucken"
+    Me.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.btnPrint.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+    Me.ToolTip1.SetToolTip(Me.btnPrint, "Bild drucken (STRG+P)")
+    Me.btnPrint.UseVisualStyleBackColor = True
+    '
+    'btnGrab
+    '
+    Me.btnGrab.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.btnGrab.Image = CType(resources.GetObject("btnGrab.Image"), System.Drawing.Image)
+    Me.btnGrab.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.btnGrab.Location = New System.Drawing.Point(2, 23)
+    Me.btnGrab.Name = "btnGrab"
+    Me.btnGrab.Padding = New System.Windows.Forms.Padding(5, 0, 0, 0)
+    Me.btnGrab.Size = New System.Drawing.Size(82, 24)
+    Me.btnGrab.TabIndex = 6
+    Me.btnGrab.Text = "G R A B"
+    Me.btnGrab.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+    Me.ToolTip1.SetToolTip(Me.btnGrab, "Bildschirmausschnitt per Auswahlrechteck wählen (WIN+G)")
+    Me.btnGrab.UseVisualStyleBackColor = True
+    '
+    'btnPaste
+    '
+    Me.btnPaste.BackColor = System.Drawing.Color.LightSteelBlue
+    Me.btnPaste.Image = CType(resources.GetObject("btnPaste.Image"), System.Drawing.Image)
+    Me.btnPaste.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.btnPaste.Location = New System.Drawing.Point(2, 182)
+    Me.btnPaste.Name = "btnPaste"
+    Me.btnPaste.Size = New System.Drawing.Size(82, 24)
+    Me.btnPaste.TabIndex = 4
+    Me.btnPaste.Text = "Einfügen"
+    Me.btnPaste.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+    Me.btnPaste.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+    Me.ToolTip1.SetToolTip(Me.btnPaste, "Einfügen")
+    Me.btnPaste.UseVisualStyleBackColor = True
+    '
+    'pnlViewPartial
+    '
+    Me.pnlViewPartial.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+    Me.pnlViewPartial.AutoScroll = True
+    Me.pnlViewPartial.BackColor = System.Drawing.Color.WhiteSmoke
+    Me.pnlViewPartial.BackgroundImage = CType(resources.GetObject("pnlViewPartial.BackgroundImage"), System.Drawing.Image)
+    Me.pnlViewPartial.ContextMenuStrip = Me.ContextMenuStrip1
+    Me.pnlViewPartial.Controls.Add(Me.pic_viewPartial)
+    Me.pnlViewPartial.Location = New System.Drawing.Point(88, 0)
+    Me.pnlViewPartial.Name = "pnlViewPartial"
+    Me.pnlViewPartial.Size = New System.Drawing.Size(713, 499)
+    Me.pnlViewPartial.TabIndex = 24
+    '
+    'pic_viewPartial
+    '
+    Me.pic_viewPartial.BackColor = System.Drawing.Color.Transparent
+    Me.pic_viewPartial.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+    Me.pic_viewPartial.Location = New System.Drawing.Point(0, 0)
+    Me.pic_viewPartial.Name = "pic_viewPartial"
+    Me.pic_viewPartial.Size = New System.Drawing.Size(595, 400)
+    Me.pic_viewPartial.TabIndex = 8
+    Me.pic_viewPartial.TabStop = False
+    '
+    'GrabToolStripMenuItem
+    '
+    Me.GrabToolStripMenuItem.Image = CType(resources.GetObject("GrabToolStripMenuItem.Image"), System.Drawing.Image)
+    Me.GrabToolStripMenuItem.Name = "GrabToolStripMenuItem"
+    Me.GrabToolStripMenuItem.ShortcutKeyDisplayString = "Windows+G"
+    Me.GrabToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
+    Me.GrabToolStripMenuItem.Text = "GRAB(Auswahlrechteck)"
+    '
+    'SpeichernUnterToolStripMenuItem
+    '
+    Me.SpeichernUnterToolStripMenuItem.Image = CType(resources.GetObject("SpeichernUnterToolStripMenuItem.Image"), System.Drawing.Image)
+    Me.SpeichernUnterToolStripMenuItem.Name = "SpeichernUnterToolStripMenuItem"
+    Me.SpeichernUnterToolStripMenuItem.ShortcutKeyDisplayString = "Strg+S"
+    Me.SpeichernUnterToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
+    Me.SpeichernUnterToolStripMenuItem.Text = "Lokal speichern ..."
+    '
+    'DruckenToolStripMenuItem
+    '
+    Me.DruckenToolStripMenuItem.Image = CType(resources.GetObject("DruckenToolStripMenuItem.Image"), System.Drawing.Image)
+    Me.DruckenToolStripMenuItem.Name = "DruckenToolStripMenuItem"
+    Me.DruckenToolStripMenuItem.ShortcutKeyDisplayString = "Strg+P"
+    Me.DruckenToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
+    Me.DruckenToolStripMenuItem.Text = "Drucken"
+    '
+    'MDIToolStripMenuItem
+    '
+    Me.MDIToolStripMenuItem.Image = CType(resources.GetObject("MDIToolStripMenuItem.Image"), System.Drawing.Image)
+    Me.MDIToolStripMenuItem.Name = "MDIToolStripMenuItem"
+    Me.MDIToolStripMenuItem.ShortcutKeyDisplayString = "Strg+T"
+    Me.MDIToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
+    Me.MDIToolStripMenuItem.Text = "Collage"
+    '
+    'OptionenToolStripMenuItem
+    '
+    Me.OptionenToolStripMenuItem.Image = CType(resources.GetObject("OptionenToolStripMenuItem.Image"), System.Drawing.Image)
+    Me.OptionenToolStripMenuItem.Name = "OptionenToolStripMenuItem"
+    Me.OptionenToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
+    Me.OptionenToolStripMenuItem.Text = "Optionen"
+    '
+    'InfoScreenGrabToolStripMenuItem
+    '
+    Me.InfoScreenGrabToolStripMenuItem.Name = "InfoScreenGrabToolStripMenuItem"
+    Me.InfoScreenGrabToolStripMenuItem.Size = New System.Drawing.Size(274, 22)
+    Me.InfoScreenGrabToolStripMenuItem.Text = "Info über ScreenGrab ..."
     '
     'frm_blueScreen
     '
@@ -624,15 +622,15 @@ Partial Class frm_blueScreen
     Me.KeyPreview = True
     Me.Name = "frm_blueScreen"
     Me.Text = "FRM_BLUESCREEN"
-    CType(Me.pic_viewPartial, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ContextMenuStrip1.ResumeLayout(False)
     CType(Me.tbrZoom, System.ComponentModel.ISupportInitialize).EndInit()
-    Me.pnlViewPartial.ResumeLayout(False)
     Me.pnlSidebar.ResumeLayout(False)
     Me.pnlSidebar.PerformLayout()
     Me.pnlOpenedFile.ResumeLayout(False)
     Me.pnlOpenedFile.PerformLayout()
     CType(Me.picOpenedFile, System.ComponentModel.ISupportInitialize).EndInit()
+    Me.pnlViewPartial.ResumeLayout(False)
+    CType(Me.pic_viewPartial, System.ComponentModel.ISupportInitialize).EndInit()
     Me.ResumeLayout(False)
 
   End Sub
@@ -676,13 +674,8 @@ Partial Class frm_blueScreen
   Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripSeparator
   Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripSeparator
   Friend WithEvents pnlSidebar As System.Windows.Forms.Panel
-  Friend WithEvents IGrid1DefaultCellStyle As TenTec.Windows.iGridLib.iGCellStyle
-  Friend WithEvents IGrid1DefaultColHdrStyle As TenTec.Windows.iGridLib.iGColHdrStyle
-  Friend WithEvents IGrid1RowTextColCellStyle As TenTec.Windows.iGridLib.iGCellStyle
-  Friend WithEvents IGrid1Col0CellStyle As TenTec.Windows.iGridLib.iGCellStyle
-  Friend WithEvents IGrid1Col0ColHdrStyle As TenTec.Windows.iGridLib.iGColHdrStyle
-  Friend WithEvents Label2 As System.Windows.Forms.Label
-  Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
   Friend WithEvents btnSaveToWeb As System.Windows.Forms.Button
   Friend WithEvents pnlOpenedFile As System.Windows.Forms.Panel
   Friend WithEvents txtOpenedFile As System.Windows.Forms.TextBox
@@ -699,4 +692,5 @@ Partial Class frm_blueScreen
   Friend WithEvents qq_chkAutoCollage As System.Windows.Forms.CheckBox
   Friend WithEvents chkAutoWord As System.Windows.Forms.CheckBox
   Friend WithEvents chkAutoCopy As System.Windows.Forms.CheckBox
+  Friend WithEvents InfoScreenGrabToolStripMenuItem As ToolStripMenuItem
 End Class

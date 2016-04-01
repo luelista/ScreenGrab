@@ -35,7 +35,7 @@
 
       hr.Method = "PUT"
       hr.ContentType = "multipart/form-data; boundary=" & strBoundary
-      hr.Credentials = New Net.NetworkCredential(handle.getValue("username"), handle.getValue("password"))
+      hr.Credentials = New System.Net.NetworkCredential(handle.getValue("username"), handle.getValue("password"))
 
       Dim ns = hr.GetRequestStream
       Dim fileStream As New IO.FileStream(sourceFilespec, IO.FileMode.Open, IO.FileAccess.Read, IO.FileShare.Read)

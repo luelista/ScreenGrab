@@ -1,6 +1,6 @@
 ﻿Module app_uploadHistory
-  Dim uploadHistoryFilename As String = _
-        settingsFolder + "uploadHistory.html"
+  Dim uploadHistoryFilename As String =
+        IO.Path.Combine(glob.configDir, "uploadHistory.html")
 
   Sub uploadHistoryAdd(ByVal text As String)
     If glob.para("frm_options__chkEnableHistory", "TRUE") = _

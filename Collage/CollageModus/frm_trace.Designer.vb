@@ -22,16 +22,16 @@ Partial Class frm_trace
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-    Me.components = New System.ComponentModel.Container
-    Me.lstTrace = New System.Windows.Forms.ListBox
-    Me.TextBox1 = New System.Windows.Forms.TextBox
-    Me.SplitContainer1 = New System.Windows.Forms.SplitContainer
+    Me.components = New System.ComponentModel.Container()
+    Me.lstTrace = New System.Windows.Forms.ListBox()
     Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-    Me.LeerenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+    Me.LeerenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+    Me.TextBox1 = New System.Windows.Forms.TextBox()
+    Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
+    Me.ContextMenuStrip1.SuspendLayout()
     Me.SplitContainer1.Panel1.SuspendLayout()
     Me.SplitContainer1.Panel2.SuspendLayout()
     Me.SplitContainer1.SuspendLayout()
-    Me.ContextMenuStrip1.SuspendLayout()
     Me.SuspendLayout()
     '
     'lstTrace
@@ -44,6 +44,18 @@ Partial Class frm_trace
     Me.lstTrace.Name = "lstTrace"
     Me.lstTrace.Size = New System.Drawing.Size(580, 376)
     Me.lstTrace.TabIndex = 10
+    '
+    'ContextMenuStrip1
+    '
+    Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LeerenToolStripMenuItem})
+    Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+    Me.ContextMenuStrip1.Size = New System.Drawing.Size(110, 26)
+    '
+    'LeerenToolStripMenuItem
+    '
+    Me.LeerenToolStripMenuItem.Name = "LeerenToolStripMenuItem"
+    Me.LeerenToolStripMenuItem.Size = New System.Drawing.Size(109, 22)
+    Me.LeerenToolStripMenuItem.Text = "Leeren"
     '
     'TextBox1
     '
@@ -74,18 +86,6 @@ Partial Class frm_trace
     Me.SplitContainer1.SplitterDistance = 376
     Me.SplitContainer1.TabIndex = 18
     '
-    'ContextMenuStrip1
-    '
-    Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LeerenToolStripMenuItem})
-    Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-    Me.ContextMenuStrip1.Size = New System.Drawing.Size(110, 26)
-    '
-    'LeerenToolStripMenuItem
-    '
-    Me.LeerenToolStripMenuItem.Name = "LeerenToolStripMenuItem"
-    Me.LeerenToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-    Me.LeerenToolStripMenuItem.Text = "Leeren"
-    '
     'frm_trace
     '
     Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -94,11 +94,11 @@ Partial Class frm_trace
     Me.Controls.Add(Me.SplitContainer1)
     Me.Name = "frm_trace"
     Me.Text = "frm_trace"
+    Me.ContextMenuStrip1.ResumeLayout(False)
     Me.SplitContainer1.Panel1.ResumeLayout(False)
     Me.SplitContainer1.Panel2.ResumeLayout(False)
     Me.SplitContainer1.Panel2.PerformLayout()
     Me.SplitContainer1.ResumeLayout(False)
-    Me.ContextMenuStrip1.ResumeLayout(False)
     Me.ResumeLayout(False)
 
   End Sub

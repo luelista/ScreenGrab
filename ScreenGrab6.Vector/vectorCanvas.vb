@@ -608,6 +608,13 @@ Public Class Canvas
     OnSelectionChanged()
   End Sub
 
+  Sub SelectAll()
+    For i = 0 To p_objects.Count - 1
+      p_objects(i).isSelected = True
+    Next
+    OnSelectionChanged()
+  End Sub
+
   Private Sub box_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles box.Paint
     For i = 0 To p_objects.Count - 1
       Try
@@ -962,7 +969,7 @@ Public Class Canvas
     doc.Close()
   End Sub
 
-  Sub createHtmlPage(ByVal fileSpec As String)
+  Sub createHtmlPage(ByVal title As String, ByVal sw As System.IO.StreamWriter)
     'Dim fileName As String
     'Using sfd As New SaveFileDialog
     '  sfd.Filter = "HTML-Datei (*.html, *.html, *.htm)|*.html;*.htm"
@@ -974,11 +981,10 @@ Public Class Canvas
     Dim previewImg = GetPartialImage(0, 0, box.Width, box.Height, Nothing).GetThumbnailImage(150, 150, Nothing, IntPtr.Zero)
 
 
-    Dim sw As New IO.StreamWriter(fileSpec)
     sw.WriteLine("<!DOCTYPE HTML>")
     sw.WriteLine("<html>")
     sw.WriteLine("<head>")
-    sw.WriteLine("	<title>" + IO.Path.GetFileNameWithoutExtension(fileSpec) + "</title>")
+    sw.WriteLine("	<title>" + title + "</title>")
     sw.WriteLine("	<!-- ##PREVIEW##" + Helper.ImageToBase64(previewImg) + "##-->")
     sw.WriteLine("	<style type=""text/css"">")
     sw.WriteLine("	div { line-height: 120% !important; }")
@@ -995,17 +1001,22 @@ Public Class Canvas
     sw.WriteLine("</head>")
     sw.WriteLine("<body bgcolor=""#888888"">")
     sw.WriteLine("<!-- ##page##" & PicBox.Width & "##" & PicBox.Height & "##" & "##" + Helper.Color2String(PicBox.BackColor) + "## -->")
-    sw.WriteLine("<div style=""position: absolute; overflow: hidden; " + _
-                  "background-color: " + Helper.Color2HTMLString(PicBox.BackColor) + ";" + _
-                  "border: 1px solid black; width: " & PicBox.Width & "px; height: " & PicBox.Height & "px; "">")
+    sw.WriteLine("<div style=""position: absolute; overflow: hidden; " +
+                    "background-color: " + Helper.Color2HTMLString(PicBox.BackColor) + ";" +
+                    "border: 1px solid black; width: " & PicBox.Width & "px; height: " & PicBox.Height & "px; "">")
 
     For Each el In p_objects
       sw.WriteLine(el.ToHtml())
     Next
     sw.WriteLine("</div></body></html>")
-    sw.Close()
     'IO.File.WriteAllText(fileName, sb.ToString)
     'Process.Start(filespec)
+  End Sub
+
+  Sub createHtmlPage(ByVal fileSpec As String)
+    Using sw As New IO.StreamWriter(fileSpec)
+      createHtmlPage(IO.Path.GetFileNameWithoutExtension(fileSpec), sw)
+    End Using
   End Sub
 
   Sub readHtmlPage(ByVal fileSpec As String)

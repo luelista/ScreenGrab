@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frm_paletteColor
-    Inherits System.Windows.Forms.Form
+    Inherits WeifenLuo.WinFormsUI.Docking.DockContent
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
@@ -22,10 +22,10 @@ Partial Class frm_paletteColor
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-    Me.Label1 = New System.Windows.Forms.Label
-    Me.TextBox1 = New System.Windows.Forms.TextBox
-    Me.Label2 = New System.Windows.Forms.Label
-    Me.GColorPicker1 = New gColorPicker
+    Me.Label1 = New System.Windows.Forms.Label()
+    Me.TextBox1 = New System.Windows.Forms.TextBox()
+    Me.Label2 = New System.Windows.Forms.Label()
+    Me.GColorPicker1 = New ScreenGrab6.Collage.gColorPicker()
     CType(Me.GColorPicker1, System.ComponentModel.ISupportInitialize).BeginInit()
     Me.SuspendLayout()
     '
@@ -57,7 +57,7 @@ Partial Class frm_paletteColor
     '
     'GColorPicker1
     '
-    Me.GColorPicker1.FlyOut = gColorPicker.eFlyOut.Click
+    Me.GColorPicker1.FlyOut = ScreenGrab6.Collage.gColorPicker.eFlyOut.Click
     Me.GColorPicker1.HideRGB = False
     Me.GColorPicker1.Location = New System.Drawing.Point(0, 1)
     Me.GColorPicker1.Name = "GColorPicker1"
@@ -74,8 +74,10 @@ Partial Class frm_paletteColor
     Me.Controls.Add(Me.TextBox1)
     Me.Controls.Add(Me.Label1)
     Me.Controls.Add(Me.GColorPicker1)
+    Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
     Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
     Me.Name = "frm_paletteColor"
+    Me.ShowHint = WeifenLuo.WinFormsUI.Docking.DockState.Float
     Me.ShowIcon = False
     Me.ShowInTaskbar = False
     Me.Text = "Farbe"
