@@ -1,6 +1,6 @@
 ﻿Module app_softwareUpdate
 
-  Public updateCheckURL As String = "https://downloads.max-weller.de/screengrab/versionInfo.txt"
+  Public updateCheckURL As String = "https://dl.weller-it.com/screengrab/versionInfo.txt"
   Public updateDownloadURL As String
   Public updateInfoText As String
   Public updateNewVersion As String
